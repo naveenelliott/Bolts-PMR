@@ -1,18 +1,18 @@
-Team,Player,Event,Mins,Secs,X,Y,X2,Y2
-Miami,1 on 1,SOT,0,15,87,59,-,-
-Miami,Normal,Goal,0,15,97,41,-,-
-Miami,Header,SOT,0,15,91,44,-,-
-Boston Bolts U16,Normal,Blocked,0,15,6,30,-,-
-Miami,Normal,Blocked,0,15,82,24,-,-
-Miami,Normal,Goal,0,15,96,33,-,-
-Boston Bolts U16,First Time,Blocked,0,15,13,39,-,-
-Boston Bolts U16,Normal,Shot,0,15,21,26,-,-
-Boston Bolts U16,Volley,SOT,0,15,13,58,-,-
-Miami,Normal,SOT,0,15,73,48,-,-
-Miami,Normal,SOT,0,15,13,65,-,-
-Miami,Header,SOT,0,15,12,40,-,-
-Boston Bolts U16,Volley,Shot,0,15,67,48,-,-
-Boston Bolts U16,First Time,Shot,0,15,87,34,-,-
-Boston Bolts U16,Normal,Shot,0,15,94,42,-,-
-Boston Bolts U16,First Time,Blocked,0,15,96,47,-,-
-Miami,FK,Goal,0,15,23,58,-,-
+Team,Player,Event,Mins,Secs,X,Y,X2,Y2,Match Date,Bolts Team,Time
+Miami,1 on 1,SOT,0,15,87,59,-,-,12/10/2023,Boston Bolts U16,05:41
+Miami,Normal,Goal,0,15,97,41,-,-,12/10/2023,Boston Bolts U16,06:29
+Miami,Header,SOT,0,15,91,44,-,-,12/10/2023,Boston Bolts U16,15:34
+Boston Bolts U16,Normal,Blocked,0,15,6,30,-,-,12/10/2023,Boston Bolts U16,17:10
+Miami,Normal,Blocked,0,15,82,24,-,-,12/10/2023,Boston Bolts U16,18:19
+Miami,Normal,Goal,0,15,96,33,-,-,12/10/2023,Boston Bolts U16,25:30
+Boston Bolts U16,First Time,Blocked,0,15,13,39,-,-,12/10/2023,Boston Bolts U16,31:27
+Boston Bolts U16,Normal,Shot,0,15,21,26,-,-,12/10/2023,Boston Bolts U16,39:28
+Boston Bolts U16,Volley,SOT,0,15,13,58,-,-,12/10/2023,Boston Bolts U16,41:56
+Miami,Normal,SOT,0,15,73,48,-,-,12/10/2023,Boston Bolts U16,44:03
+Miami,Normal,SOT,0,15,13,65,-,-,12/10/2023,Boston Bolts U16,46:38
+Miami,Header,SOT,0,15,12,40,-,-,12/10/2023,Boston Bolts U16,78:26
+Boston Bolts U16,Volley,Shot,0,15,67,48,-,-,12/10/2023,Boston Bolts U16,80:05
+Boston Bolts U16,First Time,Shot,0,15,87,34,-,-,12/10/2023,Boston Bolts U16,80:17
+Boston Bolts U16,Normal,Shot,0,15,94,42,-,-,12/10/2023,Boston Bolts U16,82:54
+Boston Bolts U16,First Time,Blocked,0,15,96,47,-,-,12/10/2023,Boston Bolts U16,83:00
+Miami,FK,Goal,0,15,23,58,-,-,12/10/2023,Boston Bolts U16,85:40

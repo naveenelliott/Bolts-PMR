@@ -1,21 +1,21 @@
-Team,Player,Event,Mins,Secs,X,Y,X2,Y2
-Boston Bolts U16,Normal,SOT,0,15,79,31,-,-
-Boston Bolts U16,Volley,Blocked,0,15,77,45,-,-
-St Louis,Volley,SOT,0,15,12,32,-,-
-Boston Bolts U16,Normal,Blocked,0,15,93,65,-,-
-St Louis,Normal,Goal,0,15,13,36,-,-
-Boston Bolts U16,Normal,Blocked,0,15,77,42,-,-
-Boston Bolts U16,Header,Blocked,0,15,98,59,-,-
-Boston Bolts U16,Normal,SOT,0,15,79,51,-,-
-Boston Bolts U16,First Time,Blocked,0,15,6,49,-,-
-Boston Bolts U16,First Time,Blocked,0,15,6,44,-,-
-Boston Bolts U16,Normal,Shot,0,15,9,69,-,-
-Boston Bolts U16,Normal,Shot,0,15,22,37,-,-
-Boston Bolts U16,Normal,Goal,0,15,13,58,-,-
-Boston Bolts U16,Normal,SOT,0,15,8,32,-,-
-Boston Bolts U16,First Time,Goal,0,15,15,40,-,-
-St Louis,Normal,SOT,0,15,82,65,-,-
-St Louis,Header,Goal,0,15,92,48,-,-
-St Louis,Normal,SOT,0,15,88,72,-,-
-Boston Bolts U16,Volley,Shot,0,15,6,45,-,-
-Boston Bolts U16,First Time,Shot,0,15,11,39,-,-
+Team,Player,Event,Mins,Secs,X,Y,X2,Y2,Match Date,Bolts Team,Time
+Boston Bolts U16,Normal,SOT,0,15,79,31,-,-,12/8/2023,Boston Bolts U16,03:41
+Boston Bolts U16,Volley,Blocked,0,15,77,45,-,-,12/8/2023,Boston Bolts U16,06:25
+St Louis,Volley,SOT,0,15,12,32,-,-,12/8/2023,Boston Bolts U16,08:02
+Boston Bolts U16,Normal,Blocked,0,15,93,65,-,-,12/8/2023,Boston Bolts U16,12:51
+St Louis,Normal,Goal,0,15,13,36,-,-,12/8/2023,Boston Bolts U16,26:52
+Boston Bolts U16,Normal,Blocked,0,15,77,42,-,-,12/8/2023,Boston Bolts U16,35:55
+Boston Bolts U16,Header,Blocked,0,15,98,59,-,-,12/8/2023,Boston Bolts U16,36:32
+Boston Bolts U16,Normal,SOT,0,15,79,51,-,-,12/8/2023,Boston Bolts U16,43:49
+Boston Bolts U16,First Time,Blocked,0,15,6,49,-,-,12/8/2023,Boston Bolts U16,48:01
+Boston Bolts U16,First Time,Blocked,0,15,6,44,-,-,12/8/2023,Boston Bolts U16,48:04
+Boston Bolts U16,Normal,Shot,0,15,9,69,-,-,12/8/2023,Boston Bolts U16,49:15
+Boston Bolts U16,Normal,Shot,0,15,22,37,-,-,12/8/2023,Boston Bolts U16,51:32
+Boston Bolts U16,Normal,Goal,0,15,13,58,-,-,12/8/2023,Boston Bolts U16,55:05
+Boston Bolts U16,Normal,SOT,0,15,8,32,-,-,12/8/2023,Boston Bolts U16,61:22
+Boston Bolts U16,First Time,Goal,0,15,15,40,-,-,12/8/2023,Boston Bolts U16,61:24
+St Louis,Normal,SOT,0,15,82,65,-,-,12/8/2023,Boston Bolts U16,64:55
+St Louis,Header,Goal,0,15,92,48,-,-,12/8/2023,Boston Bolts U16,67:30
+St Louis,Normal,SOT,0,15,88,72,-,-,12/8/2023,Boston Bolts U16,79:38
+Boston Bolts U16,Volley,Shot,0,15,6,45,-,-,12/8/2023,Boston Bolts U16,80:06
+Boston Bolts U16,First Time,Shot,0,15,11,39,-,-,12/8/2023,Boston Bolts U16,85:21
