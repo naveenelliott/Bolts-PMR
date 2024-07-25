@@ -614,7 +614,7 @@ with col3:
 xg_overall = xg_copy.copy()
 bolts_df = xg_overall[xg_overall['Team'].str.contains('Bolts')]
 opp_df = xg_overall[~xg_overall['Team'].str.contains('Bolts')]
-st.write(opp_df)
+
 
 # Group by the desired columns and aggregate
 bolts_agg = bolts_df.groupby(['Bolts Team', 'Match Date', 'Opposition']).agg(
@@ -765,10 +765,8 @@ with col3:
 team_sum = xg_later.groupby('Team')['xG'].sum()
 
 bolts_xG = round(team_sum.loc[selected_team], 2)
-st.write(team_sum)
 opp_xG = round(team_sum.loc[selected_opp], 2)
 
-st.write(xg)
 
 bolts = xg.loc[xg['Team'].str.contains('Boston Bolts')]
 opp = xg.loc[~xg['Team'].str.contains('Boston Bolts')]
