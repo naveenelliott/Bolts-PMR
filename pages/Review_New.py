@@ -91,7 +91,7 @@ pitch.draw(ax=ax)
 our_columns = ['Final Grade', 'Player Name', 'Position', 'Adjustments']
 final_grade_df = pd.DataFrame(columns=our_columns)
 
-folder_path = 'PostMatchReviewApp_v2/xG Input Files'
+folder_path = 'xG Input Files'
 
 # Find all CSV files in the folder
 csv_files = glob.glob(os.path.join(folder_path, '*.csv'))
@@ -127,7 +127,7 @@ for index, row in fc_python.iterrows():
 
 
 # Path to the folder containing CSV files
-folder_path = 'PostMatchReviewApp_v2/Actions PSD'
+folder_path = 'Actions PSD'
 
 # Find all CSV files in the folder
 csv_files = glob.glob(os.path.join(folder_path, '*.csv'))
@@ -642,7 +642,7 @@ entire_xT['Match Date'] = pd.to_datetime(entire_xT['Match Date']).dt.strftime('%
 combined_entire_df = pd.merge(overall_xg, entire_xT, on=['Team', 'Match Date', 'Opposition'], how='outer')
 combined_entire_df['Unique Opp and Date'] = combined_entire_df['Opposition'] + ' (' + combined_entire_df['Match Date'] + ')'
 
-possession = pd.read_csv('PostMatchReviewApp_v2/Veo Data/Veo Analysis - Formatted Games.csv')
+possession = pd.read_csv('Veo Data/Veo Analysis - Formatted Games.csv')
 possession = possession[['Date', 'Opponent', 'Possession ']]
 possession.dropna(inplace=True)
 possession['Possession '] = possession['Possession '].str.replace('%', '', regex=False).astype(float)
@@ -1237,7 +1237,7 @@ ax.set_axis_off()
 with col1:
     st.pyplot(fig)
 
-image = Image.open('C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/PostMatchReviewApp_v2/pages/Key3.png')
+image = Image.open('C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/pages/Key3.png')
 
 with col1:
     st.image(image, use_column_width=True)
@@ -1273,7 +1273,7 @@ pitch = VerticalPitch(corner_arcs=True, half=True, pitch_type='custom', pitch_le
 fig1, axs = pitch.grid(figheight=6, title_height=0.08, endnote_space=0,
                       axis=False, title_space=0, grid_height=0.82)
 
-background_img = plt.imread('C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/PostMatchReviewApp_v2/pages/soccer_field_bw.png')
+background_img = plt.imread('C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/pages/soccer_field_bw.png')
 axs['pitch'].imshow(background_img, extent=[0, 100, 70, 100], aspect='auto', zorder=-1)
 
 
