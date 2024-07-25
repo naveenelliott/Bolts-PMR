@@ -760,7 +760,8 @@ with col3:
             player_html = f"<span style='color: #355870; font-size: 10pt;'>{player['Player Full Name']}</span> <span style='color: green; font-size: 10pt;'>{player['Total Tackles']}</span>"
             st.write(player_html, unsafe_allow_html=True)
 
-
+st.write(xg)
+#xg = xg.loc[xg['Te
 team_sum = xg.groupby('Team')['xG'].sum()
 
 bolts_xG = round(team_sum.loc[selected_team], 2)
