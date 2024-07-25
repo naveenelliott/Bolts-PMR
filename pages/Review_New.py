@@ -614,6 +614,7 @@ with col3:
 xg_overall = xg_copy.copy()
 bolts_df = xg_overall[xg_overall['Team'].str.contains('Bolts')]
 opp_df = xg_overall[~xg_overall['Team'].str.contains('Bolts')]
+st.write(opp_df)
 
 # Group by the desired columns and aggregate
 bolts_agg = bolts_df.groupby(['Bolts Team', 'Match Date', 'Opposition']).agg(
