@@ -109,11 +109,11 @@ def StrikerFunction(dataframe):
         date = more_data['As At Date']
         
         if team_name in ['Boston Bolts U13', 'Boston Bolts U14']:
-            cf_df = pd.read_csv("PostMatchReviewApp_v2/Thresholds/StrikerThresholds1314.csv")
+            cf_df = pd.read_csv("Thresholds/StrikerThresholds1314.csv")
         elif team_name in ['Boston Bolts U15', 'Boston Bolts U16']:
-            cf_df = pd.read_csv("PostMatchReviewApp_v2/Thresholds/StrikerThresholds1516.csv")
+            cf_df = pd.read_csv("Thresholds/StrikerThresholds1516.csv")
         elif team_name in ['Boston Bolts U17', 'Boston Bolts U19']:
-            cf_df = pd.read_csv("PostMatchReviewApp_v2/Thresholds/StrikerThresholds1719.csv")
+            cf_df = pd.read_csv("Thresholds/StrikerThresholds1719.csv")
             
         
         
