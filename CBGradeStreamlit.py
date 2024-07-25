@@ -105,11 +105,11 @@ def CBFunction(dataframe):
         date = more_data['As At Date']
         
         if team_name in ['Boston Bolts U13', 'Boston Bolts U14']:
-            cb_df = pd.read_csv("PostMatchReviewApp_v2/Thresholds/CenterBackThresholds1314.csv")
+            cb_df = pd.read_csv("Thresholds/CenterBackThresholds1314.csv")
         elif team_name in ['Boston Bolts U15', 'Boston Bolts U16']:
-            cb_df = pd.read_csv("PostMatchReviewApp_v2/Thresholds/CenterBackThresholds1516.csv")
+            cb_df = pd.read_csv("Thresholds/CenterBackThresholds1516.csv")
         elif team_name in ['Boston Bolts U17', 'Boston Bolts U19']:
-            cb_df = pd.read_csv("PostMatchReviewApp_v2/Thresholds/CenterBackThresholds1719.csv")
+            cb_df = pd.read_csv("Thresholds/CenterBackThresholds1719.csv")
 
         mean_values = cb_df.iloc[0, 2]
         std_values = cb_df.iloc[1, 2]
