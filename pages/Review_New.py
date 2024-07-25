@@ -767,6 +767,7 @@ bolts_xG = round(team_sum.loc[selected_team], 2)
 st.write(team_sum)
 opp_xG = round(team_sum.loc[selected_opp], 2)
 
+st.write(xg)
 
 bolts = xg.loc[xg['Team'].str.contains('Boston Bolts')]
 opp = xg.loc[~xg['Team'].str.contains('Boston Bolts')]
