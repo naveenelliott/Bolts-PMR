@@ -1275,7 +1275,7 @@ pitch = VerticalPitch(corner_arcs=True, half=True, pitch_type='custom', pitch_le
 fig1, axs = pitch.grid(figheight=6, title_height=0.08, endnote_space=0,
                       axis=False, title_space=0, grid_height=0.82)
 
-background_img = plt.imread('C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/pages/soccer_field_bw.png')
+background_img = plt.imread('pages/soccer_field_bw.png')
 axs['pitch'].imshow(background_img, extent=[0, 100, 70, 100], aspect='auto', zorder=-1)
 
 
