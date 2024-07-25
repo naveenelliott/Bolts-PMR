@@ -6,7 +6,7 @@ import streamlit as st
 
 def averagesForEventData():
     # Directory paths for U17 and U19 folders
-    weekly_report = 'PostMatchReviewApp_v2/WeeklyReport PSD/'
+    weekly_report = 'WeeklyReport PSD/'
     
     # Initialize an empty list to store the selected dataframes
     selected_dfs = []
@@ -60,7 +60,7 @@ def averagesForEventData():
     
     # TEMPORARY PLACEHOLDER
     # Path to the folder containing CSV files
-    folder_path = 'PostMatchReviewApp_v2/Actions PSD'
+    folder_path = 'Actions PSD'
     
     # Find all CSV files in the folder
     csv_files = glob.glob(os.path.join(folder_path, '*.csv'))
