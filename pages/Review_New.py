@@ -1239,7 +1239,7 @@ ax.set_axis_off()
 with col1:
     st.pyplot(fig)
 
-image = Image.open('C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/pages/Key3.png')
+image = Image.open('pages/Key3.png')
 
 with col1:
     st.image(image, use_column_width=True)
