@@ -173,8 +173,10 @@ for index in range(len(xg_actions) - 1):
 actions_new = xg_actions.copy()
 actions_new = actions_new.drop(remove_indexes).reset_index(drop=True) 
 
+actions_new['Match Date'] = pd.to_datetime(actions_new['Match Date']).dt.strftime('%m/%d/%Y')
+fc_python['Match Date'] = pd.to_datetime(fc_python['Match Date']).dt.strftime('%m/%d/%Y')
 
-combined_xg = pd.merge(actions_new, fc_python, left_index=True, right_index=True)
+combined_xg = pd.merge(actions_new, fc_python, on=['Bolts Team', 'Match Date', 'Time'], how='inner'))
 xg = xGModel(combined_xg)
 
 chances_created = full_actions.loc[full_actions['Action'] == 'Chance Created']
