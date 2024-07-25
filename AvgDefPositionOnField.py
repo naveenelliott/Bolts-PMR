@@ -67,11 +67,11 @@ def DefendingPositionOnField(details, event_data):
     # Iterate through each row in player_stats_xy
     
     if team_name == 'Boston Bolts U13':
-        dist_avg = pd.read_csv('PostMatchReviewApp_v2/ActionsAverages/DefensiveActionsAverageU13.csv')
+        dist_avg = pd.read_csv('ActionsAverages/DefensiveActionsAverageU13.csv')
     elif (team_name == 'Boston Bolts U14') or (team_name == 'Boston Bolts U15'):
-        dist_avg = pd.read_csv('PostMatchReviewApp_v2/ActionsAverages/DefensiveActionsAverageU14U15.csv')
+        dist_avg = pd.read_csv('ActionsAverages/DefensiveActionsAverageU14U15.csv')
     elif (team_name == 'Boston Bolts U16') or (team_name == 'Boston Bolts U17') or (team_name == 'Boston Bolts U19'):
-        dist_avg = pd.read_csv('PostMatchReviewApp_v2/ActionsAverages/DefensiveActionsAverageU16U17U19.csv')
+        dist_avg = pd.read_csv('ActionsAverages/DefensiveActionsAverageU16U17U19.csv')
     
     player_stats_xy = pd.merge(player_stats_xy, details[['Player Full Name', 'Position Tag']], on='Player Full Name')
     for i, row in player_stats_xy.iterrows():
