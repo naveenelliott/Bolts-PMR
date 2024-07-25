@@ -187,6 +187,7 @@ chances_created['Time'] = chances_created['Time'].apply(time_to_seconds)
 
 xg_copy = xg.copy()
 xg = xg.loc[(xg['Bolts Team'] == selected_team) & (xg['Opposition'] == selected_opp)]
+st.write(xg)
 
 xg_us = xg_copy.loc[xg_copy['Bolts Team'] == selected_team]
 our_wanted_actions = ['Att Shot Blockd', 'Blocked Shot', 'Goal', 'Header on Target', 
