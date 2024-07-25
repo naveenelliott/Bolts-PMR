@@ -763,6 +763,7 @@ with col3:
 team_sum = xg.groupby('Team')['xG'].sum()
 
 bolts_xG = round(team_sum.loc[selected_team], 2)
+st.write(team_sum)
 opp_xG = round(team_sum.loc[selected_opp], 2)
 
 
