@@ -213,7 +213,7 @@ for idx, row in chances_created.iterrows():
         last_chance_idx = None
 
 chances_created = chances_created[['Player Full Name', 'Team', 'Opposition', 'Match Date', 'xG', 'xA']]
-chances_created['Match Date'] = pd.to_datetime(chances_created['Match Date']).dt.strftime('%m/%d/%Y')
+chances_created['Match Date'] = pd.to_datetime(chances_created['Match Date'], format='mixed').dt.strftime('%m/%d/%Y')
 chances_created = chances_created.loc[chances_created['Team'].str.contains('Boston Bolts')]
 chances_created = chances_created.groupby(['Player Full Name', 'Team', 'Opposition', 'Match Date'])[['xG', 'xA']].sum()
 chances_created.reset_index(inplace=True)
