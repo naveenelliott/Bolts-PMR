@@ -100,7 +100,7 @@ st.markdown(f"<h4 style='text-align: center;'>Date: {selected_date}&nbsp;&nbsp; 
 # printing the three columns
 col1, col2, col3 = st.columns(3)
 
-folder_path = 'PostMatchReviewApp_v4/xG Input Files'
+folder_path = 'xG Input Files'
 
 # Find all CSV files in the folder
 csv_files = glob.glob(os.path.join(folder_path, '*.csv'))
@@ -135,7 +135,7 @@ for index, row in fc_python.iterrows():
 
 
 # Path to the folder containing CSV files
-folder_path = 'PostMatchReviewApp_v4/Actions PSD'
+folder_path = 'Actions PSD'
 
 # Find all CSV files in the folder
 csv_files = glob.glob(os.path.join(folder_path, '*.csv'))
@@ -690,7 +690,7 @@ with col3:
             player_html = f"<span style='color: green; font-size: 10pt;'>{index}</span> <span style='color: green; font-size: 10pt;'>{round(cat, 2)}</span>"
             st.write(player_html, unsafe_allow_html=True)
     with inner_columns[1]:
-        image_path = "C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/PostMatchReviewApp_v3/pages/Veo.jpg"  # Replace with the path to your image
+        image_path = "pages/Veo.jpg"  # Replace with the path to your image
 
         def load_image(image_path):
             with open(image_path, "rb") as image_file:
@@ -1244,7 +1244,7 @@ with col1:
     st.pyplot(fig)
 
 # plotting key
-image = Image.open('C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/PostMatchReviewApp_v4/pages/Key3.png')
+image = Image.open('pages/Key3.png')
 
 with col1:
     st.image(image, use_column_width=True)
