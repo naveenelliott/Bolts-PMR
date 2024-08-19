@@ -19,7 +19,7 @@ import plotly.graph_objs as go
 from PIL import Image, ImageOps
 from streamlit_gsheets import GSheetsConnection
 
-st.set_page_config(page_title='Bolts Post-Match Review App', page_icon = 'PostMatchReviewApp_v2/pages/Boston_Bolts.png')
+st.set_page_config(page_title='Bolts Post-Match Review App', page_icon = 'pages/Boston_Bolts.png')
 #st.set_page_config(layout='wide')
 
 # adding in data from PMRApp
