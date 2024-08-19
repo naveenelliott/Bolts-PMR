@@ -48,8 +48,8 @@ gk_info.reset_index(drop=True, inplace=True)
 
 if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     # Extract relevant columns into variables
-    in_possession_goals = gk_info['In Possession'].iloc[0]
-    out_possession_goals = gk_info['Out Possession'].iloc[0]
+    in_possession_goals = gk_info['In Possession Goals'].iloc[0]
+    out_possession_goals = gk_info['Out of Possession Goals'].iloc[0]
     coach_notes = gk_info['Vasily Notes'].iloc[0]
     url_gk = gk_info['Veo Hyperlink GK'].iloc[0]
 
