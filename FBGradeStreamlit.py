@@ -107,7 +107,7 @@ def FBFunction(dataframe):
         elif team_name in ['Boston Bolts U17', 'Boston Bolts U19']:
             fb_df = pd.read_csv("Thresholds/FullBackThresholds1719.csv")
 
-
+        st.write(fb_df)
         mean_values = fb_df.iloc[0, 2]
         std_values = fb_df.iloc[1, 2]
         # Calculate the z-score for each data point
