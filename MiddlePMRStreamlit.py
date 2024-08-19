@@ -1,122 +1,45 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib.cm as cm
-from fuzzywuzzy import process
-import datetime
 import numpy as np
 import streamlit as st
 from GettingPSDTeamData import getting_PSD_team_data
 
-#team='Boston Bolts U13'
-#opp='Seacoast'
-#date=datetime.datetime(2024, 4, 28)
-#date = date.strftime('%m/%d/%Y')
 
-
-def GettingCompLevel(team, opp, date):
-    raw_data = pd.read_csv("Veo Data/Veo Analysis - Formatted Games.csv")
-    raw_data.dropna(inplace=True)
-    raw_data['Date'] = pd.to_datetime(raw_data['Date'])
-    raw_data['Date'] = raw_data['Date'].dt.strftime('%m/%d/%Y')
-    age_group_map = {
-    'U13': 'Boston Bolts U13',
-    'U14': 'Boston Bolts U14',
-    'U15': 'Boston Bolts U15',
-    'U16': 'Boston Bolts U16',
-    'U17': 'Boston Bolts U17',
-    'U19': 'Boston Bolts U19'
-    }
-
-    def map_age_group(opponent):
-        for age_group, team_name in age_group_map.items():
-            if age_group in opponent:
-                return team_name
-        return 'Unknown'  # Default value if no age group found
-
-    # Create the 'Team' column based on the 'Opponent' column
-    raw_data['Team'] = raw_data['Opponent'].apply(map_age_group)
-    age_groups = ['U13', 'U14', 'U15', 'U16', 'U17', 'U19']
-    for age_group in age_groups:
-        raw_data['Opponent'] = raw_data['Opponent'].str.replace(age_group, '').str.strip()
-    raw_data = raw_data[raw_data['Team'] == team]
-    raw_data = raw_data[raw_data['Opponent'] == opp]
-    raw_data = raw_data[raw_data['Date'] == date]
-    raw_data.reset_index(drop=True, inplace=True)
-    value_wanted = raw_data['Competition'][0]
-    return value_wanted
-
-
-def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, our_xT, avg_xT, stdev_xT, regain_time):
-    raw_data = pd.read_csv("Veo Data/Veo Analysis - Formatted Games.csv")
-    raw_data.drop(columns=['Competition'], inplace=True)
-    raw_data.dropna(inplace=True)
-    raw_data['Date'] = pd.to_datetime(raw_data['Date'])
-    raw_data['Date'] = raw_data['Date'].dt.strftime('%m/%d/%Y')
-    age_group_map = {
-    'U13': 'Boston Bolts U13',
-    'U14': 'Boston Bolts U14',
-    'U15': 'Boston Bolts U15',
-    'U16': 'Boston Bolts U16',
-    'U17': 'Boston Bolts U17',
-    'U19': 'Boston Bolts U19'
-    }
-
-    def map_age_group(opponent):
-        for age_group, team_name in age_group_map.items():
-            if age_group in opponent:
-                return team_name
-        return 'Unknown'  # Default value if no age group found
-
-    # Create the 'Team' column based on the 'Opponent' column
-    raw_data['Team'] = raw_data['Opponent'].apply(map_age_group)
-    age_groups = ['U13', 'U14', 'U15', 'U16', 'U17', 'U19']
-    for age_group in age_groups:
-        raw_data['Opponent'] = raw_data['Opponent'].str.replace(age_group, '').str.strip()
-    raw_data = raw_data[raw_data['Team'] == team]
-    raw_data = raw_data[raw_data['Opponent'] == opp]
-    raw_data = raw_data[raw_data['Date'] == date]
-    actual_raw = raw_data.loc[:, ['Date', 'Passes per Minute (in Possession)', 'Possession ']]
-
-
-
+def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
+    
     sa_average= 9.5
     sa_std = 2
-    ppm_average = 2.5
-    ppm_std = .52
     poss_average = 48
     poss_std = 6
     regain_average = 25
     regain_std = 4
+    pass_in_18_average = 14
+    pass_in_18_std = 7.47
 
     team_data = getting_PSD_team_data()
-    cols_we_want = ['Date', 'Team Name', 'Opposition', 'Pass Completion ', 'Goal Against',
-           'Efforts on Goal', 'Opp Effort on Goal']
+    cols_we_want = ['Date', 'Team Name', 'Opposition', 'Goal Against',
+           'Efforts on Goal', 'Opp Effort on Goal', 'Goal', 'Pass Completion ', 'Pass into Oppo Box']
     team_data = team_data[cols_we_want]
-    team_data['Date'] = pd.to_datetime(team_data['Date'])  
-    team_data['Date'] = team_data['Date'].dt.strftime('%m/%d/%Y')
-    team_data = team_data.loc[team_data['Team Name'] == team]
-    team_data = team_data.loc[team_data['Opposition'] == opp]
+    team_data['Date'] = pd.to_datetime(team_data['Date']).dt.strftime('%m/%d/%Y')
+    team_data = team_data.loc[(team_data['Team Name'] == team) & (team_data['Opposition'] == opp) & (team_data['Date'] == date)]
+
+    if team_data['Opp Effort on Goal'].isna().any():
+        # Drop the column if it contains NA values
+        team_data = team_data.drop(columns=['Opp Effort on Goal'])
+
+    team_data['Goal Differential'] = team_data['Goal'] - team_data['Goal Against']
+
+    team_data['Win/Loss/Draw Adjustment'] = 0
+    for index, row in team_data.iterrows():
+        if row['Goal Differential'] > 0:
+            team_data.at[index, 'Win/Loss/Draw Adjustment'] = 1
+        elif row['Goal Differential'] == 0:
+            team_data.at[index, 'Win/Loss/Draw Adjustment'] = 0.5
+
     team_data.drop(columns={'Team Name', 'Opposition'}, inplace=True)
-
-    raw_data['Passes per Minute (in Possession)'] = raw_data['Passes per Minute (in Possession)'].astype(float)
-    raw_data['Passes per Minute (in Possession)'] = ((raw_data['Passes per Minute (in Possession)'] - ppm_average) / ppm_std) * 2 + 5
-    raw_data['Passes per Minute (in Possession)'] = round(raw_data['Passes per Minute (in Possession)'].clip(1, 10), 2)
-    raw_data['Possession '] = raw_data['Possession '].str.replace('%', '').astype(float)
-    raw_data['Possession '] = ((raw_data['Possession '] - poss_average) / poss_std) * 2 + 5
-    raw_data['Possession '] = raw_data['Possession '].clip(1, 10)
     team_data.reset_index(drop=True, inplace=True)
-    raw_data.reset_index(drop=True, inplace=True)
-    if pd.isna(team_data['Opp Effort on Goal']).any():
-        raw_data = raw_data.loc[:, ['Date', 'Passes per Minute (in Possession)', 'Opp Shots', 'Possession ', 'Goal Differential', 'Win/Loss/Draw Adjustment', 'Competition Adjustment (1 = Playoffs, 2 = MLS Flex Event, 3 = Team Sucks)']] 
-        team_data['Opp Effort on Goal'] = raw_data['Opp Shots']
-        raw_data.drop(columns={'Opp Shots'}, inplace=True)
-    else:    
-        raw_data = raw_data.loc[:, ['Date', 'Passes per Minute (in Possession)', 'Possession ', 'Goal Differential', 'Win/Loss/Draw Adjustment', 'Competition Adjustment (1 = Playoffs, 2 = MLS Flex Event, 3 = Team Sucks)']] 
-
     
-    important = pd.merge(raw_data, team_data, on='Date', how='inner')
-    important['xT per 90'] = np.nan
-    important.at[0, 'xT per 90'] = our_xT
+    important = team_data.copy()
     important.at[0, 'Time Until Regain'] = regain_time
 
     adjustments = []
@@ -129,10 +52,6 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, our_xT, avg_xT
             adjustments.append(1)
         elif row['Win/Loss/Draw Adjustment'] < 0.5:
             adjustments.append(-1)
-        if row['Competition Adjustment (1 = Playoffs, 2 = MLS Flex Event, 3 = Team Sucks)'] == 1:
-            adjustments.append(1)
-        elif row['Competition Adjustment (1 = Playoffs, 2 = MLS Flex Event, 3 = Team Sucks)'] == 3:
-            adjustments.append(-1)
         
 
     total = sum(adjustments)
@@ -140,20 +59,18 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, our_xT, avg_xT
     mean_xG_opp = avg_opp_xg
     mean_xG = avg_bolts_xg
 
-    raw_labels = pd.merge(actual_raw, team_data, on='Date', how='inner')
+    raw_labels = team_data.copy()
     raw_labels.drop(columns=['Date'], inplace=True)
-    pass_average = 80
-    pass_std = 3.43
     shots_average = 11
     shots_std = 3
-    ga_average = 1.5
-    ga_std = .75
     sa_average= 9.5
     sa_std = 2.5
     xg_per_shot_bolts_avg = 0.255
     xg_per_shot_bolts_std = 0.06021
     xg_per_shot_opp = 0.25
     xg_per_shot_opp_std = 0.05
+    pass_average = 80
+    pass_std = 3.43
 
 
     important['xG per Shot'] = ((mean_xG - xg_per_shot_bolts_avg) / xg_per_shot_bolts_std) * 2 + 5
@@ -162,26 +79,30 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, our_xT, avg_xT
     important['Opponent xG per Shot'] = 11 - important['Opponent xG per Shot'].clip(1, 10)
     important['Efforts on Goal'] = ((important['Efforts on Goal'] - shots_average) / shots_std) * 2 + 5
     important['Efforts on Goal'] = important['Efforts on Goal'].clip(1, 10)
-    important['Opp Effort on Goal'] = ((important['Opp Effort on Goal'] - sa_average) / sa_std) * 2 + 5
-    important['Opp Effort on Goal'] = 11 - important['Opp Effort on Goal'].clip(1, 10)
-    important['xT per 90'] = ((important['xT per 90'] - avg_xT) / stdev_xT) * 2 + 5
-    important['xT per 90'] = important['xT per 90'].clip(1, 10)
+    if 'Opp Effort on Goal' in important.columns:
+        important['Opp Effort on Goal'] = ((important['Opp Effort on Goal'] - sa_average) / sa_std) * 2 + 5
+        important['Opp Effort on Goal'] = 11 - important['Opp Effort on Goal'].clip(1, 10)
     important['Time Until Regain'] = ((important['Time Until Regain'] - regain_average) / regain_std) * 2 + 5
     important['Time Until Regain'] = 11 - important['Time Until Regain'].clip(1, 10)
-    average_columns = ['Efforts on Goal', 'Opp Effort on Goal', 'Possession ', 
-                       'xG per Shot', 'Opponent xG per Shot', 'xT per 90', 'Time Until Regain']
+    important['Pass Completion '] = ((important['Pass Completion '] - pass_average) / pass_std) * 2 + 5
+    important['Pass Completion '] = important['Pass Completion '].clip(1, 10)
+    important['Pass into Oppo Box'] = ((important['Pass into Oppo Box'] - pass_average) / pass_std) * 2 + 5
+    important['Pass into Oppo Box'] = important['Pass into Oppo Box'].clip(1, 10)
+    average_columns = ['Efforts on Goal',
+                       'xG per Shot', 'Opponent xG per Shot', 'Time Until Regain', 'Pass Completion ', 'Pass into Oppo Box']
+    if 'Opp Effort on Goal' in important.columns:
+        average_columns.insert(1, 'Opp Effort on Goal')
     important['Final Rating'] = important[average_columns].mean(axis=1) + total
     if important['Final Rating'][0] > 10:
         important['Final Rating'][0] = 10
 
 
-    actual_raw = pd.merge(actual_raw, team_data, on='Date')
+    actual_raw = team_data.copy()
 
 
     row_series = actual_raw.iloc[0]
 
-    important.drop(columns=['Win/Loss/Draw Adjustment', 'Goal Differential', 
-                            'Competition Adjustment (1 = Playoffs, 2 = MLS Flex Event, 3 = Team Sucks)'], inplace=True)
+    important.drop(columns=['Win/Loss/Draw Adjustment', 'Goal Differential'], inplace=True)
 
     first_row = important.iloc[0]
     first_row[~first_row.index.isin(['Date'])] *= 10
@@ -191,7 +112,6 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, our_xT, avg_xT
 
     row_series['xG per Shot'] = mean_xG
     row_series['Opponent xG per Shot'] = mean_xG_opp
-    row_series['xT per 90'] = our_xT[0]
     row_series['Time Until Regain'] = regain_time
     row_series['Date'] = date
     row_series['Final Rating'] = ''
@@ -203,19 +123,27 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, our_xT, avg_xT
     important = pd.concat([important, row_series], ignore_index=True)
 
     important.drop(columns='Date', inplace=True)
-    important.rename(columns={'Passes per Minute (in Possession)': 'Passes per Min', 
-                              'Possession ': 'Possession', 
-                              'Pass Completion ': 'Pass %', 
+    if 'Opp Effort on Goal' in important.columns:
+        important.rename(columns={
                               'Efforts on Goal': 'Shots', 
                               'Opp Effort on Goal': 'Opp Shots', 
                               'Opponent xG per Shot': 'Opp xG per Shot', 
-                              'Goal Against': 'Goals Against'}, inplace=True)
+                              'Pass Completion ': 'Pass %', 
+                              'Pass into Oppo Box': 'Passes into 18'}, inplace=True)
+    else:
+        important.rename(columns={
+                              'Efforts on Goal': 'Shots',
+                              'Opponent xG per Shot': 'Opp xG per Shot', 
+                              'Pass Completion ': 'Pass %', 
+                              'Pass into Oppo Box': 'Passes into 18'}, inplace=True)
     # Round to nearest 10
     def round_to_nearest_10(num):
         return round(num / 10) * 10
 
-    new_order = ['Possession', 'xT per 90', 'Shots',
-          'xG per Shot', 'Time Until Regain', 'Opp Shots', 'Opp xG per Shot', 'Final Rating']
+    new_order = ['Passes into 18', 'Pass %', 'Shots',
+          'xG per Shot', 'Time Until Regain', 'Opp xG per Shot', 'Final Rating']
+    if 'Opp Shots' in important.columns:
+        average_columns.insert(4, 'Opp Shots')
     important = important[new_order]
 
     
@@ -224,14 +152,13 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, our_xT, avg_xT
     raw_vals.iloc[0] = raw_vals.iloc[0].astype(float).apply(round)
     raw_vals.at[1, 'xG per Shot'] = round(raw_vals.at[1, 'xG per Shot'], 3)
     raw_vals.at[1, 'Opp xG per Shot'] = round(raw_vals.at[1, 'Opp xG per Shot'], 3)
-    raw_vals.at[1, 'xT per 90'] = round(raw_vals.at[1, 'xT per 90'], 3)
     raw_vals.at[1, 'Time Until Regain'] = round(raw_vals.at[1, 'Time Until Regain'], 2)
     important.iloc[0] = important.iloc[0].apply(round_to_nearest_10)
 
     dummy_df = pd.DataFrame(columns=important.columns)
-    for i in range(10):
-        i = i + 1
+    for i in range(11):
         dummy_df.loc[i] = [i * 10] * len(important.columns)
+        i = i + 1
 
     fig, ax = plt.subplots(figsize=(6, 5))
     for index, row in dummy_df.iterrows():
@@ -264,6 +191,6 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, our_xT, avg_xT
     # Customize the plot
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
-    plt.xticks([10, 20, 30, 40, 50, 60, 70, 80, 90, 100], fontsize=14)
+    plt.xticks([0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100], fontsize=14)
     plt.yticks(fontsize=14)
     return fig

@@ -9,11 +9,11 @@ def AttackingPositionOnField(details, event_data):
     team_name = details.at[0, 'Team Name']
     details = details.loc[details['Starts'] == 1]
     event_data = event_data[~event_data['Action'].isin(['Tackle', 'Def Aerial', 'Progr Rec', 'Own Box Clear',
-           'Stand Tackle', 'Unprogr Rec',
-           'Headed Clear', 'Save Parried', 'Goal Against', 'Progr Inter',
-           'Clear', 'Unsucc Def Aerial', 'Blocked Shot',
+           'Stand Tackle', 'Unprogr Rec', 'Blocked Cross', 'Unsucc Stand Tackle', 'Corner Kick', 'Unsucc Corner Kick',
+           'Headed Clear', 'Save Parried', 'Goal Against', 'Progr Inter', 'Chance Created', 'Short Corner',
+           'Clear', 'Unsucc Def Aerial', 'Blocked Shot', 'Goal', 'Offside', 'Att 1v1', 'Line Break', 'Save Held',
            'Unsucc Stand Tackle', 'Foul Lost', 'Unsucc Tackle', 'Unprogr Inter', 'Sub On', 'Sub Off', 'Kick Off'])]
-    event_data = event_data.dropna(axis=1, how='all')
+    event_data = event_data.dropna(subset=['x', 'y']).reset_index(drop=True)
     event_data[['x', 'y', 'ex', 'ey']] = event_data[['x', 'y', 'ex', 'ey']].astype(float)
     event_data['Player Full Name'] = event_data['Player Full Name'].apply(lambda x: x.split(' ', 1)[1])
     details['Player Full Name'] = details['Player Full Name'].apply(lambda x: x.split(' ', 1)[1])
@@ -41,6 +41,7 @@ def AttackingPositionOnField(details, event_data):
     # Filter the DataFrame to include only those players
     player_stats_xy = player_stats_xy[player_stats_xy['Player Full Name'].isin(players_started)]
 
+
     
     fig, ax = plt.subplots(figsize=(13.5, 8))
     pitch = Pitch(pitch_type="statsbomb", pitch_color="#FFFFFF", line_color="#000000")
@@ -51,28 +52,26 @@ def AttackingPositionOnField(details, event_data):
     event_data['is_equal'] = (event_data['x'] == event_data['ex']) & (event_data['y'] == event_data['ey'])
     
     end_data = event_data[['ex', 'ey']]
-    end_data.dropna(inplace=True)
     end_data.rename(columns={'ex': 'x', 
                      'ey': 'y'}, inplace=True)
     
     event_data = event_data[['x', 'y', 'is_equal']]
-    event_data = event_data.dropna()
     event_data = pd.concat([event_data, end_data], ignore_index=True)
     
     event_data = event_data.loc[(event_data['is_equal'] == False) | (event_data['is_equal'].isna())]
     event_data = event_data[['x', 'y']].reset_index(drop=True)
     
     # Overlay density plot
-    sns.kdeplot(data=event_data, x='x', y='y', cmap='Blues', shade=True, ax=ax, bw_adjust=0.225, alpha=0.5)
+    sns.kdeplot(data=event_data, x='x', y='y', cmap='Blues', shade=True, ax=ax, bw_adjust=0.8, alpha=0.5)
 
     
     # Iterate through each row in player_stats_xy
     if team_name == 'Boston Bolts U13':
-        dist_avg = pd.read_csv('ActionsAverages/AttackingActionsAverageU13.csv')
+        dist_avg = pd.read_csv('PostMatchReviewApp_v3/ActionsAverages/AttackingActionsAverageU13.csv')
     elif (team_name == 'Boston Bolts U14') or (team_name == 'Boston Bolts U15'):
-        dist_avg = pd.read_csv('ActionsAverages/AttackingActionsAverageU14U15.csv')
+        dist_avg = pd.read_csv('PostMatchReviewApp_v3/ActionsAverages/AttackingActionsAverageU14U15.csv')
     elif (team_name == 'Boston Bolts U16') or (team_name == 'Boston Bolts U17') or (team_name == 'Boston Bolts U19'):
-        dist_avg = pd.read_csv('ActionsAverages/AttackingActionsAverageU16U17U19.csv')
+        dist_avg = pd.read_csv('PostMatchReviewApp_v3/ActionsAverages/AttackingActionsAverageU16U17U19.csv')
     
     player_stats_xy = pd.merge(player_stats_xy, details[['Player Full Name', 'Position Tag']], on='Player Full Name')
     for i, row in player_stats_xy.iterrows():
@@ -87,8 +86,7 @@ def AttackingPositionOnField(details, event_data):
     
     player_stats_xy = pd.merge(player_stats_xy, dist_avg, on='Position Tag')
     
-    circles = []
-    texts = []
+
     for index, row in player_stats_xy.iterrows():
         circle = Circle((row['x_mean'], row['y_mean']), 0.03*row['Adjusted Rate'], edgecolor='black', facecolor='#6bb2e2', zorder=3)
         ax.add_patch(circle)

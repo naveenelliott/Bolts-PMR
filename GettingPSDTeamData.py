@@ -27,12 +27,11 @@ def getting_PSD_team_data():
 
             # Reset the index (optional if you want a clean integer index)
             selected = df.reset_index(drop=True)
-            remove_first = ['Period Name', 'Squad Number', 'Match Name', 'Match Date', 'Round Name']
+            remove_first = ['Period Name', 'Squad Number', 'Match Name', 'As At Date' 'Round Name']
             selected = selected.drop(columns=remove_first, errors='ignore')
             selected = selected.dropna(axis=1, how='all')
             selected = selected.iloc[1:]
-            selected['As At Date'] = pd.to_datetime(selected['As At Date'])
-            selected['As At Date'] = selected['As At Date'].dt.strftime('%m/%d/%Y')
+            selected['Match Date'] = pd.to_datetime(selected['Match Date']).dt.strftime('%m/%d/%Y')
             selected['Pass Completion '] = selected['Pass Completion '].astype(float)
             selected['Goal Against'] = selected['Goal Against'].astype(float)
             selected['Efforts on Goal'] = selected['Efforts on Goal'].astype(float)
@@ -48,7 +47,7 @@ def getting_PSD_team_data():
             if 'Opp Effort on Goal' in selected.columns:
                 selected['Opp Effort on Goal'] = selected['Opp Effort on Goal'].astype(float)
                 total_columns = ['Dribble', 'Goal Against',  'Progr Regain ', 'Total Corners', 
-                                'Shots on Target Against', 'Team Name', 'Opposition', 'As At Date',
+                                'Shots on Target Against', 'Team Name', 'Opposition', 'Match Date',
                                 'Total Cross', 'Total Forward', 'Att 1v1', 'Efforts on Goal', 'Shot on Target',
                                 'Efficiency ', 'Line Break', 'Pass into Oppo Box', 'Opp Effort on Goal',
                                 'Loss of Poss', 'Pass Completion ', 'Total Passes', 'Foul Conceded',
@@ -61,7 +60,7 @@ def getting_PSD_team_data():
                                     'Progr Pass Attempt ', 'Progr Pass Completion ', 'Goal', 'Foul Won']
             else:
                 total_columns = ['Dribble', 'Goal Against',  'Progr Regain ', 'Total Corners', 
-                                'Shots on Target Against', 'Team Name', 'Opposition', 'As At Date',
+                                'Shots on Target Against', 'Team Name', 'Opposition', 'Match Date',
                                 'Total Cross', 'Total Forward', 'Att 1v1', 'Efforts on Goal', 'Shot on Target',
                                     'Efficiency ', 'Line Break', 'Pass into Oppo Box',
                                     'Loss of Poss', 'Pass Completion ', 'Total Passes', 'Foul Conceded',
@@ -74,7 +73,7 @@ def getting_PSD_team_data():
                                     'Progr Pass Attempt ', 'Progr Pass Completion ', 'Goal', 'Foul Won']
             selected = selected.loc[:, total_columns]
             selected[number_cols] = selected[number_cols].astype(float)
-            selected.rename(columns={'As At Date': 'Date'}, inplace=True)
+            selected.rename(columns={'Match Date': 'Date'}, inplace=True)
             data_frames.append(selected)
         
         # Optionally, combine all DataFrames into a single DataFrame
@@ -83,17 +82,17 @@ def getting_PSD_team_data():
         return combined_df
 
     # Example usage
-    folder_path = 'Team_Thresholds/BoltsThirteenGames/'  # Replace with your folder path
+    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsThirteenGames/'  # Replace with your folder path
     bolts13 = read_all_csvs_from_folder(folder_path)
-    folder_path = 'Team_Thresholds/BoltsFourteenGames/'
+    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsFourteenGames/'
     bolts14 = read_all_csvs_from_folder(folder_path)
-    folder_path = 'Team_Thresholds/BoltsFifteenGames/'
+    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsFifteenGames/'
     bolts15 = read_all_csvs_from_folder(folder_path)
-    folder_path = 'Team_Thresholds/BoltsSixteenGames/'
+    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsSixteenGames/'
     bolts16 = read_all_csvs_from_folder(folder_path)
-    folder_path = 'Team_Thresholds/BoltsSeventeenGames/'
+    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsSeventeenGames/'
     bolts17 = read_all_csvs_from_folder(folder_path)
-    folder_path = 'Team_Thresholds/BoltsNineteenGames/'
+    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsNineteenGames/'
     bolts19 = read_all_csvs_from_folder(folder_path)
 
     end = pd.concat([bolts13, bolts14, bolts15, bolts16, bolts17, bolts19])
@@ -115,9 +114,12 @@ def getting_PSD_team_data():
 
     # Define the condition for excluding specific Oppositions
     exclude_oppositions = ['Albion', 'Miami', 'St Louis']
-    opposition_condition = ~end['Opposition'].isin(exclude_oppositions)
+    opposition_condition = end['Opposition'].isin(exclude_oppositions)
 
     # Combine conditions to filter the DataFrame
     filtered_end = end[date_condition | opposition_condition]
+    # Drop rows where 'Team Name' is 'Boston Bolts U15' and 'Opposition' is 'Albion'
+    filtered_end = filtered_end[~((filtered_end['Team Name'] == 'Boston Bolts U15') & (filtered_end['Opposition'] == 'Albion'))]
 
-    return end
+
+    return filtered_end

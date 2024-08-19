@@ -16,7 +16,7 @@ def FBFunction(dataframe):
            'PK Scored', 'PK Missed']
 
 
-    details = dataframe.loc[:, ['Player Full Name', 'Team Name', 'As At Date', 'Position Tag', 'Starts']]
+    details = dataframe.loc[:, ['Player Full Name', 'Team Name', 'Match Date', 'Position Tag', 'Starts']]
     #details = selected.loc[:, ['Player Full Name', 'Team Name', 'As At Date', 'Position Tag']]
     details.reset_index(drop=True, inplace=True)
 
@@ -50,6 +50,12 @@ def FBFunction(dataframe):
     total_actions = selected_p90['Total Def Actions']
     total_actions.fillna(0, inplace=True)
 
+    attacking = selected_p90['Pass into Oppo Box']
+    attacking.fillna(0, inplace=True)
+
+    selected_p90['Forward Passes'] = selected_p90['Forward'] + selected_p90['Unsucc Forward']
+    progression = selected_p90[['Forward Passes', 'Progr Pass Completion ']] 
+
     adjustments = selected_p90[['Yellow Card', 'Red Card', 'Goal', 'Assist', 'Pass into Oppo Box', 
                                 'PK Missed', 'PK Scored']]
 
@@ -68,7 +74,7 @@ def FBFunction(dataframe):
     adjustments['PK Scored'] = adjustments['PK Scored'] * 0.7
 
     def clip_percentile(value):
-        return max(min(value, 85), 35)
+        return max(min(value, 100), 50)
 
     def calculate_percentile(value):
         return norm.cdf(value) * 100
@@ -92,14 +98,15 @@ def FBFunction(dataframe):
         more_data = selected_p90.iloc[i]
         player_name = more_data['Player Full Name']
         team_name = more_data['Team Name']
-        date = more_data['As At Date']
+        date = more_data['Match Date']
         
         if team_name in ['Boston Bolts U13', 'Boston Bolts U14']:
-            fb_df = pd.read_csv("Thresholds/FullBackThresholds1314.csv")
+            fb_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/FullBackThresholds1314.csv")
         elif team_name in ['Boston Bolts U15', 'Boston Bolts U16']:
-            fb_df = pd.read_csv("Thresholds/FullBackThresholds1516.csv")
+            fb_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/FullBackThresholds1516.csv")
         elif team_name in ['Boston Bolts U17', 'Boston Bolts U19']:
-            fb_df = pd.read_csv("Thresholds/FullBackThresholds1719.csv")
+            fb_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/FullBackThresholds1719.csv")
+
 
         mean_values = fb_df.iloc[0, 2]
         std_values = fb_df.iloc[1, 2]
@@ -107,7 +114,6 @@ def FBFunction(dataframe):
         z_scores_df = passing.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         passing_percentile = z_scores_df.map(calculate_percentile)
         passing_percentile = passing_percentile.map(clip_percentile)
-        passing_percentile = passing_percentile + 15
         player_passing = passing_percentile.iloc[player_location]
         weights = np.array([.1])
         passing_score = (
@@ -120,7 +126,6 @@ def FBFunction(dataframe):
         z_scores_df = defending.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         defending_percentile = z_scores_df.map(calculate_percentile)
         defending_percentile = defending_percentile.map(clip_percentile)
-        defending_percentile = defending_percentile + 15
         player_defending = defending_percentile.iloc[player_location]
         weights = np.array([.1])
         defending_score = (
@@ -133,17 +138,41 @@ def FBFunction(dataframe):
         z_scores_df = total_actions.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         total_actions_percentile = z_scores_df.map(calculate_percentile)
         total_actions_percentile = total_actions_percentile.map(clip_percentile)
-        total_actions_percentile = total_actions_percentile + 15
         player_total_actions = total_actions_percentile.iloc[player_location].reset_index()
         weights = np.array([.1])
         total_actions_score = (
             player_total_actions['Total Def Actions'] * weights[0]
             )
+        
+        mean_values = fb_df.iloc[0, 5]
+        std_values = fb_df.iloc[1, 5]
+        # Calculate the z-score for each data point
+        z_scores_df = attacking.transform(lambda col: calculate_zscore(col, mean_values, std_values))
+        attacking_percentile = z_scores_df.map(calculate_percentile)
+        attacking_percentile = attacking_percentile.map(clip_percentile)
+        player_attacking = attacking_percentile.iloc[player_location].reset_index()
+        weights = np.array([.1])
+        attacking_score = (
+            player_attacking['Pass into Oppo Box'] * weights[0]
+            )
+        
+        mean_values = fb_df.iloc[0, [3, 4]]
+        std_values = fb_df.iloc[1, [3, 4]]
+        # Calculate the z-score for each data point
+        z_scores_df = progression.transform(lambda col: calculate_zscore(col, mean_values[col.name], std_values[col.name]))
+        progression_percentile = z_scores_df.map(calculate_percentile)
+        progression_percentile = progression_percentile.map(clip_percentile)
+        player_progression = progression_percentile.iloc[player_location].reset_index()
+        weights = np.array([.05, 0.05])
+        progression_score = (
+            player_progression['Forward Passes'] * weights[0] +
+            player_progression['Progr Pass Completion '] * weights[1]
+            )
 
         add = adjustments.iloc[i, :].sum()
         readding.append(add)
 
-        final_grade = (defending_score * .2) + (passing_score * .2) + (total_actions_score * .2)
+        final_grade = (defending_score * .2) + (passing_score * .2) + (total_actions_score * .2) + (attacking_score * 0.2) + (progression_score * 0.2)
         final['Passing'] = passing_score
         final['Defending'] = defending_score
         final['Total Def Actions'] = total_actions_score

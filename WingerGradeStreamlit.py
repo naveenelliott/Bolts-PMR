@@ -4,24 +4,6 @@ from scipy.stats import norm
 from datetime import datetime
 import streamlit as st
 
-def calculate_threshold(df, quantile, std_multiplier=2, std_adjustment=0.8):
-    end_df = pd.DataFrame(columns=df.columns)
-    
-    for column in df.columns:
-        # HERE IS THE ISSUE
-        if df[column].quantile(quantile) < std_multiplier * df[column].std() * std_adjustment:
-            threshold = df[column].mean()
-        else:
-            threshold = df[column].quantile(quantile)
-        
-        end_df[column] = [threshold]
-    
-    # Add a row with column standard deviations
-    adjusted_std = df.std() * std_adjustment
-    end_df.loc[len(end_df)] = adjusted_std
-    
-    return end_df
-
 
 
 def WingerFunction(dataframe):
@@ -31,12 +13,10 @@ def WingerFunction(dataframe):
            'Shot on Target', 'Pass into Oppo Box', 'Tackle', 'Clear', 'Unsucc Tackle',
            'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break', 
            'Loss of Poss', 'Success', 'Unsuccess',  'Foul Won', 'Progr Regain ', 'Stand. Tackle Success ', 'Def Aerial Success ',
-           'Pass Completion ', 'Progr Pass Attempt ', 'Progr Pass Completion ', 'PK Missed', 'PK Scored']
-    details = dataframe.loc[:, ['Player Full Name', 'Team Name', 'As At Date', 'Position Tag', 'Starts']]
+           'Pass Completion ', 'Progr Pass Attempt ', 'Progr Pass Completion ', 'PK Missed', 'PK Scored', 'Att Aerial', 'Header on Target']
+    details = dataframe.loc[:, ['Player Full Name', 'Team Name', 'Match Date', 'Position Tag', 'Starts']]
     #details = selected.loc[:, ['Player Full Name', 'Team Name', 'As At Date', 'Position Tag']]
     details.reset_index(drop=True, inplace=True)
-
-    selected_p90 = dataframe
     selected = dataframe.loc[:, ~dataframe.columns.duplicated()]
     selected_p90 = selected.loc[:, number_columns].astype(float)
 
@@ -46,7 +26,7 @@ def WingerFunction(dataframe):
            'Att 1v1', 'Efforts on Goal', 'Cross', 'Unsucc Cross',
            'Shot on Target', 'Pass into Oppo Box', 'Tackle', 'Clear', 'Unsucc Tackle',
            'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break',
-           'Loss of Poss', 'Success', 'Unsuccess', 'Foul Won', 'PK Missed']
+           'Loss of Poss', 'Success', 'Unsuccess', 'Foul Won', 'PK Missed', 'Att Aerial', 'Header on Target']
 
     selected_p90['minutes per 90'] = selected_p90['mins played']/90
 
@@ -62,6 +42,18 @@ def WingerFunction(dataframe):
                              'Unsucc Tackle']
     selected_p90['Total Def Actions'] = selected_p90[total_def_actions_columns].sum(axis=1)
     defending = selected_p90['Total Def Actions']
+
+    playmaking = selected_p90['Pass into Oppo Box']
+    playmaking.fillna(0, inplace=True)
+
+    dribbling = selected_p90['Dribble']
+    dribbling.fillna(0, inplace=True)
+
+    total_att_actions_columns = ['Goal', 'Assist', 'Att 1v1', 'Att Aerial', 'Efforts on Goal', 'Header on Target', 
+                             'Shot on Target', 'Cross', 'Unsucc Cross', 'Pass into Oppo Box', 'Foul Won']
+    selected_p90['Total Att Actions'] = selected_p90[total_att_actions_columns].sum(axis=1)
+    attacking = selected_p90['Total Att Actions']
+
 
     adjustments = selected_p90[['Yellow Card', 'Red Card', 'Goal', 'Assist', 'PK Missed', 'PK Scored']]
 
@@ -86,7 +78,7 @@ def WingerFunction(dataframe):
         return (column - mean) / std
 
     def clip_percentile(value):
-        return max(min(value, 85), 35)
+        return max(min(value, 100), 50)
 
     player_location = []
     for index, row in details.iterrows():
@@ -101,14 +93,15 @@ def WingerFunction(dataframe):
         more_data = selected_p90.iloc[i]
         player_name = more_data['Player Full Name']
         team_name = more_data['Team Name']
-        date = more_data['As At Date']
+        date = more_data['Match Date']
         
         if team_name in ['Boston Bolts U13', 'Boston Bolts U14']:
-            wing_df = pd.read_csv("Thresholds/WingerThresholds1314.csv")
+            wing_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/WingerThresholds1314.csv")
         elif team_name in ['Boston Bolts U15', 'Boston Bolts U16']:
-            wing_df = pd.read_csv("Thresholds/WingerThresholds1516.csv")
+            wing_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/WingerThresholds1516.csv")
         elif team_name in ['Boston Bolts U17', 'Boston Bolts U19']:
-            wing_df = pd.read_csv("Thresholds/WingerThresholds1719.csv")
+            wing_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/WingerThresholds1719.csv")
+
 
         mean_values = wing_df.iloc[0, 0]
         std_values = wing_df.iloc[1, 0]
@@ -116,16 +109,51 @@ def WingerFunction(dataframe):
         z_scores_df = defending.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         defending_percentile = z_scores_df.map(calculate_percentile)
         defending_percentile = defending_percentile.map(clip_percentile)
-        defending_percentile = defending_percentile + 15
         will_defending = defending_percentile.iloc[player_location].reset_index()
         weights = np.array([.1])
         defending_score = (
             will_defending['Total Def Actions'] * weights[0]
             )
+        
+        mean_values = wing_df.iloc[0, 1]
+        std_values = wing_df.iloc[1, 1]
+        # Calculate the z-score for each data point
+        z_scores_df = playmaking.transform(lambda col: calculate_zscore(col, mean_values, std_values))
+        playmaking_percentile = z_scores_df.map(calculate_percentile)
+        playmaking_percentile = playmaking_percentile.map(clip_percentile)
+        will_playmaking = playmaking_percentile.iloc[player_location].reset_index()
+        weights = np.array([.1])
+        playmaking_score = (
+            will_playmaking['Pass into Oppo Box'] * weights[0]
+            )
+        
+        mean_values = wing_df.iloc[0, 2]
+        std_values = wing_df.iloc[1, 2]
+        # Calculate the z-score for each data point
+        z_scores_df = dribbling.transform(lambda col: calculate_zscore(col, mean_values, std_values))
+        dribbling_percentile = z_scores_df.map(calculate_percentile)
+        dribbling_percentile = dribbling_percentile.map(clip_percentile)
+        will_dribbling = dribbling_percentile.iloc[player_location].reset_index()
+        weights = np.array([.1])
+        dribbling_score = (
+            will_dribbling['Dribble'] * weights[0]
+            )
+        
+        mean_values = wing_df.iloc[0, 3]
+        std_values = wing_df.iloc[1, 3]
+        # Calculate the z-score for each data point
+        z_scores_df = attacking.transform(lambda col: calculate_zscore(col, mean_values, std_values))
+        attacking_percentile = z_scores_df.map(calculate_percentile)
+        attacking_percentile = attacking_percentile.map(clip_percentile)
+        will_dribbling = attacking_percentile.iloc[player_location].reset_index()
+        weights = np.array([.1])
+        attacking_score = (
+            will_dribbling['Total Att Actions'] * weights[0]
+            )
 
         add = adjustments.iloc[i, :].sum()
         readding.append(add)
-        final_grade = (defending_score * .25)
+        final_grade = (defending_score * .2) + (playmaking_score * 0.2) + (dribbling_score * 0.2) + (attacking_score * .2)
         final['Defending'] = defending_score
         final['Final Grade'] = final_grade
         final['Player Name'] = player_name

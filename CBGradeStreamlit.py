@@ -14,7 +14,7 @@ def CBFunction(dataframe):
            'Def Aerial Success ', 'Pass Completion ', 'Progr Pass Attempt ', 'Progr Pass Completion ', 
            'PK Missed', 'PK Scored']
 
-    details = dataframe.loc[:, ['Player Full Name', 'Team Name', 'As At Date', 'Position Tag', 'Starts']]
+    details = dataframe.loc[:, ['Player Full Name', 'Team Name', 'Match Date', 'Position Tag', 'Starts']]
     #details = selected.loc[:, ['Player Full Name', 'Team Name', 'As At Date', 'Position Tag']]
     details.reset_index(drop=True, inplace=True)
     selected = dataframe.loc[:, ~dataframe.columns.duplicated()]
@@ -53,8 +53,11 @@ def CBFunction(dataframe):
     defending.fillna(0, inplace=True)
 
     selected_p90['Def Aerial %'] = (selected_p90['Def Aerial']/(selected_p90['Def Aerial'] + selected_p90['Unsucc Def Aerial'])) * 100
-    aerial = selected_p90['Def Aerial %']
+    aerial = selected_p90[['Def Aerial %']]
     aerial.fillna(0, inplace=True)
+
+    selected_p90['Forward Passes'] = selected_p90['Forward'] + selected_p90['Unsucc Forward']
+    progression = selected_p90[['Forward Passes', 'Progr Pass Completion ']]
 
     adjustments = selected_p90[['Yellow Card', 'Red Card', 'Goal', 'Assist',
                                 'Def Aerial', 'Unsucc Def Aerial', 'PK Missed', 'PK Scored']]
@@ -83,7 +86,7 @@ def CBFunction(dataframe):
         return (column - mean) / std
 
     def clip_percentile(value):
-        return max(min(value, 85), 35)
+        return max(min(value, 100), 50)
 
     player_location = []
     for index, row in details.iterrows():
@@ -102,14 +105,15 @@ def CBFunction(dataframe):
         more_data = selected_p90.iloc[i]
         player_name = selected_p90['Player Full Name'][i]
         team_name = more_data['Team Name']
-        date = more_data['As At Date']
+        date = more_data['Match Date']
         
         if team_name in ['Boston Bolts U13', 'Boston Bolts U14']:
-            cb_df = pd.read_csv("Thresholds/CenterBackThresholds1314.csv")
+            cb_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/CenterBackThresholds1314.csv")
         elif team_name in ['Boston Bolts U15', 'Boston Bolts U16']:
-            cb_df = pd.read_csv("Thresholds/CenterBackThresholds1516.csv")
+            cb_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/CenterBackThresholds1516.csv")
         elif team_name in ['Boston Bolts U17', 'Boston Bolts U19']:
-            cb_df = pd.read_csv("Thresholds/CenterBackThresholds1719.csv")
+            cb_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/CenterBackThresholds1719.csv")
+        
 
         mean_values = cb_df.iloc[0, 2]
         std_values = cb_df.iloc[1, 2]
@@ -117,7 +121,6 @@ def CBFunction(dataframe):
         z_scores_df = passing.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         passing_percentile = z_scores_df.map(calculate_percentile)
         passing_percentile = passing_percentile.map(clip_percentile)
-        passing_percentile = passing_percentile + 15
         player_passing = passing_percentile.iloc[player_location]
         weights = np.array([0.1])
         passing_score = (
@@ -130,7 +133,6 @@ def CBFunction(dataframe):
         z_scores_df = defending.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         defending_percentile = z_scores_df.map(calculate_percentile)
         defending_percentile = defending_percentile.map(clip_percentile)
-        defending_percentile = defending_percentile + 15
         player_defending = defending_percentile.iloc[player_location] 
         weights = np.array([.1])
         defending_score = (
@@ -143,7 +145,6 @@ def CBFunction(dataframe):
         z_scores_df = aerial.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         aerial_percentile = z_scores_df.map(calculate_percentile)
         aerial_percentile = aerial_percentile.map(clip_percentile)
-        aerial_percentile = aerial_percentile + 15
         player_aerial = aerial_percentile.iloc[player_location].reset_index()
         weights = np.array([.1])
         aerial_score = (
@@ -156,18 +157,30 @@ def CBFunction(dataframe):
         z_scores_df = total_actions.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         total_actions_percentile = z_scores_df.map(calculate_percentile)
         total_actions_percentile = total_actions_percentile.map(clip_percentile)
-        total_actions_percentile = total_actions_percentile + 15
         player_ta = total_actions_percentile.iloc[player_location].reset_index()
         weights = np.array([.1])
         ta_score = (
             player_ta['Total Def Actions'] * weights[0]
             )
         
+        mean_values = cb_df.iloc[0, [4, 5]]
+        std_values = cb_df.iloc[1, [4, 5]]
+        # Calculate the z-score for each data point
+        z_scores_df = progression.transform(lambda col: calculate_zscore(col, mean_values[col.name], std_values[col.name]))
+        progression_percentile = z_scores_df.map(calculate_percentile)
+        progression_percentile = progression_percentile.map(clip_percentile)
+        player_prog = progression_percentile.iloc[player_location].reset_index()
+        weights = np.array([.05, .05])
+        prog_score = (
+            player_prog['Forward Passes'] * weights[0] + 
+            player_prog['Progr Pass Completion '] * weights[1]
+            )
+
         add = adjustments.iloc[i, :].sum()
         readding.append(add)
 
         
-        final_grade = (defending_score * .2) + (passing_score * .2) + (aerial_score * .2) + (ta_score * .2)
+        final_grade = (defending_score * .2) + (passing_score * .2) + (aerial_score * .2) + (ta_score * .2) * (prog_score * 0.2)
         final['Final Grade'] = final_grade
         final['Passing'] = passing_score
         final['Defending'] = defending_score
@@ -190,7 +203,6 @@ def CBFunction(dataframe):
     final['Player Name'] = player_name
     final['Position'] = player_position
     final['Started'] = player_starts
-    final['Final Grade'] = final['Final Grade']
     final['Adjustments'] = readding
     
     return final

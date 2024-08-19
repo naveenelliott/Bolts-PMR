@@ -29,7 +29,7 @@ def getting_PSD_grade_data():
             # Reset the index (optional if you want a clean integer index)
             selected = selected_rows.reset_index(drop=True)
 
-            remove_first = ['Period Name', 'Squad Number', 'Match Name', 'Match Date', 'Round Name']
+            remove_first = ['Period Name', 'Squad Number', 'Match Name', 'As At Date', 'Round Name']
             selected = selected.drop(columns=remove_first, errors='ignore')
             selected = selected.dropna(axis=1, how='all')
             selected = selected.iloc[1:]
@@ -41,17 +41,17 @@ def getting_PSD_grade_data():
         return combined_df
 
     # Example usage
-    folder_path = 'Team_Thresholds/BoltsThirteenGames/'  # Replace with your folder path
+    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsThirteenGames/'  # Replace with your folder path
     bolts13 = read_all_csvs_from_folder(folder_path)
-    folder_path = 'Team_Thresholds/BoltsFourteenGames/'
+    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsFourteenGames/'
     bolts14 = read_all_csvs_from_folder(folder_path)
-    folder_path = 'Team_Thresholds/BoltsFifteenGames/'
+    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsFifteenGames/'
     bolts15 = read_all_csvs_from_folder(folder_path)
-    folder_path = 'Team_Thresholds/BoltsSixteenGames/'
+    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsSixteenGames/'
     bolts16 = read_all_csvs_from_folder(folder_path)
-    folder_path = 'Team_Thresholds/BoltsSeventeenGames/'
+    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsSeventeenGames/'
     bolts17 = read_all_csvs_from_folder(folder_path)
-    folder_path = 'Team_Thresholds/BoltsNineteenGames/'
+    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsNineteenGames/'
     bolts19 = read_all_csvs_from_folder(folder_path)
 
     end = pd.concat([bolts13, bolts14, bolts15, bolts16, bolts17, bolts19])

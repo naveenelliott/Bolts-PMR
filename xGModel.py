@@ -3,23 +3,25 @@ import math
 import statsmodels.formula.api as smf
 import statsmodels.api as sm
 import numpy as np
+import streamlit as st
 
 def xGModel(end):
-    shots = pd.read_csv('xG_historical_data/xGShootingData.csv')
+    # getting all the data
+    shots = pd.read_csv('PostMatchReviewApp_v2/xG_historical_data/xGShootingData.csv')
     shots['Goal'] = shots['Event'].str.contains('Goal').astype(int)
     
-    headers = pd.read_csv('xG_historical_data/HeadersLogisticRegression.csv')
+    headers = pd.read_csv('PostMatchReviewApp_v2/xG_historical_data/HeadersLogisticRegression.csv')
     headers = headers.drop(['Mins', 'Secs', 'Team', 'Event'], axis=1)
-    wyscout = pd.read_csv('xG_historical_data/WyscoutHeadersFurther.csv')
+    wyscout = pd.read_csv('PostMatchReviewApp_v2/xG_historical_data/WyscoutHeadersFurther.csv')
     wyscout = wyscout.drop(['subEventName'], axis=1)
     combined_df_headers = pd.concat([headers, wyscout])
     combined_df_headers['Player'] = 'Header'
     
-    headers = pd.read_csv('xG_historical_data/FreeKicksLogisticRegression.csv')
+    headers = pd.read_csv('PostMatchReviewApp_v2/xG_historical_data/FreeKicksLogisticRegression.csv')
     headers = headers.drop(['Mins', 'Secs', 'Team', 'Event'], axis=1)
-    wyscout = pd.read_csv('xG_historical_data/WyscoutFreeKicks.csv')
+    wyscout = pd.read_csv('PostMatchReviewApp_v2/xG_historical_data/WyscoutFreeKicks.csv')
     wyscout = wyscout.drop(['subEventName', 'positions'], axis=1)
-    statsbomb = pd.read_csv('xG_historical_data/StatsBombFreeKicks.csv')
+    statsbomb = pd.read_csv('PostMatchReviewApp_v2/xG_historical_data/StatsBombFreeKicks.csv')
     combined_df_fk = pd.concat([headers, wyscout, statsbomb])
     combined_df_fk['Player'] = 'FK'
     

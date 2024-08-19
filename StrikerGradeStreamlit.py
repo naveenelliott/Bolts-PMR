@@ -4,39 +4,20 @@ from scipy.stats import norm
 from datetime import datetime
 import streamlit as st
 
-def calculate_threshold(df, quantile, std_multiplier=2, std_adjustment=0.8):
-    end_df = pd.DataFrame(columns=df.columns)
-    
-    for column in df.columns:
-        # HERE IS THE ISSUE
-        if df[column].quantile(quantile) < std_multiplier * df[column].std() * std_adjustment:
-            threshold = df[column].mean()
-        else:
-            threshold = df[column].quantile(quantile)
-        
-        end_df[column] = [threshold]
-    
-    # Add a row with column standard deviations
-    adjusted_std = df.std() * std_adjustment
-    end_df.loc[len(end_df)] = adjusted_std
-    
-    return end_df
-
-
 
 def StrikerFunction(dataframe):
+    # these are the columns we are using
     number_columns = ['mins played', 'Yellow Card', 'Red Card', 'Goal', 'Assist', 'Dribble',
            'Goal Against', 'Stand. Tackle', 'Unsucc Stand. Tackle', 
            'Progr Rec', 'Unprogr Rec', 'Progr Inter', 'Unprogr Inter', 'Att 1v1', 'Efforts on Goal', 'Att Aerial',
            'Shot on Target', 'Pass into Oppo Box', 'Tackle', 'Clear', 'Unsucc Tackle',
-           'Forward', 'Unsucc Forward', 'Line Break', 
+           'Forward', 'Unsucc Forward', 'Line Break', 'Header on Target', 'Cross', 'Unsucc Cross',
            'Loss of Poss', 'Success', 'Unsuccess', 'Foul Won', 'Progr Regain ', 'Stand. Tackle Success ', 'Def Aerial Success ',
            'Pass Completion ', 'Progr Pass Attempt ', 'Progr Pass Completion ', 'Efficiency ', 'PK Missed', 'PK Scored']
 
     #details = selected.loc[:, ['Player Full Name', 'Team Name', 'As At Date', 'Position Tag']]
-    details = dataframe.loc[:, ['Player Full Name', 'Team Name', 'As At Date', 'Position Tag', 'Starts']]
+    details = dataframe.loc[:, ['Player Full Name', 'Team Name', 'Match Date', 'Position Tag', 'Starts']]
     details.reset_index(drop=True, inplace=True)
-    selected_p90 = dataframe
     selected = dataframe.loc[:, ~dataframe.columns.duplicated()]
     selected_p90 = selected.loc[:, number_columns].astype(float)
 
@@ -45,7 +26,7 @@ def StrikerFunction(dataframe):
            'Progr Rec', 'Unprogr Rec', 'Progr Inter', 'Unprogr Inter',
            'Att 1v1', 'Efforts on Goal', 'Tackle', 'Clear', 'Unsucc Tackle',
            'Shot on Target', 'Pass into Oppo Box', 'Att Aerial',
-           'Forward', 'Unsucc Forward', 'Line Break',
+           'Forward', 'Unsucc Forward', 'Line Break', 'Header on Target', 'Cross', 'Unsucc Cross',
            'Loss of Poss', 'Success', 'Unsuccess', 'Foul Won', 'PK Missed', 'PK Scored']
 
     selected_p90['minutes per 90'] = selected_p90['mins played']/90
@@ -66,6 +47,17 @@ def StrikerFunction(dataframe):
 
     shooting = selected_p90[['Efforts on Goal']]
     shooting.fillna(0, inplace=True)
+
+    dribbling = selected_p90[['Dribble']]
+    dribbling.fillna(0, inplace=True)
+
+    total_att_actions_columns = ['Goal', 'Assist', 'Att 1v1', 'Att Aerial', 'Efforts on Goal', 'Header on Target', 
+                             'Shot on Target', 'Cross', 'Unsucc Cross', 'Pass into Oppo Box', 'Foul Won']
+    selected_p90['Total Att Actions'] = selected_p90[total_att_actions_columns].sum(axis=1)
+    attacking = selected_p90['Total Att Actions']
+    attacking.fillna(0, inplace=True)
+
+
 
     adjustments = selected_p90[['Yellow Card', 'Red Card', 'Goal', 'Assist', 'Att Aerial', 'PK Missed', 'PK Scored']]
 
@@ -91,7 +83,7 @@ def StrikerFunction(dataframe):
         return (column - mean) / std
 
     def clip_percentile(value):
-        return max(min(value, 85), 35)
+        return max(min(value, 100), 50)
 
     player_location = []
     for index, row in details.iterrows():
@@ -106,24 +98,22 @@ def StrikerFunction(dataframe):
         more_data = selected_p90.iloc[i]
         player_name = more_data['Player Full Name']
         team_name = more_data['Team Name']
-        date = more_data['As At Date']
+        date = more_data['Match Date']
         
         if team_name in ['Boston Bolts U13', 'Boston Bolts U14']:
-            cf_df = pd.read_csv("Thresholds/StrikerThresholds1314.csv")
+            cf_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/StrikerThresholds1314.csv")
         elif team_name in ['Boston Bolts U15', 'Boston Bolts U16']:
-            cf_df = pd.read_csv("Thresholds/StrikerThresholds1516.csv")
+            cf_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/StrikerThresholds1516.csv")
         elif team_name in ['Boston Bolts U17', 'Boston Bolts U19']:
-            cf_df = pd.read_csv("Thresholds/StrikerThresholds1719.csv")
-            
-        
-        
+            cf_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/StrikerThresholds1719.csv")
+
+
         mean_values = cf_df.iloc[0, 0]
         std_values = cf_df.iloc[1, 0]
         # Calculate the z-score for each data point
         z_scores_df = defending.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         defending_percentile = z_scores_df.map(calculate_percentile)
         defending_percentile = defending_percentile.map(clip_percentile)
-        defending_percentile = defending_percentile + 15
         will_defending = defending_percentile.iloc[player_location].reset_index()
         weights = np.array([0.1])
         defending_score = (
@@ -135,17 +125,38 @@ def StrikerFunction(dataframe):
         z_scores_df = shooting.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         shooting_percentile = z_scores_df.map(calculate_percentile)
         shooting_percentile = shooting_percentile.map(clip_percentile)
-        shooting_percentile = shooting_percentile + 15
         player_shooting = shooting_percentile.iloc[player_location]
         weights = np.array([.1])
         shooting_score = (
             player_shooting['Efforts on Goal'] * weights[0]
         )
 
+        mean_values = cf_df.iloc[0, 2]
+        std_values = cf_df.iloc[1, 2]
+        z_scores_df = dribbling.transform(lambda col: calculate_zscore(col, mean_values, std_values))
+        dribbling_percentile = z_scores_df.map(calculate_percentile)
+        dribbling_percentile = dribbling_percentile.map(clip_percentile)
+        player_dribbling = dribbling_percentile.iloc[player_location]
+        weights = np.array([.1])
+        dribbling_score = (
+            player_dribbling['Dribble'] * weights[0]
+        )
+
+        mean_values = cf_df.iloc[0, 3]
+        std_values = cf_df.iloc[1, 3]
+        z_scores_df = attacking.transform(lambda col: calculate_zscore(col, mean_values, std_values))
+        attacking_percentile = z_scores_df.map(calculate_percentile)
+        attacking_percentile = attacking_percentile.map(clip_percentile)
+        player_attacking = attacking_percentile.iloc[player_location]
+        weights = np.array([.1])
+        attacking_score = (
+            player_attacking * weights[0]
+        )
+
         add = adjustments.iloc[i, :].sum()
         readding.append(add)
         
-        final_grade = (defending_score * .2) + (shooting_score * .2)
+        final_grade = (defending_score * .2) + (shooting_score * .2) + (dribbling_score * 0.2) + (attacking_score * 0.2)
 
 
         final['Defending'] = defending_score
@@ -169,7 +180,6 @@ def StrikerFunction(dataframe):
     final['Player Name'] = player_name
     final['Position'] = player_position
     final['Started'] = player_starts
-    final['Final Grade'] = final['Final Grade']
     final['Adjustments'] = readding
 
 

@@ -1,31 +1,27 @@
 import streamlit as st
-import matplotlib.pyplot as plt
 import pandas as pd
-from mplsoccer import Pitch, VerticalPitch
-from matplotlib.offsetbox import OffsetImage
-from matplotlib.font_manager import FontProperties
-from matplotlib.patches import Circle
-from highlight_text import fig_text
-import numpy as np
-from FBGradeStreamlit import FBFunction
-from CBGradeStreamlit import CBFunction
-from CDMGradeStreamlit import CDMFunction
-from CMGradeStreamlit import CMFunction
-from WingerGradeStreamlit import WingerFunction
-from StrikerGradeStreamlit import StrikerFunction
-from GKGradeStreamlit import GKFunction
-from fuzzywuzzy import process
 from GettingFullActions import UpdatingActions
 from GettingPSDLineupData import getting_PSD_lineup_data
 
-st.set_page_config(page_title='Bolts Post-Match Review App')
+# Setting the title of the PMR App in web browser
+st.set_page_config(page_title='Bolts Post-Match Review App', page_icon = 'PostMatchReviewApp_v2/pages/Boston_Bolts.png')
+
 
 st.sidebar.success('Select a page above.')
 
+# this updates actions
 combined_actions = UpdatingActions()
 
+# these are the allowable teams that we have event data for
 bolts_allowed = pd.Series(combined_actions['Team'].unique())
 opp_allowed = pd.Series(combined_actions['Opposition'].unique())
+combined_actions['Match Date'] = pd.to_datetime(combined_actions['Match Date']).dt.strftime('%m/%d/%Y')
+date_allowed = pd.Series(combined_actions['Match Date'].unique())
+combined_actions['Match Identifier'] = combined_actions['Team'] + ' vs ' + combined_actions['Opposition'] + ' on ' + combined_actions['Match Date'].astype(str)
+unique_match_identifiers = combined_actions['Match Identifier'].drop_duplicates().reset_index(drop=True)
+st.session_state['match_identifiers'] = unique_match_identifiers
+
+
 
 combined_df = getting_PSD_lineup_data()
 combined_df['Starts'] = combined_df['Starts'].astype(float)
@@ -33,10 +29,24 @@ combined_df['Date'] = pd.to_datetime(combined_df['Date'])
 combined_df['Date'] = combined_df['Date'].dt.strftime('%m/%d/%Y')
 
 combined_df = combined_df.loc[combined_df['Team Name'].isin(bolts_allowed) & combined_df['Opposition'].isin(opp_allowed)].reset_index(drop=True)
-combined_df['In Possession'] = ''
-combined_df['Out Possession'] = ''
 
+combined_df.loc[combined_df['Player Full Name'] == 'Casey Powers', 'Position Tag'] = 'GK'
+gk_dataframe = combined_df.loc[combined_df['Position Tag'] == 'GK'].reset_index(drop=True)
+in_and_out_goals_gk = pd.read_csv('PostMatchReviewApp_v4/pages/InAndOutOfPossessionGoalsGK.csv')
+gk_dataframe = pd.merge(gk_dataframe, in_and_out_goals_gk, on=['Team Name', 'Opposition', 'Date', 'Player Full Name'], how='outer')
+gk_dataframe = gk_dataframe.drop_duplicates().reset_index(drop=True)
+st.session_state['complete_gk_df'] = gk_dataframe.copy()
+
+
+# THIS IS THE NEW STUFF, SHOULD BE IN VERSION 3
+in_and_out_goals = pd.read_csv('PostMatchReviewApp_v4/pages/InAndOutOfPossessionGoals.csv')
+combined_df = pd.merge(combined_df, in_and_out_goals, on=['Team Name', 'Opposition', 'Date'], how='inner')
+combined_df = combined_df.drop_duplicates().reset_index(drop=True)
+
+# creating a transferrable copy of the combined dataset
 st.session_state['overall_df'] = combined_df.copy()
+
+
 
 st.title("Bolts Post-Match Review App")
 
@@ -71,3 +81,7 @@ st.session_state['combined_df_copy'] = combined_df_copy
 st.session_state["selected_team"] = selected_team
 st.session_state["selected_opp"] = selected_opp
 st.session_state["selected_date"] = selected_date
+
+# TEMPORARY
+gk_dataframe = combined_df.loc[combined_df['Position Tag'] == 'GK'].reset_index(drop=True)
+st.session_state['gk_df'] = gk_dataframe

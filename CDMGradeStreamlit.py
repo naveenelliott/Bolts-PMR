@@ -13,7 +13,7 @@ def CDMFunction(dataframe):
            'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break', 
            'Loss of Poss', 'Success', 'Unsuccess', 'Foul Conceded', 'Progr Regain ', 'Stand. Tackle Success ', 'Def Aerial Success ', 
            'Pass Completion ', 'Progr Pass Attempt ', 'Progr Pass Completion ', 'PK Missed', 'PK Scored']
-    details = dataframe.loc[:, ['Player Full Name', 'Team Name', 'As At Date', 'Position Tag', 'Starts']]
+    details = dataframe.loc[:, ['Player Full Name', 'Team Name', 'Match Date', 'Position Tag', 'Starts']]
     #details = selected.loc[:, ['Player Full Name', 'Team Name', 'As At Date', 'Position Tag']]
     details.reset_index(drop=True, inplace=True)
 
@@ -44,7 +44,7 @@ def CDMFunction(dataframe):
     selected_p90.fillna(0, inplace=True)
 
     success_total_actions_columns = ['Tackle', 'Progr Rec', 'Progr Inter', 'Blocked Shot', 'Stand. Tackle', 
-                                 'Blocked Cross', 'Att 1v1', 'Long', 'Forward', 'Success', 'Efforts on Goal', 
+                                 'Blocked Cross', 'Success', 'Efforts on Goal', 
                                  'Dribble', 'Foul Won']
     selected_p90['Total Successful Actions'] = selected_p90[success_total_actions_columns].sum(axis=1)
     total_actions = selected_p90['Total Successful Actions']
@@ -63,6 +63,9 @@ def CDMFunction(dataframe):
 
     prog_regain = selected_p90['Progr Regain ']
     prog_regain.fillna(0, inplace=True)
+
+    selected_p90['Forward Passes'] = selected_p90['Forward'] + selected_p90['Unsucc Forward']
+    progression = selected_p90[['Forward Passes', 'Progr Pass Completion ']]
 
     adjustments = selected_p90[['Yellow Card', 'Red Card', 'Goal', 'Assist', 'PK Missed', 'PK Scored']]
 
@@ -88,7 +91,7 @@ def CDMFunction(dataframe):
         return (column - mean) / std
 
     def clip_percentile(value):
-        return max(min(value, 85), 35)
+        return max(min(value, 100), 50)
 
     player_location = []
     for index, row in details.iterrows():
@@ -103,15 +106,14 @@ def CDMFunction(dataframe):
         more_data = selected_p90.iloc[i]
         player_name = more_data['Player Full Name']
         team_name = more_data['Team Name']
-        date = more_data['As At Date']
+        date = more_data['Match Date']
 
         if team_name in ['Boston Bolts U13', 'Boston Bolts U14']:
-            dm_df = pd.read_csv("Thresholds/DefensiveMidfieldThresholds1314.csv")
+            dm_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/DefensiveMidfieldThresholds1314.csv")
         elif team_name in ['Boston Bolts U15', 'Boston Bolts U16']:
-            dm_df = pd.read_csv("Thresholds/DefensiveMidfieldThresholds1516.csv")
+            dm_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/DefensiveMidfieldThresholds1516.csv")
         elif team_name in ['Boston Bolts U17', 'Boston Bolts U19']:
-            dm_df = pd.read_csv("Thresholds/DefensiveMidfieldThresholds1719.csv")
-
+            dm_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/DefensiveMidfieldThresholds1719.csv")
 
         mean_values = dm_df.iloc[0, 1]
         std_values = dm_df.iloc[1, 1]
@@ -119,21 +121,19 @@ def CDMFunction(dataframe):
         z_scores_df = total_actions.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         total_action_percentile = z_scores_df.map(calculate_percentile)
         total_action_percentile = total_action_percentile.map(clip_percentile)
-        total_action_percentile = total_action_percentile + 15
         will_total_action = total_action_percentile.iloc[player_location].reset_index()
         weights = np.array([0.1])
         total_action_score = (
             will_total_action['Total Successful Actions'][0] * weights[0]
             )
 
-        mean_values = dm_df.iloc[0, 3]
-        std_values = dm_df.iloc[1, 3]
+        mean_values = dm_df.iloc[0, 2]
+        std_values = dm_df.iloc[1, 2]
         # Calculate the z-score for each data point
         z_scores_df = prog_regain.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         prog_regain_percentile = z_scores_df.map(calculate_percentile)
         prog_regain_percentile = 100 - prog_regain_percentile
         prog_regain_percentile = prog_regain_percentile.map(clip_percentile)
-        prog_regain_percentile = prog_regain_percentile + 15
         will_progr_regain = prog_regain_percentile.iloc[player_location].reset_index()
         weights = np.array([0.1])
         progr_regain_score = (
@@ -142,12 +142,11 @@ def CDMFunction(dataframe):
         
 
         mean_values = dm_df.iloc[0, 0]
-        std_values = dm_df.iloc[0, 0]
+        std_values = dm_df.iloc[1, 0]
         # Calculate the z-score for each data point
         z_scores_df = defending.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         defending_percentile = z_scores_df.map(calculate_percentile)
         defending_percentile = defending_percentile.map(clip_percentile)
-        defending_percentile = defending_percentile + 15
         will_defending = defending_percentile.iloc[player_location].reset_index()
         weights = np.array([.1])
         defending_score = (
@@ -161,17 +160,29 @@ def CDMFunction(dataframe):
         z_scores_df = passing.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         passing_percentile = z_scores_df.map(calculate_percentile)
         passing_percentile = passing_percentile.map(clip_percentile)
-        passing_percentile = passing_percentile + 15
         will_passing = passing_percentile.iloc[player_location].reset_index()
         weights = np.array([.1])
         playmaking_score = (
             will_passing['Retention %'] * weights[0]
             )
+        
+        mean_values = dm_df.iloc[0, [4, 5]]
+        std_values = dm_df.iloc[1, [4, 5]]
+        # Calculate the z-score for each data point
+        z_scores_df = progression.transform(lambda col: calculate_zscore(col, mean_values[col.name], std_values[col.name]))
+        progression_percentile = z_scores_df.map(calculate_percentile)
+        progression_percentile = progression_percentile.map(clip_percentile)
+        player_prog = progression_percentile.iloc[player_location].reset_index()
+        weights = np.array([.05, .05])
+        prog_score = (
+            player_prog['Forward Passes'] * weights[0] + 
+            player_prog['Progr Pass Completion '] * weights[1]
+            )
 
         add = adjustments.iloc[i, :].sum()
         readding.append(add)
 
-        final_grade = (defending_score * .2) + (total_action_score * .2) + (progr_regain_score * .2) + (playmaking_score * .2)
+        final_grade = (defending_score * .2) + (total_action_score * .2) + (progr_regain_score * .2) + (playmaking_score * .2) + (prog_score * 0.2)
         final['Total Actions'] = total_action_score
         final['Progr Regain '] = progr_regain_score
         final['Defending'] = defending_score
