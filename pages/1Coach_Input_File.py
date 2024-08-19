@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from streamlit_gsheets import GSheetsConnection
 
 # Getting the selected team, opponent, and date
 selected_team = st.session_state["selected_team"]
@@ -8,64 +9,83 @@ selected_date = st.session_state["selected_date"]
 
 st.set_page_config(layout='wide')
 
-# Function that will save the input
-def save_input(in_possession, out_possession, veo_hyperlink, competition_level):
+# Establishing a Google Sheets connection
+conn = st.connection('gsheets', type=GSheetsConnection)
 
-    overall = st.session_state['overall_df']
-    overall.loc[overall['Player Full Name'] == 'Casey Powers', 'Position Tag'] = 'GK'
-    condition = (
-        (overall['Team Name'] == st.session_state['selected_team']) &
-        (overall['Opposition'] == st.session_state['selected_opp']) &
-        (overall['Date'] == st.session_state['selected_date'])
-    )
-    overall.loc[condition, 'In Possession'] = in_possession
-    overall.loc[condition, 'Out Possession'] = out_possession
-    overall.loc[condition, 'Veo Hyperlink'] = veo_hyperlink
-    overall.loc[condition, 'Competition Level'] = competition_level
+existing_data = conn.read(worksheet='PMR', ttl=5)
+existing_data.dropna(how='all', inplace=True)
+existing_data['Bolts Team'] = existing_data['Bolts Team'].fillna('').astype(str)
+existing_data['Opposition'] = existing_data['Opposition'].fillna('').astype(str)
+existing_data['Match Date'] = existing_data['Match Date'].fillna('').astype(str)
 
-    limited_df = overall[['Team Name', 'Date', 'Opposition', 'In Possession', 'Out Possession', 'Veo Hyperlink', 'Competition Level']]
-    limited_df.to_csv('PostMatchReviewApp_v4/pages/InAndOutOfPossessionGoals.csv', index=False)
-    st.session_state['overall_df'] = overall
+# Initialize variables for form display
+in_possession, out_possession, veo_hyperlink, competition_level = '', '', '', ''
 
-def main():
-    st.title("Setting In and Out of Possession Goals")
+updated_df = pd.DataFrame()
 
-    st.markdown(f"<h3 style='text-align: center;'>Team: {selected_team}&nbsp;|&nbsp;Opposition: {selected_opp}</h3>", unsafe_allow_html=True)
+# Check if the selected match data already exists
+if (existing_data['Bolts Team'].str.contains(selected_team).any() & 
+    existing_data['Opposition'].str.contains(selected_opp).any() & 
+    existing_data['Match Date'].str.contains(selected_date).any()):
 
-    # Display current DataFrame
-    overall = st.session_state['overall_df']
-    condition = (
-        (overall['Team Name'] == st.session_state['selected_team']) &
-        (overall['Opposition'] == st.session_state['selected_opp']) &
-        (overall['Date'] == st.session_state['selected_date'])
-    )
-    overall = overall.loc[condition]
-    current_in_possession = overall.iloc[0]['In Possession']
-    current_out_possession = overall.iloc[0]['Out Possession']
-    current_veo_hyperlink = overall.iloc[0]['Veo Hyperlink'] if 'Veo Hyperlink' in overall.columns else ''
-    current_competition_level = overall.iloc[0]['Competition Level'] if 'Competition Level' in overall.columns else ''
+    index = existing_data[
+        (existing_data['Bolts Team'] == selected_team) &
+        (existing_data['Opposition'] == selected_opp) &
+        (existing_data['Match Date'] == selected_date)
+    ].index
 
-    if pd.isna(current_in_possession):
-        current_in_possession = 'Nothing, needs updated.'
-    if pd.isna(current_out_possession):
-        current_out_possession = 'Nothing, needs updated.'
+    updated_df = existing_data.copy()
 
-    st.write(f"In Possession Current Goals: {current_in_possession}")
-    st.write(f"Out Possession Current Goals: {current_out_possession}")
-    st.write(f"Veo Hyperlink: {current_veo_hyperlink}")
-    st.write(f"Competition Level: {current_competition_level}")
+    # Extract existing data to display
+    in_possession = existing_data.loc[index, 'In Possession Goals'].values[0]
+    out_possession = existing_data.loc[index, 'Out of Possession Goals'].values[0]
+    veo_hyperlink = existing_data.loc[index, 'Veo Hyperlink'].values[0]
+    competition_level = existing_data.loc[index, 'Competition Level'].values[0]
 
-    # Form to update the DataFrame
-    with st.form("input_form"):
-        in_possession = st.text_input("In Possession:")
-        out_possession = st.text_input("Out of Possession:")
-        veo_hyperlink = st.text_input("Veo Hyperlink:", value=current_veo_hyperlink)
-        competition_level = st.text_input("Competition Level:", value=current_competition_level)
-        submit_button = st.form_submit_button(label='Save')
+st.title("Setting In and Out of Possession Goals")
 
-        if submit_button:
-            save_input(in_possession, out_possession, veo_hyperlink, competition_level)
-            st.success("Input updated!")
+st.markdown(f"<h3 style='text-align: center;'>Team: {selected_team}&nbsp;|&nbsp;Opposition: {selected_opp}</h3>", unsafe_allow_html=True)
 
-if __name__ == "__main__":
-    main()
+# Form to update the DataFrame
+with st.form("input_form"):
+    in_possession = st.text_input("In Possession:", value=in_possession)
+    out_possession = st.text_input("Out of Possession:", value=out_possession)
+    veo_hyperlink = st.text_input("Veo Hyperlink:", value=veo_hyperlink)
+    competition_level = st.text_input("Competition Level:", value=competition_level)
+    submit_button = st.form_submit_button(label='Save')
+
+    if submit_button:
+        # Ensure all fields are filled
+        if not in_possession or not out_possession or not veo_hyperlink or not competition_level:
+            st.warning('Ensure all fields are filled')
+            st.stop()
+        
+        # Update existing data if match data exists
+        if index.any():
+            existing_data.loc[index, 'In Possession Goals'] = in_possession
+            existing_data.loc[index, 'Out of Possession Goals'] = out_possession
+            existing_data.loc[index, 'Veo Hyperlink'] = veo_hyperlink
+            existing_data.loc[index, 'Competition Level'] = competition_level
+            updated_df = existing_data.copy()
+        else:
+            # Add new data if match data does not exist
+            new_data = pd.DataFrame([{
+                'Bolts Team': selected_team,
+                'Opposition': selected_opp,
+                'Match Date': selected_date,
+                'In Possession Goals': in_possession, 
+                'Out of Possession Goals': out_possession,
+                'Veo Hyperlink': veo_hyperlink,
+                'Competition Level': competition_level
+            }])
+            updated_df = pd.concat([existing_data, new_data], ignore_index=True)
+        
+        # Update the Google Sheet
+        conn.update(worksheet='PMR', data=updated_df)
+        st.success("Input updated!")
+        st.rerun()  # Rerun to refresh the displayed DataFrame
+
+st.write(f"In Possession Current Goals: {in_possession}")
+st.write(f"Out Possession Current Goals: {out_possession}")
+st.write(f"Veo Hyperlink: {veo_hyperlink}")
+st.write(f"Competition Level: {competition_level}")
