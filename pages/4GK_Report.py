@@ -17,6 +17,7 @@ from plotly_football_pitch import make_pitch_figure, PitchDimensions
 import plotly_football_pitch as pfp
 import plotly.graph_objs as go
 from PIL import Image, ImageOps
+from streamlit_gsheets import GSheetsConnection
 
 #st.set_page_config(layout='wide')
 
