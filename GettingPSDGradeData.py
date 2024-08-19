@@ -41,17 +41,17 @@ def getting_PSD_grade_data():
         return combined_df
 
     # Example usage
-    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsThirteenGames/'  # Replace with your folder path
+    folder_path = 'BoltsThirteenGames/'  # Replace with your folder path
     bolts13 = read_all_csvs_from_folder(folder_path)
-    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsFourteenGames/'
+    folder_path = 'BoltsFourteenGames/'
     bolts14 = read_all_csvs_from_folder(folder_path)
-    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsFifteenGames/'
+    folder_path = 'BoltsFifteenGames/'
     bolts15 = read_all_csvs_from_folder(folder_path)
-    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsSixteenGames/'
+    folder_path = 'BoltsSixteenGames/'
     bolts16 = read_all_csvs_from_folder(folder_path)
-    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsSeventeenGames/'
+    folder_path = 'BoltsSeventeenGames/'
     bolts17 = read_all_csvs_from_folder(folder_path)
-    folder_path = 'PostMatchReviewApp_v2/Team_Thresholds/BoltsNineteenGames/'
+    folder_path = 'BoltsNineteenGames/'
     bolts19 = read_all_csvs_from_folder(folder_path)
 
     end = pd.concat([bolts13, bolts14, bolts15, bolts16, bolts17, bolts19])
