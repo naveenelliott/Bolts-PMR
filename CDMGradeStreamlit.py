@@ -109,11 +109,11 @@ def CDMFunction(dataframe):
         date = more_data['Match Date']
 
         if team_name in ['Boston Bolts U13', 'Boston Bolts U14']:
-            dm_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/DefensiveMidfieldThresholds1314.csv")
+            dm_df = pd.read_csv("Thresholds/DefensiveMidfieldThresholds1314.csv")
         elif team_name in ['Boston Bolts U15', 'Boston Bolts U16']:
-            dm_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/DefensiveMidfieldThresholds1516.csv")
+            dm_df = pd.read_csv("Thresholds/DefensiveMidfieldThresholds1516.csv")
         elif team_name in ['Boston Bolts U17', 'Boston Bolts U19']:
-            dm_df = pd.read_csv("PostMatchReviewApp_v4/Thresholds/DefensiveMidfieldThresholds1719.csv")
+            dm_df = pd.read_csv("Thresholds/DefensiveMidfieldThresholds1719.csv")
 
         mean_values = dm_df.iloc[0, 1]
         std_values = dm_df.iloc[1, 1]
