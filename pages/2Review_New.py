@@ -1255,10 +1255,10 @@ conn = st.connection('gsheets', type=GSheetsConnection)
 temp_overall_df = conn.read(worksheet='PMR', ttl=0)
 
 
-temp_overall_df = temp_overall_df.loc[(temp_overall_df['Team Name'] == selected_team) & (temp_overall_df['Opposition'] == selected_opp) & (temp_overall_df['Date'] == selected_date)]
+temp_overall_df = temp_overall_df.loc[(temp_overall_df['Bolts Team'] == selected_team) & (temp_overall_df['Opposition'] == selected_opp) & (temp_overall_df['Match Date'] == selected_date)]
 temp_overall_df.reset_index(drop=True, inplace=True)
-in_possession_goal = temp_overall_df['In Possession'][0]
-out_possession_goal = temp_overall_df['Out Possession'][0]
+in_possession_goal = temp_overall_df['In Possession Goals'][0]
+out_possession_goal = temp_overall_df['Out of Possession Goals'][0]
 
 
 with col2:
