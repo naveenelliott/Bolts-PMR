@@ -369,11 +369,11 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
 
 
-    player_pic = Image.open('C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/GK_Photos/temp.png')
-    #yellow_card = mpimg.imread('C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/pages/Yellow_Card.png')
-    #red_card = mpimg.imread('C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/pages/Red_Card.png')
+    player_pic = Image.open('GK_Photos/temp.png')
+    #yellow_card = mpimg.imread('pages/Yellow_Card.png')
+    #red_card = mpimg.imread('pages/Red_Card.png')
 
-    gk_background = pd.read_csv('C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/pages/Goalkeeper Background Information.csv')
+    gk_background = pd.read_csv('pages/Goalkeeper Background Information.csv')
     gk_background.dropna(subset=['NAME'], inplace=True)
     gk_background = gk_background.loc[gk_background['NAME'].str.contains(gk_name)].reset_index(drop=True)
 
@@ -417,7 +417,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         )
         
         with inner_columns[1]:
-            image_path = "C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/pages/Veo.jpg"  # Replace with the path to your image
+            image_path = "pages/Veo.jpg"  # Replace with the path to your image
 
             def load_image(image_path):
                 with open(image_path, "rb") as image_file:
@@ -597,9 +597,9 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     
     with col2:
-        image_in_possession = "C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/GK_Photos/In Possession Goals.jpg"  
-        image_out_possession = "C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/GK_Photos/Out Possession Goals.jpg" 
-        image_coach_notes = "C:/Users/Owner/Downloads/SoccermaticsForPython-master/SoccermaticsForPython-master/GK_Photos/VasilyModel.jpg" 
+        image_in_possession = "GK_Photos/In Possession Goals.jpg"  
+        image_out_possession = "GK_Photos/Out Possession Goals.jpg" 
+        image_coach_notes = "GK_Photos/VasilyModel.jpg" 
 
         def load_image(image_path):
             with open(image_path, "rb") as image_file:
