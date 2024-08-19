@@ -1251,7 +1251,8 @@ image = Image.open('pages/Key3.png')
 with col1:
     st.image(image, use_column_width=True)
 
-temp_overall_df = st.session_state['overall_df']
+conn = st.connection('gsheets', type=GSheetsConnection)
+temp_overall_df = conn.read(worksheet='PMR', ttl=0)
 
 
 temp_overall_df = temp_overall_df.loc[(temp_overall_df['Team Name'] == selected_team) & (temp_overall_df['Opposition'] == selected_opp) & (temp_overall_df['Date'] == selected_date)]
