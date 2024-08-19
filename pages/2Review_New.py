@@ -29,6 +29,7 @@ import base64
 from plotly_football_pitch import make_pitch_figure, PitchDimensions
 import plotly_football_pitch as pfp
 import plotly.graph_objs as go
+from streamlit_gsheets import GSheetsConnection
 
 
 # Setting a wide layout
@@ -88,8 +89,9 @@ bolts_score = player_data['Goal'].astype(int).sum()
 opp_score = player_data['Goal Against'].astype(int).sum()
 
 # getting the competition level from the Veo file
-comp_level = st.session_state['game_goals']
-comp_level = comp_level.loc[(comp_level['Team Name'] == selected_team) & (comp_level['Opposition'] == selected_opp) & (comp_level['Date'] == selected_date)]
+conn = st.connection('gsheets', type=GSheetsConnection)
+comp_level = conn.read(worksheet='PMR', ttl=0)
+comp_level = comp_level.loc[(comp_level['Bolts Team'] == selected_team) & (comp_level['Opposition'] == selected_opp) & (comp_level['Match Date'] == selected_date)]
 comp_level.reset_index(drop=True, inplace=True)
 url = comp_level.at[0, 'Veo Hyperlink']
 comp_level = comp_level.at[0, 'Competition Level']
