@@ -52,13 +52,13 @@ def goalkeeperHeatmap(df, gk_pname):
 
     sns.kdeplot(data=df, x='x', y='y', cmap='Blues', shade=True, ax=ax, bw_adjust=0.7, alpha=0.5)
 
-    ax.annotate(f"First Quarter Actions\n{first_quarter}%", xy=(15, 40),
+    ax.annotate(f"1st Quarter Actions\n{first_quarter}%", xy=(15, 40),
                 fontsize=12, color='black', ha='center', va='center', fontfamily='Comic Sans MS', 
                 fontweight='bold', bbox=dict(facecolor='yellow', alpha=0.5, edgecolor='none'))
-    ax.annotate(f"Second Quarter Actions\n{second_quarter}%", xy=(45, 40),
+    ax.annotate(f"2nd Quarter Actions\n{second_quarter}%", xy=(45, 40),
                 fontsize=12, color='black', ha='center', va='center', fontfamily='Comic Sans MS',
                 fontweight='bold', bbox=dict(facecolor='yellow', alpha=0.5, edgecolor='none'))
-    ax.annotate(f"Third Quarter Actions\n{third_quarter}%", xy=(75, 40),
+    ax.annotate(f"3rd Quarter Actions\n{third_quarter}%", xy=(75, 40),
                 fontsize=12, color='black', ha='center', va='center', fontfamily='Comic Sans MS',
                 fontweight='bold', bbox=dict(facecolor='yellow', alpha=0.5, edgecolor='none'))
     ax.annotate(f"Final Quarter Actions\n{third_quarter}%", xy=(105, 40),
