@@ -9,7 +9,6 @@ from xGModel import xGModel
 from mplsoccer import VerticalPitch, Pitch
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
-from GoalkeeperHeatmap import goalkeeperHeatmap
 from GKGradeStreamlit import GKMoreDetailedFunction
 import scipy.stats as stats
 from PlottingGKReport import plottingStatistics, gettingGameGrade, gkInvolvements
@@ -451,10 +450,6 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     with col1:
         st.plotly_chart(fig1)
-
-    with col2:
-        fig = goalkeeperHeatmap(full_actions_copy, gk_name)
-        st.pyplot(fig)
 
 
     gk_grade = GKMoreDetailedFunction(gk_data)
