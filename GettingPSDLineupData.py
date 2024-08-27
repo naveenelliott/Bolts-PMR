@@ -43,7 +43,6 @@ def getting_PSD_lineup_data():
         
         # Optionally, combine all DataFrames into a single DataFrame
         combined_df = pd.concat(data_frames, ignore_index=True)
-        st.write(combined_df)
         return combined_df
 
     # Example usage
