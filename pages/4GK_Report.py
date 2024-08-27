@@ -536,7 +536,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
 
     entire_xg = entire_xg.loc[~entire_xg['Team'].str.contains('Boston Bolts')]
-    st.write(entire_xg)
+    entire_xg = entire_xg.loc[entire_xg['Player Full Name'] == 'Drew Cosby']
     for (team, opponent, match_date), group in entire_xg.groupby(['Bolts Team', 'Opposition', 'Match Date']):
         # Assuming overall_gk_data and gk_name are available for each group
         temp_game_gk = all_games_gk.loc[(all_games_gk['Team Name'] == team) & (all_games_gk['Opposition'] == opponent) & 
