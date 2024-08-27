@@ -45,6 +45,7 @@ st.title("Bolts Post-Match Review App")
 st.markdown("Select the Team, Opponent, and Date (Optional) to See the Post-Match Review")
 
 teams = list(combined_df['Team Name'].unique())
+st.write(teams)
 teams.sort()
 if "selected_team" not in st.session_state:
     st.session_state['selected_team'] = teams[0]
