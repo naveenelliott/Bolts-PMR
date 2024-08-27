@@ -5,7 +5,7 @@ import matplotlib.image as mpimg
 import base64
 import glob
 import os
-from xGModel import xGModel
+from xGAModel import xGAModel
 from mplsoccer import VerticalPitch, Pitch
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
@@ -189,10 +189,10 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     combined_xg = pd.merge(fc_python, actions_new, on=['Bolts Team', 'Match Date', 'Time'], how='inner')
 
     # running the model on our dataframe
-    xg = xGModel(combined_xg)
+    xg = xGAModel(combined_xg)
     entire_xg = xg.copy()
     xg = xg.loc[(xg['Bolts Team'] == selected_team) & (xg['Opposition'] == selected_opp) & (xg['Match Date'] == selected_date)]
-    xg = xg[['Team', 'X', 'Y', 'xG', 'Event', 'Time', 'Video Link']]
+    xg = xg[['Team', 'X', 'Y', 'xGA', 'Event', 'Time', 'Video Link']]
 
 
 
@@ -233,7 +233,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     xg = xg.sort_values('Event')
 
     xg = xg.loc[~xg['Team'].str.contains('Boston Bolts')]
-    xg_sum = xg['xG'].sum()
+    xg_sum = xg['xGA'].sum()
     ga = gk_data['Goal Against'][0].astype(float)
 
     dimensions = PitchDimensions(pitch_length_metres=100, pitch_width_metres=100)
@@ -245,7 +245,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     )
 
     for index, row in xg.iterrows():
-        y, x, xG, url = row['X'], row['Y'], row['xG'], row['Video Link']
+        y, x, xG, url = row['X'], row['Y'], row['xGA'], row['Video Link']
 
         ateam = row['Team']
         if row['Event'] == 'Goal':
