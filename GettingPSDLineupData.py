@@ -60,8 +60,6 @@ def getting_PSD_lineup_data():
     bolts19 = read_all_csvs_from_folder(folder_path)
 
     end = pd.concat([bolts13, bolts14, bolts15, bolts16, bolts17, bolts19])
-
-    end = bolts.copy()
     #end = end.loc[end['Starts'] == '1']
 
     # ARE THERE DIFFERENT AGE GROUPS? 
