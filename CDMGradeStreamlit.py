@@ -110,7 +110,7 @@ def CDMFunction(dataframe):
 
         if ('U13' in team_name) or ('U14' in team_name):
             dm_df = pd.read_csv("Thresholds/DefensiveMidfieldThresholds1314.csv")
-        elif ('U15' in team_name) or ('U16' in team_name)]:
+        elif ('U15' in team_name) or ('U16' in team_name):
             dm_df = pd.read_csv("Thresholds/DefensiveMidfieldThresholds1516.csv")
         elif ('U17' in team_name) or ('U19' in team_name):
             dm_df = pd.read_csv("Thresholds/DefensiveMidfieldThresholds1719.csv")
