@@ -14,7 +14,6 @@ combined_actions = UpdatingActions()
 
 # these are the allowable teams that we have event data for
 bolts_allowed = pd.Series(combined_actions['Team'].unique())
-st.write(bolts_allowed)
 opp_allowed = pd.Series(combined_actions['Opposition'].unique())
 combined_actions['Match Date'] = pd.to_datetime(combined_actions['Match Date']).dt.strftime('%m/%d/%Y')
 date_allowed = pd.Series(combined_actions['Match Date'].unique())
