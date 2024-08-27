@@ -86,6 +86,7 @@ if opp_shots == 0:
 
 # getting the score
 bolts_score = player_data['Goal'].astype(int).sum()
+st.write(bolts_score)
 opp_score = player_data['Goal Against'].astype(int).sum()
 
 # getting the competition level from the Veo file
