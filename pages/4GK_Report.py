@@ -193,6 +193,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     entire_xg = xg.copy()
     xg = xg.loc[(xg['Bolts Team'] == selected_team) & (xg['Opposition'] == selected_opp) & (xg['Match Date'] == selected_date)]
     xg = xg[['Team', 'X', 'Y', 'xGA', 'Event', 'Time', 'Video Link']]
+    st.write(xg)
 
 
 
