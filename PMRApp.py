@@ -27,7 +27,6 @@ combined_df = getting_PSD_lineup_data()
 combined_df['Starts'] = combined_df['Starts'].astype(float)
 combined_df['Date'] = pd.to_datetime(combined_df['Date'])
 combined_df['Date'] = combined_df['Date'].dt.strftime('%m/%d/%Y')
-st.write(combined_df)
 
 combined_df = combined_df.loc[combined_df['Team Name'].isin(bolts_allowed) & combined_df['Opposition'].isin(opp_allowed)].reset_index(drop=True)
 
