@@ -993,7 +993,7 @@ def weighted_sum(group):
         'Position': group['Position Tag'].iloc[0]
         })
 
-
+st.write(game)
 game = game.groupby('Player Full Name').apply(weighted_sum).reset_index()
 game['Progressive Regain %'] = ((game['Progr Rec'] + game['Progr Inter'])/(game['Progr Rec'] + game['Progr Inter'] + game['Unprogr Rec'] + game['Unprogr Inter'])) * 100 
 game['Pass %'] = (game['Success']/(game['Success'] + game['Unsuccess'])) * 100
