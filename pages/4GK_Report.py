@@ -480,7 +480,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     def process_game_data(df, overall_gk_data, gk_name):
         # Filter data for the specific game
-        xg = df[['Team', 'X', 'Y', 'xG', 'Event', 'Time', 'Bolts Team']]
+        xg = df[['Team', 'X', 'Y', 'xGA', 'Event', 'Time', 'Bolts Team']]
 
         if len(overall_gk_data) > 1:
             starting_gk = overall_gk_data.loc[overall_gk_data['Starts'] == 1].reset_index(drop=True)
