@@ -4,7 +4,7 @@ from GettingFullActions import UpdatingActions
 from GettingPSDLineupData import getting_PSD_lineup_data
 
 # Setting the title of the PMR App in web browser
-st.set_page_config(page_title='Bolts Post-Match Review App', page_icon = 'PostMatchReviewApp_v2/pages/Boston_Bolts.png')
+st.set_page_config(page_title='Bolts Post-Match Review App', page_icon = 'pages/Boston_Bolts.png')
 
 
 st.sidebar.success('Select a page above.')
@@ -14,6 +14,7 @@ combined_actions = UpdatingActions()
 
 # these are the allowable teams that we have event data for
 bolts_allowed = pd.Series(combined_actions['Team'].unique())
+st.write(bolts_allowed)
 opp_allowed = pd.Series(combined_actions['Opposition'].unique())
 combined_actions['Match Date'] = pd.to_datetime(combined_actions['Match Date']).dt.strftime('%m/%d/%Y')
 date_allowed = pd.Series(combined_actions['Match Date'].unique())
