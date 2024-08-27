@@ -631,53 +631,58 @@ overall_df.sort_values(by='Date', inplace=True)
 
 closest_before = overall_df.loc[overall_df['Date'] < selected_date]
 closest_after = overall_df.loc[overall_df['Date'] > selected_date]
-st.write(closest_after)
 compare_opps = list(overall_df['Unique Opp and Date'].unique())
 
-if not closest_before.empty:
-    closest_game = closest_before.iloc[-1]
-    compare_opps.append('5 Game Rolling Avg')
-    compare_opps.append('Seasonal Rolling Avg')
+if not closest_after.empty:
+    flag = 1
 else:
-    closest_game = closest_after.iloc[0]
-
-
-closest_game_index = compare_opps.index(closest_game['Unique Opp and Date'])
-with col3:
-    compare_opp = st.selectbox('Choose the Comparison Game:', compare_opps, index=closest_game_index)
-
-xg_overall = xg_copy.copy()
-bolts_df = xg_overall[xg_overall['Team'].str.contains('Bolts')]
-opp_df = xg_overall[~xg_overall['Team'].str.contains('Bolts')]
-
-# Group by the desired columns and aggregate
-bolts_agg = bolts_df.groupby(['Bolts Team', 'Match Date', 'Opposition']).agg(
-    Bolts_xG=('xG', 'sum'),
-    Bolts_Count=('xG', 'size')
-).reset_index()
-
-opp_agg = opp_df.groupby(['Bolts Team', 'Match Date', 'Opposition']).agg(
-    Opp_xG=('xG', 'sum'),
-    Opp_Count=('xG', 'size')
-).reset_index()
-
-# Merge the aggregated data
-overall_xg = pd.merge(bolts_agg, opp_agg, on=['Bolts Team', 'Match Date', 'Opposition'], how='outer')
-overall_xg.rename(columns={'Bolts Team': 'Team'}, inplace=True)
-overall_xg['xG per Shot'] = overall_xg['Bolts_xG']/overall_xg['Bolts_Count']
-overall_xg['Opp xG per Shot'] = overall_xg['Opp_xG']/overall_xg['Opp_Count']
-overall_xg.drop(columns=['Bolts_xG', 'Bolts_Count', 'Opp_xG', 'Opp_Count'], inplace=True)
-
-
-combined_entire_df = overall_xg.copy()
-combined_entire_df['Unique Opp and Date'] = combined_entire_df['Opposition'] + ' (' + combined_entire_df['Match Date'] + ')'
-
-# getting the positives and negatives
-opposition = selected_opp
-our_team = selected_team
-our_date = selected_date
-temp_date = selected_date
-top3, low3 = PositivesAndNegativesStreamlit(team_select=our_team, opp_select=opposition, date_select=temp_date, comp_opp_select=compare_opp, further_df=combined_entire_df)
+    flag = 0
+    
+if flag == 1:
+    if not closest_before.empty:
+        closest_game = closest_before.iloc[-1]
+        compare_opps.append('5 Game Rolling Avg')
+        compare_opps.append('Seasonal Rolling Avg')
+    else:
+        closest_game = closest_after.iloc[0]
+    
+    
+    closest_game_index = compare_opps.index(closest_game['Unique Opp and Date'])
+    with col3:
+        compare_opp = st.selectbox('Choose the Comparison Game:', compare_opps, index=closest_game_index)
+    
+    xg_overall = xg_copy.copy()
+    bolts_df = xg_overall[xg_overall['Team'].str.contains('Bolts')]
+    opp_df = xg_overall[~xg_overall['Team'].str.contains('Bolts')]
+    
+    # Group by the desired columns and aggregate
+    bolts_agg = bolts_df.groupby(['Bolts Team', 'Match Date', 'Opposition']).agg(
+        Bolts_xG=('xG', 'sum'),
+        Bolts_Count=('xG', 'size')
+    ).reset_index()
+    
+    opp_agg = opp_df.groupby(['Bolts Team', 'Match Date', 'Opposition']).agg(
+        Opp_xG=('xG', 'sum'),
+        Opp_Count=('xG', 'size')
+    ).reset_index()
+    
+    # Merge the aggregated data
+    overall_xg = pd.merge(bolts_agg, opp_agg, on=['Bolts Team', 'Match Date', 'Opposition'], how='outer')
+    overall_xg.rename(columns={'Bolts Team': 'Team'}, inplace=True)
+    overall_xg['xG per Shot'] = overall_xg['Bolts_xG']/overall_xg['Bolts_Count']
+    overall_xg['Opp xG per Shot'] = overall_xg['Opp_xG']/overall_xg['Opp_Count']
+    overall_xg.drop(columns=['Bolts_xG', 'Bolts_Count', 'Opp_xG', 'Opp_Count'], inplace=True)
+    
+    
+    combined_entire_df = overall_xg.copy()
+    combined_entire_df['Unique Opp and Date'] = combined_entire_df['Opposition'] + ' (' + combined_entire_df['Match Date'] + ')'
+    
+    # getting the positives and negatives
+    opposition = selected_opp
+    our_team = selected_team
+    our_date = selected_date
+    temp_date = selected_date
+    top3, low3 = PositivesAndNegativesStreamlit(team_select=our_team, opp_select=opposition, date_select=temp_date, comp_opp_select=compare_opp, further_df=combined_entire_df)
 
 change = ['Goal Against', 'Shots on Target Against', 'Loss of Poss', 'Foul Conceded', 'Opp xG per Shot', 'Time Until Regain']
 
@@ -685,14 +690,17 @@ with col3:
     inner_columns = st.columns(3)
 
     with inner_columns[0]:
-        html_string = ( "<span style='font-family: Arial; font-size: 10pt; color: green; "
-            "text-decoration: underline; text-decoration-color: green;'><b>Positives</b></span>")
-        st.write(html_string, unsafe_allow_html=True)
-        for index, cat in top3.items():
-            if index in change:
-                cat = cat * -1
-            player_html = f"<span style='color: green; font-size: 10pt;'>{index}</span> <span style='color: green; font-size: 10pt;'>{round(cat, 2)}</span>"
-            st.write(player_html, unsafe_allow_html=True)
+        if flag == 1:
+            html_string = ( "<span style='font-family: Arial; font-size: 10pt; color: green; "
+                "text-decoration: underline; text-decoration-color: green;'><b>Positives</b></span>")
+            st.write(html_string, unsafe_allow_html=True)
+            for index, cat in top3.items():
+                if index in change:
+                    cat = cat * -1
+                player_html = f"<span style='color: green; font-size: 10pt;'>{index}</span> <span style='color: green; font-size: 10pt;'>{round(cat, 2)}</span>"
+                st.write(player_html, unsafe_allow_html=True)
+        if flag == 0:
+            st.write('Not enough games to calculate positives.')
     with inner_columns[1]:
         image_path = "pages/Veo.jpg"  # Replace with the path to your image
 
@@ -714,14 +722,17 @@ with col3:
         unsafe_allow_html=True
         )
     with inner_columns[2]:
-        html_string = ( "<span style='font-family: Arial; font-size: 10pt; color: red; "
-            "text-decoration: underline; text-decoration-color: red;'><b>Negatives</b></span>")
-        st.write(html_string, unsafe_allow_html=True)
-        for index, cat in low3.items():
-            if index in change:
-                cat = cat * -1
-            player_html = f"<span style='color: red; font-size: 10pt;'>{index}</span> <span style='color: red; font-size: 10pt'>{round(cat, 2)}</span>"
-            st.write(player_html, unsafe_allow_html=True)
+        if flag == 1:
+            html_string = ( "<span style='font-family: Arial; font-size: 10pt; color: red; "
+                "text-decoration: underline; text-decoration-color: red;'><b>Negatives</b></span>")
+            st.write(html_string, unsafe_allow_html=True)
+            for index, cat in low3.items():
+                if index in change:
+                    cat = cat * -1
+                player_html = f"<span style='color: red; font-size: 10pt;'>{index}</span> <span style='color: red; font-size: 10pt'>{round(cat, 2)}</span>"
+                st.write(player_html, unsafe_allow_html=True)
+        if flag == 0:
+            st.write('Not enough games to calculate negatives.')
 
 # Getting the PSD data
 player_data_narrow = player_data[['Player Full Name', 'Line Break', 'Pass Completion ', 'Stand. Tackle', 'Tackle', 'Dribble']]
