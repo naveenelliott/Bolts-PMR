@@ -685,6 +685,7 @@ if flag == 1:
     top3, low3 = PositivesAndNegativesStreamlit(team_select=our_team, opp_select=opposition, date_select=temp_date, comp_opp_select=compare_opp, further_df=combined_entire_df)
 
 change = ['Goal Against', 'Shots on Target Against', 'Loss of Poss', 'Foul Conceded', 'Opp xG per Shot', 'Time Until Regain']
+our_team = selected_team
 
 with col3:
     inner_columns = st.columns(3)
