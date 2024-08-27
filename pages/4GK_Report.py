@@ -517,7 +517,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         xg.reset_index(drop=True, inplace=True)
 
         # Summing xG
-        summed_xg = xg['xG'].sum()
+        summed_xg = xg['xGA'].sum()
 
         # Creating summary row
         summary = {
