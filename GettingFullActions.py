@@ -25,6 +25,7 @@ def UpdatingActions():
 
     # Concatenate all DataFrames into a single DataFrame
     combined_df = pd.concat(df_list, ignore_index=True)
+    st.write(combined_df)
     return combined_df
 
 
