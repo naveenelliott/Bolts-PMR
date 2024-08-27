@@ -519,6 +519,8 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         # Summing xG
         summed_xg = xg['xGA'].sum()
 
+        st.write(xg)
+
         # Creating summary row
         summary = {
             'Player Full Name': xg['Player Full Name'].iloc[0],
