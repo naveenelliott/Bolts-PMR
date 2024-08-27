@@ -42,16 +42,16 @@ def StrikerEventFunction(event_dataframe, select_event_dataframe):
     def clip_percentile(value):
         return max(min(value, 100), 50)
 
-    if team_name in ['Boston Bolts U13', 'Boston Bolts U14']:
-        cf_event_df = event_dataframe.loc[event_dataframe['Team'].isin(['Boston Bolts U13', 'Boston Bolts U14'])]
+    if ('U13' in team_name) or ('U14' in team_name):
+        cf_event_df = event_dataframe[event_dataframe['Team'].str.contains('U13|U14')]
         del cf_event_df['Team']
         cf_event_df = calculate_threshold(cf_event_df, quantile=0.25, std_multiplier=2)
-    elif team_name in ['Boston Bolts U15', 'Boston Bolts U16']:
-        cf_event_df = event_dataframe.loc[event_dataframe['Team'].isin(['Boston Bolts U15', 'Boston Bolts U16'])]
+    elif ('U15' in team_name) or ('U16' in team_name):
+        cf_event_df = event_dataframe[event_dataframe['Team'].str.contains('U15|U16')]
         del cf_event_df['Team']
         cf_event_df = calculate_threshold(cf_event_df, quantile=0.25, std_multiplier=2)
-    elif team_name in ['Boston Bolts U17', 'Boston Bolts U19']:
-        cf_event_df = event_dataframe.loc[event_dataframe['Team'].isin(['Boston Bolts U17', 'Boston Bolts U19'])]
+    elif ('U17' in team_name) or ('U19' in team_name):
+        cf_event_df = event_dataframe[event_dataframe['Team'].str.contains('U17|U19')]
         del cf_event_df['Team']
         cf_event_df = calculate_threshold(cf_event_df, quantile=0.25, std_multiplier=2)
     
@@ -89,16 +89,16 @@ def WingerEventFunction(event_dataframe, select_event_dataframe):
     def clip_percentile(value):
         return max(min(value, 100), 50)
 
-    if team_name in ['Boston Bolts U13', 'Boston Bolts U14']:
-        wing_event_df = event_dataframe.loc[event_dataframe['Team'].isin(['Boston Bolts U13', 'Boston Bolts U14'])]
+    if ('U13' in team_name) or ('U14' in team_name):
+        wing_event_df = event_dataframe[event_dataframe['Team'].str.contains('U13|U14')]
         del wing_event_df['Team']
         wing_event_df = calculate_threshold(wing_event_df, quantile=0.25, std_multiplier=2)
-    elif team_name in ['Boston Bolts U15', 'Boston Bolts U16']:
-        wing_event_df = event_dataframe.loc[event_dataframe['Team'].isin(['Boston Bolts U15', 'Boston Bolts U16'])]
+    elif ('U15' in team_name) or ('U16' in team_name):
+        wing_event_df = event_dataframe[event_dataframe['Team'].str.contains('U15|U16')]
         del wing_event_df['Team']
         wing_event_df = calculate_threshold(wing_event_df, quantile=0.25, std_multiplier=2)
-    elif team_name in ['Boston Bolts U17', 'Boston Bolts U19']:
-        wing_event_df = event_dataframe.loc[event_dataframe['Team'].isin(['Boston Bolts U17', 'Boston Bolts U19'])]
+    elif ('U17' in team_name) or ('U19' in team_name):
+        wing_event_df = event_dataframe[event_dataframe['Team'].str.contains('U17|U19')]
         del wing_event_df['Team']
         wing_event_df = calculate_threshold(wing_event_df, quantile=0.25, std_multiplier=2)
 
@@ -140,16 +140,16 @@ def CMEventFunction(event_dataframe, select_event_dataframe):
     def clip_percentile(value):
         return max(min(value, 100), 50)
 
-    if team_name in ['Boston Bolts U13', 'Boston Bolts U14']:
-        cm_event_df = event_dataframe.loc[event_dataframe['Team'].isin(['Boston Bolts U13', 'Boston Bolts U14'])]
+    if ('U13' in team_name) or ('U14' in team_name):
+        cm_event_df = event_dataframe[event_dataframe['Team'].str.contains('U13|U14')]
         del cm_event_df['Team']
         cm_event_df = calculate_threshold(cm_event_df, quantile=0.25, std_multiplier=2)
-    elif team_name in ['Boston Bolts U15', 'Boston Bolts U16']:
-        cm_event_df = event_dataframe.loc[event_dataframe['Team'].isin(['Boston Bolts U15', 'Boston Bolts U16'])]
+    elif ('U16' in team_name) or ('U15' in team_name):
+        cm_event_df = event_dataframe[event_dataframe['Team'].str.contains('U15|U16')]
         del cm_event_df['Team']
         cm_event_df = calculate_threshold(cm_event_df, quantile=0.25, std_multiplier=2)
-    elif team_name in ['Boston Bolts U17', 'Boston Bolts U19']:
-        cm_event_df = event_dataframe.loc[event_dataframe['Team'].isin(['Boston Bolts U17', 'Boston Bolts U19'])]
+    elif ('U17' in team_name) or ('U19' in team_name):
+        cm_event_df = event_dataframe[event_dataframe['Team'].str.contains('U17|U19')]
         del cm_event_df['Team']
         cm_event_df = calculate_threshold(cm_event_df, quantile=0.25, std_multiplier=2)
 
