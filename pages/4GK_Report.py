@@ -376,7 +376,9 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     gk_background = pd.read_csv('pages/Goalkeeper Background Information.csv')
     gk_background.dropna(subset=['NAME'], inplace=True)
     gk_background = gk_background.loc[gk_background['NAME'].str.contains(gk_name)].reset_index(drop=True)
-
+  
+    height = gk_background['Height'][0]
+    weight = gk_background['Weight'][0]
 
     with col1:
         inner_columns = st.columns(2)
@@ -391,6 +393,44 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             """.format(gk_name=gk_name),
             unsafe_allow_html=True
         )
+            st.markdown(
+            """
+            <div style='display: block; text-align: left;'>
+                <span style='font-family: Arial; font-size: 10pt; color: black;'>Height: {height} + ' cm'</span>
+            </div>
+            """.format(height=height),
+            unsafe_allow_html=True
+        )
+            st.markdown(
+            """
+            <div style='display: block; text-align: left;'>
+                <span style='font-family: Arial; font-size: 10pt; color: black;'>Weight: {weight} + ' lbs'</span>
+            </div>
+            """.format(weight=weight),
+            unsafe_allow_html=True
+        )
+            
+        
+        with inner_columns[1]:
+            image_path = "pages/Veo.jpg"  # Replace with the path to your image
+
+            def load_image(image_path):
+                with open(image_path, "rb") as image_file:
+                    return base64.b64encode(image_file.read()).decode('utf-8')
+
+            # Get the base64-encoded image
+            image_base64 = load_image(image_path)
+
+            # HTML and CSS for making the image a clickable link
+            st.markdown(
+            f"""
+            <a href="{url_gk}" target="_blank">
+                <img src="data:image/jpeg;base64,{image_base64}" style="cursor: pointer; width: 75px;"/>  <!-- Adjust width as needed -->
+            </a>
+            <br><br>  <!-- Add two line breaks here -->
+            """,
+            unsafe_allow_html=True
+            )
             st.markdown(
             """
             <div style='display: block; text-align: left;'>
@@ -415,27 +455,6 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             """.format(vars=red_cards),
             unsafe_allow_html=True
         )
-        
-        with inner_columns[1]:
-            image_path = "pages/Veo.jpg"  # Replace with the path to your image
-
-            def load_image(image_path):
-                with open(image_path, "rb") as image_file:
-                    return base64.b64encode(image_file.read()).decode('utf-8')
-
-            # Get the base64-encoded image
-            image_base64 = load_image(image_path)
-
-            # HTML and CSS for making the image a clickable link
-            st.markdown(
-            f"""
-            <a href="{url_gk}" target="_blank">
-                <img src="data:image/jpeg;base64,{image_base64}" style="cursor: pointer; width: 75px;"/>  <!-- Adjust width as needed -->
-            </a>
-            <br><br>  <!-- Add two line breaks here -->
-            """,
-            unsafe_allow_html=True
-            )
 
             st.markdown(
                 """
