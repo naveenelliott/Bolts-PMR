@@ -377,8 +377,8 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     gk_background.dropna(subset=['NAME'], inplace=True)
     gk_background = gk_background.loc[gk_background['NAME'].str.contains(gk_name)].reset_index(drop=True)
   
-    height = gk_background['Height'][0]
-    weight = gk_background['Weight'][0]
+    height = gk_background['HEIGHT'][0]
+    weight = gk_background['WEIGHT'][0]
 
     with col1:
         inner_columns = st.columns(2)
