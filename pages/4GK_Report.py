@@ -658,7 +658,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         fig2 = plottingStatistics(end_overall, 'Pass Completion ', date_wanted=selected_date)
         st.plotly_chart(fig2)
         fig3 = plottingStatistics(end_overall, 'Cross %', date_wanted=selected_date)
-        st.plotly_chart(fig2)
+        st.plotly_chart(fig3)
 
 
 else:
