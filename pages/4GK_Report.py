@@ -418,7 +418,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             """.format(weight=weight),
             unsafe_allow_html=True
         )
-            image = Image.open('Flags/USA.jpg')
+            image = Image.open('Flags/USA.png')
 
             # Display the image in Streamlit
             st.image(image, caption='Nationality', use_column_width=True)
