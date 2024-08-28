@@ -553,12 +553,13 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     # Step 2: Filter all_games_gk by these combinations
     end_overall = all_games_gk.merge(unique_combinations, on=['Team Name', 'Opposition', 'Match Date'], how='inner')
     end_overall = end_overall.loc[end_overall['Player Full Name'] == gk_name]
-    st.write(end_overall)
     end_overall = end_overall[['Player Full Name', 'Team Name', 'Opposition', 'Match Date', 'Save Held', 'Save Parried', 'Goal Against', 'Progr Regain ', 
-                            'Pass Completion ', 'Opp Effort on Goal', 'Progr Pass Completion ']]
+                            'Pass Completion ', 'Opp Effort on Goal', 'Progr Pass Completion ', 'Successful Cross', 'Unsucc cross GK']]
+    end_overall['Total CC'] = end_overall['Successful Cross'] + end_overall['Unsucc cross GK']
+    end_overall['Cross %'] = (end_overall['Successful Cross']/end_overall['Total CC']) * 100
     end_overall['Save %'] = (end_overall['Save Held']+end_overall['Save Parried'])/(end_overall['Save Held']+end_overall['Save Parried']+end_overall['Goal Against'])*100
     game_grade_end = end_overall.copy()
-    end_overall.drop(columns=['Save Held', 'Save Parried'], inplace=True)
+    end_overall.drop(columns=['Save Held', 'Save Parried', 'Successful Cross', 'Unsucc cross GK', 'Total CC'], inplace=True)
     end_overall.rename(columns={'Team Name': 'Team'}, inplace=True)
     game_grade_end.rename(columns={'Team Name': 'Team'}, inplace=True)
 
@@ -655,6 +656,8 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         fig = plottingStatistics(end_overall, 'Save %', date_wanted=selected_date)
         st.plotly_chart(fig)
         fig2 = plottingStatistics(end_overall, 'Pass Completion ', date_wanted=selected_date)
+        st.plotly_chart(fig2)
+        fig3 = plottingStatistics(end_overall, 'Cross %', date_wanted=selected_date)
         st.plotly_chart(fig2)
 
 
