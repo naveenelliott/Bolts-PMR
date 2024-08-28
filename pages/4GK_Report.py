@@ -418,6 +418,10 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             """.format(weight=weight),
             unsafe_allow_html=True
         )
+            image = Image.open('USA.jpg')
+
+            # Display the image in Streamlit
+            st.image(image, caption='Nationality', use_column_width=True)
             
         
         with inner_columns[1]:
