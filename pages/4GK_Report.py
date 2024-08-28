@@ -418,10 +418,23 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             """.format(weight=weight),
             unsafe_allow_html=True
         )
-            image = Image.open('Flags/USA.png')
 
-            # Display the image in Streamlit
-            st.image(image, caption='Nationality', use_column_width=True)
+            col1, col2 = st.columns([1, 3])
+
+            with col1:
+              st.markdown(
+            """
+            <div style='display: block; text-align: left;'>
+                <span style='font-family: Arial; font-size: 10pt; color: black;'>Nationality:</span>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+            with col2:
+              image = Image.open('Flags/USA.png')
+  
+              # Display the image in Streamlit
+              st.image(image, width=50)
             
         
         with inner_columns[1]:
