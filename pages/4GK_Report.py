@@ -396,7 +396,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             st.markdown(
             """
             <div style='display: block; text-align: left;'>
-                <span style='font-family: Arial; font-size: 10pt; color: black;'>Height: {height} + ' cm'</span>
+                <span style='font-family: Arial; font-size: 10pt; color: black;'>Height: {height} cm</span>
             </div>
             """.format(height=height),
             unsafe_allow_html=True
@@ -404,7 +404,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             st.markdown(
             """
             <div style='display: block; text-align: left;'>
-                <span style='font-family: Arial; font-size: 10pt; color: black;'>Weight: {weight} + ' lbs'</span>
+                <span style='font-family: Arial; font-size: 10pt; color: black;'>Weight: {weight} lbs</span>
             </div>
             """.format(weight=weight),
             unsafe_allow_html=True
