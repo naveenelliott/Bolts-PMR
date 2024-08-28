@@ -380,10 +380,14 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
   
     height = gk_background['HEIGHT'][0]
     if np.isnan(height):
-      height = 'No available height'
+      height = 'NA'
     else:
       height = str(height) + ' cm'
     weight = gk_background['WEIGHT'][0]
+    if np.isnan(weight):
+      weight = 'NA'
+    else:
+      weight = str(weight) + ' lbs'
 
     with col1:
         inner_columns = st.columns(2)
@@ -409,7 +413,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             st.markdown(
             """
             <div style='display: block; text-align: left;'>
-                <span style='font-family: Arial; font-size: 10pt; color: black;'>Weight: {weight} lbs</span>
+                <span style='font-family: Arial; font-size: 10pt; color: black;'>Weight: {weight}</span>
             </div>
             """.format(weight=weight),
             unsafe_allow_html=True
