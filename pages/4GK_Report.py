@@ -17,6 +17,7 @@ import plotly_football_pitch as pfp
 import plotly.graph_objs as go
 from PIL import Image, ImageOps
 from streamlit_gsheets import GSheetsConnection
+import numpy as np
 
 
 st.set_page_config(page_title='Bolts Post-Match Review App', page_icon='pages/Boston_Bolts.png')
@@ -378,6 +379,10 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     gk_background = gk_background.loc[gk_background['NAME'].str.contains(gk_name)].reset_index(drop=True)
   
     height = gk_background['HEIGHT'][0]
+    if np.isnan(height):
+      height = 'No available height'
+    else:
+      height = str(height) + ' cm'
     weight = gk_background['WEIGHT'][0]
 
     with col1:
@@ -396,7 +401,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             st.markdown(
             """
             <div style='display: block; text-align: left;'>
-                <span style='font-family: Arial; font-size: 10pt; color: black;'>Height: {height} cm</span>
+                <span style='font-family: Arial; font-size: 10pt; color: black;'>Height: {height}</span>
             </div>
             """.format(height=height),
             unsafe_allow_html=True
