@@ -428,7 +428,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
                 f"""
                 <div style='display: flex; align-items: center;'>
                     <span style='font-family: Arial; font-size: 10pt; color: black;'>Nationality:&nbsp;</span>
-                    <img src='data:image/png;base64,{encoded_image}' width='50'>
+                    <img src='data:image/png;base64,{encoded_image}' width='30'>
                 </div>
                 """,
                 unsafe_allow_html=True
