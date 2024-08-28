@@ -553,6 +553,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     # Step 2: Filter all_games_gk by these combinations
     end_overall = all_games_gk.merge(unique_combinations, on=['Team Name', 'Opposition', 'Match Date'], how='inner')
     end_overall = end_overall.loc[end_overall['Player Full Name'] == gk_name]
+    st.write(end_overall)
     end_overall = end_overall[['Player Full Name', 'Team Name', 'Opposition', 'Match Date', 'Save Held', 'Save Parried', 'Goal Against', 'Progr Regain ', 
                             'Pass Completion ', 'Opp Effort on Goal', 'Progr Pass Completion ']]
     end_overall['Save %'] = (end_overall['Save Held']+end_overall['Save Parried'])/(end_overall['Save Held']+end_overall['Save Parried']+end_overall['Goal Against'])*100
