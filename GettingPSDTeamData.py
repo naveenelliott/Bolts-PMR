@@ -110,7 +110,7 @@ def getting_PSD_team_data():
 
     end['Date'] = pd.to_datetime(end['Date'], format='%m/%d/%Y')
 
-    date_condition = end['Date'] > '2024-02-10 00:00:00'
+    date_condition = end['Date'] > '2024-08-01 00:00:00'
 
     # Define the condition for excluding specific Oppositions
     exclude_oppositions = ['Albion', 'Miami', 'St Louis']
