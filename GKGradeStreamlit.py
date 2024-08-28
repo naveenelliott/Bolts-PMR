@@ -105,27 +105,27 @@ def GKMoreDetailedFunction(dataframe):
     if total_dist:
         for index2, row2 in gk_details.iterrows():
             # CHANGE TEAM NAME
-            if row2['Team Name'] == 'Boston Bolts U15':
+            if 'U15' in row2['Team Name']:
                 our_avg = avg_u15
                 adjustments['Total Distance'][index2] = max(min(total_dist[c] - our_avg, 1), -1)
                 c = c + 1
-            elif row2['Team Name'] == 'Boston Bolts U14':
+            elif 'U14' in row2['Team Name']:
                 our_avg = avg_u14
                 adjustments['Total Distance'][index2] = max(min(total_dist[c] - our_avg, 1), -1)
                 c = c + 1
-            elif row2['Team Name'] == 'Boston Bolts U13':
+            elif 'U13' in row2['Team Name']:
                 our_avg = avg_u13
                 adjustments['Total Distance'][index2] = max(min(total_dist[c] - our_avg, 1), -1)
                 c = c + 1
-            elif row2['Team Name'] == 'Boston Bolts U16':
+            elif 'U16' in row2['Team Name']:
                 our_avg = avg_u16
                 adjustments['Total Distance'][index2] = max(min(total_dist[c] - our_avg, 1), -1)
                 c = c + 1
-            elif row2['Team Name'] == 'Boston Bolts U17':
+            elif 'U17' in row2['Team Name']:
                 our_avg = avg_u17
                 adjustments['Total Distance'][index2] = max(min(total_dist[c] - our_avg, 1), -1)
                 c = c + 1
-            elif row2['Team Name'] == 'Boston Bolts U19':
+            elif 'U19' in row2['Team Name']:
                 our_avg = avg_u19
                 adjustments['Total Distance'][index2] = max(min(total_dist[c] - our_avg, 1), -1)
                 c = c + 1
