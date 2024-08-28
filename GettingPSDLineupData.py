@@ -74,7 +74,7 @@ def getting_PSD_lineup_data():
     end['Opposition'] = end['Opposition'].replace('Westchester', 'FC Westchester')
     end['Opposition'] = end['Opposition'].replace('FA EURO', 'FA Euro')
 
-    date_condition = end['Date'] > '2024-02-10 00:00:00'
+    date_condition = end['Date'] > '2024-08-01 00:00:00'
 
     # Define the condition for excluding specific Oppositions
     exclude_oppositions = ['Albion', 'Miami', 'St Louis']
