@@ -158,7 +158,7 @@ def gettingGameGrade(dataframe):
         final_dataframe.at[0, 'Attacking'] = (final_dataframe.at[0, 'Pass Completion ']*0.06) + (final_dataframe.at[0, 'Progr Pass Completion ']*0.04)
         final_dataframe.at[0, 'Defending Goal'] = (final_dataframe.at[0, 'Total Saves']*.0125) + (final_dataframe.at[0, 'Save %']*0.0125) + (final_dataframe.at[0, 'GA-xGA']*.075)
         final_dataframe.at[0, 'Organization'] = (final_dataframe.at[0, 'SOT Against']*.05) + (final_dataframe.at[0, 'Opp Effort on Goal']*.05)
-        if final_dataframe.at[0, 'SOT Against'] == 0:
+        if final_dataframe.at[0, 'Save % '].isna.any():
             final_dataframe.at[0, 'Final Grade'] = (final_dataframe.at[0, 'Attacking']*0.55)+(final_dataframe.at[0, 'Organization']*.45)
         else:
             final_dataframe.at[0, 'Final Grade'] = (final_dataframe.at[0, 'Attacking']*0.3)+(final_dataframe.at[0, 'Defending Goal']*0.5)+(final_dataframe.at[0, 'Organization']*.2)
@@ -167,7 +167,7 @@ def gettingGameGrade(dataframe):
         final_dataframe.at[0, 'Defending Goal'] = (final_dataframe.at[0, 'Total Saves']*.0125) + (final_dataframe.at[0, 'Save %']*0.0125) + (final_dataframe.at[0, 'GA-xGA']*.075)
         final_dataframe.at[0, 'Organization'] = (final_dataframe.at[0, 'SOT Against']*.05) + (final_dataframe.at[0, 'Opp Effort on Goal']*.05)
         final_dataframe.at[0, 'Defending Space'] = (final_dataframe.at[0, 'Progr Regain ']*.1)
-        if final_dataframe.at[0, 'SOT Against'] == 0:
+        if final_dataframe.at[0, 'Save % '].isna.any():
             final_dataframe.at[0, 'Final Grade'] = (final_dataframe.at[0, 'Attacking']*0.3833)+(final_dataframe.at[0, 'Organization']*.2833)+(final_dataframe.at[0, 'Defending Space']*.3333)
         else:
             final_dataframe.at[0, 'Final Grade'] = (final_dataframe.at[0, 'Attacking']*0.2375)+(final_dataframe.at[0, 'Defending Goal']*0.4375)+(final_dataframe.at[0, 'Organization']*.1375)+(final_dataframe.at[0, 'Defending Space']*.1875)
