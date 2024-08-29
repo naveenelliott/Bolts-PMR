@@ -62,6 +62,12 @@ def GKMoreDetailedFunction(dataframe):
     organization.fillna(0, inplace=True)
     organization = organization.loc[:, ['Opp Effort on Goal', 'SOT Against']]
 
+    crosses = selected_p90[['Successful Cross', 'Unsucc cross GK']]
+    crosses['Total CC'] = crosses['Successful Cross'] + crosses['Unsucc cross GK']
+    crosses['Cross %'] = (crosses['Successful Cross']/crosses['Total CC'])*100
+    crosses.fillna(0, inplace=True)
+    crosses = crosses.loc[:, ['Cross %']]
+
 
 
     adjustments = pd.DataFrame()
