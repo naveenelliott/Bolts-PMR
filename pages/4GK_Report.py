@@ -510,6 +510,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     ga_grade = ga_percentile * 0.1
 
+    st.write(gk_grade)
     # This is until the claiming part of the grade is fixed
     if gk_grade['Defending Space'].isna().any():
         gk_grade.at[0, 'Defending Goal'] = (gk_grade.at[0, 'Defending Goal']*0.25)+(ga_grade*.75)
