@@ -74,7 +74,10 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     overall_gk_data = gk_data.copy()
     specific_player = gk_data.loc[gk_data['Player Full Name'] == gk_name]
     specific_player_copy = specific_player.copy()
+    specific_player_copy.reset_index(drop=True, inplace=True)
     st.write(specific_player_copy)
+    no_saves = pd.isna(specific_player_copy['Save %'].iloc[0])
+    st.write(no_saves)
     
 
     in_poss_involve, out_poss_involve = gkInvolvements(specific_player)
