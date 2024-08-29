@@ -628,7 +628,11 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     del end_overall['Goal Against'], end_overall['xG']
     end_overall = end_overall[end_overall['Match Date'] <= selected_date]
 
-    game_grade_end = pd.merge(game_grade_end, summary_df, on=['Player Full Name', 'Team', 'Opposition', 'Match Date'], how='inner')
+
+    if not summary_df.empty:
+      game_grade_end = pd.merge(game_grade_end, summary_df, on=['Player Full Name', 'Team', 'Opposition', 'Match Date'], how='inner')
+    else:
+      game_grade_end['xG'] = 0
     game_grade_end['GA-xGA'] = game_grade_end['Goal Against'] - game_grade_end['xG']
 
 
