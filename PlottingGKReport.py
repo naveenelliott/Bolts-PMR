@@ -151,6 +151,8 @@ def gettingGameGrade(dataframe):
     raw_xga = 100 - raw_xga
     final_dataframe.at[0, 'GA-xGA'] = raw_xga
 
+    st.write(final_dataframe)
+
 
     if final_dataframe['Progr Regain '].isna().any():
         final_dataframe.at[0, 'Attacking'] = (final_dataframe.at[0, 'Pass Completion ']*0.06) + (final_dataframe.at[0, 'Progr Pass Completion ']*0.04)
