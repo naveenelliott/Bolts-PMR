@@ -115,11 +115,11 @@ def xGAModel(end):
     # if Bolts Team contains U13 then xG = xG + 0.1
     for index, row in end.iterrows():
         if 'U13' in row['Bolts Team']:
-            end.at[index, 'xGA'] = end.at[index, 'xGA'] + 0.1
+            end.at[index, 'xGA'] = end.at[index, 'xGA'] * 2
         elif ('Inside Post' in row['Event']) & (36 <= row['Y'] <= 63):
-            end.at[index, 'xGA'] = end.at[index, 'xGA'] + 0.1
+            end.at[index, 'xGA'] = end.at[index, 'xGA'] * 2
         elif ('Far Post' in row['Event']) & ((row['Y'] < 36) | (row['Y'] > 63)):
-            end.at[index, 'xGA'] = end.at[index, 'xGA'] + 0.1
+            end.at[index, 'xGA'] = end.at[index, 'xGA'] * 2
 
 
     return end
