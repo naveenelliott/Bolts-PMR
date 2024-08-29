@@ -100,7 +100,7 @@ def gettingGameGrade(dataframe):
     dataframe['SOT Against'] = dataframe['Save Held'] + dataframe['Save Parried'] + dataframe['Goal Against']
 
     final_dataframe = pd.DataFrame(columns=['Pass Completion ', 'Total Saves', 'Save %', 'Progr Regain ', 'SOT Against', 'Opp Effort on Goal',
-                                            'GA-xGA', 'Progr Pass Completion '])
+                                            'GA-xGA', 'Progr Pass Completion ', 'Cross %'])
 
     raw_pass = dataframe.at[0, 'Pass Completion ']
     raw_pass = (raw_pass - gk_df.at[0, 'Pass Completion ']) / gk_df.at[1, 'Pass Completion ']
@@ -150,6 +150,13 @@ def gettingGameGrade(dataframe):
     raw_xga = norm.cdf(raw_xga) * 100
     raw_xga = 100 - raw_xga
     final_dataframe.at[0, 'GA-xGA'] = raw_xga
+
+    crosses = dataframe[['Successful Cross', 'Unsucc cross GK']]
+    crosses['Total CC'] = crosses['Successful Cross'] + crosses['Unsucc cross GK']
+    crosses['Cross %'] = (crosses['Successful Cross']/crosses['Total CC'])*100
+    crosses.fillna(0, inplace=True)
+    cross_claimed = crosses.at[0, 'Cross %']
+    final_dataframe.at[0, 'Cross %'] = cross_claimed
 
     st.write(final_dataframe)
 
