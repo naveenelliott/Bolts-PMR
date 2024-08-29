@@ -166,7 +166,6 @@ def GKMoreDetailedFunction(dataframe):
         date = more_data['Match Date']
 
         gk_df = pd.read_csv("Thresholds/GoalkeeperThresholds.csv")
-        st.write(gk_df)
         
         if (total_def_actions != 0):
         
