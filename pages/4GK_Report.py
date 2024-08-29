@@ -86,6 +86,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     yellow_cards = gk_data['Yellow Card'][0]
     red_cards = gk_data['Red Card'][0]
     mins_played = gk_data['mins played'][0]
+    match_date = gk_data['Match Date'][0]
 
     col1, col2 = st.columns(2)
 
