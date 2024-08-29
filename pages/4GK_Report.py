@@ -75,9 +75,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     specific_player = gk_data.loc[gk_data['Player Full Name'] == gk_name]
     specific_player_copy = specific_player.copy()
     specific_player_copy.reset_index(drop=True, inplace=True)
-    st.write(specific_player_copy)
     no_saves = pd.isna(specific_player_copy.at[0, 'Save % '])
-    st.write(no_saves)
     
 
     in_poss_involve, out_poss_involve = gkInvolvements(specific_player)
@@ -519,12 +517,19 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     st.write(gk_grade)
     # This is until the claiming part of the grade is fixed
+    
     if gk_grade['Defending Space'].isna().any():
         gk_grade.at[0, 'Defending Goal'] = (gk_grade.at[0, 'Defending Goal']*0.25)+(ga_grade*.75)
-        gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.3)+(gk_grade.at[0, 'Defending Goal']*0.5)+(gk_grade.at[0, 'Organization']*.2)
+        if no_saves == True:
+          gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.55)+(gk_grade.at[0, 'Organization']*.45)
+        else:
+          gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.3)+(gk_grade.at[0, 'Defending Goal']*0.5)+(gk_grade.at[0, 'Organization']*.2)
     else:
         gk_grade.at[0, 'Defending Goal'] = (gk_grade.at[0, 'Defending Goal']*0.25)+(ga_grade*.75)
-        gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.2375)+(gk_grade.at[0, 'Defending Goal']*0.4375)+(gk_grade.at[0, 'Organization']*.1375)+(gk_grade.at[0, 'Defending Space']*.1875)
+        if no_saves == True:
+          gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.3833)+(gk_grade.at[0, 'Organization']*.2833)+(gk_grade.at[0, 'Defending Space']*.3333)
+        else:
+          gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.2375)+(gk_grade.at[0, 'Defending Goal']*0.4375)+(gk_grade.at[0, 'Organization']*.1375)+(gk_grade.at[0, 'Defending Space']*.1875)
 
 
 
