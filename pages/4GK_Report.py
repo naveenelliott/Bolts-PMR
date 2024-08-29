@@ -590,8 +590,9 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     entire_xg = entire_xg.loc[~entire_xg['Team'].str.contains('Boston Bolts')]
     entire_xg = entire_xg.loc[entire_xg['Player Full Name'] == gk_name]
-    entire_xg = entire_xg[entire_xg['Event'].isin(['SOT', 'Goal'])]
-    for (team, opponent, match_date), group in entire_xg.groupby(['Bolts Team', 'Opposition', 'Match Date']):
+    st.write(entire_xg)
+    #entire_xg = entire_xg[entire_xg['Event'].isin(['SOT', 'Goal'])]
+    for (team, opponent, matchf_date), group in entire_xg.groupby(['Bolts Team', 'Opposition', 'Match Date']):
         # Assuming overall_gk_data and gk_name are available for each group
         temp_game_gk = all_games_gk.loc[(all_games_gk['Team Name'] == team) & (all_games_gk['Opposition'] == opponent) & 
                                         (all_games_gk['Match Date'] == match_date)]
@@ -600,6 +601,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     # Combine all processed groups into one DataFrame
     summary_df = pd.DataFrame(processed_data)
+    st.write(summary_df)
 
     end_combined_df = overall_df.loc[overall_df['Player Full Name'] == gk_name]
     unique_combinations = end_combined_df[['Team Name', 'Opposition', 'Date']].drop_duplicates()
