@@ -193,6 +193,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     # combining into xG dataframe we want
     combined_xg = pd.merge(fc_python, actions_new, on=['Bolts Team', 'Match Date', 'Time'], how='inner')
+    st.write(combined_xg)
 
     # running the model on our dataframe
     xg = xGAModel(combined_xg)
