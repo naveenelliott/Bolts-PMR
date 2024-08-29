@@ -148,6 +148,8 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     full_actions_copy = full_actions.copy()
     select_event_df = full_actions.copy()
 
+    st.write(full_actions_copy)
+
     # these are the ideal columns
     cols = ['Player Full Name', 'Team', 'Match Date', 'Opposition', 'Action', 'Time', 'Video Link']
     xg_actions = actions[cols]
