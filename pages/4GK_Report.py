@@ -73,6 +73,8 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     gk_data = gk_data.loc[(gk_data['Team Name'] == selected_team) & (gk_data['Opposition'] == selected_opp) & (gk_data['Match Date'] == selected_date)].reset_index(drop=True)
     overall_gk_data = gk_data.copy()
     specific_player = gk_data.loc[gk_data['Player Full Name'] == gk_name]
+    specfici_player_copy = specific_player.copy()
+    
 
     in_poss_involve, out_poss_involve = gkInvolvements(specific_player)
 
@@ -145,10 +147,9 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     entire_actions = actions.copy()
 
     full_actions = full_actions.loc[(full_actions['Team'] == selected_team) & (full_actions['Opposition'] == selected_opp) & (full_actions['Match Date'] == selected_date)].reset_index(drop=True)
-    full_actions_copy = full_actions.copy()
+
     select_event_df = full_actions.copy()
 
-    st.write(full_actions_copy)
 
     # these are the ideal columns
     cols = ['Player Full Name', 'Team', 'Match Date', 'Opposition', 'Action', 'Time', 'Video Link']
