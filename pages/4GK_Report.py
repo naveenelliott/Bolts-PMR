@@ -515,7 +515,6 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     ga_grade = ga_percentile * 0.1
 
-    st.write(gk_grade)
     # This is until the claiming part of the grade is fixed
     
     if gk_grade['Defending Space'].isna().any():
@@ -531,7 +530,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         else:
           gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.2375)+(gk_grade.at[0, 'Defending Goal']*0.4375)+(gk_grade.at[0, 'Organization']*.1375)+(gk_grade.at[0, 'Defending Space']*.1875)
 
-
+    st.write(gk_grade)
 
     def process_game_data(df, overall_gk_data, gk_name):
         # Filter data for the specific game
@@ -649,6 +648,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     end_overall = end_overall.sort_values('Match Date').reset_index(drop=True)
     final_game_grade = final_game_grade.sort_values('Match Date').reset_index(drop=True)
     final_game_grade = final_game_grade[final_game_grade['Match Date'] <= selected_date]
+    st.write(final_game_grade)
 
     
     with col2:
