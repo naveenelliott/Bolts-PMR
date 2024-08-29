@@ -73,7 +73,8 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     gk_data = gk_data.loc[(gk_data['Team Name'] == selected_team) & (gk_data['Opposition'] == selected_opp) & (gk_data['Match Date'] == selected_date)].reset_index(drop=True)
     overall_gk_data = gk_data.copy()
     specific_player = gk_data.loc[gk_data['Player Full Name'] == gk_name]
-    specfici_player_copy = specific_player.copy()
+    specific_player_copy = specific_player.copy()
+    st.write(specific_player_copy)
     
 
     in_poss_involve, out_poss_involve = gkInvolvements(specific_player)
