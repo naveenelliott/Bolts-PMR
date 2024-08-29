@@ -531,7 +531,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         else:
           gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.2375)+(gk_grade.at[0, 'Defending Goal']*0.4375)+(gk_grade.at[0, 'Organization']*.1375)+(gk_grade.at[0, 'Defending Space']*.1875)
 
-    st.write(gk_grade)
+
 
     def process_game_data(df, overall_gk_data, gk_name):
         # Filter data for the specific game
@@ -591,6 +591,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     entire_xg = entire_xg.loc[~entire_xg['Team'].str.contains('Boston Bolts')]
     entire_xg = entire_xg.loc[entire_xg['Player Full Name'] == gk_name]
+    st.write(entire_xg)
     for (team, opponent, match_date), group in entire_xg.groupby(['Bolts Team', 'Opposition', 'Match Date']):
         # Assuming overall_gk_data and gk_name are available for each group
         temp_game_gk = all_games_gk.loc[(all_games_gk['Team Name'] == team) & (all_games_gk['Opposition'] == opponent) & 
@@ -649,7 +650,6 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     end_overall = end_overall.sort_values('Match Date').reset_index(drop=True)
     final_game_grade = final_game_grade.sort_values('Match Date').reset_index(drop=True)
     final_game_grade = final_game_grade[final_game_grade['Match Date'] <= selected_date]
-    st.write(final_game_grade)
 
     
     with col2:
