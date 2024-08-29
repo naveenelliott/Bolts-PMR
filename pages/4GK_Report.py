@@ -76,7 +76,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     specific_player_copy = specific_player.copy()
     specific_player_copy.reset_index(drop=True, inplace=True)
     st.write(specific_player_copy)
-    no_saves = pd.isna(specific_player_copy['Save %'].iloc[0])
+    no_saves = pd.isna(specific_player_copy['Save %'][0])
     st.write(no_saves)
     
 
