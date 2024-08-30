@@ -405,6 +405,22 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     else:
       weight = str(weight) + ' lbs'
 
+    # Create the combined flag images string
+    flag_images = []
+    for col in ['NATIONALITY', 'NATIONALITY 2', 'NATIONALITY 3', 'NATIONALITY 4']:
+        if pd.notna(gk_background[col][0]):
+            nationality = gk_background[col][0]
+            image_path = f'Flags/{nationality}.png'
+            try:
+                with open(image_path, "rb") as image_file:
+                    encoded_image = base64.b64encode(image_file.read()).decode()
+                    flag_images.append(f"<img src='data:image/png;base64,{encoded_image}' width='30'>")
+            except FileNotFoundError:
+                flag_images.append(f"<span>{nationality} flag not found</span>")
+    
+    # Combine flag images with slashes
+    combined_flags = " / ".join(flag_images)
+
     with col1:
         inner_columns = st.columns(2)
 
@@ -442,14 +458,14 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     
             # Display the combined nationalities and flag image
             st.markdown(
-                f"""
-                <div style='display: flex; align-items: center;'>
-                    <span style='font-family: Arial; font-size: 10pt; color: black;'>Nationality: {combined_nationalities}</span>&nbsp;
-                    <img src='data:image/png;base64,{encoded_image}' width='30'>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
+              f"""
+              <div style='display: flex; align-items: center;'>
+                  <span style='font-family: Arial; font-size: 10pt; color: black;'>Nationality:&nbsp;</span>
+                  {combined_flags}
+              </div>
+              """,
+              unsafe_allow_html=True
+        )
             
         
         with inner_columns[1]:
