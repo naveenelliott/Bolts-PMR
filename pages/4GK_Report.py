@@ -615,6 +615,10 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     end_overall['Total CC'] = end_overall['Successful Cross'] + end_overall['Unsucc cross GK']
     end_overall['Cross %'] = (end_overall['Successful Cross']/end_overall['Total CC']) * 100
     end_overall['Save %'] = (end_overall['Save Held']+end_overall['Save Parried'])/(end_overall['Save Held']+end_overall['Save Parried']+end_overall['Goal Against'])*100
+    end_overall['Totals Throw'] = end_overall['Hands GK'] + end_overall['Unsucc Hands']
+    end_overall['Throw %'] = (end_overall['Hands GK']/end_overall['Totals Throw']) * 100
+    end_overall['Total GK'] = (end_overall['Ground GK'] + end_overall['Unsucc Ground'])
+    end_overall['GK %'] = (end_overall['Ground GK']/end_overall['Total GK']) * 100
     game_grade_end = end_overall.copy()
     end_overall.drop(columns=['Save Held', 'Save Parried', 'Successful Cross', 'Unsucc cross GK', 'Total CC'], inplace=True)
     end_overall.rename(columns={'Team Name': 'Team'}, inplace=True)
