@@ -383,6 +383,16 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     gk_background = pd.read_csv('pages/Goalkeeper Background Information.csv')
     gk_background.dropna(subset=['NAME'], inplace=True)
     gk_background = gk_background.loc[gk_background['NAME'].str.contains(gk_name)].reset_index(drop=True)
+
+    nationality_split = gk_background['NATIONALITY'].str.split('/', expand=True)
+
+    # Rename the columns
+    gk_background['NATIONALITY'] = nationality_split[0]
+    gk_background['NATIONALITY 2'] = nationality_split[1]
+    gk_background['NATIONALITY 3'] = nationality_split[2]
+    gk_background['NATIONALITY 4'] = nationality_split[3]
+
+    st.write(gk_background)
   
     height = gk_background['HEIGHT'][0]
     if np.isnan(height):
