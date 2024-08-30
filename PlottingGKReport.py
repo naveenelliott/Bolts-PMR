@@ -154,7 +154,7 @@ def gettingGameGrade(dataframe):
     crosses = dataframe[['Successful Cross', 'Unsucc cross GK']]
     crosses['Total CC'] = crosses['Successful Cross'] + crosses['Unsucc cross GK']
     crosses['Cross %'] = (crosses['Successful Cross']/crosses['Total CC'])*100
-    cross_claimed = crosses.at[0, 'Cross %']
+    cross_claimed = crosses.at[0, 'Cross %'] * 0.1
     final_dataframe.at[0, 'Cross %'] = cross_claimed
 
     st.write(final_dataframe)
