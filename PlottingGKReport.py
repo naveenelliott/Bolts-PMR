@@ -19,7 +19,7 @@ def plottingStatistics(dataframe, statistic, date_wanted):
         mode='lines',
         name='Trendline',
         line=dict(color='black', dash='dash'),
-        showlegend=False  # Show the legend for the trendline
+        showlegend=True  # Show the legend for the trendline
     ))
 
     # Line plot for the specified statistic over time
@@ -31,7 +31,7 @@ def plottingStatistics(dataframe, statistic, date_wanted):
                 mode='markers',
                 name='',
                 marker=dict(color='lightblue', size=12, symbol='circle'),
-                showlegend=False,  # Ensure no legend for this point
+                showlegend=True,  # Ensure no legend for this point
                 text=row['More Opposition'] + ' (' + str(round(row[statistic], 4)) + ' )',  # Set hover text to Opposition
                 hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
             ))
@@ -43,7 +43,7 @@ def plottingStatistics(dataframe, statistic, date_wanted):
                 name=f'{statistic} over time',
                 line=dict(color='black'),
                 marker=dict(color='black', size=6),
-                showlegend=False,  # Remove legend
+                showlegend=True,  # Remove legend
                 text=row['More Opposition'] + ' (' + str(round(row[statistic], 4)) + ' )',  # Set hover text to Opposition
                 hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
             ))
