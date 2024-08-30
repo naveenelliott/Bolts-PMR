@@ -157,8 +157,6 @@ def gettingGameGrade(dataframe):
     cross_claimed = crosses.at[0, 'Cross %'] * 0.1
     final_dataframe.at[0, 'Cross %'] = cross_claimed
 
-    st.write(final_dataframe)
-
 
     if final_dataframe['Progr Regain '].isna().any():
         final_dataframe.at[0, 'Attacking'] = (final_dataframe.at[0, 'Pass Completion ']*0.06) + (final_dataframe.at[0, 'Progr Pass Completion ']*0.04)
