@@ -460,7 +460,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             st.markdown(
               f"""
               <div style='display: flex; align-items: center;'>
-                  <span style='font-family: Arial; font-size: 10pt; color: black;'>Nationality:&nbsp;</span>
+                  <span style='font-family: Arial; font-size: 10pt; color: black;'>Nationality:&nbsp;</span> <br>
                   {combined_flags}
               </div>
               """,
