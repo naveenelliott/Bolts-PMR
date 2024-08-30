@@ -95,10 +95,13 @@ def plottingStatistics(dataframe, statistic, date_wanted):
 
 def gettingGameGrade(dataframe):
     gk_df = pd.read_csv("Thresholds/GoalkeeperThresholds.csv")
+    st.write(gk_df)
     dataframe.reset_index(drop=True, inplace=True)
     dataframe['Total Saves'] = dataframe['Save Held'] + dataframe['Save Parried']
     dataframe['SOT Against'] = dataframe['Save Held'] + dataframe['Save Parried'] + dataframe['Goal Against']
 
+    st.write(dataframe)
+    
     final_dataframe = pd.DataFrame(columns=['Pass Completion ', 'Total Saves', 'Save %', 'Progr Regain ', 'SOT Against', 'Opp Effort on Goal',
                                             'GA-xGA', 'Progr Pass Completion ', 'Cross %'])
 
@@ -111,6 +114,8 @@ def gettingGameGrade(dataframe):
     raw_progr_pass = (raw_progr_pass - gk_df.at[0, 'Progr Pass Completion ']) / gk_df.at[1, 'Progr Pass Completion ']
     raw_progr_pass = norm.cdf(raw_progr_pass) * 100
     final_dataframe.at[0, 'Progr Pass Completion '] = raw_progr_pass
+
+    #raw_throw = dataframe.at[0, 'Hand'
 
     raw_saves = dataframe.at[0, 'Total Saves']
     raw_saves = (raw_saves - gk_df.at[0, 'Total Saves']) / gk_df.at[1, 'Total Saves']
