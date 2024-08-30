@@ -162,9 +162,43 @@ def gettingGameGrade(dataframe):
     cross_claimed = crosses.at[0, 'Cross %'] * 0.1
     final_dataframe.at[0, 'Cross %'] = cross_claimed
 
+    if final_dataframe['Throw %'].notna().any():
+        if final_dataframe['Goal Kick %'].notna().any():
+            raw_gk = dataframe.at[0, 'Goal Kick %']
+            gk_factor = (raw_gk - gk_df.at[0, 'Goal Kick %']) / gk_df.at[1, 'Goal Kick %']
+            raw_throw = dataframe.at[0, 'Throw %']
+            throw_factor = (raw_throw - gk_df.at[0, 'Throw %']) / gk_df.at[1, 'Throw %']
+            pass_comp = .055
+            forward_comp = 0.035
+            throw = .005
+            goal_kick = .005
+        else:
+            gk_factor = 0
+            goal_kick = 0
+            raw_throw = dataframe.at[0, 'Throw %']
+            throw_factor = (raw_throw - gk_df.at[0, 'Throw %']) / gk_df.at[1, 'Throw %']
+            pass_comp = .0567
+            forward_comp = 0.0367
+            throw = .0067
+    else:
+        if final_dataframe['Goal Kick %'].notna().any():
+            gk_factor = (raw_gk - gk_df.at[0, 'Goal Kick %']) / gk_df.at[1, 'Goal Kick %']
+            pass_comp = .0567
+            forward_comp = 0.0367
+            goal_kick = .0067
+            throw = 0
+            throw_factor = 0
+        else:
+            gk_factor = 0
+            pass_comp = .06
+            forward_comp = 0.04
+            goal_kick = 0
+            throw = 0
+            throw_factor = 0
+
 
     if final_dataframe['Progr Regain '].isna().any():
-        final_dataframe.at[0, 'Attacking'] = (final_dataframe.at[0, 'Pass Completion ']*0.06) + (final_dataframe.at[0, 'Progr Pass Completion ']*0.04)
+        final_dataframe.at[0, 'Attacking'] = (final_dataframe.at[0, 'Pass Completion ']*pass_comp) + (final_dataframe.at[0, 'Progr Pass Completion ']*forward_comp) + (throw_factor*throw) + (gk_factor*goal_kick)
         final_dataframe.at[0, 'Defending Goal'] = (final_dataframe.at[0, 'Total Saves']*.0125) + (final_dataframe.at[0, 'Save %']*0.0125) + (final_dataframe.at[0, 'GA-xGA']*.075)
         final_dataframe.at[0, 'Organization'] = (final_dataframe.at[0, 'SOT Against']*.05) + (final_dataframe.at[0, 'Opp Effort on Goal']*.05)
         if final_dataframe['Save %'].isna().any():
@@ -178,7 +212,7 @@ def gettingGameGrade(dataframe):
             else:
                 final_dataframe.at[0, 'Final Grade'] = (final_dataframe.at[0, 'Attacking']*0.2375)+(final_dataframe.at[0, 'Defending Goal']*0.4375)+(final_dataframe.at[0, 'Organization']*.1375)+(final_dataframe.at[0, 'Cross %']*.1875)
     else:
-        final_dataframe.at[0, 'Attacking'] = (final_dataframe.at[0, 'Pass Completion ']*0.06) + (final_dataframe.at[0, 'Progr Pass Completion ']*0.04)
+        final_dataframe.at[0, 'Attacking'] = (final_dataframe.at[0, 'Pass Completion ']*pass_comp) + (final_dataframe.at[0, 'Progr Pass Completion ']*forward_comp) + (throw_factor*throw) + (gk_factor*goal_kick)
         final_dataframe.at[0, 'Defending Goal'] = (final_dataframe.at[0, 'Total Saves']*.0125) + (final_dataframe.at[0, 'Save %']*0.0125) + (final_dataframe.at[0, 'GA-xGA']*.075)
         final_dataframe.at[0, 'Organization'] = (final_dataframe.at[0, 'SOT Against']*.05) + (final_dataframe.at[0, 'Opp Effort on Goal']*.05)
         final_dataframe.at[0, 'Defending Space'] = (final_dataframe.at[0, 'Progr Regain ']*.1)
