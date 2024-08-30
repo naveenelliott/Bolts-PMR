@@ -165,12 +165,12 @@ def gettingGameGrade(dataframe):
         final_dataframe.at[0, 'Defending Goal'] = (final_dataframe.at[0, 'Total Saves']*.0125) + (final_dataframe.at[0, 'Save %']*0.0125) + (final_dataframe.at[0, 'GA-xGA']*.075)
         final_dataframe.at[0, 'Organization'] = (final_dataframe.at[0, 'SOT Against']*.05) + (final_dataframe.at[0, 'Opp Effort on Goal']*.05)
         if final_dataframe['Save %'].isna().any():
-            if final_dataframe['Cross %].isna().any():
+            if final_dataframe['Cross %'].isna().any():
                 final_dataframe.at[0, 'Final Grade'] = (final_dataframe.at[0, 'Attacking']*0.55)+(final_dataframe.at[0, 'Organization']*.45)
             else:
                 final_dataframe.at[0, 'Final Grade'] = (final_dataframe.at[0, 'Attacking']*0.3833)+(final_dataframe.at[0, 'Organization']*.2833)+(final_dataframe.at[0, 'Cross %']*.3333)
         else:
-            if final_dataframe['Cross %].isna().any():
+            if final_dataframe['Cross %'].isna().any():
                 final_dataframe.at[0, 'Final Grade'] = (final_dataframe.at[0, 'Attacking']*0.3)+(final_dataframe.at[0, 'Defending Goal']*0.5)+(final_dataframe.at[0, 'Organization']*.2)
             else:
                 final_dataframe.at[0, 'Final Grade'] = (final_dataframe.at[0, 'Attacking']*0.2375)+(final_dataframe.at[0, 'Defending Goal']*0.4375)+(final_dataframe.at[0, 'Organization']*.1375)+(final_dataframe.at[0, 'Cross %']*.1875)
@@ -180,12 +180,12 @@ def gettingGameGrade(dataframe):
         final_dataframe.at[0, 'Organization'] = (final_dataframe.at[0, 'SOT Against']*.05) + (final_dataframe.at[0, 'Opp Effort on Goal']*.05)
         final_dataframe.at[0, 'Defending Space'] = (final_dataframe.at[0, 'Progr Regain ']*.1)
         if final_dataframe['Save %'].isna().any():
-            if final_dataframe['Cross %].isna().any():
+            if final_dataframe['Cross %'].isna().any():
                 final_dataframe.at[0, 'Final Grade'] = (final_dataframe.at[0, 'Attacking']*0.3833)+(final_dataframe.at[0, 'Organization']*.2833)+(final_dataframe.at[0, 'Defending Space']*.3333)
             else:
                 final_dataframe.at[0, 'Final Grade'] = (final_dataframe.at[0, 'Attacking']*0.3)+(final_dataframe.at[0, 'Cross %'] * .25)+(final_dataframe.at[0, 'Organization']*.2)+(final_dataframe.at[0, 'Defending Space']*.25)
         else:
-            if final_dataframe['Cross %].isna().any():
+            if final_dataframe['Cross %'].isna().any():
                 final_dataframe.at[0, 'Final Grade'] = (final_dataframe.at[0, 'Attacking']*0.2375)+(final_dataframe.at[0, 'Defending Goal']*0.4375)+(final_dataframe.at[0, 'Organization']*.1375)+(final_dataframe.at[0, 'Defending Space']*.1875)
             else:
                 final_dataframe.at[0, 'Final Grade'] = (final_dataframe.at[0, 'Attacking']*0.2)+(final_dataframe.at[0, 'Cross %'] * .15)+(final_dataframe.at[0, 'Defending Goal']*0.4)+(final_dataframe.at[0, 'Organization']*.1)+(final_dataframe.at[0, 'Defending Space']*.15)
