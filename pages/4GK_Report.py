@@ -435,15 +435,16 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             unsafe_allow_html=True
         )
 
-            image_path = 'Flags/USA.png'
+            # Load the flag image for the first nationality
+            image_path = f'Flags/{gk_background["NATIONALITY"][0]}.png'
             with open(image_path, "rb") as image_file:
                 encoded_image = base64.b64encode(image_file.read()).decode()
-            
-            # Display the text and image in a single column using HTML/CSS
+    
+            # Display the combined nationalities and flag image
             st.markdown(
                 f"""
                 <div style='display: flex; align-items: center;'>
-                    <span style='font-family: Arial; font-size: 10pt; color: black;'>Nationality:&nbsp;</span>
+                    <span style='font-family: Arial; font-size: 10pt; color: black;'>Nationality: {combined_nationalities}</span>&nbsp;
                     <img src='data:image/png;base64,{encoded_image}' width='30'>
                 </div>
                 """,
