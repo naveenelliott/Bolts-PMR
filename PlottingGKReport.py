@@ -17,7 +17,7 @@ def plottingStatistics(dataframe, statistic, date_wanted):
         x=dataframe['Match Date'],
         y=dataframe[statistic],
         mode='lines',
-        name='Trendline of Performances',
+        name='Trendline',
         line=dict(color='black', dash='dash'),
         showlegend=True  # Show the legend for the trendline
     ))
@@ -29,7 +29,7 @@ def plottingStatistics(dataframe, statistic, date_wanted):
                 x=[row['Match Date']],
                 y=[row[statistic]],
                 mode='markers',
-                name=f'{statistic} Current Game',
+                name='Current Game',
                 marker=dict(color='lightblue', size=12, symbol='circle'),
                 showlegend=True,  # Ensure no legend for this point
                 text=row['More Opposition'] + ' (' + str(round(row[statistic], 4)) + ' )',  # Set hover text to Opposition
@@ -40,7 +40,7 @@ def plottingStatistics(dataframe, statistic, date_wanted):
                 x=[row['Match Date']],
                 y=[row[statistic]],
                 mode='lines+markers',
-                name=f'{statistic} Over Time',
+                name='Previous Games',
                 line=dict(color='black'),
                 marker=dict(color='black', size=6),
                 showlegend=True,  # Remove legend
