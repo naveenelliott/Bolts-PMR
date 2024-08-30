@@ -162,11 +162,21 @@ def gettingGameGrade(dataframe):
     cross_claimed = crosses.at[0, 'Cross %'] * 0.1
     final_dataframe.at[0, 'Cross %'] = cross_claimed
 
+    throws = dataframe[['Hands GK', 'Unsucc Hands']]
+    throws['Totals Throw'] = throws['Hands GK'] + throws['Unsucc Hands']
+    throws['Throw %'] = (throws['Hands GK']/throws['Totals Throw'])*100
+    final_dataframe.at[0, 'Throw %'] = throws.at[0, 'Throw %']
+
+    ground_gk = dataframe[['Ground GK', 'Unsucc Ground']]
+    ground_gk['Total GKs'] = ground_gk['Ground GK'] + ground_gk['Unsucc Ground']
+    ground_gk['Ground GK %'] = (ground_gk['Ground GK']/ground_gk['Total GKs'])*100
+    final_dataframe.at[0, 'Goal Kick %'] = ground_gk.at[0, 'Ground GK %']
+
     if final_dataframe['Throw %'].notna().any():
         if final_dataframe['Goal Kick %'].notna().any():
-            raw_gk = dataframe.at[0, 'Goal Kick %']
+            raw_gk = final_dataframe.at[0, 'Goal Kick %']
             gk_factor = (raw_gk - gk_df.at[0, 'Goal Kick %']) / gk_df.at[1, 'Goal Kick %']
-            raw_throw = dataframe.at[0, 'Throw %']
+            raw_throw = final_dataframe.at[0, 'Throw %']
             throw_factor = (raw_throw - gk_df.at[0, 'Throw %']) / gk_df.at[1, 'Throw %']
             pass_comp = .055
             forward_comp = 0.035
@@ -175,13 +185,14 @@ def gettingGameGrade(dataframe):
         else:
             gk_factor = 0
             goal_kick = 0
-            raw_throw = dataframe.at[0, 'Throw %']
+            raw_throw = final_dataframe.at[0, 'Throw %']
             throw_factor = (raw_throw - gk_df.at[0, 'Throw %']) / gk_df.at[1, 'Throw %']
             pass_comp = .0567
             forward_comp = 0.0367
             throw = .0067
     else:
         if final_dataframe['Goal Kick %'].notna().any():
+            raw_gk = final_dataframe.at[0, 'Goal Kick %']
             gk_factor = (raw_gk - gk_df.at[0, 'Goal Kick %']) / gk_df.at[1, 'Goal Kick %']
             pass_comp = .0567
             forward_comp = 0.0367
