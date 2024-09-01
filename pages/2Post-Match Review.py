@@ -1674,7 +1674,7 @@ fig1.add_trace(go.Scatter(
 fig1.update_layout(
     title={
             'text': f"{selected_team} and {selected_opp} xG Shot Chart",
-            'y': 0.9,  # Vertical position of the title, 0.95 places it near the top
+            'y': 0.92,  # Vertical position of the title, 0.95 places it near the top
             'x': 0.35,   # Horizontal position of the title, 0.5 centers it
             'xanchor': 'center',
             'yanchor': 'top',
@@ -1690,7 +1690,22 @@ fig1.update_layout(
         ),
         itemsizing='constant',  # Keep marker sizes constant in the legend
         traceorder='normal'  # Keep the order of traces as added
-    )
+    ),
+    annotations=[
+        dict(
+            text="Click the top right of chart to see the shots better",
+            x=0.35,
+            y=0.85,  # Adjust this value to position the subtitle correctly
+            xref="paper",
+            yref="paper",
+            showarrow=False,
+            font=dict(
+                size=14,
+                family="Arial",
+                color="gray"
+            )
+        )
+    ]
 )
 
 
