@@ -23,7 +23,7 @@ from xGModel import xGModel
 from AvgAttPositionOnField import AttackingPositionOnField
 from AvgDefPositionOnField import DefendingPositionOnField
 from GettingEventDataGrades import StrikerEventFunction, WingerEventFunction, CMEventFunction, DMEventFunction, FBEventFunction, CBEventFunction, GKEventFunction
-from GettingTimeUntilRegain import formattingFileForRegain
+from GettingTimeUntilRegain import formattingFileForRegainl
 from GettingPSDGradeData import getting_PSD_grade_data
 import base64
 from plotly_football_pitch import make_pitch_figure, PitchDimensions
@@ -1674,7 +1674,7 @@ fig1.add_trace(go.Scatter(
 fig1.update_layout(
     title={
             'text': f"{selected_team} and {selected_opp} xG Shot Chart",
-            'y': 0.95,  # Vertical position of the title, 0.95 places it near the top
+            'y': 0.9,  # Vertical position of the title, 0.95 places it near the top
             'x': 0.35,   # Horizontal position of the title, 0.5 centers it
             'xanchor': 'center',
             'yanchor': 'top',
