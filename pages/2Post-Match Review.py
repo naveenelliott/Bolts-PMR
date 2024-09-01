@@ -1693,6 +1693,19 @@ fig1.update_layout(
     )
 )
 
+fig1.add_annotation(
+            text="Click the top right of chart to see the shots better",
+            x=0.5,
+            y=1.13,  # Adjust this value to position the subtitle correctly
+            xref="paper",
+            yref="paper",
+            showarrow=False,
+            font=dict(
+                size=14,
+                family="Arial",
+                color="gray"
+            )
+)
 
 with col2:
     st.plotly_chart(fig1)
