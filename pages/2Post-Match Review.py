@@ -616,6 +616,16 @@ for i in range(subs_length):
 fig.set_facecolor('white')
 plt.gca().set_facecolor('white')
 
+font_path = 'NewAmsterdam-Regular.ttf'
+title_font = FontProperties(fname=font_path)
+
+fig.text(
+    0.175, 0.85,
+    "Player Ratings",
+    size=16,
+    ha="center", fontproperties=title_font, color="black"
+)
+
 with col1:
     st.pyplot(fig)
 
