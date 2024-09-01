@@ -1393,6 +1393,13 @@ with col2:
     time_of_poss, time_until_regain = formattingFileForRegain(full_actions)
     time_until_regain = (time_until_regain/total_mins_played) * 990
     fig2 = MiddlePMRStreamlit(team=our_team, opp=opposition, date=our_date, avg_bolts_xg=bolts_mean, avg_opp_xg=opp_mean, regain_time=time_until_regain)
+    
+    fig2.text(
+        0.5, .9,
+        "Player Ratings",
+        size=18,
+        ha="center", fontproperties=title_font, color="black"
+    )
     st.pyplot(fig2)
 
 
