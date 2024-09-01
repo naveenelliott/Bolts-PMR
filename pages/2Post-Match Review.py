@@ -619,7 +619,7 @@ title_font = FontProperties(fname=font_path)
 fig.text(
     0.51, .9,
     "Player Ratings",
-    size=18,
+    size=16,
     ha="center", fontproperties=title_font, color="black"
 )
 
