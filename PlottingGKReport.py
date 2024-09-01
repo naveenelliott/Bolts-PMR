@@ -4,6 +4,8 @@ import streamlit as st
 from scipy.stats import norm
 import numpy as np
 from numpy.polynomial.polynomial import Polynomial
+import glob
+import os
 
 def plottingStatistics(dataframe, statistic, date_wanted):
     # Create the plot
