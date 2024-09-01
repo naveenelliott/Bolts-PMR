@@ -100,7 +100,9 @@ def gettingGameGrade(dataframe):
     dataframe.reset_index(drop=True, inplace=True)
     dataframe['Total Saves'] = dataframe['Save Held'] + dataframe['Save Parried']
     dataframe['SOT Against'] = dataframe['Save Held'] + dataframe['Save Parried'] + dataframe['Goal Against']
-    st.write(dataframe)
+
+    mins_played = dataframe.at[0, 'mins played']
+    
     
     final_dataframe = pd.DataFrame(columns=['Pass Completion ', 'Total Saves', 'Save %', 'Progr Regain ', 'SOT Against', 'Opp Effort on Goal',
                                             'GA-xGA', 'Progr Pass Completion ', 'Cross %'])
@@ -297,7 +299,7 @@ def gettingGameGrade(dataframe):
             pd_df.at[index, 'athlete_name'] = 'Ben Marro'
     
     pd_df = pd_df.loc[pd_df['athlete_name'] == pname]
-    pd_df['Total Distance'] = (pd_df['Total Distance']/pd_df['mins played']) * 90
+    pd_df['Total Distance'] = (pd_df['Total Distance']/mins_played) * 90
     st.write(pd_df)
     
     avg_u13 = 2.8
