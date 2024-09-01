@@ -298,7 +298,7 @@ def gettingGameGrade(dataframe):
         if row['athlete_name'] == 'Benjamin Marro':
             pd_df.at[index, 'athlete_name'] = 'Ben Marro'
     
-    pd_df = pd_df.loc[pd_df['athlete_name'] == pname]
+    pd_df = pd_df.loc[pd_df['athlete_name'] == pname].reset_index(drop=True)
     st.write(pd_df)
     
     avg_u13 = 2.8
@@ -319,7 +319,7 @@ def gettingGameGrade(dataframe):
         # CHANGE TEAM NAME
         if 'U15' in row2['bolts team']:
             our_avg = avg_u15
-            total_dist = (pd_df['Total Distance']/mins_played) * 80
+            total_dist = (pd_df.at[0, 'Total Distance']/mins_played) * 80
             adj = max(min(total_dist - our_avg, 1), -1)
         elif 'U14' in row2['bolts team']:
             our_avg = avg_u14
