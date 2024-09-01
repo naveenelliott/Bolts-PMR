@@ -985,6 +985,7 @@ with col3:
     st.markdown(
         """
         <div style='display: flex; justify-content: center;'>
+            <span style='font-family: Arial; font-size: 10pt; color: #6bb2e2;'><b>xG Time Series Chart</b></span> <br>
             <span style='font-family: Arial; font-size: 10pt; color: #6bb2e2;'><b>Bolts xG: {bolts_xG}</b></span>
             <span>&nbsp;&nbsp;&nbsp;</span> <!-- Add spaces here -->
             <span style='font-family: Arial; font-size: 10pt; color: black;'><b>{selected_opp} xG: {opp_xG}</b></span>
