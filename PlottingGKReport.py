@@ -299,7 +299,6 @@ def gettingGameGrade(dataframe):
             pd_df.at[index, 'athlete_name'] = 'Ben Marro'
     
     pd_df = pd_df.loc[pd_df['athlete_name'] == pname].reset_index(drop=True)
-    st.write(pd_df)
     
     avg_u13 = 2.8
     avg_u14 = 3.0
@@ -341,8 +340,9 @@ def gettingGameGrade(dataframe):
             our_avg = avg_u19
             total_dist = (pd_df.at[0, 'Total Distance']/mins_played) * 90
             adj = max(min(total_dist - our_avg, 1), -1)
-    st.write(adj)
 
+    
+    last_df.at[0, 'Final Grade'] = last_df.at[0, 'Final Grade'] + adj
 
     return last_df
 
