@@ -1694,8 +1694,8 @@ fig1.update_layout(
     annotations=[
         dict(
             text="Click the top right of chart to see the shots better",
-            x=0.35,
-            y=0.85,  # Adjust this value to position the subtitle correctly
+            x=0.4,
+            y=1.15,  # Adjust this value to position the subtitle correctly
             xref="paper",
             yref="paper",
             showarrow=False,
