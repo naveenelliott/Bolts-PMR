@@ -792,6 +792,9 @@ for file in csv_files:
 # Concatenate all DataFrames into a single DataFrame
 pd_df = pd.concat(df_list, ignore_index=True)
 pd_df['start_time'] = pd.to_datetime(pd_df['start_time']).dt.strftime('%m/%d/%Y')
+pd_df['Total Distance'] = pd_df['total_distance_m'] * 0.001
+pd_df['Max Speed'] = pd_df['max_speed_kph'] * 0.621371
+pd_df['High Intensity Distance'] = pd_df['total_high_intensity_distance_m']
 st.write(pd_df)
 pd_df = pd_df.loc[(pd_df['bolts team'] == selected_team) & (pd_df['start_time'] == selected_date)]
 
