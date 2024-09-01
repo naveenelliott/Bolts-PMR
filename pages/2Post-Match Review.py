@@ -775,6 +775,57 @@ with col3:
             player_html = f"<span style='color: #355870; font-size: 10pt;'>{player['Player Full Name']}</span> <span style='color: green; font-size: 10pt;'>{player['Total Tackles']}</span>"
             st.write(player_html, unsafe_allow_html=True)
 
+# Path to the folder containing CSV files
+folder_path = 'PlayerData Files'
+
+# Find all CSV files in the folder
+csv_files = glob.glob(os.path.join(folder_path, '*.csv'))
+
+# List to hold individual DataFrames
+df_list = []
+
+# Loop through the CSV files and read them into DataFrames
+for file in csv_files:
+    df = pd.read_csv(file)
+    df_list.append(df)
+
+# Concatenate all DataFrames into a single DataFrame
+pd_df = pd.concat(df_list, ignore_index=True)
+pd_df['start_time'] = pd.to_datetime(pd_df['start_time']).dt.date
+st.write(pd_df)
+pd_df = pd_df.loc[(pd_df['Team'] == selected_team) & (pd_df['Match Date'] == selected_date)]
+
+top_td = pd_df.nlargest(3, 'Total Distance')
+top_hid = pd_df.nlargest(3, 'High Intensity Distance')
+top_speed = pd_df.nlargest(3, 'Max Speed')
+
+with col3:
+    inner_columns = st.columns(3)
+
+    with inner_columns[0]:# Display the HTML string with different styles using unsafe_allow_html=True
+        html_string = ( "<span style='font-family: Arial; font-size: 10pt; color: #355870; "
+            "text-decoration: underline; text-decoration-color: #355870;'><b>Total Distance</b></span>")
+        st.write(html_string, unsafe_allow_html=True)
+        for index, row in top_td.iterrows():
+            player_html = f"<span style='color: #355870; font-size: 10pt;'>{row['Athlete']}</span> <span style='color: green; font-size: 10pt;'>{round(row['Total Distance'], 2)}</span>"
+            st.write(player_html, unsafe_allow_html=True)
+
+    with inner_columns[1]:# Display the HTML string with different styles using unsafe_allow_html=True
+        html_string = ( "<span style='font-family: Arial; font-size: 10pt; color: #355870; "
+            "text-decoration: underline; text-decoration-color: #355870;'><b>High Intensity Distance</b></span>")
+        st.write(html_string, unsafe_allow_html=True)
+        for idx, player in top_hid.iterrows():
+            player_html = f"<span style='color: #355870; font-size: 10pt;'>{player['Athlete']}</span> <span style='color: green; font-size: 10pt;'>{round(player['High Intensity Distance'], 2)}</span>"
+            st.write(player_html, unsafe_allow_html=True)
+
+    with inner_columns[2]:# Display the HTML string with different styles using unsafe_allow_html=True
+        html_string = ( "<span style='font-family: Arial; font-size: 10pt; color: #355870; "
+            "text-decoration: underline; text-decoration-color: #355870;'><b>Max Speed</b></span>")
+        st.write(html_string, unsafe_allow_html=True)
+        for idx, player in top_speed.iterrows():
+            player_html = f"<span style='color: #355870; font-size: 10pt;'>{player['Athlete']}</span> <span style='color: green; font-size: 10pt;'>{round(player['Max Speed'], 2)}</span>"
+            st.write(player_html, unsafe_allow_html=True)
+
 team_sum = xg.groupby('Team')['xG'].sum()
 
 bolts_xG = round(team_sum.loc[selected_team], 2)
