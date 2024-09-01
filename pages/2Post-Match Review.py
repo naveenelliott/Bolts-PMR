@@ -617,7 +617,7 @@ font_path = 'NewAmsterdam-Regular.ttf'
 title_font = FontProperties(fname=font_path)
 
 fig.text(
-    0.5, .93,
+    0.5, .88,
     "Player Ratings",
     size=18,
     ha="center", fontproperties=title_font, color="black"
