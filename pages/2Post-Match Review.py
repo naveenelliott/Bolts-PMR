@@ -800,6 +800,7 @@ pd_df = pd_df.loc[(pd_df['bolts team'] == selected_team) & (pd_df['start_time'] 
 top_td = pd_df.nlargest(3, 'Total Distance')
 top_hid = pd_df.nlargest(3, 'High Intensity Distance')
 top_speed = pd_df.nlargest(3, 'Max Speed')
+st.write(top_td)
 
 with col3:
     inner_columns = st.columns(3)
