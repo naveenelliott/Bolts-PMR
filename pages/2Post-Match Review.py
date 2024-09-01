@@ -986,7 +986,6 @@ with col3:
     """
     <div style='display: flex; flex-direction: column; align-items: center;'>
         <span style='font-family: Arial; font-size: 13pt; color: black;'><b>xG Time Series Chart</b></span>
-        <br>
         <div style='display: flex; justify-content: center;'>
             <span style='font-family: Arial; font-size: 10pt; color: #6bb2e2;'><b>Bolts xG: {bolts_xG}</b></span>
             <span>&nbsp;&nbsp;&nbsp;</span> <!-- Add spaces here -->
@@ -1676,7 +1675,7 @@ fig1.update_layout(
     title={
             'text': f"{selected_team} and {selected_opp} xG Shot Chart",
             'y': 0.95,  # Vertical position of the title, 0.95 places it near the top
-            'x': 0.3,   # Horizontal position of the title, 0.5 centers it
+            'x': 0.35,   # Horizontal position of the title, 0.5 centers it
             'xanchor': 'center',
             'yanchor': 'top',
             'font': {
