@@ -1398,7 +1398,7 @@ with col2:
         0.5, .95,
         "Team Ratings",
         size=23,
-        ha="center", fontproperties=title_font, color="black"
+        ha="center", fontfamily='Arial', color="black"
     )
     st.pyplot(fig2)
 
