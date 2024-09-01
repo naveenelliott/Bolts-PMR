@@ -1672,18 +1672,6 @@ fig1.add_trace(go.Scatter(
 ))
 
 fig1.update_layout(
-    title={
-            'text': f"{selected_team} and {selected_opp} xG Shot Chart",
-            'y': 0.92,  # Vertical position of the title, 0.95 places it near the top
-            'x': 0.35,   # Horizontal position of the title, 0.5 centers it
-            'xanchor': 'center',
-            'yanchor': 'top',
-            'font': {
-                'size': 18,
-                'family': 'Arial',
-                'color': 'black'
-            }
-        },
     legend=dict(
         font=dict(
             size=8  # Decrease font size for smaller legend text
@@ -1694,17 +1682,31 @@ fig1.update_layout(
 )
 
 fig1.add_annotation(
-            text="Click the top right of chart to see the shots better",
-            x=0.5,
-            y=1.13,  # Adjust this value to position the subtitle correctly
-            xref="paper",
-            yref="paper",
-            showarrow=False,
-            font=dict(
-                size=14,
-                family="Arial",
-                color="gray"
-            )
+    text="Click the top right of chart to see the shots better",
+    x=0.5,
+    y=1.13,  # Adjust this value to position the subtitle correctly
+    xref="paper",
+    yref="paper",
+    showarrow=False,
+    font=dict(
+        size=14,
+        family="Arial",
+        color="gray"
+    )
+)
+
+fig1.add_annotation(
+    text: f"{selected_team} and {selected_opp} xG Shot Chart",
+    y: 1.17,  # Vertical position of the title, 0.95 places it near the top
+    x: 0.5,   # Horizontal position of the title, 0.5 centers it
+    xref="paper",
+    yref="paper",
+    showarrow=False,
+    font: {
+        'size': 18,
+        'family': 'Arial',
+        'color': 'black'
+    }
 )
 
 with col2:
