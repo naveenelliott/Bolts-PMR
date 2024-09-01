@@ -241,7 +241,55 @@ def gettingGameGrade(dataframe):
     last_df.at[0, 'Team'] = dataframe.at[0, 'Team']
     last_df.at[0, 'Opposition'] = dataframe.at[0, 'Opposition']
     last_df.at[0, 'Final Grade'] = final_dataframe.at[0, 'Final Grade']
-    st.write(last_df)
+
+    match_date = dataframe.at[0, 'Match Date']
+    team = dataframe.at[0, 'Team']
+    pname = dataframe.at[0, 'Player Full Name']
+
+    # Path to the folder containing CSV files
+    folder_path = 'PlayerData Files'
+    
+    # Find all CSV files in the folder
+    csv_files = glob.glob(os.path.join(folder_path, '*.csv'))
+    
+    # List to hold individual DataFrames
+    df_list = []
+    
+    # Loop through the CSV files and read them into DataFrames
+    for file in csv_files:
+        df = pd.read_csv(file)
+        df_list.append(df)
+    
+    # Concatenate all DataFrames into a single DataFrame
+    pd_df = pd.concat(df_list, ignore_index=True)
+    pd_df['start_time'] = pd.to_datetime(pd_df['start_time']).dt.strftime('%m/%d/%Y')
+    pd_df['Total Distance'] = pd_df['total_distance_m'] * 0.000621371
+    
+    def rearrange_team_name(team_name):
+        # Define age groups and leagues
+        age_groups = ['U15', 'U16', 'U17', 'U19', 'U13', 'U14']
+        leagues = ['MLS Next', 'NAL Boston', 'NAL South Shore']
+        
+        # Find age group in the team name
+        for age in age_groups:
+            if age in team_name:
+                # Find the league part
+                league_part = next((league for league in leagues if league in team_name), '')
+                
+                # Extract the rest of the team name
+                rest_of_name = team_name.replace(age, '').replace(league_part, '').strip()
+                
+                # Construct the new team name
+                return f"{rest_of_name} {age} {league_part}"
+        
+        # Return the original team name if no age group is found
+        return team_name
+    
+    # Apply the function to the 'team_name' column
+    pd_df['bolts team'] = pd_df['bolts team'].apply(rearrange_team_name)
+    pd_df = pd_df.loc[(pd_df['bolts team'] == selected_team) & (pd_df['start_time'] == selected_date)]
+    st.write(pd_df)
+    pd_df = pd_df.loc[pd_df['athlete'] == pname]
 
     
     avg_u13 = 2.8
