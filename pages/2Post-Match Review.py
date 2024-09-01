@@ -29,6 +29,7 @@ import base64
 from plotly_football_pitch import make_pitch_figure, PitchDimensions
 import plotly_football_pitch as pfp
 import plotly.graph_objs as go
+import re
 from streamlit_gsheets import GSheetsConnection
 
 
