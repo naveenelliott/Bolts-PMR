@@ -617,7 +617,7 @@ font_path = 'NewAmsterdam-Regular.ttf'
 title_font = FontProperties(fname=font_path)
 
 fig.text(
-    0.5, .9,
+    0.51, .9,
     "Player Ratings",
     size=18,
     ha="center", fontproperties=title_font, color="black"
@@ -1677,6 +1677,13 @@ fig1.update_layout(
         traceorder='normal'  # Keep the order of traces as added
     )
 )
+
+fig1.text(
+        0.5, .95,
+        "Team and Opponent xG Shot Chart",
+        size=23,
+        ha="center", fontfamily='Arial', color="black"
+    )
 
 with col2:
     st.plotly_chart(fig1)
