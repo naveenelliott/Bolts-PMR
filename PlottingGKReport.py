@@ -268,7 +268,7 @@ def gettingGameGrade(dataframe):
     # Concatenate all DataFrames into a single DataFrame
     pd_df = pd.concat(df_list, ignore_index=True)
     pd_df['start_time'] = pd.to_datetime(pd_df['start_time']).dt.strftime('%m/%d/%Y')
-    pd_df['Total Distance'] = pd_df['total_distance_m'] * 0.000621371
+    pd_df.at[0, 'Total Distance'] = pd_df['total_distance_m'] * 0.000621371
     
     def rearrange_team_name(team_name):
         # Define age groups and leagues
@@ -323,23 +323,23 @@ def gettingGameGrade(dataframe):
             adj = max(min(total_dist - our_avg, 1), -1)
         elif 'U14' in row2['bolts team']:
             our_avg = avg_u14
-            total_dist = (pd_df['Total Distance']/mins_played) * 80
+            total_dist = (pd_df.at[0, 'Total Distance']/mins_played) * 80
             adj = max(min(total_dist - our_avg, 1), -1)
         elif 'U13' in row2['bolts team']:
             our_avg = avg_u13
-            total_dist = (pd_df['Total Distance']/mins_played) * 70
+            total_dist = (pd_df.at[0, 'Total Distance']/mins_played) * 70
             adj = max(min(total_dist - our_avg, 1), -1)
         elif 'U16' in row2['bolts team']:
             our_avg = avg_u16
-            total_dist = (pd_df['Total Distance']/mins_played) * 90
+            total_dist = (pd_df.at[0, 'Total Distance']/mins_played) * 90
             adj = max(min(total_dist - our_avg, 1), -1)
         elif 'U17' in row2['bolts team']:
             our_avg = avg_u17
-            total_dist = (pd_df['Total Distance']/mins_played) * 90
+            total_dist = (pd_df.at[0, 'Total Distance']/mins_played) * 90
             adj = max(min(total_dist - our_avg, 1), -1)
         elif 'U19' in row2['bolts team']:
             our_avg = avg_u19
-            total_dist = (pd_df['Total Distance']/mins_played) * 90
+            total_dist = (pd_df.at[0, 'Total Distance']/mins_played) * 90
             adj = max(min(total_dist - our_avg, 1), -1)
     st.write(adj)
 
