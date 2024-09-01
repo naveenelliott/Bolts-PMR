@@ -290,6 +290,7 @@ def gettingGameGrade(dataframe):
     # Apply the function to the 'team_name' column
     pd_df['bolts team'] = pd_df['bolts team'].apply(rearrange_team_name)
     pd_df = pd_df.loc[(pd_df['bolts team'] == team) & (pd_df['start_time'] == match_date)]
+    st.write(pd_df)
     pd_df = pd_df.loc[pd_df['athlete_name'] == pname]
     st.write(pd_df)
     
