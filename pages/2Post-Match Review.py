@@ -613,18 +613,18 @@ for i in range(subs_length):
         y_position = 120 - i * 8 if subs_length == 1 else 112 - i * 8
         ax.text(100, y_position, f"{subs['Player Full Name'].iloc[i]} - N/A", color='black', size=7.5, ha='center', va='center')
 
-fig.set_facecolor('white')
-plt.gca().set_facecolor('white')
-
 font_path = 'NewAmsterdam-Regular.ttf'
 title_font = FontProperties(fname=font_path)
 
 fig.text(
-    0.175, 0.85,
+    0.5, .97,
     "Player Ratings",
-    size=16,
+    size=18,
     ha="center", fontproperties=title_font, color="black"
 )
+
+fig.set_facecolor('white')
+plt.gca().set_facecolor('white')
 
 with col1:
     st.pyplot(fig)
