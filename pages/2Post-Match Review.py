@@ -23,7 +23,7 @@ from xGModel import xGModel
 from AvgAttPositionOnField import AttackingPositionOnField
 from AvgDefPositionOnField import DefendingPositionOnField
 from GettingEventDataGrades import StrikerEventFunction, WingerEventFunction, CMEventFunction, DMEventFunction, FBEventFunction, CBEventFunction, GKEventFunction
-from GettingTimeUntilRegain import formattingFileForRegainl
+from GettingTimeUntilRegain import formattingFileForRegain
 from GettingPSDGradeData import getting_PSD_grade_data
 import base64
 from plotly_football_pitch import make_pitch_figure, PitchDimensions
