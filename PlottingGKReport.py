@@ -100,6 +100,7 @@ def gettingGameGrade(dataframe):
     dataframe.reset_index(drop=True, inplace=True)
     dataframe['Total Saves'] = dataframe['Save Held'] + dataframe['Save Parried']
     dataframe['SOT Against'] = dataframe['Save Held'] + dataframe['Save Parried'] + dataframe['Goal Against']
+    st.write(dataframe)
     
     final_dataframe = pd.DataFrame(columns=['Pass Completion ', 'Total Saves', 'Save %', 'Progr Regain ', 'SOT Against', 'Opp Effort on Goal',
                                             'GA-xGA', 'Progr Pass Completion ', 'Cross %'])
@@ -290,7 +291,6 @@ def gettingGameGrade(dataframe):
     # Apply the function to the 'team_name' column
     pd_df['bolts team'] = pd_df['bolts team'].apply(rearrange_team_name)
     pd_df = pd_df.loc[(pd_df['bolts team'] == team) & (pd_df['start_time'] == match_date)]
-    st.write(pd_df)
 
     for index, row in pd_df.iterrows():
         if row['athlete_name'] == 'Benjamin Marro':
