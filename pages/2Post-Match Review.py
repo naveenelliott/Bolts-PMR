@@ -795,7 +795,6 @@ pd_df['start_time'] = pd.to_datetime(pd_df['start_time']).dt.strftime('%m/%d/%Y'
 pd_df['Total Distance'] = pd_df['total_distance_m'] * 0.001
 pd_df['Max Speed'] = pd_df['max_speed_kph'] * 0.621371
 pd_df['High Intensity Distance'] = pd_df['total_high_intensity_distance_m']
-st.write(pd_df)
 pd_df = pd_df.loc[(pd_df['bolts team'] == selected_team) & (pd_df['start_time'] == selected_date)]
 
 top_td = pd_df.nlargest(3, 'Total Distance')
@@ -810,7 +809,7 @@ with col3:
             "text-decoration: underline; text-decoration-color: #355870;'><b>Total Distance</b></span>")
         st.write(html_string, unsafe_allow_html=True)
         for index, row in top_td.iterrows():
-            player_html = f"<span style='color: #355870; font-size: 10pt;'>{row['Athlete']}</span> <span style='color: green; font-size: 10pt;'>{round(row['Total Distance'], 2)}</span>"
+            player_html = f"<span style='color: #355870; font-size: 10pt;'>{row['athlete_name']}</span> <span style='color: green; font-size: 10pt;'>{round(row['Total Distance'], 2)}</span>"
             st.write(player_html, unsafe_allow_html=True)
 
     with inner_columns[1]:# Display the HTML string with different styles using unsafe_allow_html=True
@@ -818,7 +817,7 @@ with col3:
             "text-decoration: underline; text-decoration-color: #355870;'><b>High Intensity Distance</b></span>")
         st.write(html_string, unsafe_allow_html=True)
         for idx, player in top_hid.iterrows():
-            player_html = f"<span style='color: #355870; font-size: 10pt;'>{player['Athlete']}</span> <span style='color: green; font-size: 10pt;'>{round(player['High Intensity Distance'], 2)}</span>"
+            player_html = f"<span style='color: #355870; font-size: 10pt;'>{player['athlete_name']}</span> <span style='color: green; font-size: 10pt;'>{round(player['High Intensity Distance'], 2)}</span>"
             st.write(player_html, unsafe_allow_html=True)
 
     with inner_columns[2]:# Display the HTML string with different styles using unsafe_allow_html=True
@@ -826,7 +825,7 @@ with col3:
             "text-decoration: underline; text-decoration-color: #355870;'><b>Max Speed</b></span>")
         st.write(html_string, unsafe_allow_html=True)
         for idx, player in top_speed.iterrows():
-            player_html = f"<span style='color: #355870; font-size: 10pt;'>{player['Athlete']}</span> <span style='color: green; font-size: 10pt;'>{round(player['Max Speed'], 2)}</span>"
+            player_html = f"<span style='color: #355870; font-size: 10pt;'>{player['athlete_name']}</span> <span style='color: green; font-size: 10pt;'>{round(player['Max Speed'], 2)}</span>"
             st.write(player_html, unsafe_allow_html=True)
 
 team_sum = xg.groupby('Team')['xG'].sum()
