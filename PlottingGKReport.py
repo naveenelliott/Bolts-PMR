@@ -299,7 +299,6 @@ def gettingGameGrade(dataframe):
             pd_df.at[index, 'athlete_name'] = 'Ben Marro'
     
     pd_df = pd_df.loc[pd_df['athlete_name'] == pname]
-    pd_df['Total Distance'] = (pd_df['Total Distance']/mins_played) * 90
     st.write(pd_df)
     
     avg_u13 = 2.8
@@ -310,38 +309,39 @@ def gettingGameGrade(dataframe):
     avg_u19 = 4.0
 
     # RECORDED DISTANCE
-    total_dist = []
-                    
-    c = 0
+    total_dist = np.nan
 
-    if total_dist:
-        for index2, row2 in gk_details.iterrows():
-            # CHANGE TEAM NAME
-            if 'U15' in row2['Team Name']:
-                our_avg = avg_u15
-                adjustments['Total Distance'][index2] = max(min(total_dist[c] - our_avg, 1), -1)
-                c = c + 1
-            elif 'U14' in row2['Team Name']:
-                our_avg = avg_u14
-                adjustments['Total Distance'][index2] = max(min(total_dist[c] - our_avg, 1), -1)
-                c = c + 1
-            elif 'U13' in row2['Team Name']:
-                our_avg = avg_u13
-                adjustments['Total Distance'][index2] = max(min(total_dist[c] - our_avg, 1), -1)
-                c = c + 1
-            elif 'U16' in row2['Team Name']:
-                our_avg = avg_u16
-                adjustments['Total Distance'][index2] = max(min(total_dist[c] - our_avg, 1), -1)
-                c = c + 1
-            elif 'U17' in row2['Team Name']:
-                our_avg = avg_u17
-                adjustments['Total Distance'][index2] = max(min(total_dist[c] - our_avg, 1), -1)
-                c = c + 1
-            elif 'U19' in row2['Team Name']:
-                our_avg = avg_u19
-                adjustments['Total Distance'][index2] = max(min(total_dist[c] - our_avg, 1), -1)
-                c = c + 1
 
+    adjustments = pd.DataFrame()
+
+
+    for index2, row2 in pd_df.iterrows():
+        # CHANGE TEAM NAME
+        if 'U15' in row2['Team Name']:
+            our_avg = avg_u15
+            total_dist = (pd_df['Total Distance']/mins_played) * 80
+            adj = max(min(total_dist - our_avg, 1), -1)
+        elif 'U14' in row2['Team Name']:
+            our_avg = avg_u14
+            total_dist = (pd_df['Total Distance']/mins_played) * 80
+            adj = max(min(total_dist - our_avg, 1), -1)
+        elif 'U13' in row2['Team Name']:
+            our_avg = avg_u13
+            total_dist = (pd_df['Total Distance']/mins_played) * 70
+            adj = max(min(total_dist - our_avg, 1), -1)
+        elif 'U16' in row2['Team Name']:
+            our_avg = avg_u16
+            total_dist = (pd_df['Total Distance']/mins_played) * 90
+            adj = max(min(total_dist - our_avg, 1), -1)
+        elif 'U17' in row2['Team Name']:
+            our_avg = avg_u17
+            total_dist = (pd_df['Total Distance']/mins_played) * 90
+            adj = max(min(total_dist - our_avg, 1), -1)
+        elif 'U19' in row2['Team Name']:
+            our_avg = avg_u19
+            total_dist = (pd_df['Total Distance']/mins_played) * 90
+            adj = max(min(total_dist - our_avg, 1), -1)
+    st.write(adj)
 
 
     return last_df
