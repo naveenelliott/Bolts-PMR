@@ -317,27 +317,27 @@ def gettingGameGrade(dataframe):
 
     for index2, row2 in pd_df.iterrows():
         # CHANGE TEAM NAME
-        if 'U15' in row2['Team Name']:
+        if 'U15' in row2['bolts team']:
             our_avg = avg_u15
             total_dist = (pd_df['Total Distance']/mins_played) * 80
             adj = max(min(total_dist - our_avg, 1), -1)
-        elif 'U14' in row2['Team Name']:
+        elif 'U14' in row2['bolts team']:
             our_avg = avg_u14
             total_dist = (pd_df['Total Distance']/mins_played) * 80
             adj = max(min(total_dist - our_avg, 1), -1)
-        elif 'U13' in row2['Team Name']:
+        elif 'U13' in row2['bolts team']:
             our_avg = avg_u13
             total_dist = (pd_df['Total Distance']/mins_played) * 70
             adj = max(min(total_dist - our_avg, 1), -1)
-        elif 'U16' in row2['Team Name']:
+        elif 'U16' in row2['bolts team']:
             our_avg = avg_u16
             total_dist = (pd_df['Total Distance']/mins_played) * 90
             adj = max(min(total_dist - our_avg, 1), -1)
-        elif 'U17' in row2['Team Name']:
+        elif 'U17' in row2['bolts team']:
             our_avg = avg_u17
             total_dist = (pd_df['Total Distance']/mins_played) * 90
             adj = max(min(total_dist - our_avg, 1), -1)
-        elif 'U19' in row2['Team Name']:
+        elif 'U19' in row2['bolts team']:
             our_avg = avg_u19
             total_dist = (pd_df['Total Distance']/mins_played) * 90
             adj = max(min(total_dist - our_avg, 1), -1)
