@@ -795,6 +795,24 @@ pd_df['start_time'] = pd.to_datetime(pd_df['start_time']).dt.strftime('%m/%d/%Y'
 pd_df['Total Distance'] = pd_df['total_distance_m'] * 0.001
 pd_df['Max Speed'] = pd_df['max_speed_kph'] * 0.621371
 pd_df['High Intensity Distance'] = pd_df['total_high_intensity_distance_m']
+
+def rearrange_team_name(team_name):
+    # Define age groups and leagues
+    age_groups = ['U15', 'U16', 'U17', 'U19', 'U13', 'U14']
+    leagues = ['MLS Next', 'NAL Boston', 'NAL South Shore']
+    
+    # Check for age group in the team name
+    for age in age_groups:
+        if age in team_name:
+            # Extract league name and age group part
+            league_part = re.search(r'|'.join(leagues), team_name).group()
+            return f"{age} {league_part} {team_name.replace(age, '').replace(league_part, '').strip()}"
+    
+    # Return the original team name if no age group is found
+    return team_name
+
+# Apply the function to the 'team_name' column
+df['bolts team'] = df['bolts team'].apply(rearrange_team_name)
 st.write(pd_df)
 pd_df = pd_df.loc[(pd_df['bolts team'] == selected_team) & (pd_df['start_time'] == selected_date)]
 st.write(selected_team)
