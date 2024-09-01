@@ -1395,7 +1395,7 @@ with col2:
     fig2 = MiddlePMRStreamlit(team=our_team, opp=opposition, date=our_date, avg_bolts_xg=bolts_mean, avg_opp_xg=opp_mean, regain_time=time_until_regain)
     
     fig2.text(
-        0.5, .9,
+        0.5, .95,
         "Team Ratings",
         size=23,
         ha="center", fontproperties=title_font, color="black"
