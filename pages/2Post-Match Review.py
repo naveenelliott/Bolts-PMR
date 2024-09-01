@@ -1453,7 +1453,7 @@ for index, row in bolts_xg_data.iterrows():
         fig1.add_annotation(
             x=x,
             y=y+3,
-            text=f'<a href="{url}" target="_blank">Link</a>',
+            text=f'<a href="{url}" target="_blank" style="color:lightblue;">Link</a>',
             showarrow=False,
             font=dict(color="lightblue"),
             align="center"
@@ -1477,7 +1477,7 @@ for index, row in bolts_xg_data.iterrows():
         fig1.add_annotation(
             x=x,
             y=y+3,
-            text=f'<a href="{url}" target="_blank">Link</a>',
+            text=f'<a href="{url}" target="_blank" style="color:lightblue;">Link</a>',
             showarrow=False,
             font=dict(color="lightblue"),
             align="center"
@@ -1500,9 +1500,8 @@ for index, row in bolts_xg_data.iterrows():
         fig1.add_annotation(
             x=x,
             y=y+3,
-            text=f'<a href="{url}" target="_blank">Link</a>',
+            text=f'<a href="{url}" target="_blank" style="color:lightblue;">Link</a>',
             showarrow=False,
-            bgcolor='lightblue',
             font=dict(color="white"),
             align="center"
         ) 
