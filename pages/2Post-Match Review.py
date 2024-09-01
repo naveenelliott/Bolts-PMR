@@ -1577,7 +1577,7 @@ for index, row in opp_xg_data.iterrows():
         fig1.add_annotation(
             x=x,
             y=y+3,
-            text=f'<a href="{url}" target="_blank">Link</a>',
+            text=f'<a href="{url}" target="_blank" style="color:red;">Link</a>',
             showarrow=False,
             font=dict(color="white"),
             align="center"
@@ -1601,7 +1601,7 @@ for index, row in opp_xg_data.iterrows():
         fig1.add_annotation(
             x=x,
             y=y+3,
-            text=f'<a href="{url}" target="_blank">Link</a>',
+            text=f'<a href="{url}" target="_blank" style="color:red;">Link</a>',
             showarrow=False,
             font=dict(color="white"),
             align="center"
@@ -1624,7 +1624,7 @@ for index, row in opp_xg_data.iterrows():
         fig1.add_annotation(
             x=x,
             y=y+3,
-            text=f'<a href="{url}" target="_blank">Link</a>',
+            text=f'<a href="{url}" target="_blank" style="color:red;">Link</a>',
             showarrow=False,
             font=dict(color="white"),
             align="center"
