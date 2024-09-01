@@ -1455,8 +1455,7 @@ for index, row in bolts_xg_data.iterrows():
             y=y+3,
             text=f'<a href="{url}" target="_blank">Link</a>',
             showarrow=False,
-            font=dict(color="white"),
-            bgcolor='lightblue',
+            font=dict(color="lightblue"),
             align="center"
         ) 
     elif row['Event'] == 'SOT':
@@ -1480,8 +1479,7 @@ for index, row in bolts_xg_data.iterrows():
             y=y+3,
             text=f'<a href="{url}" target="_blank">Link</a>',
             showarrow=False,
-            bgcolor='lightblue',
-            font=dict(color="white"),
+            font=dict(color="lightblue"),
             align="center"
         ) 
     else:
