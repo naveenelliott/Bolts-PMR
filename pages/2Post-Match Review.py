@@ -802,12 +802,17 @@ def rearrange_team_name(team_name):
     age_groups = ['U15', 'U16', 'U17', 'U19', 'U13', 'U14']
     leagues = ['MLS Next', 'NAL Boston', 'NAL South Shore']
     
-    # Check for age group in the team name
+    # Find age group in the team name
     for age in age_groups:
         if age in team_name:
-            # Extract league name and age group part
-            league_part = re.search(r'|'.join(leagues), team_name).group()
-            return f"{age} {league_part} {team_name.replace(age, '').replace(league_part, '').strip()}"
+            # Find the league part
+            league_part = next((league for league in leagues if league in team_name), '')
+            
+            # Extract the rest of the team name
+            rest_of_name = team_name.replace(age, '').replace(league_part, '').strip()
+            
+            # Construct the new team name
+            return f"{rest_of_name} {league_part} {age}"
     
     # Return the original team name if no age group is found
     return team_name
