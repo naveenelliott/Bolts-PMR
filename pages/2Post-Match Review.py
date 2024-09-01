@@ -793,7 +793,7 @@ for file in csv_files:
 pd_df = pd.concat(df_list, ignore_index=True)
 pd_df['start_time'] = pd.to_datetime(pd_df['start_time']).dt.strftime('%m/%d/%Y')
 st.write(pd_df)
-pd_df = pd_df.loc[(pd_df['Team'] == selected_team) & (pd_df['Match Date'] == selected_date)]
+pd_df = pd_df.loc[(pd_df['bolts team'] == selected_team) & (pd_df['start_time'] == selected_date)]
 
 top_td = pd_df.nlargest(3, 'Total Distance')
 top_hid = pd_df.nlargest(3, 'High Intensity Distance')
