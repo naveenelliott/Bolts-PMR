@@ -812,7 +812,7 @@ def rearrange_team_name(team_name):
             rest_of_name = team_name.replace(age, '').replace(league_part, '').strip()
             
             # Construct the new team name
-            return f"{rest_of_name} {league_part} {age}"
+            return f"{rest_of_name} {age} {league_part}"
     
     # Return the original team name if no age group is found
     return team_name
