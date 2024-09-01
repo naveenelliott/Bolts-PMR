@@ -1674,7 +1674,7 @@ fig1.add_trace(go.Scatter(
 
 fig1.update_layout(
     title={
-            'text': "Team and Opponent xG Shot Chart",
+            'text': f"Bolts and {selected_opp} xG Shot Chart",
             'y': 0.95,  # Vertical position of the title, 0.95 places it near the top
             'x': 0.5,   # Horizontal position of the title, 0.5 centers it
             'xanchor': 'center',
