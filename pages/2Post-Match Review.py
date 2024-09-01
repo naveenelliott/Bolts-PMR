@@ -1702,11 +1702,11 @@ fig1.add_annotation(
     xref="paper",
     yref="paper",
     showarrow=False,
-    font: {
-        'size': 18,
-        'family': 'Arial',
-        'color': 'black'
-    }
+    font= dict(
+        size= 18,
+        family= 'Arial',
+        color= 'black'
+    )
 )
 
 with col2:
