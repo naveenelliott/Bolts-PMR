@@ -1696,7 +1696,7 @@ fig1.add_annotation(
 )
 
 fig1.add_annotation(
-    text: f"{selected_team} and {selected_opp} xG Shot Chart",
+    text = f"{selected_team} and {selected_opp} xG Shot Chart",
     y: 1.17,  # Vertical position of the title, 0.95 places it near the top
     x: 0.5,   # Horizontal position of the title, 0.5 centers it
     xref="paper",
