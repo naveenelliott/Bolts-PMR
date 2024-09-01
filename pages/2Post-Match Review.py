@@ -1396,8 +1396,8 @@ with col2:
     
     fig2.text(
         0.5, .9,
-        "Player Ratings",
-        size=18,
+        "Team Ratings",
+        size=23,
         ha="center", fontproperties=title_font, color="black"
     )
     st.pyplot(fig2)
