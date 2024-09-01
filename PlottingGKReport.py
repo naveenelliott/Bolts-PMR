@@ -268,7 +268,7 @@ def gettingGameGrade(dataframe):
     # Concatenate all DataFrames into a single DataFrame
     pd_df = pd.concat(df_list, ignore_index=True)
     pd_df['start_time'] = pd.to_datetime(pd_df['start_time']).dt.strftime('%m/%d/%Y')
-    pd_df.at[0, 'Total Distance'] = pd_df['total_distance_m'] * 0.000621371
+    pd_df['Total Distance'] = pd_df['total_distance_m'] * 0.000621371
     
     def rearrange_team_name(team_name):
         # Define age groups and leagues
