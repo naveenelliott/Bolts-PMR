@@ -792,6 +792,7 @@ for file in csv_files:
 # Concatenate all DataFrames into a single DataFrame
 pd_df = pd.concat(df_list, ignore_index=True)
 pd_df['start_time'] = pd.to_datetime(pd_df['start_time']).dt.date
+pd_df['start_time'] = pd_df['start_time'].dt.strftime('%m/%d/%Y')
 st.write(pd_df)
 pd_df = pd_df.loc[(pd_df['Team'] == selected_team) & (pd_df['Match Date'] == selected_date)]
 
