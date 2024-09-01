@@ -1690,22 +1690,7 @@ fig1.update_layout(
         ),
         itemsizing='constant',  # Keep marker sizes constant in the legend
         traceorder='normal'  # Keep the order of traces as added
-    ),
-    annotations=[
-        dict(
-            text="Click the top right of chart to see the shots better",
-            x=0.5,
-            y=1.13,  # Adjust this value to position the subtitle correctly
-            xref="paper",
-            yref="paper",
-            showarrow=False,
-            font=dict(
-                size=14,
-                family="Arial",
-                color="gray"
-            )
-        )
-    ]
+    )
 )
 
 
