@@ -291,6 +291,11 @@ def gettingGameGrade(dataframe):
     pd_df['bolts team'] = pd_df['bolts team'].apply(rearrange_team_name)
     pd_df = pd_df.loc[(pd_df['bolts team'] == team) & (pd_df['start_time'] == match_date)]
     st.write(pd_df)
+
+    for index, row in pd_df.iterrows():
+        if row['athlete_name'] == 'Benjamin Marro':
+            pd_df.at[index, 'athlete_name'] = 'Ben Marro'
+    
     pd_df = pd_df.loc[pd_df['athlete_name'] == pname]
     st.write(pd_df)
     
