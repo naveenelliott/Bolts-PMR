@@ -297,6 +297,7 @@ def gettingGameGrade(dataframe):
             pd_df.at[index, 'athlete_name'] = 'Ben Marro'
     
     pd_df = pd_df.loc[pd_df['athlete_name'] == pname]
+    pd_df['Total Distance'] = (pd_df['Total Distance']/pd_df['mins played']) * 90
     st.write(pd_df)
     
     avg_u13 = 2.8
