@@ -311,9 +311,9 @@ def gettingGameGrade(dataframe):
     total_dist = np.nan
 
 
-    adjustments = pd.DataFrame()
+    adj = 0
 
-
+    
     for index2, row2 in pd_df.iterrows():
         # CHANGE TEAM NAME
         if 'U15' in row2['bolts team']:
@@ -340,8 +340,6 @@ def gettingGameGrade(dataframe):
             our_avg = avg_u19
             total_dist = (pd_df.at[0, 'Total Distance']/mins_played) * 90
             adj = max(min(total_dist - our_avg, 1), -1)
-        else:
-            adj = 0
 
     
     last_df.at[0, 'Final Grade'] = last_df.at[0, 'Final Grade'] + adj
