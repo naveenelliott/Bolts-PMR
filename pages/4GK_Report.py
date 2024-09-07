@@ -375,8 +375,20 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     )
 
 
-
-    player_pic = Image.open('GK_Photos/temp.png')
+    directory_path = 'GK_Photos'
+    
+    # Search for files that match the variable name
+    matching_files = glob.glob(os.path.join(directory_path, f"{variable_name}.*"))
+    
+    # Check if a matching file is found
+    if matching_files:
+        image_file = matching_files[0]
+        
+        # Open the image
+        player_pic = Image.open(image_file)
+    else:
+        player_pic = Image.open(other_person)
+  
     #yellow_card = mpimg.imread('pages/Yellow_Card.png')
     #red_card = mpimg.imread('pages/Red_Card.png')
 
