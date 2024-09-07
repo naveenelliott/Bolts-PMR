@@ -387,7 +387,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         # Open the image
         player_pic = Image.open(image_file)
     else:
-        player_pic = Image.open(other_person)
+        player_pic = Image.open('other_person.jpg')
   
     #yellow_card = mpimg.imread('pages/Yellow_Card.png')
     #red_card = mpimg.imread('pages/Red_Card.png')
