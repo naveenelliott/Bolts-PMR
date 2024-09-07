@@ -378,7 +378,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     directory_path = 'GK_Photos'
     
     # Search for files that match the variable name
-    matching_files = glob.glob(os.path.join(directory_path, f"{variable_name}.*"))
+    matching_files = glob.glob(os.path.join(directory_path, f"{gk_name}.*"))
     
     # Check if a matching file is found
     if matching_files:
