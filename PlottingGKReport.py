@@ -340,6 +340,8 @@ def gettingGameGrade(dataframe):
             our_avg = avg_u19
             total_dist = (pd_df.at[0, 'Total Distance']/mins_played) * 90
             adj = max(min(total_dist - our_avg, 1), -1)
+        else:
+            adj = 0
 
     
     last_df.at[0, 'Final Grade'] = last_df.at[0, 'Final Grade'] + adj
