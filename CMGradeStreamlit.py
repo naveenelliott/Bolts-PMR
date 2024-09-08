@@ -58,6 +58,9 @@ def CMFunction(dataframe):
 
     selected_p90['Forward Passes'] = selected_p90['Forward'] + selected_p90['Unsucc Forward']
     progression = selected_p90[['Forward Passes', 'Progr Pass Completion ']]
+    for index, row in progression.iterrows():
+        if pd.isna(row['Progr Pass Completion ']):
+            progression.at[index, 'Progr Pass Completion '] = 0
 
     adjustments = selected_p90[['Yellow Card', 'Red Card', 'Goal', 'Assist', 'PK Missed', 'PK Scored']]
 
@@ -100,10 +103,6 @@ def CMFunction(dataframe):
 
     final = pd.DataFrame()
     selected_p90 = pd.concat([details, selected_p90], axis=1)
-    for index, row in selected_p90.iterrows():
-        if pd.isna(row['Progr Pass Completion ']):
-            selected_p90.at[index, 'Progr Pass Completion '] = 0
-    st.write(selected_p90)
     readding = []
 
     for i in player_location:
@@ -159,7 +158,6 @@ def CMFunction(dataframe):
         total_actions_score = (
             will_total_actions['Total Successful Actions'] * weights[0]
             )
-        st.write(total_actions_score)
         
         mean_values = cm_df.iloc[0, [3, 4]]
         std_values = cm_df.iloc[1, [3, 4]]
