@@ -62,6 +62,7 @@ def StrikerEventFunction(event_dataframe, select_event_dataframe):
     z_scores_df = finishing.transform(lambda col: calculate_zscore(col, mean_values, std_values))
     if z_scores_df.isna().any().any():
         finishing_percentile = 50
+        weights = np.array([.1])
         finishing_score = (
             finishing_percentile * weights[0]
         )
