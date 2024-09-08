@@ -352,7 +352,7 @@ st.write(chances_created)
 
 st.write(select_event_df)
 
-
+st.write(final_grade_df)
 for index, row in final_grade_df.iterrows():
     if row['Position'] == 'ATT':
         temp_event_df = chances_created.loc[chances_created['Primary Position'] == 'ATT']
