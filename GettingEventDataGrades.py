@@ -165,22 +165,19 @@ def CMEventFunction(event_dataframe, select_event_dataframe):
     z_scores_df = playmaking.transform(lambda col: calculate_zscore(col, mean_values, std_values))
     if z_scores_df.isna().any().any():
         playmaking_percentile = 50
-        weights = np.array([.1])
-        playmaking_score = (
-            finishing_percentile * weights[0]
-        )
+        weights = np.array([0.1])
+        playmaking_score = playmaking_percentile * weights[0]
+        final = pd.DataFrame({'Playmaking': [playmaking_score]})
     else:
         playmaking_percentile = z_scores_df.map(calculate_percentile)
         playmaking_percentile = playmaking_percentile.map(clip_percentile)
-        weights = np.array([.1])
-        playmaking_score = (
-            playmaking_percentile * weights[0]
-        )
-        playmaking_score = np.sum(playmaking_score)
+        weights = np.array([0.1])
+        playmaking_score = playmaking_percentile * weights[0]
+        final = pd.DataFrame()
+        final['Playmaking'] = playmaking_score
+        final.reset_index(drop=True, inplace=True)
 
-    final = pd.DataFrame()
-
-    final = pd.DataFrame({'Playmaking': [playmaking]})
+    
     return final
 
 def DMEventFunction(event_dataframe, select_event_dataframe):
