@@ -76,7 +76,7 @@ def StrikerEventFunction(event_dataframe, select_event_dataframe):
         finishing_score = finishing_score.values[0] 
     
     # Debugging: Check the value of finishing_score
-    print("Finishing Score (raw value):", finishing_score)
+    st.write("Finishing Score (raw value):", finishing_score)
     
     # Create a DataFrame and add finishing_score
     final = pd.DataFrame({'Finishing': [finishing_score]})
