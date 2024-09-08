@@ -290,8 +290,8 @@ for index, row in player_data.iterrows():
     elif (row['Position Tag'] == 'CM') or (row['Position Tag'] == 'RM') or (row['Position Tag'] == 'LM') or (row['Position Tag'] == 'AM'):
         temp_df = player_data.loc[[index]]
         end_att = CMFunction(temp_df)
+        st.write(end_att)
         final_grade_df = pd.concat([final_grade_df, end_att], ignore_index=True)
-        st.write(final_grade_df)
     elif (row['Position Tag'] == 'DM'):
         temp_df = player_data.loc[[index]]
         end_att = CDMFunction(temp_df)
@@ -352,7 +352,7 @@ chances_created.fillna(0, inplace=True)
 
 # Short term fix because something is wrong with getting the positions of attackers
 
-st.write(final_grade_df)
+
 for index, row in final_grade_df.iterrows():
     if row['Position'] == 'ATT':
         temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT') | (chances_created['Player Full Name'] == row['Player Name'])]
