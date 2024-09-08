@@ -71,10 +71,7 @@ def StrikerEventFunction(event_dataframe, select_event_dataframe):
     )
     st.write(finishing_score)
 
-    final = pd.DataFrame()
-
-    final['Finishing'] = finishing_score
-    st.write(final)
+    final = pd.DataFrame({'Finishing': [finishing_score]})
     return final
 
 def WingerEventFunction(event_dataframe, select_event_dataframe):
