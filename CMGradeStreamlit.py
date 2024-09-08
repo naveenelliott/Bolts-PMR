@@ -100,6 +100,7 @@ def CMFunction(dataframe):
 
     final = pd.DataFrame()
     selected_p90 = pd.concat([details, selected_p90], axis=1)
+    st.write(selected_p90)
     readding = []
 
     for i in player_location:
