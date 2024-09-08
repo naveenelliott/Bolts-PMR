@@ -73,7 +73,7 @@ def StrikerEventFunction(event_dataframe, select_event_dataframe):
         finishing_score = (
             finishing_percentile * weights[0]
         )
-        finishing_score = finishing_score.values
+        finishing_score = np.sum(finishing_score)
 
     final = pd.DataFrame({'Finishing': [finishing_score]})
     return final
