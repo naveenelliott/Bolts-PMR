@@ -360,6 +360,7 @@ for index, row in final_grade_df.iterrows():
         select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
         select_temp_df = select_temp_df[wanted]
         select_temp_df = StrikerEventFunction(temp_event_df, select_temp_df)
+        st.write(select_temp_df)
         final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
     elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
         temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'LW') | (chances_created['Primary Position'] == 'RW')]
