@@ -63,25 +63,18 @@ def StrikerEventFunction(event_dataframe, select_event_dataframe):
     
     if z_scores_df.isna().any().any():
         finishing_percentile = 50
+        weights = np.array([0.1])
+        finishing_score = finishing_percentile * weights[0]
+        final = pd.DataFrame({'Finishing': [finishing_score]})
     else:
         finishing_percentile = z_scores_df.map(calculate_percentile)
         finishing_percentile = finishing_percentile.map(clip_percentile)
-    
-    weights = np.array([0.1])
-    finishing_score = finishing_percentile * weights[0]
-    
-    # Debugging: Check intermediate values
-    st.write("Finishing Percentile:", finishing_percentile)
-    st.write("Finishing Score (after weighting):", finishing_score)
-    
-    # Create a DataFrame and add finishing_score
-    final = pd.DataFrame()
-    final['Finishing'] = finishing_score
-    st.write("Final DataFrame before resetting index:", final)
-    
-    # Reset the index
-    final.reset_index(drop=True, inplace=True)
-    st.write("Final DataFrame after resetting index:", final)
+        weights = np.array([0.1])
+        finishing_score = finishing_percentile * weights[0]
+        final = pd.DataFrame()
+        final['Finishing'] = finishing_score
+        final.reset_index(drop=True, inplace=True)
+   
     return final
 
 def WingerEventFunction(event_dataframe, select_event_dataframe):
