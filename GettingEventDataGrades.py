@@ -56,12 +56,9 @@ def StrikerEventFunction(event_dataframe, select_event_dataframe):
         del cf_event_df['Team']
         cf_event_df = calculate_threshold(cf_event_df, quantile=0.25, std_multiplier=2)
 
-    st.write(cf_event_df)
+
     mean_values = cf_event_df.iloc[0, 0]
     std_values = cf_event_df.iloc[1, 0]
-    st.write(finishing)
-    st.write(mean_values)
-    st.write(std_values)
     z_scores_df = finishing.transform(lambda col: calculate_zscore(col, mean_values, std_values))
     finishing_percentile = z_scores_df.map(calculate_percentile)
     finishing_percentile = finishing_percentile.map(clip_percentile)
