@@ -100,8 +100,8 @@ def CMFunction(dataframe):
 
     final = pd.DataFrame()
     selected_p90 = pd.concat([details, selected_p90], axis=1)
-    for index, row in selected_p90.iterrows()
-        if row['Progr Pass Completion '].isna().any():
+    for index, row in selected_p90.iterrows():
+        if pd.isna(row['Progr Pass Completion ']):
             selected_p90.at[index, 'Progr Pass Completion '] = 0
     st.write(selected_p90)
     readding = []
