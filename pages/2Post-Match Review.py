@@ -290,7 +290,6 @@ for index, row in player_data.iterrows():
     elif (row['Position Tag'] == 'CM') or (row['Position Tag'] == 'RM') or (row['Position Tag'] == 'LM') or (row['Position Tag'] == 'AM'):
         temp_df = player_data.loc[[index]]
         end_att = CMFunction(temp_df)
-        st.write(end_att)
         final_grade_df = pd.concat([final_grade_df, end_att], ignore_index=True)
     elif (row['Position Tag'] == 'DM'):
         temp_df = player_data.loc[[index]]
