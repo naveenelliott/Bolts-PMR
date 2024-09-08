@@ -60,21 +60,25 @@ def StrikerEventFunction(event_dataframe, select_event_dataframe):
     mean_values = cf_event_df.iloc[0, 0]
     std_values = cf_event_df.iloc[1, 0]
     z_scores_df = finishing.transform(lambda col: calculate_zscore(col, mean_values, std_values))
+    
     if z_scores_df.isna().any().any():
         finishing_percentile = 50
-        weights = np.array([.1])
-        finishing_score = (
-            finishing_percentile * weights[0]
-        )
     else:
         finishing_percentile = z_scores_df.map(calculate_percentile)
         finishing_percentile = finishing_percentile.map(clip_percentile)
-        weights = np.array([.1])
-        finishing_score = (
-            finishing_percentile * weights[0]
-        )
-        finishing_score = np.sum(finishing_score)
-
+    
+    weights = np.array([0.1])
+    finishing_score = finishing_percentile * weights[0]
+    
+    # Extract the raw value from finishing_score
+    if isinstance(finishing_score, pd.Series):
+        # Assuming you need the first value, you may adjust if it's something else
+        finishing_score = finishing_score.values[0] 
+    
+    # Debugging: Check the value of finishing_score
+    print("Finishing Score (raw value):", finishing_score)
+    
+    # Create a DataFrame and add finishing_score
     final = pd.DataFrame({'Finishing': [finishing_score]})
     return final
 
