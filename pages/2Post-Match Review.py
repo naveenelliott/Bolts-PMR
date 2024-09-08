@@ -350,11 +350,6 @@ final_grade_df = temp_df.copy()
 chances_created.fillna(0, inplace=True)
 
 # Short term fix because something is wrong with getting the positions of attackers
-chances_created.rename(columns={'Player Full Name': 'Player Name'}, inplace=True)
-chances_created = pd.merge(chances_created, final_grade_df[['Player Name', 'Position']], 
-                     on='Player Name', how='left')
-#chances_created.rename(columns={'Player Name': 'Player Full Name',
-#                               'Position': 'Primary Position'}, inplace=True)
 st.write(chances_created)
 
 st.write(select_event_df)
@@ -362,7 +357,7 @@ st.write(select_event_df)
 st.write(final_grade_df)
 for index, row in final_grade_df.iterrows():
     if row['Position'] == 'ATT':
-        temp_event_df = chances_created.loc[chances_created['Primary Position'] == 'ATT']
+        temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT') | (chances_created['Player Full Name'] == row['Player Name'])]
         st.write(temp_event_df)
         wanted = ['xG + xA', 'Team']
         temp_event_df = temp_event_df[wanted]
