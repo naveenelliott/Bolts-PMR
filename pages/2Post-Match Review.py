@@ -350,19 +350,14 @@ final_grade_df = temp_df.copy()
 chances_created.fillna(0, inplace=True)
 
 # Short term fix because something is wrong with getting the positions of attackers
-st.write(chances_created)
 
-st.write(select_event_df)
 
-st.write(final_grade_df)
 for index, row in final_grade_df.iterrows():
     if row['Position'] == 'ATT':
         temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT') | (chances_created['Player Full Name'] == row['Player Name'])]
-        st.write(temp_event_df)
         wanted = ['xG + xA', 'Team']
         temp_event_df = temp_event_df[wanted]
         select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
-        st.write(select_temp_df)
         select_temp_df = select_temp_df[wanted]
         select_temp_df = StrikerEventFunction(temp_event_df, select_temp_df)
         final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
@@ -386,6 +381,7 @@ for index, row in final_grade_df.iterrows():
 
 
 final_grade_df['Final Grade'] = final_grade_df['Final Grade'] + final_grade_df['Adjustments']
+st.write(final_grade_df)
 
 final_grade_df = final_grade_df[['Player Name', 'Position', 'Final Grade']]
 final_grade_df.rename(columns={'Player Name': 'Player Full Name', 'Position': 'Position Tag'}, inplace=True)
