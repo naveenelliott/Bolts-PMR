@@ -54,7 +54,8 @@ def StrikerEventFunction(event_dataframe, select_event_dataframe):
         cf_event_df = event_dataframe[event_dataframe['Team'].str.contains('U17|U19')]
         del cf_event_df['Team']
         cf_event_df = calculate_threshold(cf_event_df, quantile=0.25, std_multiplier=2)
-    
+
+    st.write(cf_event_df)
     mean_values = cf_event_df.iloc[0, 0]
     std_values = cf_event_df.iloc[1, 0]
     st.write(finishing)
