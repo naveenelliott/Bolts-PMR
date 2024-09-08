@@ -291,6 +291,7 @@ for index, row in player_data.iterrows():
         temp_df = player_data.loc[[index]]
         end_att = CMFunction(temp_df)
         final_grade_df = pd.concat([final_grade_df, end_att], ignore_index=True)
+        st.write(final_grade_df)
     elif (row['Position Tag'] == 'DM'):
         temp_df = player_data.loc[[index]]
         end_att = CDMFunction(temp_df)
