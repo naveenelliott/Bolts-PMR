@@ -60,7 +60,6 @@ def StrikerEventFunction(event_dataframe, select_event_dataframe):
     mean_values = cf_event_df.iloc[0, 0]
     std_values = cf_event_df.iloc[1, 0]
     z_scores_df = finishing.transform(lambda col: calculate_zscore(col, mean_values, std_values))
-    st.write(z_scores_df)
     if z_scores_df.isna().any().any():
         finishing_percentile = 50
     else:
@@ -76,6 +75,7 @@ def StrikerEventFunction(event_dataframe, select_event_dataframe):
 
     final['Finishing'] = finishing_score
     final.reset_index(drop=True, inplace=True)
+    st.write(final)
     return final
 
 def WingerEventFunction(event_dataframe, select_event_dataframe):
