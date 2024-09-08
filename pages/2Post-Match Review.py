@@ -280,6 +280,7 @@ final_grade_df = pd.DataFrame(columns=our_columns)
 
 for index, row in player_data.iterrows():
     if row['Position Tag'] == 'ATT': 
+        st.write(row)
         temp_df = player_data.loc[[index]]
         end_att = StrikerFunction(temp_df)
         final_grade_df = pd.concat([final_grade_df, end_att], ignore_index=True)
