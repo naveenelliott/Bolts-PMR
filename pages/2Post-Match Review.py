@@ -208,7 +208,6 @@ combined_xg = pd.merge(fc_python, actions_new, on=['Bolts Team', 'Match Date', '
 
 # running the model on our dataframe
 xg = xGModel(combined_xg)
-st.write(xg)
 
 # Getting the chances created, is this something that PSD will consistently have in actions tab??
 chances_created = full_actions.loc[full_actions['Action'] == 'Chance Created']
