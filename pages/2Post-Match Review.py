@@ -652,7 +652,7 @@ if not closest_before.empty:
 else:
     flag = 0
     
-    
+if flag == 1: 
     closest_game_index = compare_opps.index(closest_game['Unique Opp and Date'])
     with col3:
         compare_opp = st.selectbox('Choose the Comparison Game:', compare_opps, index=closest_game_index)
