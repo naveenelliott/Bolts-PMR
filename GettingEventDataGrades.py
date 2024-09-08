@@ -74,7 +74,6 @@ def StrikerEventFunction(event_dataframe, select_event_dataframe):
     final = pd.DataFrame()
 
     final['Finishing'] = finishing_score
-    final.reset_index(drop=True, inplace=True)
     st.write(final)
     return final
 
