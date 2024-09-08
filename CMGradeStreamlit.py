@@ -132,7 +132,6 @@ def CMFunction(dataframe):
         passing_score = (
             will_passing['Retention %'][0] * weights[0]
             )
-        st.write(passing_score)
 
         mean_values = cm_df.iloc[0, 1]
         std_values = cm_df.iloc[1, 1]
@@ -145,7 +144,6 @@ def CMFunction(dataframe):
         defending_score = (
             will_defending['Total Def Actions'] * weights[0]
             )
-        st.write(defending_score)
 
         mean_values = cm_df.iloc[0, 0]
         std_values = cm_df.iloc[1, 0]
@@ -171,7 +169,6 @@ def CMFunction(dataframe):
             player_prog['Forward Passes'] * weights[0] + 
             player_prog['Progr Pass Completion '] * weights[1]
             )
-        st.write(prog_score)
 
         add = adjustments.iloc[i, :].sum()
         readding.append(add)
