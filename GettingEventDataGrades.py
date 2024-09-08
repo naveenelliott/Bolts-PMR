@@ -71,9 +71,8 @@ def StrikerEventFunction(event_dataframe, select_event_dataframe):
     finishing_score = finishing_percentile * weights[0]
     
     # Extract the raw value from finishing_score
-    if isinstance(finishing_score, pd.Series):
-        # Assuming you need the first value, you may adjust if it's something else
-        finishing_score = finishing_score.values[0] 
+    if isinstance(finishing_score, pd.Series) or isinstance(finishing_score, np.ndarray):
+        finishing_score = finishing_score.values.flatten()[0]
     
     # Debugging: Check the value of finishing_score
     st.write("Finishing Score (raw value):", finishing_score)
