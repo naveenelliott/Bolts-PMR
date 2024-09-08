@@ -635,8 +635,6 @@ with col1:
 
 # getting the overall df with all teams, dates, and opposition
 overall_df = st.session_state['overall_df']
-# manually changing if actions and weekly report do not have the same date
-overall_df.loc[overall_df['Opposition'] == 'St Louis', 'Date'] = '12/09/2023'
 overall_df = overall_df.loc[(overall_df['Team Name'] == selected_team) & (overall_df['Opposition'] != selected_opp) & (overall_df['Date'] != selected_date)]
 # creating a unique opposition and date identifier
 overall_df['Unique Opp and Date'] = overall_df['Opposition'] + ' (' + overall_df['Date'] + ')'
@@ -644,21 +642,15 @@ overall_df['Unique Opp and Date'] = overall_df['Opposition'] + ' (' + overall_df
 overall_df.sort_values(by='Date', inplace=True)
 
 closest_before = overall_df.loc[overall_df['Date'] < selected_date]
-closest_after = overall_df.loc[overall_df['Date'] > selected_date]
 compare_opps = list(overall_df['Unique Opp and Date'].unique())
 
-if not closest_after.empty:
+if not closest_before.empty:
     flag = 1
+    closest_game = closest_before.iloc[-1]
+    compare_opps.append('5 Game Rolling Avg')
+    compare_opps.append('Seasonal Rolling Avg')
 else:
     flag = 0
-    
-if flag == 1:
-    if not closest_before.empty:
-        closest_game = closest_before.iloc[-1]
-        compare_opps.append('5 Game Rolling Avg')
-        compare_opps.append('Seasonal Rolling Avg')
-    else:
-        closest_game = closest_after.iloc[0]
     
     
     closest_game_index = compare_opps.index(closest_game['Unique Opp and Date'])
