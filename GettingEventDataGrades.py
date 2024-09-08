@@ -70,11 +70,18 @@ def StrikerEventFunction(event_dataframe, select_event_dataframe):
     weights = np.array([0.1])
     finishing_score = finishing_percentile * weights[0]
     
+    # Debugging: Check intermediate values
+    st.write("Finishing Percentile:", finishing_percentile)
+    st.write("Finishing Score (after weighting):", finishing_score)
+    
     # Create a DataFrame and add finishing_score
     final = pd.DataFrame()
     final['Finishing'] = finishing_score
-    st.write(final)
+    st.write("Final DataFrame before resetting index:", final)
+    
+    # Reset the index
     final.reset_index(drop=True, inplace=True)
+    st.write("Final DataFrame after resetting index:", final)
     return final
 
 def WingerEventFunction(event_dataframe, select_event_dataframe):
