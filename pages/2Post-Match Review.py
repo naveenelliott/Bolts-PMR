@@ -205,10 +205,10 @@ fc_python['Match Date'] = pd.to_datetime(fc_python['Match Date']).dt.strftime('%
 
 # combining into xG dataframe we want
 combined_xg = pd.merge(fc_python, actions_new, on=['Bolts Team', 'Match Date', 'Time'], how='inner')
-st.write(combined_xg)
 
 # running the model on our dataframe
 xg = xGModel(combined_xg)
+st.write(xg)
 
 # Getting the chances created, is this something that PSD will consistently have in actions tab??
 chances_created = full_actions.loc[full_actions['Action'] == 'Chance Created']
@@ -863,9 +863,9 @@ with col3:
             player_html = f"<span style='color: #355870; font-size: 10pt;'>{player['athlete_name']}</span> <span style='color: green; font-size: 10pt;'>{round(player['Max Speed'], 2)}</span>"
             st.write(player_html, unsafe_allow_html=True)
 
-st.write(xg)
+
 team_sum = xg.groupby('Team')['xG'].sum()
-st.write(team_sum)
+
 
 bolts_xG = round(team_sum.loc[selected_team], 2)
 opp_xG = round(team_sum.loc[selected_opp], 2)
