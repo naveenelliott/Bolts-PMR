@@ -863,6 +863,7 @@ with col3:
             st.write(player_html, unsafe_allow_html=True)
 
 team_sum = xg.groupby('Team')['xG'].sum()
+st.write(team_sum)
 
 bolts_xG = round(team_sum.loc[selected_team], 2)
 opp_xG = round(team_sum.loc[selected_opp], 2)
