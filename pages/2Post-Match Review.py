@@ -348,6 +348,13 @@ final_grade_df = temp_df.copy()
 
 
 chances_created.fillna(0, inplace=True)
+
+# Short term fix because something is wrong with getting the positions of attackers
+chances_created.rename(columns={'Player Full Name': 'Player Name'}, inplace=True)
+chances_created = pd.merge(chances_created, final_grade_df[['Player Name', 'Position']], 
+                     on='Player Name', how='left')
+#chances_created.rename(columns={'Player Name': 'Player Full Name',
+#                               'Position': 'Primary Position'}, inplace=True)
 st.write(chances_created)
 
 st.write(select_event_df)
