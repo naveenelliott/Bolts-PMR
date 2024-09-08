@@ -280,7 +280,6 @@ final_grade_df = pd.DataFrame(columns=our_columns)
 
 for index, row in player_data.iterrows():
     if row['Position Tag'] == 'ATT': 
-        st.write(row)
         temp_df = player_data.loc[[index]]
         end_att = StrikerFunction(temp_df)
         final_grade_df = pd.concat([final_grade_df, end_att], ignore_index=True)
@@ -355,6 +354,7 @@ chances_created.fillna(0, inplace=True)
 
 for index, row in final_grade_df.iterrows():
     if row['Position'] == 'ATT':
+        st.write(row)
         temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT') | (chances_created['Player Full Name'] == row['Player Name'])]
         wanted = ['xG + xA', 'Team']
         temp_event_df = temp_event_df[wanted]
