@@ -349,6 +349,7 @@ final_grade_df = temp_df.copy()
 
 
 chances_created.fillna(0, inplace=True)
+st.write(chances_created)
 
 for index, row in final_grade_df.iterrows():
     if row['Position'] == 'ATT':
