@@ -42,6 +42,8 @@ def StrikerEventFunction(event_dataframe, select_event_dataframe):
     def clip_percentile(value):
         return max(min(value, 100), 50)
 
+    st.write(event_dataframe)
+
     if ('U13' in team_name) or ('U14' in team_name):
         cf_event_df = event_dataframe[event_dataframe['Team'].str.contains('U13|U14')]
         del cf_event_df['Team']
