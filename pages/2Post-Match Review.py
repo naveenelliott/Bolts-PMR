@@ -862,6 +862,7 @@ with col3:
             player_html = f"<span style='color: #355870; font-size: 10pt;'>{player['athlete_name']}</span> <span style='color: green; font-size: 10pt;'>{round(player['Max Speed'], 2)}</span>"
             st.write(player_html, unsafe_allow_html=True)
 
+st.write(xg)
 team_sum = xg.groupby('Team')['xG'].sum()
 st.write(team_sum)
 
