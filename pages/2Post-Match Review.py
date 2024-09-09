@@ -386,6 +386,7 @@ final_grade_df['Final Grade'] = final_grade_df['Final Grade'] + final_grade_df['
 final_grade_df = final_grade_df[['Player Name', 'Position', 'Final Grade']]
 final_grade_df.rename(columns={'Player Name': 'Player Full Name', 'Position': 'Position Tag'}, inplace=True)
 final_grade_df['Final Grade'] = round(final_grade_df['Final Grade'], 1)
+st.write(final_grade_df)
 
 combined_df = combined_df.sort_values(by='Starts', ascending=False)
 combined_df = combined_df.drop_duplicates(subset='Player Full Name', keep='first')
