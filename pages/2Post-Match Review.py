@@ -815,6 +815,7 @@ def rearrange_team_name(team_name):
             for league in leagues:
                 if league in team_name:
                     team_name = team_name.replace(league, '')
+                    st.write(league)
                     if league == 'NAL Boston':
                         league = 'NALB'
             
