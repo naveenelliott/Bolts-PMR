@@ -818,7 +818,8 @@ def rearrange_team_name(team_name):
             st.write(league_part)
             
             # Extract the rest of the team name
-            rest_of_name = team_name.replace(age, '').replace(league_part, '').strip()
+            rest_of_name = team_name.replace(age, '').replace('NAL Boston', '').replace(league_part, '').strip()
+            
             
             # Construct the new team name
             return f"{rest_of_name} {age} {league_part}"
