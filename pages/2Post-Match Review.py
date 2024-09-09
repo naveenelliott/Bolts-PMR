@@ -812,15 +812,13 @@ def rearrange_team_name(team_name):
     for age in age_groups:
         if age in team_name:
             # Find the league part
-            for league in leagues:
-                if league in team_name:
-                    team_name = team_name.replace(league, '')
-                    st.write(league)
-                    if league == 'NAL Boston':
-                        league = 'NALB'
+            league_part = next((league for league in leagues if league in team_name), '')
+            if league_part == 'NAL Boston':
+                league_part = 'NALB'
+            st.write(league_part)
             
             # Extract the rest of the team name
-            rest_of_name = team_name.replace(age, '').strip()
+            rest_of_name = team_name.replace(age, '').replace(league_part, '').strip()
             
             # Construct the new team name
             return f"{rest_of_name} {age} {league_part}"
