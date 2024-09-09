@@ -386,13 +386,13 @@ final_grade_df['Final Grade'] = final_grade_df['Final Grade'] + final_grade_df['
 final_grade_df = final_grade_df[['Player Name', 'Position', 'Final Grade']]
 final_grade_df.rename(columns={'Player Name': 'Player Full Name', 'Position': 'Position Tag'}, inplace=True)
 final_grade_df['Final Grade'] = round(final_grade_df['Final Grade'], 1)
-st.write(final_grade_df)
 
 combined_df = combined_df.sort_values(by='Starts', ascending=False)
 combined_df = combined_df.drop_duplicates(subset='Player Full Name', keep='first')
 del combined_df['Position Tag']
 combined_df = pd.merge(combined_df, final_grade_df, on=['Player Full Name'])
 combined_df['Final Grade'] = np.clip(combined_df['Final Grade'], 5.00, 10.00)
+st.write(combined_df)
 
 subs = combined_df.loc[combined_df['Starts'] == 0]
 combined_df = combined_df.loc[combined_df['Starts'] != 0]
