@@ -815,7 +815,6 @@ def rearrange_team_name(team_name):
             league_part = next((league for league in leagues if league in team_name), '')
             if league_part == 'NAL Boston':
                 league_part = 'NALB'
-            st.write(league_part)
             
             # Extract the rest of the team name
             rest_of_name = team_name.replace(age, '').replace('NAL Boston', '').replace(league_part, '').strip()
