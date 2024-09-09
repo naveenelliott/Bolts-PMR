@@ -893,7 +893,7 @@ hGoal_min = []
 
 # Finding the goal marks so that we can add those as points later on
 for x in range(len(xg_data['xG'])):
-    if xg_data['Event'][x] == "Goal" and xg_data['Team'][x] == selected_opp:
+    if "Goal" in xg_data['Event'][x] and xg_data['Team'][x] == selected_opp:
             aGoal_xG.append(xg_data['xG'][x])
             aGoal_min.append(xg_data['Time'][x])
     if xg_data['Event'][x] == "Goal" and xg_data['Team'][x]==selected_team:
@@ -1562,7 +1562,7 @@ for index, row in opp_xg_data.iterrows():
     x, y, xG, url = 100-row['X'], row['Y'], row['xG'], row['Video Link']
 
     ateam = row['Team']
-    if row['Event'] == 'Goal':
+    if 'Goal' in row['Event']:
         fig1.add_trace(go.Scatter(
             x=[x],
             y=[y],
@@ -1585,7 +1585,7 @@ for index, row in opp_xg_data.iterrows():
             font=dict(color="white"),
             align="center"
         ) 
-    elif row['Event'] == 'SOT':
+    elif 'SOT' in row['Event']:
         fig1.add_trace(go.Scatter(
             x=[x],
             y=[y],
