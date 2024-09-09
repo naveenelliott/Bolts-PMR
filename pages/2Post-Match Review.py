@@ -828,7 +828,6 @@ def rearrange_team_name(team_name):
 
 # Apply the function to the 'team_name' column
 pd_df['bolts team'] = pd_df['bolts team'].apply(rearrange_team_name)
-st.write(pd_df)
 pd_df = pd_df.loc[(pd_df['bolts team'] == selected_team) & (pd_df['start_time'] == selected_date)]
 
 top_td = pd_df.nlargest(3, 'Total Distance')
