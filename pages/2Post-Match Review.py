@@ -394,7 +394,6 @@ combined_df = pd.merge(combined_df, final_grade_df, on=['Player Full Name'])
 combined_df['Final Grade'] = np.clip(combined_df['Final Grade'], 5.00, 10.00)
 combined_df['Final Grade'] = combined_df['Final Grade'].astype(float)
 combined_df['Final Grade'] = combined_df['Final Grade'].round(1)
-st.write(combined_df)
 
 subs = combined_df.loc[combined_df['Starts'] == 0]
 combined_df = combined_df.loc[combined_df['Starts'] != 0]
