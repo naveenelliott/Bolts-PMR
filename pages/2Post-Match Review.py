@@ -1562,7 +1562,8 @@ for index, row in opp_xg_data.iterrows():
     x, y, xG, url = 100-row['X'], row['Y'], row['xG'], row['Video Link']
 
     ateam = row['Team']
-    if row['Event'].str.contains('Goal'):
+    our_string = row['Event']
+    if 'Goal' in our_string:
         fig1.add_trace(go.Scatter(
             x=[x],
             y=[y],
@@ -1585,7 +1586,7 @@ for index, row in opp_xg_data.iterrows():
             font=dict(color="white"),
             align="center"
         ) 
-    elif row['Event'].str.contains('Goal'):
+    elif 'SOT' in our_string:
         fig1.add_trace(go.Scatter(
             x=[x],
             y=[y],
