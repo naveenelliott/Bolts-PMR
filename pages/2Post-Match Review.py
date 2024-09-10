@@ -1563,6 +1563,7 @@ for index, row in opp_xg_data.iterrows():
 
     ateam = row['Team']
     our_string = row['Event']
+    st.write(our_string)
     if 'Goal' in our_string:
         fig1.add_trace(go.Scatter(
             x=[x],
