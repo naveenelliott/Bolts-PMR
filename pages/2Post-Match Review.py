@@ -1412,7 +1412,7 @@ with col2:
 xg_data = xg.copy()
 
 
-custom_order = ['Shot', 'Blocked', 'SOT', 'Goal']
+custom_order = ['Shot', 'Blocked', 'SOT', 'SOT Far Post', 'SOT Inside Post', 'Goal', 'Goal Far Post', 'Goal Inside Post']
 xg_data['Event'] = pd.Categorical(xg_data['Event'], categories=custom_order, ordered=True)
 xg_data = xg_data.sort_values('Event')
 
@@ -1563,7 +1563,6 @@ for index, row in opp_xg_data.iterrows():
 
     ateam = row['Team']
     our_string = row['Event']
-    st.write(our_string)
     if 'Goal' in our_string:
         fig1.add_trace(go.Scatter(
             x=[x],
