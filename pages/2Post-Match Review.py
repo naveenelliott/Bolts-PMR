@@ -1551,7 +1551,7 @@ fig1.add_trace(go.Scatter(
         
 
 
-custom_order = ['Shot', 'Blocked', 'SOT', 'Goal']
+custom_order = ['Shot', 'Blocked', 'SOT', 'SOT Far Post', 'SOT Inside Post', 'Goal', 'Goal Far Post', 'Goal Inside Post']
 xg_data['Event'] = pd.Categorical(xg_data['Event'], categories=custom_order, ordered=True)
 xg_data = xg_data.sort_values('Event')
 
