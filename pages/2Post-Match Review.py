@@ -422,7 +422,7 @@ for player_name, group in grouped:
             ax.add_patch(circle)
             ax.text(40.5, 98, position['Final Grade'][0], color='black', size=9, ha='center', va='center')
             ax.text(40, 102.5, position['Player Full Name'][0], color='black', size=6, ha='center', va='center')
-        elif (len(position) > 1):    
+        elif (len(position) == 2):    
             # lcf
             circle = Circle((25, 100), 7, edgecolor='black', facecolor='#6bb2e2')
             ax.add_patch(circle)
@@ -434,6 +434,24 @@ for player_name, group in grouped:
             ax.add_patch(circle)
             ax.text(55.5, 98, position['Final Grade'][1], color='black', size=9, ha='center', va='center')
             ax.text(55, 102.5, position['Player Full Name'][1], color='black', size=6, ha='center', va='center')
+        elif (len(position) == 3):    
+            # lcf
+            circle = Circle((20, 100), 7, edgecolor='black', facecolor='#6bb2e2')
+            ax.add_patch(circle)
+            ax.text(20.5, 98, position['Final Grade'][0], color='black', size=9, ha='center', va='center')
+            ax.text(20, 102.5, position['Player Full Name'][0], color='black', size=6, ha='center', va='center')
+
+            # rcf
+            circle = Circle((60, 100), 7, edgecolor='black', facecolor='#6bb2e2')
+            ax.add_patch(circle)
+            ax.text(60.5, 98, position['Final Grade'][1], color='black', size=9, ha='center', va='center')
+            ax.text(60, 102.5, position['Player Full Name'][1], color='black', size=6, ha='center', va='center')
+
+            # cf
+            circle = Circle((40, 100), 7, edgecolor='black', facecolor='#6bb2e2')
+            ax.add_patch(circle)
+            ax.text(40.5, 98, position['Final Grade'][1], color='black', size=9, ha='center', va='center')
+            ax.text(40, 102.5, position['Player Full Name'][1], color='black', size=6, ha='center', va='center')
 
     elif group['Position Tag'].iloc[0] == 'RW':
         position = combined_df.loc[combined_df['Position Tag'] == 'RW'].reset_index()
