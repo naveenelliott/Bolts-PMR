@@ -580,7 +580,7 @@ for player_name, group in grouped:
     # Checking for back three
     back_three = combined_df.loc[combined_df['Position Tag'] == 'CB']
     if len(back_three) == 0:
-        if group['Position Tag'].iloc[0] == 'LCB':
+        if (group['Position Tag'].iloc[0] == 'LCB'):
             position = combined_df.loc[combined_df['Position Tag'] == 'LCB'].reset_index()
             position['Player Full Name'] = position['Player Full Name'].apply(lambda x: x.split(' ', 1)[1])
             # lcb
@@ -597,7 +597,7 @@ for player_name, group in grouped:
             ax.add_patch(circle)
             ax.text(55.5, 18, position['Final Grade'][0], color='black', size=9, ha='center', va='center')
             ax.text(55, 22.5, position['Player Full Name'][0], color='black', size=6, ha='center', va='center')
-    else:
+    elif len(back_three) == 1:
         if group['Position Tag'].iloc[0] == 'CB':
             position = combined_df.loc[combined_df['Position Tag'] == 'CB'].reset_index()
             position['Player Full Name'] = position['Player Full Name'].apply(lambda x: x.split(' ', 1)[1])
@@ -624,7 +624,20 @@ for player_name, group in grouped:
             ax.add_patch(circle)
             ax.text(60.5, 23, position['Final Grade'][0], color='black', size=9, ha='center', va='center')
             ax.text(60, 27.5, position['Player Full Name'][0], color='black', size=6, ha='center', va='center')
-
+    elif len(back_three) == 2:
+        position = combined_df.loc[combined_df['Position Tag'] == 'CB'].reset_index()
+        position['Player Full Name'] = position['Player Full Name'].apply(lambda x: x.split(' ', 1)[1])
+        # lcb
+        circle = Circle((25, 20), 7, edgecolor='black', facecolor='#6bb2e2')
+        ax.add_patch(circle)
+        ax.text(25.5, 18, position['Final Grade'][0], color='black', size=9, ha='center', va='center')
+        ax.text(25, 22.5, position['Player Full Name'][0], color='black', size=6, ha='center', va='center')
+        
+        # rcb
+        circle = Circle((55, 20), 7, edgecolor='black', facecolor='#6bb2e2')
+        ax.add_patch(circle)
+        ax.text(55.5, 18, position['Final Grade'][1], color='black', size=9, ha='center', va='center')
+        ax.text(55, 22.5, position['Player Full Name'][1], color='black', size=6, ha='center', va='center')
 
 subs_length = len(subs)
 subs['Player Full Name'] = subs['Player Full Name'].apply(lambda x: x.split(' ', 1)[1])
