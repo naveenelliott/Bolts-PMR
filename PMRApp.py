@@ -44,7 +44,7 @@ st.title("Bolts Post-Match Review App")
 st.markdown("Select the Team, Opponent, and Date (Optional) to See the Post-Match Review")
 
 # Selecting the Bolts team
-teams = sorted(list(combined_df['Team Name'].unique())
+teams = sorted(list(combined_df['Team Name'].unique()))
 
 selected_team = st.session_state.get('selected_team', teams[0])
 if selected_team not in teams:
