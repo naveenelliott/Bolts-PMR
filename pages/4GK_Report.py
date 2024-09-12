@@ -235,7 +235,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
 
 
-    custom_order = ['Shot', 'Blocked', 'SOT', 'Goal']
+    custom_order = ['Shot', 'Blocked', 'SOT', 'SOT Far Post', 'SOT Inside Post', 'Goal', 'Goal Far Post', 'Goal Inside Post']
     xg['Event'] = pd.Categorical(xg['Event'], categories=custom_order, ordered=True)
     xg = xg.sort_values('Event')
 
@@ -255,7 +255,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         y, x, xG, url = row['X'], row['Y'], row['xGA'], row['Video Link']
 
         ateam = row['Team']
-        if row['Event'] == 'Goal':
+        if 'Goal' in row['Event']:
             fig1.add_trace(go.Scatter(
                 x=[x],
                 y=[y],
@@ -277,7 +277,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
                 showarrow=False,
                 align="center"
             ) 
-        elif row['Event'] == 'SOT':
+        elif 'SOT' in row['Event']:
             fig1.add_trace(go.Scatter(
                 x=[x],
                 y=[y],
@@ -293,28 +293,6 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
                 hovertext=f"xG: {xG:.2f}",  # Add hover text
                 hoverinfo="text"  # Display hover text
             ))
-            fig1.add_annotation(
-                x=x,
-                y=y+3.5,
-                text=f'<a href="{url}" target="_blank" style="color:red;">Link</a>',
-                showarrow=False,
-                align="center"
-            ) 
-        else:
-            fig1.add_trace(go.Scatter(
-                x=[x],
-                y=[y],
-                mode='markers',
-                marker=dict(
-                    size=(xG * 30) + 5,
-                    color='red',
-                    symbol='circle-open'
-                ),
-                name='Shot Against',
-                showlegend=False,
-                hovertext=f"xG: {xG:.2f}",  # Add hover text
-                hoverinfo="text"  # Display hover text
-                ))
             fig1.add_annotation(
                 x=x,
                 y=y+3.5,
@@ -349,19 +327,6 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         ),
         name='SOT Against',
         visible='legendonly'
-    ))
-
-    fig1.add_trace(go.Scatter(
-        x=[None],  # Dummy data
-        y=[None],
-        mode='markers',
-        marker=dict(
-            size=5,
-            color='red',
-            symbol='circle-open'
-        ),
-        name='Shot Against',
-        visible='legendonly',
     ))
 
     fig1.update_layout(
