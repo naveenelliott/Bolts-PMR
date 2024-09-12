@@ -44,7 +44,7 @@ def getting_PSD_top_cat(bolts_team, bolts_opp, bolts_date):
     folder_path = 'WeeklyReport PSD'  # Replace with your folder path
     end = read_all_csvs_from_folder(folder_path)
     
-    end['Match Date'] = end['Match Date'].dt.strftime('%m/%d/%Y')
+    end['Match Date'] = pd.to_datetime(end['Match Date']).dt.strftime('%m/%d/%Y')
 
     #end = end.loc[end['Starts'] == '1']
 
