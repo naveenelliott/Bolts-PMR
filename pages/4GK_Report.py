@@ -733,25 +733,16 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             f"""
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 <div style="display: flex; align-items: center;">
-                    <a href="{image_in_possession}" target="_blank">
-                        <img src="data:image/jpeg;base64,{image_in_possession_base64}" style="cursor: pointer; width: 75px;"/>  <!-- Adjust width as needed -->
-                    </a>
                     <div style="margin-left: 10px;">
                         <span style='font-family: Arial; font-size: 13pt; color: black;'><strong>In Possession Goals:</strong> {in_possession_goals}</span>
                     </div>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <a href="{image_out_possession}" target="_blank">
-                        <img src="data:image/jpeg;base64,{image_out_possession_base64}" style="cursor: pointer; width: 75px;"/>  <!-- Adjust width as needed -->
-                    </a>
                     <div style="margin-left: 10px;">
                         <span style='font-family: Arial; font-size: 13pt; color: black;'><strong>Out of Possession Goals:</strong> {out_possession_goals}</span>
                     </div>
                 </div>
                 <div style="display: flex; align-items: center;">
-                    <a href="{image_coach_notes}" target="_blank">
-                        <img src="data:image/jpeg;base64,{image_coach_notes_base64}" style="cursor: pointer; width: 75px;"/>  <!-- Adjust width as needed -->
-                    </a>
                     <div style="margin-left: 10px;">
                         <span style='font-family: Arial; font-size: 13pt; color: black;'><strong>Coach Notes:</strong> {coach_notes}</span>
                     </div>
