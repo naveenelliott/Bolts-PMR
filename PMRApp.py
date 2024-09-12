@@ -45,6 +45,7 @@ st.markdown("Select the Team, Opponent, and Date (Optional) to See the Post-Matc
 
 # Selecting the Bolts team
 teams = list(combined_df['Team Name'].unique())
+teams = teams.sort()
 
 selected_team = st.session_state.get('selected_team', teams[0])
 if selected_team not in teams:
