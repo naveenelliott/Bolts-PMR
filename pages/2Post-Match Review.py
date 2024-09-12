@@ -31,6 +31,7 @@ import plotly_football_pitch as pfp
 import plotly.graph_objs as go
 import re
 from streamlit_gsheets import GSheetsConnection
+from GettingTopPlayers import getting_PSD_top_cat
 
 
 # Setting a wide layout
@@ -777,8 +778,7 @@ with col3:
             st.write('Not enough games to calculate negatives.')
 
 # Getting the PSD data
-player_data_narrow = player_data[['Player Full Name', 'Line Break', 'Pass Completion ', 'Stand. Tackle', 'Tackle', 'Dribble']]
-
+player_data_narrow = getting_PSD_top_cat(selected_team, selected_opp, selected_date)
 player_data_narrow['Total Tackles'] = player_data_narrow['Stand. Tackle'] + player_data_narrow['Tackle']
 
 player_data_narrow.drop(columns={'Stand. Tackle', 'Tackle'}, inplace=True)
