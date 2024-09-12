@@ -779,6 +779,7 @@ with col3:
 
 # Getting the PSD data
 player_data_narrow = getting_PSD_top_cat(selected_team, selected_opp, selected_date)
+st.write(player_data_narrow)
 player_data_narrow['Line Break', 'Pass Completion ', 'Stand. Tackle', 'Tackle', 'Dribble'] = player_data_narrow['Line Break', 'Pass Completion ', 'Stand. Tackle', 'Tackle', 'Dribble'].astype(float)
 player_data_narrow['Total Tackles'] = player_data_narrow['Stand. Tackle'] + player_data_narrow['Tackle']
 
