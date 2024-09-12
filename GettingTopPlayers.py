@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-def getting_PSD_grade_data(bolts_team, bolts_opp, bolts_date):
+def getting_PSD_top_cat(bolts_team, bolts_opp, bolts_date):
     def read_all_csvs_from_folder(folder_path):
         # List all files in the folder
         files = os.listdir(folder_path)
