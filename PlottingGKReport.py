@@ -154,7 +154,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
                 y=[row[statistic2]],
                 mode='markers',
                 name='Current Game',
-                marker=dict(color='lightred', size=12, symbol='circle'),
+                marker=dict(color='red', size=12, symbol='circle'),
                 showlegend=True,  # Ensure no legend for this point
                 text=row['More Opposition'] + ' (' + str(round(row[statistic2], 4)) + ' )',  # Set hover text to Opposition
                 hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
