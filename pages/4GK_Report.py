@@ -632,7 +632,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     end_overall['Out of Possession'] = end_overall['Progr Rec'] + end_overall['Progr Inter'] + end_overall['Successful Cross']
     end_overall = end_overall[['Player Full Name', 'Team Name', 'Opposition', 'Match Date', 'mins played', 'Save Held', 'Save Parried', 'Goal Against', 'Progr Regain ', 
                             'Pass Completion ', 'Opp Effort on Goal', 'Progr Pass Completion ', 'Successful Cross', 'Unsucc cross GK', 'Hands GK', 'Unsucc Hands', 'Ground GK', 'Unsucc Ground', 
-                            ]]
+                            'In Possession', 'Out of Possession']]
     end_overall['Total CC'] = end_overall['Successful Cross'] + end_overall['Unsucc cross GK']
     end_overall['Cross %'] = (end_overall['Successful Cross']/end_overall['Total CC']) * 100
     end_overall['Save %'] = (end_overall['Save Held']+end_overall['Save Parried'])/(end_overall['Save Held']+end_overall['Save Parried']+end_overall['Goal Against'])*100
