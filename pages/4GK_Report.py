@@ -722,6 +722,8 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     col1, col2 = st.columns(2)
 
+    st.write(end_overall)
+
     with col1:
         fig = plottingStatistics(end_overall, 'GA-xGA', date_wanted=selected_date)
         st.plotly_chart(fig)
