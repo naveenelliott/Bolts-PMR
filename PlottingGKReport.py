@@ -95,6 +95,128 @@ def plottingStatistics(dataframe, statistic, date_wanted):
     # Display the plot in Streamlit
     return fig
 
+def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
+    # Create the plot
+    fig = go.Figure()
+
+    dataframe['More Opposition'] = 'vs ' + dataframe['Opposition']
+    dataframe['Match Date'] = pd.to_datetime(dataframe['Match Date']).dt.strftime('%m/%d/%Y')
+
+    # Add the trendline to the plot
+    fig.add_trace(go.Scatter(
+        x=dataframe['Match Date'],
+        y=dataframe[statistic1],
+        mode='lines',
+        name='Trendline',
+        line=dict(color='black', dash='dash'),
+        showlegend=True  # Show the legend for the trendline
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=dataframe['Match Date'],
+        y=dataframe[statistic2],
+        mode='lines',
+        name='Trendline',
+        line=dict(color='gray', dash='dash'),
+        showlegend=True  # Show the legend for the trendline
+    ))
+
+    # Line plot for the specified statistic over time
+    for index, row in dataframe.iterrows():
+        if row['Match Date'] == date_wanted:
+            fig.add_trace(go.Scatter(
+                x=[row['Match Date']],
+                y=[row[statistic1]],
+                mode='markers',
+                name='Current Game',
+                marker=dict(color='lightblue', size=12, symbol='circle'),
+                showlegend=True,  # Ensure no legend for this point
+                text=row['More Opposition'] + ' (' + str(round(row[statistic1], 4)) + ' )',  # Set hover text to Opposition
+                hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
+            ))
+        else:    
+            fig.add_trace(go.Scatter(
+                x=[row['Match Date']],
+                y=[row[statistic1]],
+                mode='lines+markers',
+                name='Previous Games',
+                line=dict(color='black'),
+                marker=dict(color='black', size=6),
+                showlegend=True,  # Remove legend
+                text=row['More Opposition'] + ' (' + str(round(row[statistic1], 4)) + ' )',  # Set hover text to Opposition
+                hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
+            ))
+
+    for index, row in dataframe.iterrows():
+        if row['Match Date'] == date_wanted:
+            fig.add_trace(go.Scatter(
+                x=[row['Match Date']],
+                y=[row[statistic2]],
+                mode='markers',
+                name='Current Game',
+                marker=dict(color='lightred', size=12, symbol='circle'),
+                showlegend=True,  # Ensure no legend for this point
+                text=row['More Opposition'] + ' (' + str(round(row[statistic2], 4)) + ' )',  # Set hover text to Opposition
+                hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
+            ))
+        else:    
+            fig.add_trace(go.Scatter(
+                x=[row['Match Date']],
+                y=[row[statistic1]],
+                mode='lines+markers',
+                name='Previous Games',
+                line=dict(color='gray'),
+                marker=dict(color='gray', size=6),
+                showlegend=True,  # Remove legend
+                text=row['More Opposition'] + ' (' + str(round(row[statistic2], 4)) + ' )',  # Set hover text to Opposition
+                hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
+            ))
+
+
+
+    # Customize the layout
+    fig.update_layout(
+        title=dict(
+            text=f'{statistic1} and {statistic2} Over Time',
+            x=0.5,  # Center the title
+            xanchor='center',
+            yanchor='top',
+            font=dict(size=12)  # Smaller title font
+        ),
+        xaxis_title=dict(
+            text='Match Date',
+            font=dict(size=10)  # Smaller x-axis label font
+        ),
+        yaxis_title=dict(
+            text=f'{statistic1} and {statistic2}',
+            font=dict(size=10)  # Smaller y-axis label font
+        ),
+        xaxis=dict(
+            showline=True, 
+            showgrid=False, 
+            showticklabels=True, 
+            linecolor='gray',
+            tickangle=45,  # Angle the x-axis ticks for better readability
+            ticks='outside',  # Show ticks outside the plot
+            tickcolor='black',
+            tickfont=dict(
+                size=9
+            )
+        ),
+        yaxis=dict(
+            showline=True, 
+            showgrid=False, 
+            showticklabels=True, 
+            linecolor='gray',
+            ticks='outside',
+            tickcolor='black'
+        ),
+        font=dict(size=9)
+    )
+
+    # Display the plot in Streamlit
+    return fig
+
 def gettingGameGrade(dataframe):
     gk_df = pd.read_csv("Thresholds/GoalkeeperThresholds.csv")
     dataframe.reset_index(drop=True, inplace=True)
