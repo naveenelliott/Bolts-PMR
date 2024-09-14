@@ -128,7 +128,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
                 x=[row['Match Date']],
                 y=[row[statistic1]],
                 mode='markers',
-                name='Current Game',
+                name='Current Game\n(Out of Possession)',
                 marker=dict(color='lightblue', size=12, symbol='circle'),
                 showlegend=True,  # Ensure no legend for this point
                 text=row['More Opposition'] + ' (' + str(round(row[statistic1], 4)) + ' )',  # Set hover text to Opposition
@@ -153,7 +153,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
                 x=[row['Match Date']],
                 y=[row[statistic2]],
                 mode='markers',
-                name='Current Game',
+                name='Current Game\n(In Possession)',
                 marker=dict(color='red', size=12, symbol='circle'),
                 showlegend=True,  # Ensure no legend for this point
                 text=row['More Opposition'] + ' (' + str(round(row[statistic2], 4)) + ' )',  # Set hover text to Opposition
