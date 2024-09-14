@@ -162,7 +162,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
         else:    
             fig.add_trace(go.Scatter(
                 x=[row['Match Date']],
-                y=[row[statistic1]],
+                y=[row[statistic2]],
                 mode='lines+markers',
                 name='Previous Games\n(In Possession)',
                 line=dict(color='gray'),
