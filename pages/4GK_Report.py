@@ -742,7 +742,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         st.plotly_chart(fig3)
 
     fig = plottingInAndOut(end_overall, 'In Possession', 'Out of Possession', date_wanted=selected_date)
-
+    st.plotly_chart(fig)
 
 else:
     st.title("Goalkeeper Report is NOT AVAILABLE. Please fill out the coach requirements")
