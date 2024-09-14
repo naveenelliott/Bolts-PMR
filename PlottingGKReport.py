@@ -107,7 +107,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
         x=dataframe['Match Date'],
         y=dataframe[statistic1],
         mode='lines',
-        name='Trendline',
+        name='Trendline\n(Out of Possession)',
         line=dict(color='black', dash='dash'),
         showlegend=True  # Show the legend for the trendline
     ))
@@ -116,7 +116,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
         x=dataframe['Match Date'],
         y=dataframe[statistic2],
         mode='lines',
-        name='Trendline',
+        name='Trendline\n(In Possession)',
         line=dict(color='gray', dash='dash'),
         showlegend=True  # Show the legend for the trendline
     ))
@@ -139,7 +139,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
                 x=[row['Match Date']],
                 y=[row[statistic1]],
                 mode='lines+markers',
-                name='Previous Games',
+                name='Previous Games\n(Out of Possession)',
                 line=dict(color='black'),
                 marker=dict(color='black', size=6),
                 showlegend=True,  # Remove legend
@@ -164,7 +164,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
                 x=[row['Match Date']],
                 y=[row[statistic1]],
                 mode='lines+markers',
-                name='Previous Games',
+                name='Previous Games\n(In Possession)',
                 line=dict(color='gray'),
                 marker=dict(color='gray', size=6),
                 showlegend=True,  # Remove legend
