@@ -11,7 +11,7 @@ import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
 from GKGradeStreamlit import GKMoreDetailedFunction
 import scipy.stats as stats
-from PlottingGKReport import plottingStatistics, gettingGameGrade, gkInvolvements
+from PlottingGKReport import plottingStatistics, gettingGameGrade, gkInvolvements, plottingInAndOut
 from plotly_football_pitch import make_pitch_figure, PitchDimensions
 import plotly_football_pitch as pfp
 import plotly.graph_objs as go
@@ -725,7 +725,6 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     col1, col2 = st.columns(2)
 
-    st.write(end_overall)
 
     with col1:
         fig = plottingStatistics(end_overall, 'GA-xGA', date_wanted=selected_date)
@@ -741,6 +740,8 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         st.plotly_chart(fig2)
         fig3 = plottingStatistics(end_overall, 'Cross %', date_wanted=selected_date)
         st.plotly_chart(fig3)
+
+    fig = plottingInAndOut(end_overall, 'In Possession', 'Out of Possession', date_wanted=selected_date)
 
 
 else:
