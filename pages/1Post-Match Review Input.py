@@ -20,7 +20,7 @@ existing_data['Opposition'] = existing_data['Opposition'].fillna('').astype(str)
 existing_data['Match Date'] = existing_data['Match Date'].fillna('').astype(str)
 
 # Initialize variables for form display
-in_possession, out_possession, veo_hyperlink, competition_level = '', '', '', ''
+in_possession, out_possession, veo_hyperlink, competition_level = 'test', 'test', 'test', 'test'
 
 updated_df = pd.DataFrame()
 
