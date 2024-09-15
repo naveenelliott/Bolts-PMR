@@ -51,13 +51,13 @@ if (existing_data['Bolts Team'].str.contains(selected_team).any() &
     updated_df = existing_data.copy()
 
     st.write(existing_data)
-    st.write(index)
-
-    # Extract existing data to display
-    in_possession = existing_data.loc[index, 'In Possession Goals'].values[0]
-    out_possession = existing_data.loc[index, 'Out of Possession Goals'].values[0]
-    coach_notes = existing_data.loc[index, 'Coach Notes'].values[0]
-    veo_hyperlink = existing_data.loc[index, 'Veo Hyperlink'].values[0]
+    
+    if not index.empty:
+        # Extract existing data to display
+        in_possession = existing_data.loc[index, 'In Possession Goals'].values[0]
+        out_possession = existing_data.loc[index, 'Out of Possession Goals'].values[0]
+        coach_notes = existing_data.loc[index, 'Coach Notes'].values[0]
+        veo_hyperlink = existing_data.loc[index, 'Veo Hyperlink'].values[0]
 
 # Form to update the DataFrame
 with st.form("input_form"):
