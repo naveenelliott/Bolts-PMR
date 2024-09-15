@@ -51,6 +51,7 @@ if (existing_data['Bolts Team'].str.contains(selected_team).any() &
     updated_df = existing_data.copy()
 
     st.write(existing_data)
+    st.write(index)
 
     # Extract existing data to display
     in_possession = existing_data.loc[index, 'In Possession Goals'].values[0]
