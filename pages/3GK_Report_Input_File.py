@@ -49,8 +49,6 @@ if (existing_data['Bolts Team'].str.contains(selected_team).any() &
     ].index
 
     updated_df = existing_data.copy()
-
-    st.write(existing_data)
     
     if not index.empty:
         # Extract existing data to display
