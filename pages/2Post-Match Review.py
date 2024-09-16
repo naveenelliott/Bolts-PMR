@@ -279,6 +279,8 @@ final_grade_df = pd.DataFrame(columns=our_columns)
 # CAN WE CONCACATENATE THE EVENT DATA TO PLAYER_DATA
 # will be tough because the structure is limited to the time limits for each position
 
+st.write(player_data)
+
 for index, row in player_data.iterrows():
     if row['Position Tag'] == 'ATT': 
         temp_df = player_data.loc[[index]]
