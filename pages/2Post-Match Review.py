@@ -379,9 +379,11 @@ for index, row in final_grade_df.iterrows():
         select_temp_df = CMEventFunction(temp_event_df, select_temp_df)
         final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Playmaking'])*.2)
 
+st.write(final_grade_df)
 
 final_grade_df['Final Grade'] = final_grade_df['Final Grade'] + final_grade_df['Adjustments']
 
+st.write(final_grade_df)
 
 final_grade_df = final_grade_df[['Player Name', 'Position', 'Final Grade']]
 final_grade_df.rename(columns={'Player Name': 'Player Full Name', 'Position': 'Position Tag'}, inplace=True)
