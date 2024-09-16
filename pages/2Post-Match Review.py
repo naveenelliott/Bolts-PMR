@@ -382,7 +382,6 @@ for index, row in final_grade_df.iterrows():
 
 final_grade_df['Final Grade'] = final_grade_df['Final Grade'] + final_grade_df['Adjustments']
 
-st.write(final_grade_df)
 
 final_grade_df = final_grade_df[['Player Name', 'Position', 'Final Grade']]
 final_grade_df.rename(columns={'Player Name': 'Player Full Name', 'Position': 'Position Tag'}, inplace=True)
@@ -396,7 +395,6 @@ combined_df['Final Grade'] = np.clip(combined_df['Final Grade'], 5.00, 10.00)
 combined_df['Final Grade'] = combined_df['Final Grade'].astype(float)
 combined_df['Final Grade'] = combined_df['Final Grade'].round(1)
 
-st.write(combined_df)
 
 subs = combined_df.loc[combined_df['Starts'] == 0]
 combined_df = combined_df.loc[combined_df['Starts'] != 0]
