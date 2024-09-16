@@ -481,6 +481,22 @@ for player_name, group in grouped:
         ax.text(40.5, 68, position['Final Grade'][0], color='black', size=9, ha='center', va='center')
         ax.text(40, 72.5, position['Player Full Name'][0], color='black', size=6, ha='center', va='center')
 
+    elif group['Position Tag'].iloc[0] == 'RM':
+        position = combined_df.loc[combined_df['Position Tag'] == 'RM'].reset_index()
+        position['Player Full Name'] = position['Player Full Name'].apply(lambda x: x.split(' ', 1)[1])
+        # rcm
+        circle = Circle((55, 65), 7, edgecolor='black', facecolor='#6bb2e2')
+        ax.add_patch(circle)
+        ax.text(55.5, 63, position['Final Grade'][0], color='black', size=9, ha='center', va='center')
+        ax.text(55, 67.5, position['Player Full Name'][1], color='black', size=6, ha='center', va='center')
+    elif group['Position Tag'].iloc[0] == 'LM':
+        position = combined_df.loc[combined_df['Position Tag'] == 'LM'].reset_index()
+        position['Player Full Name'] = position['Player Full Name'].apply(lambda x: x.split(' ', 1)[1])
+        # lcm
+        circle = Circle((25, 65), 7, edgecolor='black', facecolor='#6bb2e2')
+        ax.add_patch(circle)
+        ax.text(25.5, 63, position['Final Grade'][0], color='black', size=9, ha='center', va='center')
+        ax.text(25, 67.5, position['Player Full Name'][0], color='black', size=6, ha='center', va='center')
     elif group['Position Tag'].iloc[0] == 'CM':
         position = combined_df.loc[combined_df['Position Tag'] == 'CM'].reset_index()
         position['Player Full Name'] = position['Player Full Name'].apply(lambda x: x.split(' ', 1)[1])
