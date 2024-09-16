@@ -18,6 +18,7 @@ import plotly.graph_objs as go
 from PIL import Image, ImageOps
 from streamlit_gsheets import GSheetsConnection
 import numpy as np
+from creating_heatmap_playerData import gettingHeatmapGK
 
 
 st.set_page_config(page_title='Bolts Post-Match Review App', page_icon='pages/Boston_Bolts.png')
@@ -719,6 +720,10 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             """,
             unsafe_allow_html=True
         )
+
+    fig = gettingHeatmapGK(gk_name, selected_opp)
+    with col2:
+        st.pyplot(fig)
     
     fig = plottingStatistics(final_game_grade, 'Final Grade', date_wanted=selected_date)
     st.plotly_chart(fig)
