@@ -347,7 +347,6 @@ for player_name, group in temp_group:
 
 final_grade_df = temp_df.copy()
 
-
 chances_created.fillna(0, inplace=True)
 
 # Short term fix because something is wrong with getting the positions of attackers
@@ -383,7 +382,7 @@ for index, row in final_grade_df.iterrows():
 
 final_grade_df['Final Grade'] = final_grade_df['Final Grade'] + final_grade_df['Adjustments']
 
-
+st.write(final_grade_df)
 
 final_grade_df = final_grade_df[['Player Name', 'Position', 'Final Grade']]
 final_grade_df.rename(columns={'Player Name': 'Player Full Name', 'Position': 'Position Tag'}, inplace=True)
@@ -397,11 +396,13 @@ combined_df['Final Grade'] = np.clip(combined_df['Final Grade'], 5.00, 10.00)
 combined_df['Final Grade'] = combined_df['Final Grade'].astype(float)
 combined_df['Final Grade'] = combined_df['Final Grade'].round(1)
 
+st.write(combined_df)
+
 subs = combined_df.loc[combined_df['Starts'] == 0]
 combined_df = combined_df.loc[combined_df['Starts'] != 0]
 combined_df_event = combined_df.copy()
 
-st.write(combined_df)
+
 
 
 grouped = combined_df.groupby('Position Tag')
