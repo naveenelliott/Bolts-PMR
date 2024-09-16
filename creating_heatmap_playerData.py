@@ -11,7 +11,7 @@ import os
 
 def gettingHeatmapGK(pname, opp_name):
 
-    if pname == 'Ben Marro'
+    if pname == 'Ben Marro':
         pname = 'Benjamin Marro'
 
     folder_path = 'PlayerData LatLong'
