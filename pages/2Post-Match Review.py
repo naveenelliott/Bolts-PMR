@@ -383,7 +383,6 @@ for index, row in final_grade_df.iterrows():
 
 final_grade_df['Final Grade'] = final_grade_df['Final Grade'] + final_grade_df['Adjustments']
 
-st.write(final_grade_df)
 
 
 final_grade_df = final_grade_df[['Player Name', 'Position', 'Final Grade']]
@@ -401,6 +400,8 @@ combined_df['Final Grade'] = combined_df['Final Grade'].round(1)
 subs = combined_df.loc[combined_df['Starts'] == 0]
 combined_df = combined_df.loc[combined_df['Starts'] != 0]
 combined_df_event = combined_df.copy()
+
+st.write(combined_df)
 
 
 grouped = combined_df.groupby('Position Tag')
