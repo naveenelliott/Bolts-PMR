@@ -309,7 +309,6 @@ for index, row in player_data.iterrows():
         end_att = GKFunction(temp_df)
         final_grade_df = pd.concat([final_grade_df, end_att], ignore_index=True)
 
-st.write(final_grade_df)
 
 temp_group = final_grade_df.groupby('Player Name')
 
@@ -383,6 +382,8 @@ for index, row in final_grade_df.iterrows():
 
 
 final_grade_df['Final Grade'] = final_grade_df['Final Grade'] + final_grade_df['Adjustments']
+
+st.write(final_grade_df)
 
 
 final_grade_df = final_grade_df[['Player Name', 'Position', 'Final Grade']]
