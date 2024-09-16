@@ -86,7 +86,7 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
     important['Time Until Regain'] = 11 - important['Time Until Regain'].clip(1, 10)
     important['Pass Completion '] = ((important['Pass Completion '] - pass_average) / pass_std) * 2 + 5
     important['Pass Completion '] = important['Pass Completion '].clip(1, 10)
-    important['Pass into Oppo Box'] = ((important['Pass into Oppo Box'] - pass_average) / pass_std) * 2 + 5
+    important['Pass into Oppo Box'] = ((important['Pass into Oppo Box'] - pass_in_18_average) / pass_in_18_std) * 2 + 5
     important['Pass into Oppo Box'] = important['Pass into Oppo Box'].clip(1, 10)
     average_columns = ['Efforts on Goal',
                        'xG per Shot', 'Opponent xG per Shot', 'Time Until Regain', 'Pass Completion ', 'Pass into Oppo Box']
