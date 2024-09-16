@@ -151,7 +151,7 @@ def gettingHeatmapGK(pname, opp_name):
                       axis=False, label=False)  # showing axis labels is optional
         fig, ax = pitch.draw()
         
-        ax.text(70, 35, 'No heatmap available',
-        va='center', ha='center', fontsize=20, color='lightblue', fontweight='bold')
+        ax.text(30, 35, 'No heatmap available',
+        va='center', ha='center', fontsize=18, color='lightblue', fontweight='bold')
     
     return fig
