@@ -252,6 +252,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         orientation=pfp.PitchOrientation.VERTICAL
     )
 
+    st.write(xg)
     for index, row in xg.iterrows():
         y, x, xG, url = row['X'], row['Y'], row['xGA'], row['Video Link']
 
