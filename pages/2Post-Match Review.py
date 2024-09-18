@@ -1203,10 +1203,16 @@ combined_grades.loc[index_to_change, 'IsMostxG'] = 1
 starters = combined_grades[combined_grades['Started'] == 1]
 subs = combined_grades[combined_grades['Started'] == 0]
 
+#position_order = {
+#    'ATT': 1, 'Wing': 2, 'LW': 3, 'RW': 4, 'AM': 5,
+#    'CM': 6, 'DM': 7, 'LWB': 8, 'RWB': 15, 'LB': 10,
+#    'RB': 16, 'LCB': 12, 'CB': 13, 'RCB': 14, 'GK': 17, 'UNK': 18
+#}
+
 position_order = {
-    'ATT': 1, 'Wing': 2, 'LW': 3, 'RW': 4, 'AM': 5,
-    'CM': 6, 'DM': 7, 'LWB': 8, 'RWB': 15, 'LB': 10,
-    'RB': 16, 'LCB': 12, 'CB': 13, 'RCB': 14, 'GK': 17, 'UNK': 18
+    'ATT': 15, 'Wing': 14, 'LW': 13, 'RW': 12, 'AM': 11,
+    'CM': 10, 'DM': 9, 'LWB': 8, 'RWB': 3, 'LB': 7,
+    'RB': 2, 'LCB': 6, 'CB': 5, 'RCB': 4, 'GK': 1, 'UNK': 18
 }
 
 # Apply to starters and subs
