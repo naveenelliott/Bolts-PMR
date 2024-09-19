@@ -70,10 +70,15 @@ with st.form("input_form"):
         if not in_possession or not out_possession or not veo_hyperlink or not coach_notes:
             st.warning('Ensure all fields are filled')
             st.stop()
-        
+
+        mask = (
+            (existing_data['Bolts Team'] == selected_team) &
+            (existing_data['Opposition'] == selected_opp) &
+            (existing_data['Match Date'] == selected_date) &
+            (existing_data['GK Name'] == selected_gk)
+        )
         # Update existing data if match data exists
-        if (existing_data['Bolts Team'].str.contains(selected_team).any() & existing_data['Opposition'].str.contains(selected_opp).any() & 
-            existing_data['Match Date'].str.contains(selected_date).any() & existing_data['GK Name'].str.contains(selected_gk).any()):
+        if mask.any():
             existing_data.loc[index, 'In Possession Goals'] = in_possession
             existing_data.loc[index, 'Out of Possession Goals'] = out_possession
             existing_data.loc[index, 'Veo Hyperlink'] = veo_hyperlink
