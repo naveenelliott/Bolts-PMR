@@ -98,7 +98,7 @@ with st.form("input_form"):
         # Update the Google Sheet
         conn.update(worksheet='GK_Report', data=updated_df)
         st.success("Input updated!")
-        #st.rerun()  # Rerun to refresh the displayed DataFrame
+        st.rerun()  # Rerun to refresh the displayed DataFrame
 
 st.write(f"In Possession Current Goals: {in_possession}")
 st.write(f"Out Possession Current Goals: {out_possession}")
