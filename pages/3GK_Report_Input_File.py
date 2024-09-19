@@ -92,6 +92,7 @@ with st.form("input_form"):
                 'Coach Notes': coach_notes
             }])
             updated_df = pd.concat([existing_data, new_data], ignore_index=True)
+            st.write(updated_df)
         
         # Update the Google Sheet
         conn.update(worksheet='GK_Report', data=updated_df)
