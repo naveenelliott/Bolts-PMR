@@ -229,7 +229,6 @@ xg = xg.loc[(xg['Bolts Team'] == selected_team) & (xg['Opposition'] == selected_
 
 
 # getting Bolts info
-xg_us = xg_copy.loc[(xg_copy['Bolts Team'] == selected_team) & (xg_copy['Match Date'] == selected_date)]
 our_wanted_actions = ['Att Shot Blockd',  'Goal', 'Header on Target', 
                   'Header off Target', 'Shot off Target', 'Shot on Target']
 xg_us = xg_us.loc[xg_us['Action'].isin(our_wanted_actions)]
