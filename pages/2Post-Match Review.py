@@ -356,7 +356,7 @@ st.write(chances_created)
 st.write(final_grade_df)
 for index, row in final_grade_df.iterrows():
     if row['Position'] == 'ATT':
-        temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT') | ((chances_created['Player Full Name'] == row['Player Name']) & (chances_created['Match Date'] == row['Match Date']))]
+        temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT')]
         wanted = ['xG + xA', 'Team']
         temp_event_df = temp_event_df[wanted]
         select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
@@ -364,8 +364,7 @@ for index, row in final_grade_df.iterrows():
         select_temp_df = StrikerEventFunction(temp_event_df, select_temp_df)
         final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
     elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
-        temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'LW') | (chances_created['Primary Position'] == 'RW')  | 
-        ((chances_created['Player Full Name'] == row['Player Name']) & (chances_created['Match Date'] == row['Match Date']))]
+        temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'LW') | (chances_created['Primary Position'] == 'RW')]
         wanted = ['xG + xA', 'Team']
         temp_event_df = temp_event_df[wanted]
         select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
@@ -374,8 +373,7 @@ for index, row in final_grade_df.iterrows():
         final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
     elif (row['Position'] == 'CM') or (row['Position'] == 'RM') or (row['Position'] == 'LM') or (row['Position'] == 'AM'):
         temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'RM') | (chances_created['Primary Position'] == 'LM')
-                                         | (chances_created['Primary Position'] == 'AM') | (chances_created['Primary Position'] == 'CM') |
-                                        ((chances_created['Player Full Name'] == row['Player Name']) & (chances_created['Match Date'] == row['Match Date']))]
+                                         | (chances_created['Primary Position'] == 'AM') | (chances_created['Primary Position'] == 'CM')]
         wanted = ['xG + xA', 'Team']
         temp_event_df = temp_event_df[wanted]
         select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
