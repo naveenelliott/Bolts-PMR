@@ -223,7 +223,7 @@ chances_created['Time'] = chances_created['Time'].apply(time_to_seconds)
 
 # creating a copy for later
 xg_copy = xg.copy()
-
+st.write(xg_copy)
 
 xg = xg.loc[(xg['Bolts Team'] == selected_team) & (xg['Opposition'] == selected_opp) & (xg['Match Date'] == selected_date)]
 
