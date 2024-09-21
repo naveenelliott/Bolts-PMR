@@ -355,7 +355,6 @@ chances_created.fillna(0, inplace=True)
 for index, row in final_grade_df.iterrows():
     if row['Position'] == 'ATT':
         temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT') | (chances_created['Player Full Name'] == row['Player Name'])]
-        st.write(temp_event_df)
         wanted = ['xG + xA', 'Team']
         temp_event_df = temp_event_df[wanted]
         select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
