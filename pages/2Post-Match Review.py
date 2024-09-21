@@ -351,9 +351,6 @@ chances_created.fillna(0, inplace=True)
 
 # Short term fix because something is wrong with getting the positions of attackers
 
-final_grade_df['Match Date'] = selected_date
-st.write(chances_created)
-st.write(final_grade_df)
 for index, row in final_grade_df.iterrows():
     if row['Position'] == 'ATT':
         temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT')]
