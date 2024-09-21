@@ -231,7 +231,7 @@ xg = xg.loc[(xg['Bolts Team'] == selected_team) & (xg['Opposition'] == selected_
 # getting Bolts info
 our_wanted_actions = ['Att Shot Blockd',  'Goal', 'Header on Target', 
                   'Header off Target', 'Shot off Target', 'Shot on Target']
-xg_us = xg_us.loc[xg_us['Action'].isin(our_wanted_actions)]
+xg_us = xg_copy.loc[xg_copy['Action'].isin(our_wanted_actions)]
 
 # combining chances created rows and shots rows and sorting by time
 chances_created = pd.concat([chances_created, xg_us], ignore_index=True)
