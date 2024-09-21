@@ -258,6 +258,7 @@ chances_created = chances_created[['Player Full Name', 'Team', 'Opposition', 'Ma
 # summing the xA and xG for each player
 chances_created = chances_created.groupby(['Player Full Name', 'Team', 'Opposition', 'Match Date'])[['xG', 'xA']].sum()
 chances_created.reset_index(inplace=True)
+st.write(chances_created)
 
 player_data_copy.rename(columns={'Team Name': 'Team'}, inplace=True)
 chances_created = pd.merge(chances_created, player_data_copy[['Player Full Name', 'Team', 'Opposition', 'Match Date', 'mins played', 'Primary Position']], 
