@@ -33,7 +33,6 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
         team_data['Goal Against'] += 1 
 
     team_data['Goal Differential'] = team_data['Goal'] - team_data['Goal Against']
-    st.write(team_data['Goal Differential'])
 
     team_data['Win/Loss/Draw Adjustment'] = 0
     for index, row in team_data.iterrows():
