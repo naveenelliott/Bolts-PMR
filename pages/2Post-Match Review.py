@@ -312,6 +312,8 @@ for index, row in player_data.iterrows():
 
 temp_group = final_grade_df.groupby('Player Name')
 
+st.write(final_grade_df)
+
 # adding the adjustments and getting the primary position
 temp_df = pd.DataFrame(columns=['Player Name', 'Position', 'Final Grade', 'Adjustments'])
 for player_name, group in temp_group:
