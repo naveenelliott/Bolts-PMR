@@ -347,7 +347,6 @@ for player_name, group in temp_group:
 
 final_grade_df = temp_df.copy()
 
-st.write(final_grade_df)
 
 chances_created.fillna(0, inplace=True)
 
@@ -403,7 +402,7 @@ combined_df = combined_df.loc[combined_df['Starts'] != 0]
 combined_df_event = combined_df.copy()
 
 
-
+st.write(combined_df)
 
 grouped = combined_df.groupby('Position Tag')
 
