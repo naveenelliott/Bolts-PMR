@@ -411,9 +411,6 @@ subs = combined_df.loc[combined_df['Starts'] == 0]
 combined_df = combined_df.loc[combined_df['Starts'] != 0]
 combined_df_event = combined_df.copy()
 
-
-st.write(combined_df)
-
 grouped = combined_df.groupby('Position Tag')
 
 # Draw the pitch
