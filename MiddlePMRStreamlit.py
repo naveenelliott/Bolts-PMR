@@ -28,9 +28,9 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
         team_data = team_data.drop(columns=['Opp Effort on Goal'])
 
     if (team == 'Boston Bolts U14 NALB' and 
-    opp == 'Seacoast of Bedford Seacoast United Bedford' and 
-    date == '09/21/2024'):
-    team_data['Goal Against'] += 1 
+        opp == 'Seacoast of Bedford Seacoast United Bedford' and 
+        date == '09/21/2024'):
+        team_data['Goal Against'] += 1 
 
     team_data['Goal Differential'] = team_data['Goal'] - team_data['Goal Against']
 
