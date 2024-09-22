@@ -347,6 +347,8 @@ for player_name, group in temp_group:
 
 final_grade_df = temp_df.copy()
 
+st.write(final_grade_df)
+
 chances_created.fillna(0, inplace=True)
 
 # Short term fix because something is wrong with getting the positions of attackers
