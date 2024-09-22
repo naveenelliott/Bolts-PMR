@@ -90,7 +90,8 @@ if opp_shots == 0:
 bolts_score = player_data['Goal'].astype(int).sum()
 opp_score = player_data['Goal Against'].astype(int).sum()
 
-
+if selected_team == 'Boston Bolts U14 NALB' & selected_opp == 'Seacoast of Bedford Seacoast United Bedford' & selected_date == '09/21/2024':
+    opp_score = opp_score + 1
 
 # getting the competition level from the Veo file
 conn = st.connection('gsheets', type=GSheetsConnection)
