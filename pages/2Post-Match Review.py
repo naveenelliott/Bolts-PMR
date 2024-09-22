@@ -314,7 +314,7 @@ for index, row in player_data.iterrows():
 
 temp_group = final_grade_df.groupby('Player Name')
 
-st.write(final_grade_df)
+
 
 # adding the adjustments and getting the primary position
 temp_df = pd.DataFrame(columns=['Player Name', 'Position', 'Final Grade', 'Adjustments'])
@@ -397,7 +397,7 @@ combined_df = combined_df.drop_duplicates(subset='Player Full Name', keep='first
 del combined_df['Position Tag']
 combined_df = pd.merge(combined_df, final_grade_df, on=['Player Full Name'])
 
-combined_df.loc[combined_df['Player Full Name'] == 'Sy Perkins', 'Position'] = 'GK'
+combined_df.loc[combined_df['Player Full Name'] == 'Sy Perkins', 'Position Tag'] = 'GK'
 
 combined_df['Final Grade'] = np.clip(combined_df['Final Grade'], 5.00, 9.70)
 combined_df['Final Grade'] = combined_df['Final Grade'].astype(float)
