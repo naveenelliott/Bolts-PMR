@@ -510,6 +510,12 @@ for player_name, group in grouped:
     elif group['Position Tag'].iloc[0] == 'CM':
         position = combined_df.loc[combined_df['Position Tag'] == 'CM'].reset_index()
         position['Player Full Name'] = position['Player Full Name'].apply(lambda x: x.split(' ', 1)[1])
+        if (len(position) == 1):
+            # cm
+            circle = Circle((25, 65), 7, edgecolor='black', facecolor='#6bb2e2')
+            ax.add_patch(circle)
+            ax.text(25.5, 68, position['Final Grade'][0], color='black', size=9, ha='center', va='center')
+            ax.text(25, 72.5, position['Player Full Name'][0], color='black', size=6, ha='center', va='center')
         if (len(position) == 2):
             # lcm
             circle = Circle((25, 65), 7, edgecolor='black', facecolor='#6bb2e2')
