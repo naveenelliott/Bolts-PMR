@@ -413,7 +413,7 @@ combined_df_event = combined_df.copy()
 
 grouped = combined_df.groupby('Position Tag')
 
-st.write(combined_df)
+
 
 # Draw the pitch
 fig, ax = plt.subplots(figsize=(5, 5))
