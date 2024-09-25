@@ -413,6 +413,8 @@ combined_df_event = combined_df.copy()
 
 grouped = combined_df.groupby('Position Tag')
 
+st.write(combined_df)
+
 # Draw the pitch
 fig, ax = plt.subplots(figsize=(5, 5))
 pitch = VerticalPitch(line_color='black', line_alpha=0.8)
@@ -495,18 +497,18 @@ for player_name, group in grouped:
         position = combined_df.loc[combined_df['Position Tag'] == 'RM'].reset_index()
         position['Player Full Name'] = position['Player Full Name'].apply(lambda x: x.split(' ', 1)[1])
         # rcm
-        circle = Circle((55, 65), 7, edgecolor='black', facecolor='#6bb2e2')
+        circle = Circle((65, 65), 7, edgecolor='black', facecolor='#6bb2e2')
         ax.add_patch(circle)
-        ax.text(55.5, 63, position['Final Grade'][0], color='black', size=9, ha='center', va='center')
-        ax.text(55, 67.5, position['Player Full Name'][0], color='black', size=6, ha='center', va='center')
+        ax.text(65.5, 63, position['Final Grade'][0], color='black', size=9, ha='center', va='center')
+        ax.text(65, 67.5, position['Player Full Name'][0], color='black', size=6, ha='center', va='center')
     elif group['Position Tag'].iloc[0] == 'LM':
         position = combined_df.loc[combined_df['Position Tag'] == 'LM'].reset_index()
         position['Player Full Name'] = position['Player Full Name'].apply(lambda x: x.split(' ', 1)[1])
         # lcm
-        circle = Circle((25, 65), 7, edgecolor='black', facecolor='#6bb2e2')
+        circle = Circle((15, 65), 7, edgecolor='black', facecolor='#6bb2e2')
         ax.add_patch(circle)
-        ax.text(25.5, 63, position['Final Grade'][0], color='black', size=9, ha='center', va='center')
-        ax.text(25, 67.5, position['Player Full Name'][0], color='black', size=6, ha='center', va='center')
+        ax.text(15.5, 63, position['Final Grade'][0], color='black', size=9, ha='center', va='center')
+        ax.text(15, 67.5, position['Player Full Name'][0], color='black', size=6, ha='center', va='center')
     elif group['Position Tag'].iloc[0] == 'CM':
         position = combined_df.loc[combined_df['Position Tag'] == 'CM'].reset_index()
         position['Player Full Name'] = position['Player Full Name'].apply(lambda x: x.split(' ', 1)[1])
