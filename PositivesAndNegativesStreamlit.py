@@ -72,6 +72,7 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
         first_game = pd.merge(first_game, first_game_event, on=['Team', 'Opposition', 'Match Date'], how='inner')
 
         overall = pd.merge(overall, further_df, on=['Team', 'Opposition', 'Match Date'], how='outer')
+        st.write(overall)
 
         # Get the last 10 games before the selected game
         rolling_games = overall.iloc[max(0, selected_game_idx - 5):selected_game_idx]
