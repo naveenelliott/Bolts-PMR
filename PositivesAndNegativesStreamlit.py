@@ -73,7 +73,7 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
 
         overall = pd.merge(overall, further_df, on=['Team', 'Opposition', 'Match Date'], how='outer')
 
-        overall = overall.loc[overall['Team'] == select_team]
+        overall = overall.loc[overall['Team'] == team_select]
         st.write(overall)
 
         # Get the last 10 games before the selected game
