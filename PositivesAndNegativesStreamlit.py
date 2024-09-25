@@ -64,21 +64,17 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
 
         first_game = overall.loc[(overall['Team'] == team_select) & (overall['Opposition'] == opp_select) 
                                 & (overall['Match Date'] == date_select)]
-        st.write(first_game)
         first_game_event = further_df.loc[(further_df['Team'] == team_select) & (further_df['Opposition'] == opp_select) 
                                 & (further_df['Match Date'] == date_select)]
-        st.write(first_game_event)
         selected_game_idx = first_game.index[0]
         first_game = pd.merge(first_game, first_game_event, on=['Team', 'Opposition', 'Match Date'], how='inner')
 
         overall = pd.merge(overall, further_df, on=['Team', 'Opposition', 'Match Date'], how='outer')
 
         overall = overall.loc[overall['Team'] == team_select]
-        st.write(overall)
 
         # Get the last 10 games before the selected game
         rolling_games = overall.iloc[max(0, selected_game_idx - 5):selected_game_idx]
-        st.write(rolling_games)
 
         # Calculate the weighted average
         rolling_games.drop(columns={'Team', 'Opposition', 'Match Date', 'Unique Opp and Date'}, inplace=True)
