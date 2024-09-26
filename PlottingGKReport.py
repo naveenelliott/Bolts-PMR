@@ -107,7 +107,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
     # Add the trendline to the plot
     fig.add_trace(go.Scatter(
         x=dataframe['Match Date'],
-        y=dataframe[statistic1],
+        y=dataframe[statistic2],
         mode='lines',
         name='Trendline\n(Out of Possession)',
         line=dict(color='black', dash='dash'),
@@ -116,7 +116,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
 
     fig.add_trace(go.Scatter(
         x=dataframe['Match Date'],
-        y=dataframe[statistic2],
+        y=dataframe[statistic1],
         mode='lines',
         name='Trendline\n(In Possession)',
         line=dict(color='gray', dash='dash'),
@@ -124,6 +124,8 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
     ))
 
     # Line plot for the specified statistic over time
+    
+    current_game_shown = False
     for index, row in dataframe.iterrows():
         if row['Match Date'] == date_wanted:
             fig.add_trace(go.Scatter(
@@ -133,7 +135,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
                 name='Current Game\n(Out of Possession)',
                 marker=dict(color='lightblue', size=12, symbol='circle'),
                 showlegend=True,  # Ensure no legend for this point
-                text=row['More Opposition'] + ' (' + str(round(row[statistic1], 4)) + ' )',  # Set hover text to Opposition
+                text=row['More Opposition'] + ' (' + str(round(row[statistic2], 4)) + ' )',  # Set hover text to Opposition
                 hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
             ))
         else:    
@@ -145,7 +147,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
                 line=dict(color='black'),
                 marker=dict(color='black', size=6),
                 showlegend=True,  # Remove legend
-                text=row['More Opposition'] + ' (' + str(round(row[statistic1], 4)) + ' )',  # Set hover text to Opposition
+                text=row['More Opposition'] + ' (' + str(round(row[statistic2], 4)) + ' )',  # Set hover text to Opposition
                 hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
             ))
 
@@ -158,7 +160,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
                 name='Current Game\n(In Possession)',
                 marker=dict(color='red', size=12, symbol='circle'),
                 showlegend=True,  # Ensure no legend for this point
-                text=row['More Opposition'] + ' (' + str(round(row[statistic2], 4)) + ' )',  # Set hover text to Opposition
+                text=row['More Opposition'] + ' (' + str(round(row[statistic1], 4)) + ' )',  # Set hover text to Opposition
                 hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
             ))
         else:    
@@ -170,7 +172,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
                 line=dict(color='gray'),
                 marker=dict(color='gray', size=6),
                 showlegend=True,  # Remove legend
-                text=row['More Opposition'] + ' (' + str(round(row[statistic2], 4)) + ' )',  # Set hover text to Opposition
+                text=row['More Opposition'] + ' (' + str(round(row[statistic1], 4)) + ' )',  # Set hover text to Opposition
                 hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
             ))
 
