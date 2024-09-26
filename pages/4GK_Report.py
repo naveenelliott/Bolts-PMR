@@ -538,6 +538,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     ga_percentile = 100-ga_percentile
 
     ga_grade = ga_percentile * 0.1
+    st.write(ga_grade)
 
     # This is until the claiming part of the grade is fixed
     
