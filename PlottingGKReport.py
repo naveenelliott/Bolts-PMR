@@ -24,6 +24,7 @@ def plottingStatistics(dataframe, statistic, date_wanted):
         showlegend=True  # Show the legend for the trendline
     ))
 
+    current_game_shown = False
     # Line plot for the specified statistic over time
     for index, row in dataframe.iterrows():
         if row['Match Date'] == date_wanted:
@@ -45,10 +46,11 @@ def plottingStatistics(dataframe, statistic, date_wanted):
                 name='Previous Games',
                 line=dict(color='black'),
                 marker=dict(color='black', size=6),
-                showlegend=True,  # Remove legend
+                showlegend=not current_game_shown,  # Remove legend
                 text=row['More Opposition'] + ' (' + str(round(row[statistic], 4)) + ' )',  # Set hover text to Opposition
                 hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
             ))
+            current_game_shown = True
 
 
 
