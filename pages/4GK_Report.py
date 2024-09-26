@@ -241,6 +241,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     xg = xg.sort_values('Event')
 
     xg = xg.loc[~xg['Team'].str.contains('Boston Bolts')]
+    st.write(xg)
     xg_sum = xg['xGA'].sum()
     ga = gk_data['Goal Against'][0].astype(float)
 
