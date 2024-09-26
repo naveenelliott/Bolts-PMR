@@ -241,11 +241,8 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     xg = xg.sort_values('Event')
 
     xg = xg.loc[~xg['Team'].str.contains('Boston Bolts')]
-    st.write(xg)
     xg_sum = xg['xGA'].sum()
-    st.write(xg_sum)
     ga = gk_data['Goal Against'][0].astype(float)
-    st.write(ga)
 
     dimensions = PitchDimensions(pitch_length_metres=100, pitch_width_metres=100)
     fig1 = pfp.make_pitch_figure(
