@@ -152,6 +152,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
             ))
             current_game_shown = True
 
+    current_game_shown = False
     for index, row in dataframe.iterrows():
         if row['Match Date'] == date_wanted:
             fig.add_trace(go.Scatter(
@@ -176,6 +177,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
                 text=row['More Opposition'] + ' (' + str(round(row[statistic1], 4)) + ' )',  # Set hover text to Opposition
                 hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
             ))
+            current_game_shown = True
 
 
 
