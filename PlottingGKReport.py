@@ -109,7 +109,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
         x=dataframe['Match Date'],
         y=dataframe[statistic2],
         mode='lines',
-        name='Trendline\n(Out of Possession)',
+        name='Trendline\n(In Possession)',
         line=dict(color='black', dash='dash'),
         showlegend=True  # Show the legend for the trendline
     ))
@@ -118,7 +118,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
         x=dataframe['Match Date'],
         y=dataframe[statistic1],
         mode='lines',
-        name='Trendline\n(In Possession)',
+        name='Trendline\n(Out Possession)',
         line=dict(color='gray', dash='dash'),
         showlegend=True  # Show the legend for the trendline
     ))
