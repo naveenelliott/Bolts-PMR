@@ -536,7 +536,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     ga_percentile = 100-ga_percentile
 
     ga_grade = ga_percentile * 0.1
-    st.write(ga_grade)
+
 
     # This is until the claiming part of the grade is fixed
     
@@ -605,6 +605,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             'xG': summed_xg
         }
 
+        st.write(summary)
         return summary
 
     # Apply the function to each game
@@ -612,7 +613,6 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
 
     entire_xg = entire_xg.loc[~entire_xg['Team'].str.contains('Boston Bolts')]
-    st.write(entire_xg)
     entire_xg = entire_xg.loc[entire_xg['Player Full Name'] == gk_name]
     entire_xg = entire_xg[entire_xg['Event'].isin(['SOT', 'Goal', 'SOT Inside Post', 'SOT Far Post', 'Goal Inside Post', 'Goal Far Post'])]
     for (team, opponent, matchf_date), group in entire_xg.groupby(['Bolts Team', 'Opposition', 'Match Date']):
