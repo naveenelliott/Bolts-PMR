@@ -527,7 +527,10 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     ga_mean = -0.0794
     ga_std = 0.2558
 
+    st.write(ga)
+    st.write(xg_sum)
     xga_grade = ga - xg_sum
+    st.write(xga_grade)
     z_score = (xga_grade - ga_mean) / ga_std
 
     # Step 2: Convert Z-score to percentile
