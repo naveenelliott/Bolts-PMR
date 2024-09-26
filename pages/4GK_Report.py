@@ -527,10 +527,8 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     ga_mean = -0.0794
     ga_std = 0.2558
 
-    st.write(ga)
-    st.write(xg_sum)
+    
     xga_grade = ga - xg_sum
-    st.write(xga_grade)
     z_score = (xga_grade - ga_mean) / ga_std
 
     # Step 2: Convert Z-score to percentile
@@ -614,6 +612,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
 
     entire_xg = entire_xg.loc[~entire_xg['Team'].str.contains('Boston Bolts')]
+    st.write(entire_xg)
     entire_xg = entire_xg.loc[entire_xg['Player Full Name'] == gk_name]
     entire_xg = entire_xg[entire_xg['Event'].isin(['SOT', 'Goal', 'SOT Inside Post', 'SOT Far Post', 'Goal Inside Post', 'Goal Far Post'])]
     for (team, opponent, matchf_date), group in entire_xg.groupby(['Bolts Team', 'Opposition', 'Match Date']):
