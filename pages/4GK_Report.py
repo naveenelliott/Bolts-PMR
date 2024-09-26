@@ -605,7 +605,6 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             'xG': summed_xg
         }
 
-        st.write(summary)
         return summary
 
     # Apply the function to each game
