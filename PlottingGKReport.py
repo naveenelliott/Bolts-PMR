@@ -107,7 +107,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
     # Add the trendline to the plot
     fig.add_trace(go.Scatter(
         x=dataframe['Match Date'],
-        y=dataframe[statistic2],
+        y=dataframe[statistic1],
         mode='lines',
         name='Trendline\n(In Possession)',
         line=dict(color='black', dash='dash'),
@@ -116,7 +116,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
 
     fig.add_trace(go.Scatter(
         x=dataframe['Match Date'],
-        y=dataframe[statistic1],
+        y=dataframe[statistic2],
         mode='lines',
         name='Trendline\n(Out Possession)',
         line=dict(color='gray', dash='dash'),
