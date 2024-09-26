@@ -173,7 +173,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
                 name='Previous Games\n(Out of Possession)',
                 line=dict(color='gray'),
                 marker=dict(color='gray', size=6),
-                showlegend=True,  # Remove legend
+                showlegend=not current_game_shown,  # Remove legend
                 text=row['More Opposition'] + ' (' + str(round(row[statistic1], 4)) + ' )',  # Set hover text to Opposition
                 hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
             ))
