@@ -17,7 +17,9 @@ def gettingHeatmapGK(pname, opp_name):
 
     folder_path = 'PlayerData LatLong'
 
-    st.write(opp_name)
+
+    if opp_name == 'NE Revolution':
+        opp_name = 'NE Revs'
 
     csv_files = [f for f in os.listdir(folder_path) if f.endswith('.csv')]
     
