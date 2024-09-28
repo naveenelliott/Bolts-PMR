@@ -16,6 +16,8 @@ def gettingHeatmapGK(pname, opp_name):
 
     folder_path = 'PlayerData LatLong'
 
+    st.write(opp_name)
+
     csv_files = [f for f in os.listdir(folder_path) if f.endswith('.csv')]
     
     # Filter filenames that contain both player_name and opp_name
