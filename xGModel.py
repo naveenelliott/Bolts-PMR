@@ -3,7 +3,7 @@ import math
 import statsmodels.formula.api as smf
 import statsmodels.api as sm
 import numpy as np
-import streamlit as st
+
 
 def xGModel(end):
     # getting all the data
