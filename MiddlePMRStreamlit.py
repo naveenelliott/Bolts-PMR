@@ -70,10 +70,10 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
     shots_std = 3
     sa_average= 9.5
     sa_std = 2.5
-    xg_per_shot_bolts_avg = 0.255
-    xg_per_shot_bolts_std = 0.06021
-    xg_per_shot_opp = 0.25
-    xg_per_shot_opp_std = 0.05
+    xg_per_shot_bolts_avg = 0.19652
+    xg_per_shot_bolts_std = 0.09712
+    xg_per_shot_opp = 0.1587
+    xg_per_shot_opp_std = 0.0531
     pass_average = 80
     pass_std = 3.43
 
