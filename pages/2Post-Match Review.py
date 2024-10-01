@@ -937,8 +937,8 @@ bolts_xG = round(team_sum.loc[selected_team], 2)
 opp_xG = round(team_sum.loc[selected_opp], 2)
 
 
-bolts = xg.loc[xg['Team'].str.contains('Boston Bolts')]
-opp = xg.loc[~xg['Team'].str.contains('Boston Bolts')]
+bolts = xg.loc[xg['Team'].str.contains(selected_team)]
+opp = xg.loc[~xg['Team'].str.contains(selected_team)]
 
 bolts_mean = bolts['xG'].mean()
 opp_mean = opp['xG'].mean()
