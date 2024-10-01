@@ -154,6 +154,7 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
     
 
     raw_vals = important.copy()
+    st.write(raw_vals)
     raw_vals.iloc[0] = raw_vals.iloc[0].astype(float).apply(round)
     raw_vals.at[1, 'xG per Shot'] = round(raw_vals.at[1, 'xG per Shot'], 3)
     raw_vals.at[1, 'Opp xG per Shot'] = round(raw_vals.at[1, 'Opp xG per Shot'], 3)
