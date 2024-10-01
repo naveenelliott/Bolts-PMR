@@ -726,8 +726,8 @@ if flag == 1:
         compare_opp = st.selectbox('Choose the Comparison Game:', compare_opps, index=closest_game_index)
     
     xg_overall = xg_copy.copy()
-    bolts_df = xg_overall[xg_overall['Team'].str.contains('Bolts')]
-    opp_df = xg_overall[~xg_overall['Team'].str.contains('Bolts')]
+    bolts_df = xg_overall[xg_overall['Team'].str.contains(selected_team)]
+    opp_df = xg_overall[~xg_overall['Team'].str.contains(selected_team)]
     
     # Group by the desired columns and aggregate
     bolts_agg = bolts_df.groupby(['Bolts Team', 'Match Date', 'Opposition']).agg(
@@ -1501,7 +1501,7 @@ custom_order = ['Shot', 'Blocked', 'SOT', 'SOT Far Post', 'SOT Inside Post', 'Go
 xg_data['Event'] = pd.Categorical(xg_data['Event'], categories=custom_order, ordered=True)
 xg_data = xg_data.sort_values('Event')
 
-bolts_xg_data = xg_data.loc[xg_data['Team'].str.contains('Boston Bolts')]
+bolts_xg_data = xg_data.loc[xg_data['Team'].str.contains(selected_team)]
 
 
 for index, row in bolts_xg_data.iterrows():
@@ -1627,7 +1627,7 @@ custom_order = ['Shot', 'Blocked', 'SOT', 'SOT Far Post', 'SOT Inside Post', 'Go
 xg_data['Event'] = pd.Categorical(xg_data['Event'], categories=custom_order, ordered=True)
 xg_data = xg_data.sort_values('Event')
 
-opp_xg_data = xg_data.loc[~xg_data['Team'].str.contains('Boston Bolts')]
+opp_xg_data = xg_data.loc[~xg_data['Team'].str.contains(selected_team)]
 
 
 for index, row in opp_xg_data.iterrows():
