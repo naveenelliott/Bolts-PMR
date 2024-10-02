@@ -710,6 +710,9 @@ overall_df['Unique Opp and Date'] = overall_df['Opposition'] + ' (' + overall_df
 overall_df.sort_values(by='Date', inplace=True)
 
 closest_before = overall_df.loc[overall_df['Date'] < selected_date]
+
+overall_df.sort_values(by='Date', ascending=False, inplace=True)
+
 compare_opps = list(overall_df['Unique Opp and Date'].unique())
 
 # Check if we have played the same opponent before
