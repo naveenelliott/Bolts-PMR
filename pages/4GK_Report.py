@@ -45,11 +45,8 @@ in_n_out_df.rename(columns={'GK Name': 'Player Full Name',
                             'Coach Notes': 'Vasily Notes', 
                             'Veo Hyperlink': 'Veo Hyperlink GK'}, inplace=True)
 
-st.write(gk_data)
-st.write(in_n_out_df)
 
 gk_info = pd.merge(gk_data, in_n_out_df, on=['Player Full Name', 'Date', 'Opposition', 'Team Name'], how='inner')
-st.write(gk_info)
 gk_info.reset_index(drop=True, inplace=True)
 
 if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
