@@ -679,6 +679,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
                         (game_grade_end['Team'] == team_name) & 
                         (game_grade_end['Opposition'] == opposition)]
         filtered_game_grade = filtered_game_grade.loc[filtered_game_grade['Player Full Name'] == gk_name]
+        st.write(filtered_game_grade)
         game_grade = gettingGameGrade(filtered_game_grade)
 
         final_game_grade = pd.concat([final_game_grade, game_grade], ignore_index=True)
