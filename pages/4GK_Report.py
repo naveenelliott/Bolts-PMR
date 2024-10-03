@@ -648,6 +648,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     game_grade_end = end_overall.copy()
     end_overall.drop(columns=['Save Held', 'Save Parried', 'Successful Cross', 'Unsucc cross GK', 'Total CC'], inplace=True)
     end_overall.rename(columns={'Team Name': 'Team'}, inplace=True)
+    st.write(end_overall)
     game_grade_end.rename(columns={'Team Name': 'Team'}, inplace=True)
 
     if not summary_df.empty:
