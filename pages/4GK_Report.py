@@ -665,7 +665,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     else:
       game_grade_end['xG'] = 0
     game_grade_end['GA-xGA'] = game_grade_end['Goal Against'] - game_grade_end['xG']
-
+    st.write(game_grade_end)
 
     final_game_grade = pd.DataFrame(columns=['Player Full Name', 'Match Date', 'Team', 'Opposition', 'Final Grade'])
 
