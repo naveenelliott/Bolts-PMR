@@ -628,6 +628,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     end_combined_df = overall_df.loc[overall_df['Player Full Name'] == gk_name]
     unique_combinations = end_combined_df[['Team Name', 'Opposition', 'Date']].drop_duplicates()
     unique_combinations.rename(columns={'Date': 'Match Date'}, inplace=True)
+    st.write(unique_combinations)
 
 
     # Step 2: Filter all_games_gk by these combinations
@@ -679,7 +680,6 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         filtered_game_grade = game_grade_end[(game_grade_end['Match Date'] == match_date) & 
                         (game_grade_end['Team'] == team_name) & 
                         (game_grade_end['Opposition'] == opposition)]
-        st.write(filtered_game_grade)
         filtered_game_grade = filtered_game_grade.loc[filtered_game_grade['Player Full Name'] == gk_name]
         game_grade = gettingGameGrade(filtered_game_grade)
 
