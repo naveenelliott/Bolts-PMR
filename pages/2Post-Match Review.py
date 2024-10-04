@@ -113,6 +113,7 @@ folder_path = 'xG Input Files'
 
 # Find all CSV files in the folder
 csv_files = glob.glob(os.path.join(folder_path, '*.csv'))
+st.write(csv_files)
 
 # List to hold individual DataFrames
 df_list = []
