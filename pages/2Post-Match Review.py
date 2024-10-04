@@ -113,14 +113,12 @@ folder_path = 'xG Input Files'
 
 # Find all CSV files in the folder
 csv_files = glob.glob(os.path.join(folder_path, '*.csv'))
-st.write(csv_files)
 
 # List to hold individual DataFrames
 df_list = []
 
 # Loop through the CSV files and read them into DataFrames
 for file in csv_files:
-    st.write(file)
     df = pd.read_csv(file)
     df_list.append(df)
 
@@ -713,7 +711,7 @@ overall_df.sort_values(by='Date', inplace=True)
 
 closest_before = overall_df.loc[overall_df['Date'] < selected_date]
 
-overall_df.sort_values(by='Date', ascending=False, inplace=True)
+overall_df.sort_values(by='Date', ascending=True, inplace=True)
 
 compare_opps = list(overall_df['Unique Opp and Date'].unique())
 
