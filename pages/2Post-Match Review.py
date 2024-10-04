@@ -728,14 +728,17 @@ if not played_same_opponent.empty:
 
 if not closest_before.empty:
     flag = 1
+    closest_before.sort_values('Date', ascending=True, inplace=True)
+    closest_before.reset_index(drop=True, inplace=True)
     st.write(closest_before)
-    closest_game = closest_before.iloc[-1]
+    closest_game = closest_before.iloc[0]
     compare_opps.append('5 Game Rolling Avg')
     compare_opps.append('Seasonal Rolling Avg')
 else:
     flag = 0
     
 if flag == 1: 
+    st.write(compare_opps)
     closest_game_index = compare_opps.index(closest_game['Unique Opp and Date'])
     with col3:
         compare_opp = st.selectbox('Choose the Comparison Game:', compare_opps, index=closest_game_index)
