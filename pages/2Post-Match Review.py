@@ -711,7 +711,7 @@ overall_df.sort_values(by='Date', inplace=True)
 
 closest_before = overall_df.loc[overall_df['Date'] < selected_date]
 
-overall_df.sort_values(by='Date', ascending=True, inplace=True)
+overall_df.sort_values(by='Date', ascending=False, inplace=True)
 
 compare_opps = list(overall_df['Unique Opp and Date'].unique())
 
@@ -728,7 +728,7 @@ if not played_same_opponent.empty:
 
 if not closest_before.empty:
     flag = 1
-    closest_before.sort_values('Date', ascending=True, inplace=True)
+    closest_before.sort_values('Date', ascending=False, inplace=True)
     closest_before.reset_index(drop=True, inplace=True)
     st.write(closest_before)
     closest_game = closest_before.iloc[0]
