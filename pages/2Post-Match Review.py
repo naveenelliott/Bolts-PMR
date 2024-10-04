@@ -120,6 +120,7 @@ df_list = []
 
 # Loop through the CSV files and read them into DataFrames
 for file in csv_files:
+    st.write(file)
     df = pd.read_csv(file)
     df_list.append(df)
 
