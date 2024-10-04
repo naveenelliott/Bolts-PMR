@@ -728,6 +728,7 @@ if not played_same_opponent.empty:
 
 if not closest_before.empty:
     flag = 1
+    st.write(closest_before)
     closest_game = closest_before.iloc[-1]
     compare_opps.append('5 Game Rolling Avg')
     compare_opps.append('Seasonal Rolling Avg')
