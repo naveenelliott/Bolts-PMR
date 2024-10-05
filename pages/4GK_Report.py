@@ -653,19 +653,33 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     game_grade_end.rename(columns={'Team Name': 'Team'}, inplace=True)
 
     st.write(summary_df)
-    if not summary_df.empty:
-      end_overall = pd.merge(end_overall, summary_df, on=['Player Full Name', 'Team', 'Opposition', 'Match Date'], how='inner')
-    else:
-      end_overall['xG'] = 0
+    for index, row in end_overall.iterrows():
+      # Check if the current match date exists in summary_df
+      match = summary_df[summary_df['Match Date'] == row['Match Date']]
+      
+      if match.empty:
+          # If no matching date is found, set xG to 0
+          end_overall.at[index, 'xG'] = 0
+      else:
+          # If match found, assign the corresponding xG value from summary_df
+          end_overall.at[index, 'xG'] = match['xG'].values[0]  # Assuming only one row matches
     end_overall['GA-xGA'] = end_overall['Goal Against'] - end_overall['xG']
     del end_overall['Goal Against'], end_overall['xG']
     end_overall = end_overall[end_overall['Match Date'] <= selected_date]
 
-    if not summary_df.empty:
-      game_grade_end = pd.merge(game_grade_end, summary_df, on=['Player Full Name', 'Team', 'Opposition', 'Match Date'], how='inner')
-    else:
-      game_grade_end['xG'] = 0
-    game_grade_end['GA-xGA'] = game_grade_end['Goal Against'] - game_grade_end['xG']
+    for index, row in game_grade_end.iterrows():
+      # Check if the current match date exists in summary_df
+      match = summary_df[summary_df['Match Date'] == row['Match Date']]
+      
+      if match.empty:
+          # If no matching date is found, set xG to 0
+          game_grade_end.at[index, 'xG'] = 0
+      else:
+          # If match found, assign the corresponding xG value from summary_df
+          game_grade_end.at[index, 'xG'] = match['xG'].values[0]  # Assuming only one row matches
+      game_grade_end['GA-xGA'] = game_grade_end['Goal Against'] - game_grade_end['xG']
+      del game_grade_end['Goal Against'], game_grade_end['xG']
+      game_grade_end = game_grade_end[game_grade_end['Match Date'] <= selected_date]
 
     final_game_grade = pd.DataFrame(columns=['Player Full Name', 'Match Date', 'Team', 'Opposition', 'Final Grade'])
 
