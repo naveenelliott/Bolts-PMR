@@ -141,13 +141,13 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
         else:    
             fig.add_trace(go.Scatter(
                 x=[row['Match Date']],
-                y=[row[statistic2]],
+                y=[row[statistic1]],
                 mode='lines+markers',
                 name='Previous Games\n(In Possession)',
                 line=dict(color='black'),
                 marker=dict(color='black', size=6),
                 showlegend=not current_game_shown,  # Remove legend
-                text=row['More Opposition'] + ' (' + str(round(row[statistic2], 4)) + ' )',  # Set hover text to Opposition
+                text=row['More Opposition'] + ' (' + str(round(row[statistic1], 4)) + ' )',  # Set hover text to Opposition
                 hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
             ))
             current_game_shown = True
@@ -162,7 +162,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
                 name='Current Game\n(Out of Possession)',
                 marker=dict(color='red', size=12, symbol='circle'),
                 showlegend=True,  # Ensure no legend for this point
-                text=row['More Opposition'] + ' (' + str(round(row[statistic1], 4)) + ' )',  # Set hover text to Opposition
+                text=row['More Opposition'] + ' (' + str(round(row[statistic2], 4)) + ' )',  # Set hover text to Opposition
                 hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
             ))
         else:    
@@ -174,7 +174,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
                 line=dict(color='gray'),
                 marker=dict(color='gray', size=6),
                 showlegend=not current_game_shown,  # Remove legend
-                text=row['More Opposition'] + ' (' + str(round(row[statistic1], 4)) + ' )',  # Set hover text to Opposition
+                text=row['More Opposition'] + ' (' + str(round(row[statistic2], 4)) + ' )',  # Set hover text to Opposition
                 hoverinfo='text'  # Display only the text (Opposition) in the hover tooltip
             ))
             current_game_shown = True
@@ -230,7 +230,6 @@ def gettingGameGrade(dataframe):
     dataframe['Total Saves'] = dataframe['Save Held'] + dataframe['Save Parried']
     dataframe['SOT Against'] = dataframe['Save Held'] + dataframe['Save Parried'] + dataframe['Goal Against']
 
-    st.write(dataframe)
 
     mins_played = dataframe.at[0, 'mins played']
     
