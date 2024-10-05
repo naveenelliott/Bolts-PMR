@@ -678,7 +678,6 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
           # If match found, assign the corresponding xG value from summary_df
           game_grade_end.at[index, 'xG'] = match['xG'].values[0]  # Assuming only one row matches
       game_grade_end['GA-xGA'] = game_grade_end['Goal Against'] - game_grade_end['xG']
-      del game_grade_end['Goal Against'], game_grade_end['xG']
       game_grade_end = game_grade_end[game_grade_end['Match Date'] <= selected_date]
 
     final_game_grade = pd.DataFrame(columns=['Player Full Name', 'Match Date', 'Team', 'Opposition', 'Final Grade'])
