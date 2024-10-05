@@ -627,6 +627,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     end_combined_df = overall_df.loc[overall_df['Player Full Name'] == gk_name]
     unique_combinations = end_combined_df[['Team Name', 'Opposition', 'Date']].drop_duplicates()
+    st.write(unique_combinations)
     unique_combinations.rename(columns={'Date': 'Match Date'}, inplace=True)
 
 
