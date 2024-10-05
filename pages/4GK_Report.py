@@ -652,6 +652,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     end_overall.rename(columns={'Team Name': 'Team'}, inplace=True)
     game_grade_end.rename(columns={'Team Name': 'Team'}, inplace=True)
 
+    st.write(summary_df)
     if not summary_df.empty:
       end_overall = pd.merge(end_overall, summary_df, on=['Player Full Name', 'Team', 'Opposition', 'Match Date'], how='inner')
     else:
