@@ -230,6 +230,8 @@ def gettingGameGrade(dataframe):
     dataframe['Total Saves'] = dataframe['Save Held'] + dataframe['Save Parried']
     dataframe['SOT Against'] = dataframe['Save Held'] + dataframe['Save Parried'] + dataframe['Goal Against']
 
+    st.write(dataframe)
+
     mins_played = dataframe.at[0, 'mins played']
     
     
