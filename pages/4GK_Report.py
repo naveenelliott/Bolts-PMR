@@ -629,7 +629,6 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     unique_combinations = end_combined_df[['Team Name', 'Opposition', 'Date']].drop_duplicates()
     unique_combinations.rename(columns={'Date': 'Match Date'}, inplace=True)
     unique_combinations = unique_combinations.loc[unique_combinations['Match Date'] <= selected_date]
-    st.write(unique_combinations)
 
     # Step 2: Filter all_games_gk by these combinations
     end_overall = all_games_gk.merge(unique_combinations, on=['Team Name', 'Opposition', 'Match Date'], how='inner')
@@ -647,12 +646,10 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     end_overall['Total GK'] = (end_overall['Ground GK'] + end_overall['Unsucc Ground'])
     end_overall['GK %'] = (end_overall['Ground GK']/end_overall['Total GK']) * 100
     game_grade_end = end_overall.copy()
-    st.write(game_grade_end)
     end_overall.drop(columns=['Save Held', 'Save Parried', 'Successful Cross', 'Unsucc cross GK', 'Total CC'], inplace=True)
     end_overall.rename(columns={'Team Name': 'Team'}, inplace=True)
     game_grade_end.rename(columns={'Team Name': 'Team'}, inplace=True)
 
-    st.write(summary_df)
     for index, row in end_overall.iterrows():
       # Check if the current match date exists in summary_df
       match = summary_df[summary_df['Match Date'] == row['Match Date']]
