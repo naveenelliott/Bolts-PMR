@@ -629,6 +629,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     unique_combinations = end_combined_df[['Team Name', 'Opposition', 'Date']].drop_duplicates()
     st.write(unique_combinations)
     unique_combinations.rename(columns={'Date': 'Match Date'}, inplace=True)
+    unique_combinations = unique_combinations.loc[unique_combinations['Match Date' <= selected_date]]
 
 
     # Step 2: Filter all_games_gk by these combinations
