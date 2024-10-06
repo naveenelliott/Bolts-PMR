@@ -174,7 +174,7 @@ full_actions_copy = full_actions.copy()
 full_actions_copy2 = full_actions.copy()
 
 # these are the ideal columns
-cols = ['Player Full Name', 'Team', 'Match Date', 'Opposition', 'Action', 'Time', 'Video Link']
+cols = ['Player Full Name', 'Team', 'Match Date', 'Opposition', 'Action', 'Time', 'Video Link', 'Period']
 xg_actions = actions[cols]
 
 # these are the shots we want
