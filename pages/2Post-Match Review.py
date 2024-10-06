@@ -231,6 +231,7 @@ xg_copy = xg.copy()
 
 
 xg = xg.loc[(xg['Bolts Team'] == selected_team) & (xg['Opposition'] == selected_opp) & (xg['Match Date'] == selected_date)]
+st.write(xg)
 
 
 # getting Bolts info
