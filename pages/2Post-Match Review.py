@@ -187,8 +187,8 @@ xg_actions.rename(columns={'Team': 'Bolts Team'}, inplace=True)
 
 # if the opponent shots are 0, we factor in blocked shots
 # if they aren't 0, then we don't factor in blocked shots
-if temp_shots != 0:
-    xg_actions = xg_actions.loc[xg_actions['Action'] != 'Blocked Shot'].reset_index(drop=True)
+#if temp_shots != 0:
+#    xg_actions = xg_actions.loc[xg_actions['Action'] != 'Blocked Shot'].reset_index(drop=True)
 
 # this is handeling duplicated PlayerStatData shots 
 temp_df = pd.DataFrame(columns=xg_actions.columns)
