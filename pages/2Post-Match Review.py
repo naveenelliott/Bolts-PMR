@@ -205,7 +205,7 @@ for index in range(len(xg_actions) - 1):
 
 # this is a copy with the removed duplicated PSD shots
 actions_new = xg_actions.copy()
-actions_new = actions_new.drop(remove_indexes).reset_index(drop=True) 
+#actions_new = actions_new.drop(remove_indexes).reset_index(drop=True) 
 
 fc_python['Match Date'] = pd.to_datetime(fc_python['Match Date']).dt.strftime('%m/%d/%Y')
 
