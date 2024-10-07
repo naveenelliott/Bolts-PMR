@@ -726,6 +726,8 @@ if not played_same_opponent.empty:
     same_opponent = played_same_opponent['Unique Opp and Date'].iloc[0]
     if same_opponent not in compare_opps:
         compare_opps = [same_opponent] + compare_opps
+else:
+    same_opponent = 'None'
 
 if not closest_before.empty:
     flag = 1
