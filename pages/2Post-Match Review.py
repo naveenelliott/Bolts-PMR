@@ -703,7 +703,7 @@ with col1:
 
 # getting the overall df with all teams, dates, and opposition
 overall_df = st.session_state['overall_df']
-overall_df = overall_df.loc[(overall_df['Team Name'] == selected_team) & (overall_df['Opposition'] != selected_opp) & (overall_df['Date'] != selected_date)]
+overall_df = overall_df.loc[(overall_df['Team Name'] == selected_team) & (overall_df['Date'] != selected_date)]
 # creating a unique opposition and date identifier
 overall_df['Unique Opp and Date'] = overall_df['Opposition'] + ' (' + overall_df['Date'] + ')'
 # sorting by date
