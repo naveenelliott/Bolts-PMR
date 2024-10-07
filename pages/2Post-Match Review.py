@@ -717,7 +717,6 @@ compare_opps = list(overall_df['Unique Opp and Date'].unique())
 
 # Check if we have played the same opponent before
 played_same_opponent = overall_df.loc[overall_df['Opposition'] == selected_opp].reset_index(drop=True)
-st.write(played_same_opponent)
 
 compare_opps = compare_opps[:5]
 
