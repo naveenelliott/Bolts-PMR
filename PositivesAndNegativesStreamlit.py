@@ -40,6 +40,7 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
         
         
         product = pd.concat([first_game, second_game], ignore_index=True)
+        st.write(product)
         percent_change = (product.iloc[0, 2:] - product.iloc[1, 2:]) / product.iloc[1, 2:] * 100
         percent_change = percent_change.replace([np.inf, -np.inf], np.nan).dropna()
         columns_to_negate = ['Goal Against', 'Shots on Target Against', 'Loss of Poss', 'Foul Conceded', 'Opp xG per Shot', 'Time Until Regain']
