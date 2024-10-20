@@ -36,6 +36,7 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
 
         first_game = formatData(first_game)
         second_game = formatData(closest_game)
+        st.write(second_game)
 
         
         
