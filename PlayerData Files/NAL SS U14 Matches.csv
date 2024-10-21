@@ -1,12 +1,64 @@
 session_type,start_time,opponent,bolts team,athlete_name,total_distance_m,total_high_intensity_distance_m,max_speed_kph
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Aidan Fine,8264.645466396616,316.0776159499282,20.771027744293214
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Andrew Spadea,7500.220693064948,463.9018944374643,27.356579921722414
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Charlie Toirac,4150.535364336509,135.11579132892774,21.65099438095093
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Cillian gorham,0.0,0.0,0.0
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Colin O’Malley,4527.721049791017,239.74148329763875,21.342167770385743
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Devan Parmar,4603.384930350551,244.15394285620403,24.45573580169678
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Eamon Carr,4227.386687974192,185.28340743223322,21.41467206001282
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Jack Krantz,4239.833113675502,177.61895359227844,24.706079595565797
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,James Sousa,0.0,0.0,0.0
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Jaxon Gray,6653.739934778239,560.5353467925252,24.90170376777649
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Nathan Lee Bateman,4672.696757235904,173.91649354134756,23.34457859230041
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Nathan Reis,0.0,0.0,0.0
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Samuel Schneeweis,118.21210143619024,0.0,4.963446003913879
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Sawyer Emond,3804.3113380867217,3.884063050186677,17.103420404434203
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Zane Weiner,0.0,0.0,0.0
+MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Z zz CC CC zz    C CC c       Cc  CcC  c. C C Liam Markiewicz,7159.201096004153,385.14738200567604,21.91262384605408
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,Aidan Fine,4669.317287184926,125.55978780058632,20.666376153945922
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,Andrew Spadea,4234.606869549125,150.10704927235273,28.20508125114441
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,Charlie Toirac,3326.1097966953316,90.96995642652571,22.53369584083557
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,Cillian gorham,2469.690171523214,162.72195357749783,21.85807480430603
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,Colin O’Malley,4215.357122932104,350.94190999548084,22.160232164382933
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,Devan Parmar,2211.480379280968,70.92765285077944,19.249812086105347
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,Eamon Carr,1877.5992494386858,46.61718935006164,19.686204093933103
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,Jack Krantz,31.228595013591967,0.0,6.876251900196075
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,James Sousa,0.0,0.0,0.0
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,Jaxon Gray,0.0,0.0,0.0
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,Nathan Lee Bateman,3737.3011103825183,118.18166049084925,21.255983819961546
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,Nathan Reis,1640.4172744202363,18.108033903056878,19.160892007827762
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,Samuel Schneeweis,34.700289920994635,0.0,7.114967966079711
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,Sawyer Emond,2120.7062546519514,0.0,16.41087020874023
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,Zane Weiner,4135.876118819787,96.74163703927032,22.117140026092528
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,Z zz CC CC zz    C CC c       Cc  CcC  c. C C Liam Markiewicz,3924.7083832978674,118.25545468827474,25.61238011741638
+MatchSession,2024-10-13T13:00:00.000Z,Surf Ecnl,Boston Bolts NAL South Shore U14,JD Barrett,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,Aidan Fine,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,Andrew Spadea,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,Charlie Toirac,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,Cillian gorham,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,Colin O’Malley,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,Devan Parmar,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,Eamon Carr,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,Jack Krantz,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,James Sousa,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,Jaxon Gray,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,Nathan Lee Bateman,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,Nathan Reis,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,Samuel Schneeweis,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,Sawyer Emond,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,Zane Weiner,0.0,0.0,0.0
+MatchSession,2024-10-12T21:12:00.000Z,Boston Bolts NAL,Boston Bolts NAL South Shore U14,Z zz CC CC zz    C CC c       Cc  CcC  c. C C Liam Markiewicz,0.0,0.0,0.0
 MatchSession,2024-10-06T16:00:00.000Z,Oakwood sc,Boston Bolts NAL South Shore U14,Aidan Fine,5738.090202228589,147.86778138288062,24.16366777038574
 MatchSession,2024-10-06T16:00:00.000Z,Oakwood sc,Boston Bolts NAL South Shore U14,Andrew Spadea,0.0,0.0,0.0
 MatchSession,2024-10-06T16:00:00.000Z,Oakwood sc,Boston Bolts NAL South Shore U14,Charlie Toirac,6868.244011006975,204.5062907015677,22.073706075668333
 MatchSession,2024-10-06T16:00:00.000Z,Oakwood sc,Boston Bolts NAL South Shore U14,Cillian gorham,5386.936621986032,236.27057868554715,21.474864263534545
 MatchSession,2024-10-06T16:00:00.000Z,Oakwood sc,Boston Bolts NAL South Shore U14,Colin O’Malley,3361.9895554032037,273.97411947759025,21.709476219177244
+MatchSession,2024-10-06T16:00:00.000Z,Oakwood sc,Boston Bolts NAL South Shore U14,Devan Parmar,3551.8715471938394,159.9218458856226,26.160948148727417
+MatchSession,2024-10-06T16:00:00.000Z,Oakwood sc,Boston Bolts NAL South Shore U14,Eamon Carr,5167.949247921774,107.164658039671,20.789496362686158
 MatchSession,2024-10-06T16:00:00.000Z,Oakwood sc,Boston Bolts NAL South Shore U14,JD Barrett,7258.128407496557,567.8422726593429,23.507028070449827
 MatchSession,2024-10-06T16:00:00.000Z,Oakwood sc,Boston Bolts NAL South Shore U14,Jack Krantz,3589.0501591156994,125.25109806118428,23.929056140899654
 MatchSession,2024-10-06T16:00:00.000Z,Oakwood sc,Boston Bolts NAL South Shore U14,James Sousa,5934.967788634018,206.631813443103,22.478976219177245
+MatchSession,2024-10-06T16:00:00.000Z,Oakwood sc,Boston Bolts NAL South Shore U14,Jaxon Gray,0.0,0.0,0.0
 MatchSession,2024-10-06T16:00:00.000Z,Oakwood sc,Boston Bolts NAL South Shore U14,Nathan Lee Bateman,4410.5917201509765,155.33284241548165,19.84831241226196
 MatchSession,2024-10-06T16:00:00.000Z,Oakwood sc,Boston Bolts NAL South Shore U14,Nathan Reis,4713.88719274456,225.65200043069953,22.10893229484558
 MatchSession,2024-10-06T16:00:00.000Z,Oakwood sc,Boston Bolts NAL South Shore U14,Samuel Schneeweis,0.0,0.0,0.0
@@ -18,9 +70,12 @@ MatchSession,2024-10-05T22:30:00.000Z,Ct Rush,Boston Bolts NAL South Shore U14,A
 MatchSession,2024-10-05T22:30:00.000Z,Ct Rush,Boston Bolts NAL South Shore U14,Charlie Toirac,3053.7147727080096,225.1250572968199,22.047371864318848
 MatchSession,2024-10-05T22:30:00.000Z,Ct Rush,Boston Bolts NAL South Shore U14,Cillian gorham,3360.362449954607,143.5120336409379,18.943380117416382
 MatchSession,2024-10-05T22:30:00.000Z,Ct Rush,Boston Bolts NAL South Shore U14,Colin O’Malley,3769.8245949971515,277.44512063170066,22.653737783432007
+MatchSession,2024-10-05T22:30:00.000Z,Ct Rush,Boston Bolts NAL South Shore U14,Devan Parmar,3824.7907841005435,222.76717124231038,24.898284015655516
+MatchSession,2024-10-05T22:30:00.000Z,Ct Rush,Boston Bolts NAL South Shore U14,Eamon Carr,3259.908201652009,192.80942194416195,21.215285997390747
 MatchSession,2024-10-05T22:30:00.000Z,Ct Rush,Boston Bolts NAL South Shore U14,JD Barrett,0.0,0.0,0.0
 MatchSession,2024-10-05T22:30:00.000Z,Ct Rush,Boston Bolts NAL South Shore U14,Jack Krantz,4710.3787312927525,191.62650193901555,24.235488109588623
 MatchSession,2024-10-05T22:30:00.000Z,Ct Rush,Boston Bolts NAL South Shore U14,James Sousa,0.0,0.0,0.0
+MatchSession,2024-10-05T22:30:00.000Z,Ct Rush,Boston Bolts NAL South Shore U14,Jaxon Gray,8.036795061779225,0.0,6.200460039138793
 MatchSession,2024-10-05T22:30:00.000Z,Ct Rush,Boston Bolts NAL South Shore U14,Nathan Lee Bateman,5478.921471037116,171.70470963866057,19.550088174819948
 MatchSession,2024-10-05T22:30:00.000Z,Ct Rush,Boston Bolts NAL South Shore U14,Nathan Reis,3502.405126517807,207.33268868584372,22.7867760887146
 MatchSession,2024-10-05T22:30:00.000Z,Ct Rush,Boston Bolts NAL South Shore U14,Samuel Schneeweis,0.0,0.0,0.0

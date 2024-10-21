@@ -1,4 +1,20 @@
 session_type,start_time,opponent,bolts team,athlete_name,total_distance_m,total_high_intensity_distance_m,max_speed_kph
+MatchSession,2024-10-20T15:00:00.000Z,Westchester,Boston Bolts MLS Next U16,Adlani Rodriguez,0.0,0.0,0.0
+MatchSession,2024-10-20T15:00:00.000Z,Westchester,Boston Bolts MLS Next U16,Benjamin Marro,0.0,0.0,0.0
+MatchSession,2024-10-20T15:00:00.000Z,Westchester,Boston Bolts MLS Next U16,Christian Kence,0.0,0.0,0.0
+MatchSession,2024-10-20T15:00:00.000Z,Westchester,Boston Bolts MLS Next U16,Donovan Eaton,0.0,0.0,0.0
+MatchSession,2024-10-20T15:00:00.000Z,Westchester,Boston Bolts MLS Next U16,Jack Seaborn,0.0,0.0,0.0
+MatchSession,2024-10-20T15:00:00.000Z,Westchester,Boston Bolts MLS Next U16,Julian Martinez,0.0,0.0,0.0
+MatchSession,2024-10-20T15:00:00.000Z,Westchester,Boston Bolts MLS Next U16,Maman Fadi,0.0,0.0,0.0
+MatchSession,2024-10-20T15:00:00.000Z,Westchester,Boston Bolts MLS Next U16,Max Noci,0.0,0.0,0.0
+MatchSession,2024-10-20T15:00:00.000Z,Westchester,Boston Bolts MLS Next U16,Nathaniel Aaron,0.0,0.0,0.0
+MatchSession,2024-10-06T16:30:00.000Z,Montreal,Boston Bolts MLS Next U16,Adlani Rodriguez,0.0,0.0,0.0
+MatchSession,2024-10-06T16:30:00.000Z,Montreal,Boston Bolts MLS Next U16,Aiden,0.0,0.0,0.0
+MatchSession,2024-10-06T16:30:00.000Z,Montreal,Boston Bolts MLS Next U16,Benjamin Stuart,0.0,0.0,0.0
+MatchSession,2024-10-06T16:30:00.000Z,Montreal,Boston Bolts MLS Next U16,Christian Kence,0.0,0.0,0.0
+MatchSession,2024-10-06T16:30:00.000Z,Montreal,Boston Bolts MLS Next U16,Julian Martinez,0.0,0.0,0.0
+MatchSession,2024-10-06T16:30:00.000Z,Montreal,Boston Bolts MLS Next U16,Maman Fadi,0.0,0.0,0.0
+MatchSession,2024-10-06T16:30:00.000Z,Montreal,Boston Bolts MLS Next U16,Max Noci,0.0,0.0,0.0
 MatchSession,2024-09-29T18:15:00.000Z,Met Oval,Boston Bolts MLS Next U16,Adlani Rodriguez,5130.87296881132,259.8638068588024,24.260796232223512
 MatchSession,2024-09-29T18:15:00.000Z,Met Oval,Boston Bolts MLS Next U16,Aiden,5346.644689420853,417.82399411862264,24.87297589302063
 MatchSession,2024-09-29T18:15:00.000Z,Met Oval,Boston Bolts MLS Next U16,Benjamin Stuart,5670.630816483836,263.1600456190056,24.474203767776487
