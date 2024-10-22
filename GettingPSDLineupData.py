@@ -70,10 +70,6 @@ def getting_PSD_lineup_data():
     # Step 4: Apply the function to each group, specifically for players who play more than once during the game (think u13/u14)
     end = end.groupby(['Player Full Name', 'Team Name', 'Date', 'Opposition']).apply(drop_duplicates_within_group).reset_index(drop=True)
 
-    end['Opposition'] = end['Opposition'].replace('Seacoast United', 'Seacoast')
-    end['Opposition'] = end['Opposition'].replace('Westchester', 'FC Westchester')
-    end['Opposition'] = end['Opposition'].replace('FA EURO', 'FA Euro')
-
     date_condition = end['Date'] > '2024-08-01 00:00:00'
 
     # Define the condition for excluding specific Oppositions
