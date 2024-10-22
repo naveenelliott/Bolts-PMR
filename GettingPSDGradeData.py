@@ -63,9 +63,5 @@ def getting_PSD_grade_data():
         
     end = end.drop_duplicates()
 
-    end['Opposition'] = end['Opposition'].replace('Seacoast United', 'Seacoast')
-    end['Opposition'] = end['Opposition'].replace('Westchester', 'FC Westchester')
-    end['Opposition'] = end['Opposition'].replace('FA EURO', 'FA Euro')
-    end['Opposition'] = end['Opposition'].replace('Rochester NY', 'Rochester')
 
     return end
