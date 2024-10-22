@@ -104,10 +104,6 @@ def getting_PSD_team_data():
         
     end = end.drop_duplicates()
 
-    end['Opposition'] = end['Opposition'].replace('Seacoast United', 'Seacoast')
-    end['Opposition'] = end['Opposition'].replace('Westchester', 'FC Westchester')
-    end['Opposition'] = end['Opposition'].replace('FA EURO', 'FA Euro')
-
     end['Date'] = pd.to_datetime(end['Date'], format='%m/%d/%Y')
 
     date_condition = end['Date'] > '2024-08-01 00:00:00'
