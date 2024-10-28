@@ -1,4 +1,21 @@
 session_type,start_time,opponent,bolts team,athlete_name,total_distance_m,total_high_intensity_distance_m,max_speed_kph
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,Aaron Choi,0.0,0.0,0.0
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,Amir Yahalom,0.0,0.0,0.0
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,Benjamin Harry Shapiro,0.0,0.0,0.0
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,Ben Wiseman,0.0,0.0,0.0
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,Daniel Woodward,0.0,0.0,0.0
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,Dylan Furlonge,0.0,0.0,0.0
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,George  Nouaime,0.0,0.0,0.0
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,Henry Wassarman,0.0,0.0,0.0
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,Ian Hecker,0.0,0.0,0.0
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,James Hirsh,0.0,0.0,0.0
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,Maxim Makar,0.0,0.0,0.0
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,Miguel Pereira,0.0,0.0,0.0
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,Owen Zhang,0.0,0.0,0.0
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,Peter Magnuson,0.0,0.0,0.0
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,Sebastian Snibbe,0.0,0.0,0.0
+MatchSession,2024-10-20T19:00:00.000Z,Westchester ,Boston Bolts MLS Next U19,Zach Miles,0.0,0.0,0.0
+MatchSession,2024-10-06T19:00:00.000Z,Montreal,Boston Bolts MLS Next U19,Aaron Choi,0.0,0.0,0.0
 MatchSession,2024-10-06T19:00:00.000Z,Montreal,Boston Bolts MLS Next U19,Adin Pezo,0.0,0.0,0.0
 MatchSession,2024-10-06T19:00:00.000Z,Montreal,Boston Bolts MLS Next U19,Amir Yahalom,0.0,0.0,0.0
 MatchSession,2024-10-06T19:00:00.000Z,Montreal,Boston Bolts MLS Next U19,Ben Wiseman,0.0,0.0,0.0
@@ -10,6 +27,7 @@ MatchSession,2024-10-06T19:00:00.000Z,Montreal,Boston Bolts MLS Next U19,Ian Hec
 MatchSession,2024-10-06T19:00:00.000Z,Montreal,Boston Bolts MLS Next U19,James Hirsh,0.0,0.0,0.0
 MatchSession,2024-10-06T19:00:00.000Z,Montreal,Boston Bolts MLS Next U19,Maxim Makar,0.0,0.0,0.0
 MatchSession,2024-10-06T19:00:00.000Z,Montreal,Boston Bolts MLS Next U19,Miguel Pereira,0.0,0.0,0.0
+MatchSession,2024-10-06T19:00:00.000Z,Montreal,Boston Bolts MLS Next U19,Nicholas,0.0,0.0,0.0
 MatchSession,2024-10-06T19:00:00.000Z,Montreal,Boston Bolts MLS Next U19,Peter Magnuson,0.0,0.0,0.0
 MatchSession,2024-10-06T19:00:00.000Z,Montreal,Boston Bolts MLS Next U19,Sebastian Snibbe,0.0,0.0,0.0
 MatchSession,2024-10-06T19:00:00.000Z,Montreal,Boston Bolts MLS Next U19,Zach Miles,0.0,0.0,0.0

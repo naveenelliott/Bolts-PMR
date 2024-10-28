@@ -1,4 +1,16 @@
 session_type,start_time,opponent,bolts team,athlete_name,total_distance_m,total_high_intensity_distance_m,max_speed_kph
+MatchSession,2024-10-20T17:00:00.000Z,Westchester,Boston Bolts MLS Next U17,Asher Herrmann,0.0,0.0,0.0
+MatchSession,2024-10-20T17:00:00.000Z,Westchester,Boston Bolts MLS Next U17,Brendan Furlonge,0.0,0.0,0.0
+MatchSession,2024-10-20T17:00:00.000Z,Westchester,Boston Bolts MLS Next U17,Finn Van Clief,0.0,0.0,0.0
+MatchSession,2024-10-20T17:00:00.000Z,Westchester,Boston Bolts MLS Next U17,Henry Freeman,0.0,0.0,0.0
+MatchSession,2024-10-20T17:00:00.000Z,Westchester,Boston Bolts MLS Next U17,Jake Ciavarro,0.0,0.0,0.0
+MatchSession,2024-10-20T17:00:00.000Z,Westchester,Boston Bolts MLS Next U17,Jonah Greenblatt,0.0,0.0,0.0
+MatchSession,2024-10-20T17:00:00.000Z,Westchester,Boston Bolts MLS Next U17,Kaio Morais,0.0,0.0,0.0
+MatchSession,2024-10-20T17:00:00.000Z,Westchester,Boston Bolts MLS Next U17,Killian Walsh,0.0,0.0,0.0
+MatchSession,2024-10-20T17:00:00.000Z,Westchester,Boston Bolts MLS Next U17,Logan Moniz,0.0,0.0,0.0
+MatchSession,2024-10-20T17:00:00.000Z,Westchester,Boston Bolts MLS Next U17,Marcus Cooper,0.0,0.0,0.0
+MatchSession,2024-10-20T17:00:00.000Z,Westchester,Boston Bolts MLS Next U17,Sam Cunniffe,0.0,0.0,0.0
+MatchSession,2024-10-20T17:00:00.000Z,Westchester,Boston Bolts MLS Next U17,Vasilian,0.0,0.0,0.0
 MatchSession,2024-10-05T22:30:00.000Z,Valeo,Boston Bolts MLS Next U17,Asher Herrmann,4858.907658463264,196.37153788352578,24.119208057403565
 MatchSession,2024-10-05T22:30:00.000Z,Valeo,Boston Bolts MLS Next U17,Brendan Furlonge,9722.119796262321,495.11194424723334,30.50845113372803
 MatchSession,2024-10-05T22:30:00.000Z,Valeo,Boston Bolts MLS Next U17,Finn Van Clief,9777.348129617973,462.0463458063947,30.390120208740235

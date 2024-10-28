@@ -1,4 +1,12 @@
 session_type,start_time,opponent,bolts team,athlete_name,total_distance_m,total_high_intensity_distance_m,max_speed_kph
+MatchSession,2024-10-26T21:15:00.000Z,Nefc Apex,Boston Bolts NAL South Shore U14,Aidan Fine,7572.274898807728,199.0786561122133,21.749831903457643
+MatchSession,2024-10-26T21:15:00.000Z,Nefc Apex,Boston Bolts NAL South Shore U14,Andrew Spadea,0.0,0.0,0.0
+MatchSession,2024-10-26T21:15:00.000Z,Nefc Apex,Boston Bolts NAL South Shore U14,Charlie Toirac,4437.478401791303,132.70098599936793,20.837376153945925
+MatchSession,2024-10-26T21:15:00.000Z,Nefc Apex,Boston Bolts NAL South Shore U14,Cillian gorham,5160.165495820327,323.9709065166619,23.790888044357295
+MatchSession,2024-10-26T21:15:00.000Z,Nefc Apex,Boston Bolts NAL South Shore U14,Colin O’Malley,4583.971258679836,298.56332044901103,23.110308122634887
+MatchSession,2024-10-26T21:15:00.000Z,Nefc Apex,Boston Bolts NAL South Shore U14,Eamon Carr,3183.553516656719,118.75395153338546,21.207762216567993
+MatchSession,2024-10-26T21:15:00.000Z,Nefc Apex,Boston Bolts NAL South Shore U14,Jack Krantz,1.4814336927439578,0.0,0.6354360035061837
+MatchSession,2024-10-26T21:15:00.000Z,Nefc Apex,Boston Bolts NAL South Shore U14,Z zz CC CC zz    C CC c       Cc  CcC  c. C C Liam Markiewicz,6280.093418806322,184.3861117488514,25.725924041748048
 MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Aidan Fine,8264.645466396616,316.0776159499282,20.771027744293214
 MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Andrew Spadea,7500.220693064948,463.9018944374643,27.356579921722414
 MatchSession,2024-10-19T23:00:00.000Z,Bayside FC,Boston Bolts NAL South Shore U14,Charlie Toirac,4150.535364336509,135.11579132892774,21.65099438095093
