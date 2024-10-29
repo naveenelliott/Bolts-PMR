@@ -741,6 +741,7 @@ else:
 if flag == 1:
     if same_opponent in compare_opps:
         closest_game_index = compare_opps.index(same_opponent)
+        st.write(closest_game_index)
     else:
         closest_game_index = compare_opps.index(closest_game['Unique Opp and Date'])
     
