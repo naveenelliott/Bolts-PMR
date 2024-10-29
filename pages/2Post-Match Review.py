@@ -747,6 +747,7 @@ if flag == 1:
     
     with col3:
         compare_opp = st.selectbox('Choose the Comparison Game:', compare_opps, index=closest_game_index)
+        st.write(compare_opp)
     
     xg_overall = xg_copy.copy()
     bolts_df = xg_overall[xg_overall['Team'].str.contains(selected_team)]
