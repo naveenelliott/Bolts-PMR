@@ -741,13 +741,11 @@ else:
 if flag == 1:
     if same_opponent in compare_opps:
         closest_game_index = compare_opps.index(same_opponent)
-        st.write(closest_game_index)
     else:
         closest_game_index = compare_opps.index(closest_game['Unique Opp and Date'])
     
     with col3:
         compare_opp = st.selectbox('Choose the Comparison Game:', compare_opps, index=closest_game_index)
-        st.write(compare_opp)
     
     xg_overall = xg_copy.copy()
     bolts_df = xg_overall[xg_overall['Team'].str.contains(selected_team)]
