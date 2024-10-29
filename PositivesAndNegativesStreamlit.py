@@ -35,7 +35,6 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
         closest_game = pd.merge(closest_game, closest_game_event, on=['Team', 'Opposition', 'Match Date', 'Unique Opp and Date'], how='inner')
 
         first_game = formatData(first_game)
-        st.write(first_game)
         second_game = formatData(closest_game)
         
         
