@@ -46,6 +46,7 @@ selected_date = st.session_state["selected_date"]
 
 # Getting player grade data and formatting it
 player_data = getting_PSD_grade_data()
+st.write(player_data)
 non_number_columns = ['Player Full Name', 'Team Name', 'Position Tag', 'Match Date', 'Opposition']
 for col in player_data.columns:
     if col not in non_number_columns:
