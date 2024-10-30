@@ -164,6 +164,7 @@ for file in csv_files:
 actions = pd.concat(df_list, ignore_index=True)
 actions['Match Date'] = pd.to_datetime(actions['Match Date']).dt.strftime('%m/%d/%Y')
 actions.loc[actions['Opposition'] == 'St Louis', 'Match Date'] = '12/09/2023'
+st.write(actions)
 
 # creating copies to work on
 full_actions = actions.copy()
