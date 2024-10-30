@@ -274,7 +274,9 @@ chances_created['xG + xA'] = (chances_created['xG + xA']/chances_created['mins p
 
 st.write(chances_created)
 select_event_df = chances_created.loc[(chances_created['Team'] == selected_team) & (chances_created['Opposition'] == selected_opp) & (chances_created['Match Date'] == selected_date)]
-
+st.write(selected_team)
+st.write(selected_opp)
+st.write(selected_date)
 
 
 
