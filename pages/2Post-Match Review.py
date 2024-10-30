@@ -71,7 +71,7 @@ player_data_copy.reset_index(inplace=True)
 player_data_copy['Match Identifier'] = player_data_copy['Team Name'] + ' vs ' + player_data_copy['Opposition'] + ' on ' + player_data_copy['Match Date'].astype(str)
 match_identifiers = st.session_state['match_identifiers']
 player_data_copy = player_data_copy[player_data_copy['Match Identifier'].isin(match_identifiers)]
-st.write(player_data_copy)
+
 
 
 # fromatting for the selected game
@@ -173,6 +173,7 @@ entire_actions = actions.copy()
 
 
 full_actions = full_actions.loc[(full_actions['Team'] == selected_team) & (full_actions['Opposition'] == selected_opp) & (full_actions['Match Date'] == selected_date)].reset_index(drop=True)
+st.write(full_actions)
 full_actions_copy = full_actions.copy()
 full_actions_copy2 = full_actions.copy()
 
