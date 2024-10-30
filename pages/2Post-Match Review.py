@@ -164,17 +164,17 @@ for file in csv_files:
 actions = pd.concat(df_list, ignore_index=True)
 actions['Match Date'] = pd.to_datetime(actions['Match Date']).dt.strftime('%m/%d/%Y')
 actions.loc[actions['Opposition'] == 'St Louis', 'Match Date'] = '12/09/2023'
-st.write(actions)
+
 
 # creating copies to work on
 full_actions = actions.copy()
 entire_actions = actions.copy()
 
 full_actions = full_actions.loc[(full_actions['Team'] == selected_team) & (full_actions['Match Date'] == selected_date)]
-st.write(full_actions)
+
 
 full_actions = full_actions.loc[(full_actions['Team'] == selected_team) & (full_actions['Opposition'] == selected_opp) & (full_actions['Match Date'] == selected_date)].reset_index(drop=True)
-st.write(full_actions)
+
 full_actions_copy = full_actions.copy()
 full_actions_copy2 = full_actions.copy()
 
@@ -277,11 +277,9 @@ chances_created['xG + xA'] = chances_created['xG'] + chances_created['xA']
 # converting this to p90
 chances_created['xG + xA'] = (chances_created['xG + xA']/chances_created['mins played']) * 90
 
-st.write(chances_created)
+
 select_event_df = chances_created.loc[(chances_created['Team'] == selected_team) & (chances_created['Opposition'] == selected_opp) & (chances_created['Match Date'] == selected_date)]
-st.write(selected_team)
-st.write(selected_opp)
-st.write(selected_date)
+
 
 
 
@@ -366,8 +364,7 @@ final_grade_df = temp_df.copy()
 chances_created.fillna(0, inplace=True)
 
 # Short term fix because something is wrong with getting the positions of attackers
-st.write(final_grade_df)
-st.write(select_event_df)
+
 
 for index, row in final_grade_df.iterrows():
     if row['Position'] == 'ATT':
