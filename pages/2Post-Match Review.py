@@ -170,6 +170,8 @@ st.write(actions)
 full_actions = actions.copy()
 entire_actions = actions.copy()
 
+full_actions = full_actions.loc[(full_actions['Team'] == selected_team) & (full_actions['Opposition'] == selected_opp)]
+st.write(full_actions)
 
 full_actions = full_actions.loc[(full_actions['Team'] == selected_team) & (full_actions['Opposition'] == selected_opp) & (full_actions['Match Date'] == selected_date)].reset_index(drop=True)
 st.write(full_actions)
