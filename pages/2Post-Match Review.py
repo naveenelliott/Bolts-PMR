@@ -76,6 +76,7 @@ st.write(player_data_copy)
 
 # fromatting for the selected game
 player_data = player_data.loc[(player_data['Team Name'] == selected_team) & (player_data['Opposition'] == selected_opp) & (player_data['Match Date'] == selected_date)]
+st.write(player_data)
 
 # this gives us the total minutes played and shots for the whole team
 # we will use this information to look at xT per 90 and xG per shot
