@@ -26,6 +26,8 @@ def calculate_threshold(df, quantile, std_multiplier=2, std_adjustment=0.8):
 
 def StrikerEventFunction(event_dataframe, select_event_dataframe):
 
+    st.write(event_dataframe)
+    st.write(select_event_dataframe)
     finishing = select_event_dataframe[['xG + xA']]
     finishing.fillna(0, inplace=True)
 
