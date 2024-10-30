@@ -749,8 +749,6 @@ if flag == 1:
     if same_opponent in compare_opps:
         closest_game_index = compare_opps.index(same_opponent)
     else:
-        st.write(closest_game)
-        st.write(compare_opps)
         closest_game_index = compare_opps.index(closest_game)
     
     with col3:
