@@ -285,7 +285,7 @@ final_grade_df = pd.DataFrame(columns=our_columns)
 # will be tough because the structure is limited to the time limits for each position
 
 for index, row in player_data.iterrows():
-    if row['Position Tag'] == 'ATT': 
+    if row['Position Tag'] == 'ATT':
         temp_df = player_data.loc[[index]]
         end_att = StrikerFunction(temp_df)
         final_grade_df = pd.concat([final_grade_df, end_att], ignore_index=True)
@@ -366,6 +366,7 @@ for index, row in final_grade_df.iterrows():
         temp_event_df = temp_event_df[wanted]
         select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
         select_temp_df = select_temp_df[wanted]
+        st.write(select_temp_df)
         select_temp_df = StrikerEventFunction(temp_event_df, select_temp_df)
         final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
     elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
