@@ -48,7 +48,6 @@ def getting_PSD_top_cat(bolts_team, bolts_opp, bolts_date):
     end['Match Date'] = pd.to_datetime(end['Match Date']).dt.strftime('%m/%d/%Y')
 
     #end = end.loc[end['Starts'] == '1']
-    st.write(end)
     end = end.loc[(end['Team Name'] == bolts_team) & (end['Opposition'] == bolts_opp) & (end['Match Date'] == bolts_date)]
     end = end[['Player Full Name', 'Line Break', 'Pass Completion ', 'Stand. Tackle', 'Tackle', 'Dribble']]
 
