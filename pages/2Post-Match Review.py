@@ -750,9 +750,9 @@ if flag == 1:
         closest_game_index = compare_opps.index(same_opponent)
     else:
         st.write(closest_game)
+        st.write(compare_opps)
         closest_game_index = compare_opps.index(closest_game)
         st.write(closest_game_index)
-        st.write(compare_opp)
     
     with col3:
         compare_opp = st.selectbox('Choose the Comparison Game:', compare_opps, index=closest_game_index)
