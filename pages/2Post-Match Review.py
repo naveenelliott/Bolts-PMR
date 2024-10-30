@@ -70,6 +70,7 @@ player_data_copy.reset_index(inplace=True)
 player_data_copy['Match Identifier'] = player_data_copy['Team Name'] + ' vs ' + player_data_copy['Opposition'] + ' on ' + player_data_copy['Match Date'].astype(str)
 match_identifiers = st.session_state['match_identifiers']
 player_data_copy = player_data_copy[player_data_copy['Match Identifier'].isin(match_identifiers)]
+st.write(player_data_copy)
 
 
 # fromatting for the selected game
