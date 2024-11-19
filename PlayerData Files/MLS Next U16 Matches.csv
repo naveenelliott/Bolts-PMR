@@ -1,9 +1,90 @@
 session_type,start_time,opponent,bolts team,athlete_name,total_distance_m,total_high_intensity_distance_m,max_speed_kph
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Adlani Rodriguez,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Aiden,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Benjamin Stuart,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Christian Kence,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Dean Lundquist,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Donovan Eaton,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Gabriel,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Jack Seaborn,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Julian Martinez,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Max Noci,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Nate Sykora,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Nathaniel Aaron,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Nishant Rajagopalan,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Oscar Robertson,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Reid Aquino,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Thomas Casey,0.0,0.0,0.0
+MatchSession,2024-11-17T21:30:00.000Z,Opponent,Boston Bolts MLS Next U16,Valentín Estevez,0.0,0.0,0.0
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Adlani Rodriguez,9466.801431572949,298.081218479673,26.717039634704587
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Aiden,0.0,0.0,0.0
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Benjamin Stuart,11454.646856855292,695.2421841337718,25.854857992172242
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Christian Kence,0.0,0.0,0.0
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Dean Lundquist,0.0,0.0,0.0
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Donovan Eaton,0.0,0.0,0.0
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Gabriel,9117.843294395976,418.0720640036028,27.37367998695374
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Jack Seaborn,4971.350642708006,130.0434851979623,20.811384080886842
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Julian Martinez,0.0,0.0,0.0
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Max Noci,2985.9341826011396,98.04953805185367,29.321027418136598
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Nate Sykora,0.0,0.0,0.0
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Nathaniel Aaron,7480.129170216718,321.05365123164637,28.068623846054077
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Nishant Rajagopalan,885.2008108827147,85.80648424465595,21.273084211349488
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Oscar Robertson,7676.554721932874,487.455800384828,25.335359973907472
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Reid Aquino,0.0,0.0,0.0
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Thomas Casey,0.0,0.0,0.0
+MatchSession,2024-11-16T16:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Valentín Estevez,10223.441750191643,456.36099023931956,25.072703767776485
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Adlani Rodriguez,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Aiden,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Benjamin Stuart,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Christian Kence,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Dean Lundquist,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Donovan Eaton,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Gabriel,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Jack Seaborn,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Julian Martinez,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Max Noci,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Nate Sykora,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Nathaniel Aaron,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Nishant Rajagopalan,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Oscar Robertson,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Reid Aquino,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Thomas Casey,0.0,0.0,0.0
+MatchSession,2024-11-10T00:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Valentín Estevez,0.0,0.0,0.0
+MatchSession,2024-11-03T17:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Gabriel,3805.0254749183096,269.4356832516788,28.26424801826477
+MatchSession,2024-11-03T17:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Adlani Rodriguez,0.0,0.0,0.0
+MatchSession,2024-11-03T17:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Aiden,0.0,0.0,0.0
+MatchSession,2024-11-03T17:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Benjamin Stuart,10787.994827982315,794.5027221854439,24.219755945205687
+MatchSession,2024-11-03T17:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Christian Kence,0.0,0.0,0.0
+MatchSession,2024-11-03T17:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Dean Lundquist,0.0,0.0,0.0
+MatchSession,2024-11-03T17:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Donovan Eaton,6698.797150019573,482.2323919372905,25.70540422439575
+MatchSession,2024-11-03T17:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Maman Fadi,0.0,0.0,0.0
+MatchSession,2024-11-03T17:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Max Noci,0.0,0.0,0.0
+MatchSession,2024-11-03T17:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Nathaniel Aaron,0.0,0.0,0.0
+MatchSession,2024-11-03T17:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Oscar Robertson,0.0,0.0,0.0
+MatchSession,2024-11-03T17:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Valentín Estevez,0.0,0.0,0.0
+MatchSession,2024-11-03T17:00:00.000Z,Opponent,Boston Bolts MLS Next U16,Will Spaulding,0.0,0.0,0.0
+MatchSession,2024-11-02T17:08:00.000Z,CT Utd,Boston Bolts MLS Next U16,Adlani Rodriguez,0.0,0.0,0.0
+MatchSession,2024-11-02T17:08:00.000Z,CT Utd,Boston Bolts MLS Next U16,Aiden,530.0280318672635,26.740882073320343,23.64895805740356
+MatchSession,2024-11-02T17:08:00.000Z,CT Utd,Boston Bolts MLS Next U16,Benjamin Marro,2082.4727003832513,75.49183862267202,20.672532033920287
+MatchSession,2024-11-02T17:08:00.000Z,CT Utd,Boston Bolts MLS Next U16,Benjamin Stuart,0.0,0.0,0.0
+MatchSession,2024-11-02T17:08:00.000Z,CT Utd,Boston Bolts MLS Next U16,Christian Kence,0.0,0.0,0.0
+MatchSession,2024-11-02T17:08:00.000Z,CT Utd,Boston Bolts MLS Next U16,Dean Lundquist,0.0,0.0,0.0
+MatchSession,2024-11-02T17:08:00.000Z,CT Utd,Boston Bolts MLS Next U16,Donovan Eaton,0.0,0.0,0.0
+MatchSession,2024-11-02T17:08:00.000Z,CT Utd,Boston Bolts MLS Next U16,Gabriel,7578.536284084728,554.6248577046305,27.67532397651672
+MatchSession,2024-11-02T17:08:00.000Z,CT Utd,Boston Bolts MLS Next U16,Jack Seaborn,2521.2541896052303,104.30613692062326,22.919471929550173
+MatchSession,2024-11-02T17:08:00.000Z,CT Utd,Boston Bolts MLS Next U16,Maman Fadi,1750.0664774649965,110.93299230159295,21.70263606262207
+MatchSession,2024-11-02T17:08:00.000Z,CT Utd,Boston Bolts MLS Next U16,Max Noci,3025.608163120355,171.66555101059032,26.28338408088684
+MatchSession,2024-11-02T17:08:00.000Z,CT Utd,Boston Bolts MLS Next U16,Nathaniel Aaron,8061.051522131769,594.6402767785048,27.394199478149414
+MatchSession,2024-11-02T17:08:00.000Z,CT Utd,Boston Bolts MLS Next U16,Oscar Robertson,0.0,0.0,0.0
+MatchSession,2024-11-02T17:08:00.000Z,CT Utd,Boston Bolts MLS Next U16,Valentín Estevez,0.0,0.0,0.0
+MatchSession,2024-11-02T17:08:00.000Z,CT Utd,Boston Bolts MLS Next U16,Will Spaulding,0.0,0.0,0.0
+MatchSession,2024-10-26T23:00:00.000Z,Valeo,Boston Bolts MLS Next U16,Adlani Rodriguez,4481.089906572068,111.72873833260614,23.613731838226315
 MatchSession,2024-10-26T23:00:00.000Z,Valeo,Boston Bolts MLS Next U16,Aiden,9125.874947015238,561.8018763194793,26.807327613830566
 MatchSession,2024-10-26T23:00:00.000Z,Valeo,Boston Bolts MLS Next U16,Benjamin Stuart,113.17459575786492,0.0,5.545187913894654
 MatchSession,2024-10-26T23:00:00.000Z,Valeo,Boston Bolts MLS Next U16,Christian Kence,10567.447020940794,424.48871965939,23.536782033920286
 MatchSession,2024-10-26T23:00:00.000Z,Valeo,Boston Bolts MLS Next U16,Dean Lundquist,9084.54963236949,491.014968435834,27.233117900848388
 MatchSession,2024-10-26T23:00:00.000Z,Valeo,Boston Bolts MLS Next U16,Donovan Eaton,4222.580825200368,138.44079422356046,26.493372190475466
+MatchSession,2024-10-26T23:00:00.000Z,Valeo,Boston Bolts MLS Next U16,Gabriel,0.0,0.0,0.0
 MatchSession,2024-10-26T23:00:00.000Z,Valeo,Boston Bolts MLS Next U16,Julian Martinez,0.0,0.0,0.0
 MatchSession,2024-10-26T23:00:00.000Z,Valeo,Boston Bolts MLS Next U16,Max Noci,4987.005504490316,329.1184333551959,27.47217602348328
 MatchSession,2024-10-26T23:00:00.000Z,Valeo,Boston Bolts MLS Next U16,Nathaniel Aaron,7094.316820699104,407.7219907802179,29.529647300720217

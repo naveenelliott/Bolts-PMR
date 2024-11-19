@@ -1,4 +1,43 @@
 session_type,start_time,opponent,bolts team,athlete_name,total_distance_m,total_high_intensity_distance_m,max_speed_kph
+MatchSession,2024-11-16T14:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Alex Syrett,3700.0057959724263,261.1733176073766,24.48446432876587
+MatchSession,2024-11-16T14:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Andy Zecena,0.0,0.0,0.0
+MatchSession,2024-11-16T14:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Cole Sombronsky,2101.2409119364156,150.6257409643933,26.872649608612058
+MatchSession,2024-11-16T14:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Connor Downey,1360.2053158820354,90.67379039706586,28.704744380950928
+MatchSession,2024-11-16T14:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Damian Pagliuca,5357.994570150773,498.0959058211443,24.83193593215942
+MatchSession,2024-11-16T14:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Drew Crosby,0.0,0.0,0.0
+MatchSession,2024-11-16T14:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Gabriel Juliano,4598.123501898194,400.8151181736789,26.7772315120697
+MatchSession,2024-11-16T14:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Isaac Rodriguez,1400.2732374028642,54.14016118835676,26.9742239112854
+MatchSession,2024-11-16T14:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Jack Barry Greener,1779.6036880579359,69.55129335080304,24.372287979125975
+MatchSession,2024-11-16T14:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Milo Ketnouvong,0.0,0.0,0.0
+MatchSession,2024-11-16T14:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Tiago Manhaes,3307.3294970638076,100.04855466488233,21.768300195693968
+MatchSession,2024-11-16T14:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Vincent Pagliuca,1218.7886009198605,117.30039716700438,22.931784341812136
+MatchSession,2024-11-09T22:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Alex Syrett,0.0,0.0,0.0
+MatchSession,2024-11-09T22:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Andy Zecena,0.0,0.0,0.0
+MatchSession,2024-11-09T22:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Arthur Docarmo,0.0,0.0,0.0
+MatchSession,2024-11-09T22:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Cole Sombronsky,0.0,0.0,0.0
+MatchSession,2024-11-09T22:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Connor Downey,0.0,0.0,0.0
+MatchSession,2024-11-09T22:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Damian Pagliuca,0.0,0.0,0.0
+MatchSession,2024-11-09T22:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Drew Crosby,0.0,0.0,0.0
+MatchSession,2024-11-09T22:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Gabriel Juliano,0.0,0.0,0.0
+MatchSession,2024-11-09T22:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Isaac Rodriguez,0.0,0.0,0.0
+MatchSession,2024-11-09T22:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Jack Barry Greener,0.0,0.0,0.0
+MatchSession,2024-11-09T22:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Milo Ketnouvong,0.0,0.0,0.0
+MatchSession,2024-11-09T22:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Tiago Manhaes,0.0,0.0,0.0
+MatchSession,2024-11-09T22:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Vincent Pagliuca,0.0,0.0,0.0
+MatchSession,2024-10-26T21:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Alex Syrett,3331.7961624325153,174.65837020886954,21.93724801826477
+MatchSession,2024-10-26T21:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Andy Zecena,0.0,0.0,0.0
+MatchSession,2024-10-26T21:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Arthur Docarmo,0.0,0.0,0.0
+MatchSession,2024-10-26T21:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Christian Martinez-Moule,4645.327043866084,136.1714028025606,24.014556140899657
+MatchSession,2024-10-26T21:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Cole Sombronsky,3725.836569773627,192.57231397386414,25.84630779647827
+MatchSession,2024-10-26T21:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Connor Downey,1798.8879363084677,90.03069505724628,22.927679986953734
+MatchSession,2024-10-26T21:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Damian Pagliuca,1733.575179532216,118.77042638530244,22.64450396347046
+MatchSession,2024-10-26T21:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Drew Crosby,0.0,0.0,0.0
+MatchSession,2024-10-26T21:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Gabriel Juliano,4347.360785079458,147.1167619880195,23.008392333984375
+MatchSession,2024-10-26T21:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Isaac Rodriguez,166.42276910275442,23.51903249507627,23.669135736465453
+MatchSession,2024-10-26T21:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Jack Barry Greener,23.817585495636102,0.0,0.0
+MatchSession,2024-10-26T21:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Milo Ketnouvong,0.0,0.0,0.0
+MatchSession,2024-10-26T21:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Tiago Manhaes,0.0,0.0,0.0
+MatchSession,2024-10-26T21:00:00.000Z,Opponent,Boston Bolts MLS Next U15,Vincent Pagliuca,1930.7343544833902,105.95282926580778,24.567570013046264
 MatchSession,2024-10-19T17:00:00.000Z,NYCFC,Boston Bolts MLS Next U15,Alex Syrett,1342.7180316922315,93.9451889066006,19.28674801826477
 MatchSession,2024-10-19T17:00:00.000Z,NYCFC,Boston Bolts MLS Next U15,Andy Zecena,0.0,0.0,0.0
 MatchSession,2024-10-19T17:00:00.000Z,NYCFC,Boston Bolts MLS Next U15,Arthur Docarmo,3783.769770386694,112.43185167393494,28.82683752250671
