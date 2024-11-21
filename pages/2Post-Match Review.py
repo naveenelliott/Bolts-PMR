@@ -277,6 +277,8 @@ chances_created['xG + xA'] = chances_created['xG'] + chances_created['xA']
 # converting this to p90
 chances_created['xG + xA'] = (chances_created['xG + xA']/chances_created['mins played']) * 90
 
+chances_created['Opposition'] = chances_created['Opposition'].str.strip()
+
 st.write(chances_created)
 st.write(selected_team)
 st.write(selected_opp)
