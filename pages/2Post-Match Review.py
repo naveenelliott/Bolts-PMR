@@ -365,6 +365,7 @@ chances_created.fillna(0, inplace=True)
 
 # Short term fix because something is wrong with getting the positions of attackers
 
+st.write(select_event_df)
 
 for index, row in final_grade_df.iterrows():
     if row['Position'] == 'ATT':
