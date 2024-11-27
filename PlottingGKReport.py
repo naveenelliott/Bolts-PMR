@@ -14,7 +14,7 @@ def plottingStatistics(dataframe, statistic, date_wanted):
     dataframe['More Opposition'] = 'vs ' + dataframe['Opposition']
     dataframe['Match Date'] = pd.to_datetime(dataframe['Match Date']).dt.strftime('%m/%d/%Y')
 
-    stat_mean = dataframe['statistic'].mean()
+    stat_mean = dataframe[statistic].mean()
 
     # Add the trendline to the plot
     fig.add_trace(go.Scatter(
