@@ -115,6 +115,9 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
     dataframe['More Opposition'] = 'vs ' + dataframe['Opposition']
     dataframe['Match Date'] = pd.to_datetime(dataframe['Match Date']).dt.strftime('%m/%d/%Y')
 
+    in_poss_mean = dataframe[statistic1].mean()
+    out_poss_mean = dataframe[statistic1].mean()
+
     # Add the trendline to the plot
     fig.add_trace(go.Scatter(
         x=dataframe['Match Date'],
@@ -136,10 +139,20 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
 
     fig.add_trace(go.Scatter(
         x=dataframe['Match Date'],
-        y=[stat_mean] * len(dataframe),  # Create a horizontal line by repeating the average
+        y=[in_poss_mean] * len(dataframe),  # Create a horizontal line by repeating the average
         mode='lines',
         name="Average\n(In Possession)",
         line=dict(color='lightblue', width=2),  # Light blue color for the line
+        showlegend=True,
+        hoverinfo='text' # Show legend for the average line
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=dataframe['Match Date'],
+        y=[out_poss_mean] * len(dataframe),  # Create a horizontal line by repeating the average
+        mode='lines',
+        name="Average\n(Out of Possession)",
+        line=dict(color='red', width=2),  # Light blue color for the line
         showlegend=True,
         hoverinfo='text' # Show legend for the average line
     ))
