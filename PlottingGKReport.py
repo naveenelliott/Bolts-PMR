@@ -28,7 +28,7 @@ def plottingStatistics(dataframe, statistic, date_wanted):
 
     fig.add_trace(go.Scatter(
         x=dataframe['Match Date'],
-        y=[stat_mean] * len(idp_report),  # Create a horizontal line by repeating the average
+        y=[stat_mean] * len(dataframe),  # Create a horizontal line by repeating the average
         mode='lines',
         name="Average",
         line=dict(color='lightblue', width=2),  # Light blue color for the line
