@@ -144,7 +144,6 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
         name="Average\n(In Possession)",
         line=dict(color='lightblue', width=2),  # Light blue color for the line
         showlegend=True,
-        hoverinfo='text' # Show legend for the average line
     ))
 
     fig.add_trace(go.Scatter(
@@ -154,7 +153,6 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
         name="Average\n(Out of Possession)",
         line=dict(color='red', width=2),  # Light blue color for the line
         showlegend=True,
-        hoverinfo='text' # Show legend for the average line
     ))
 
     # Line plot for the specified statistic over time
