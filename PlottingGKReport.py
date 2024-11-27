@@ -14,6 +14,8 @@ def plottingStatistics(dataframe, statistic, date_wanted):
     dataframe['More Opposition'] = 'vs ' + dataframe['Opposition']
     dataframe['Match Date'] = pd.to_datetime(dataframe['Match Date']).dt.strftime('%m/%d/%Y')
 
+    stat_mean = dataframe['statistic'].mean()
+
     # Add the trendline to the plot
     fig.add_trace(go.Scatter(
         x=dataframe['Match Date'],
@@ -22,6 +24,16 @@ def plottingStatistics(dataframe, statistic, date_wanted):
         name='Trendline',
         line=dict(color='black', dash='dash'),
         showlegend=True  # Show the legend for the trendline
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=dataframe['Match Date'],
+        y=[stat_mean] * len(idp_report),  # Create a horizontal line by repeating the average
+        mode='lines',
+        name="Average",
+        line=dict(color='lightblue', width=2),  # Light blue color for the line
+        showlegend=True,
+        hoverinfo='text' # Show legend for the average line
     ))
 
     current_game_shown = False
