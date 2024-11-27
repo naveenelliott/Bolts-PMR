@@ -33,7 +33,6 @@ def plottingStatistics(dataframe, statistic, date_wanted):
         name="Average",
         line=dict(color='lightblue', width=2),  # Light blue color for the line
         showlegend=True,
-        hoverinfo='text' # Show legend for the average line
     ))
 
     current_game_shown = False
@@ -133,6 +132,16 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
         name='Trendline\n(Out Possession)',
         line=dict(color='gray', dash='dash'),
         showlegend=True  # Show the legend for the trendline
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=dataframe['Match Date'],
+        y=[stat_mean] * len(dataframe),  # Create a horizontal line by repeating the average
+        mode='lines',
+        name="Average\n(In Possession)",
+        line=dict(color='lightblue', width=2),  # Light blue color for the line
+        showlegend=True,
+        hoverinfo='text' # Show legend for the average line
     ))
 
     # Line plot for the specified statistic over time
