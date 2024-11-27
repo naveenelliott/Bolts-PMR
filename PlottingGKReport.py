@@ -116,7 +116,7 @@ def plottingInAndOut(dataframe, statistic1, statistic2, date_wanted):
     dataframe['Match Date'] = pd.to_datetime(dataframe['Match Date']).dt.strftime('%m/%d/%Y')
 
     in_poss_mean = dataframe[statistic1].mean()
-    out_poss_mean = dataframe[statistic1].mean()
+    out_poss_mean = dataframe[statistic2].mean()
 
     # Add the trendline to the plot
     fig.add_trace(go.Scatter(
