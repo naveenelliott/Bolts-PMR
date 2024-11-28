@@ -77,8 +77,8 @@ with st.form("input_form"):
             st.stop()
 
         # Optional fields can remain empty
-        summary_of_fall = summary_of_fall if summary_of_fall else "N/A"
-        focus_for_spring = focus_for_spring if focus_for_spring else "N/A"
+        summary_of_fall = summary_of_fall if summary_of_fall else ""
+        focus_for_spring = focus_for_spring if focus_for_spring else ""
 
         mask = (
             (existing_data['Bolts Team'] == selected_team) &
