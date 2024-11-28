@@ -768,7 +768,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     col1, col2 = st.columns(2)
     st.write(summary_of_fall)
-    if summary_of_fall != 'N/A' and focus_for_spring != 'N/A':
+    if not np.isnan(summary_of_fall) and not np.isnan(focus_for_spring):
       with col1:
         st.markdown(
               f"""
