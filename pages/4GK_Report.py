@@ -767,7 +767,6 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     st.plotly_chart(fig)
 
     col1, col2 = st.columns(2)
-    st.write(summary_of_fall)
     if not np.isnan(summary_of_fall) and not np.isnan(focus_for_spring):
       with col1:
         st.markdown(
