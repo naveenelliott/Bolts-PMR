@@ -774,7 +774,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
               <div style="display: flex; flex-direction: column; gap: 10px;">
                   <div style="display: flex; align-items: center;">
                       <div style="margin-left: 10px;">
-                          <span style='font-family: Arial; font-size: 13pt; color: black;'><strong>Summary of Fall:</strong> {coach_notes}</span>
+                          <span style='font-family: Arial; font-size: 13pt; color: black;'><strong>Summary of Fall:</strong> {summary_of_fall}</span>
                       </div>
                   </div>
               </div>
@@ -787,7 +787,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
               <div style="display: flex; flex-direction: column; gap: 10px;">
                   <div style="display: flex; align-items: center;">
                       <div style="margin-left: 10px;">
-                          <span style='font-family: Arial; font-size: 13pt; color: black;'><strong>Focus for Spring:</strong> {coach_notes}</span>
+                          <span style='font-family: Arial; font-size: 13pt; color: black;'><strong>Focus for Spring:</strong> {focus_for_spring}</span>
                       </div>
                   </div>
               </div>
