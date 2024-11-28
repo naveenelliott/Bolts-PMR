@@ -55,6 +55,8 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     out_possession_goals = gk_info['Out of Possession Goals'].iloc[0]
     coach_notes = gk_info['Vasily Notes'].iloc[0]
     url_gk = gk_info['Veo Hyperlink GK'].iloc[0]
+    focus_for_spring = gk_info['Focus for Spring'].iloc[0]
+    summary_of_fall = gk_info['Summary of Fall'].iloc[0]
 
     st.title(f"{gk_name} - Goalkeeper Report ({selected_team} vs {selected_opp})")
 
@@ -763,6 +765,35 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     fig = plottingInAndOut(end_overall, 'In Possession', 'Out of Possession', date_wanted=selected_date)
     st.plotly_chart(fig)
+
+    col1, col2 = st.columns(2)
+    if summary_of_fall != '' and focus_for_spring != '':
+      with col1:
+        st.markdown(
+              f"""
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                  <div style="display: flex; align-items: center;">
+                      <div style="margin-left: 10px;">
+                          <span style='font-family: Arial; font-size: 13pt; color: black;'><strong>Summary of Fall:</strong> {coach_notes}</span>
+                      </div>
+                  </div>
+              </div>
+              """,
+              unsafe_allow_html=True
+          )
+      with col2:
+        st.markdown(
+              f"""
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                  <div style="display: flex; align-items: center;">
+                      <div style="margin-left: 10px;">
+                          <span style='font-family: Arial; font-size: 13pt; color: black;'><strong>Focus for Spring:</strong> {coach_notes}</span>
+                      </div>
+                  </div>
+              </div>
+              """,
+              unsafe_allow_html=True
+          )
 
 else:
     st.title("Goalkeeper Report is NOT AVAILABLE. Please fill out the coach requirements")
