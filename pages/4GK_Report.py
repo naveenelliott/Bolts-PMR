@@ -57,6 +57,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     url_gk = gk_info['Veo Hyperlink GK'].iloc[0]
     focus_for_spring = gk_info['Focus for Spring'].iloc[0]
     summary_of_fall = gk_info['Summary of Fall'].iloc[0]
+    st.write(summary_of_fall)
 
     st.title(f"{gk_name} - Goalkeeper Report ({selected_team} vs {selected_opp})")
 
