@@ -63,13 +63,20 @@ with st.form("input_form"):
     out_possession = st.text_input("Out of Possession:", value=out_possession)
     veo_hyperlink = st.text_input("Veo Hyperlink:", value=veo_hyperlink)
     coach_notes = st.text_input("Coach Notes:", value=coach_notes)
+    fall_summary = st.text_area("Summary of Fall (Optional):", value="")
+    spring_focus = st.text_area("Focus for Spring (Optional):", value="")
+    
     submit_button = st.form_submit_button(label='Save')
 
     if submit_button:
-        # Ensure all fields are filled
+        # Ensure all required fields are filled
         if not in_possession or not out_possession or not veo_hyperlink or not coach_notes:
-            st.warning('Ensure all fields are filled')
+            st.warning('Ensure all required fields are filled')
             st.stop()
+
+        # Optional fields can remain empty
+        fall_summary = fall_summary if fall_summary else "N/A"
+        spring_focus = spring_focus if spring_focus else "N/A"
 
         mask = (
             (existing_data['Bolts Team'] == selected_team) &
@@ -83,6 +90,8 @@ with st.form("input_form"):
             existing_data.loc[index, 'Out of Possession Goals'] = out_possession
             existing_data.loc[index, 'Veo Hyperlink'] = veo_hyperlink
             existing_data.loc[index, 'Coach Notes'] = coach_notes
+            existing_data.loc[index, 'Summary of Fall'] = fall_summary
+            existing_data.loc[index, 'Focus for Spring'] = spring_focus
             updated_df = existing_data.copy()
         else:
             # Add new data if match data does not exist
@@ -94,18 +103,23 @@ with st.form("input_form"):
                 'In Possession Goals': in_possession, 
                 'Out of Possession Goals': out_possession,
                 'Veo Hyperlink': veo_hyperlink,
-                'Coach Notes': coach_notes
+                'Coach Notes': coach_notes,
+                'Summary of Fall': fall_summary,
+                'Focus for Spring': spring_focus
             }])
             updated_df = pd.concat([existing_data, new_data], ignore_index=True)
-            
-        
+
         # Update the Google Sheet
         conn.update(worksheet='GK_Report', data=updated_df)
         st.success("Input updated!")
         st.rerun()  # Rerun to refresh the displayed DataFrame
 
+# Display current field values
 st.write(f"In Possession Current Goals: {in_possession}")
 st.write(f"Out Possession Current Goals: {out_possession}")
 st.write(f"Veo Hyperlink: {veo_hyperlink}")
 st.write(f"Competition Level: {coach_notes}")
-
+if fall_summary:
+    st.write(f"Summary of Fall: {fall_summary}")
+if spring_focus:
+    st.write(f"Focus for Spring: {spring_focus}")
