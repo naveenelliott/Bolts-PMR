@@ -365,8 +365,6 @@ chances_created.fillna(0, inplace=True)
 
 # Short term fix because something is wrong with getting the positions of attackers
 
-st.write(select_event_df)
-
 for index, row in final_grade_df.iterrows():
     if row['Position'] == 'ATT':
         temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT')]
@@ -374,8 +372,6 @@ for index, row in final_grade_df.iterrows():
         temp_event_df = temp_event_df[wanted]
         select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
         select_temp_df = select_temp_df[wanted]
-        st.write(select_temp_df)
-        st.write(temp_event_df)
         select_temp_df = StrikerEventFunction(temp_event_df, select_temp_df)
         final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
     elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
