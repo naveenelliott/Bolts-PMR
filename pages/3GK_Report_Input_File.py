@@ -65,8 +65,8 @@ with st.form("input_form"):
     out_possession = st.text_input("Out of Possession:", value=out_possession)
     veo_hyperlink = st.text_input("Veo Hyperlink:", value=veo_hyperlink)
     coach_notes = st.text_input("Coach Notes:", value=coach_notes)
-    summary_of_fall = st.text_area("Summary of Fall (Optional):", value=)
-    focus_for_spring = st.text_area("Focus for Spring (Optional):", value="")
+    summary_of_fall = st.text_area("Summary of Fall (Optional):", value=summary_of_fall)
+    focus_for_spring = st.text_area("Focus for Spring (Optional):", value=focus_for_spring)
     
     submit_button = st.form_submit_button(label='Save')
 
