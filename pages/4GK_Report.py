@@ -19,6 +19,7 @@ from PIL import Image, ImageOps
 from streamlit_gsheets import GSheetsConnection
 import numpy as np
 from creating_heatmap_playerData import gettingHeatmapGK
+import math
 
 
 st.set_page_config(page_title='Bolts Post-Match Review App', page_icon='pages/Boston_Bolts.png')
@@ -57,7 +58,6 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     url_gk = gk_info['Veo Hyperlink GK'].iloc[0]
     focus_for_spring = gk_info['Focus for Spring'].iloc[0]
     summary_of_fall = gk_info['Summary of Fall'].iloc[0]
-    st.write(summary_of_fall)
 
     st.title(f"{gk_name} - Goalkeeper Report ({selected_team} vs {selected_opp})")
 
@@ -768,7 +768,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     st.plotly_chart(fig)
 
     col1, col2 = st.columns(2)
-    if not np.isnan(summary_of_fall) and not np.isnan(focus_for_spring):
+    if not math.isnan(summary_of_fall) and not math.isnan(focus_for_spring):
       with col1:
         st.markdown(
               f"""
