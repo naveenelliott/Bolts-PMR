@@ -243,7 +243,7 @@ if selected_team in available_teams:
     st.markdown("""
         <style>
         .scrollable-table {
-            max-height: 200px;
+            max-height: 400px;
             overflow-y: auto;
             display: block;
             white-space: nowrap;
