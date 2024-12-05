@@ -240,7 +240,22 @@ if selected_team in available_teams:
     shot_table_actions.loc[shot_table_actions['Action'] == 'Goal Against', 'Action'] = 'Goal'
     shot_table_actions["Video Link"] = shot_table_actions["Link"].apply(lambda url: f'<a href="{url}" target="_blank">Link</a>')
     shot_table_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
-    st.markdown(shot_table_actions.to_html(escape=False, index=False), unsafe_allow_html=True)
+    st.markdown("""
+        <style>
+        .scrollable-table {
+            max-height: 400px;
+            overflow-y: auto;
+            display: block;
+            white-space: nowrap;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+    
+    st.markdown(f"""
+        <div class="scrollable-table">
+        {shot_table_actions.to_html(escape=False, index=False)}
+        </div>
+    """, unsafe_allow_html=True)
 sys.exit()
 
 fc_python['Match Date'] = pd.to_datetime(fc_python['Match Date']).dt.strftime('%m/%d/%Y')
