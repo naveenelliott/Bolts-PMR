@@ -234,8 +234,8 @@ if selected_team in available_teams:
     opponent_shots = ['Opp Effort on Goal', 'Save Held', 'Save Parried', 'Goal Against']
     shot_table_actions.loc[shot_table_actions['Action'].isin(opponent_shots), 'Team'] = selected_opp
     shot_table_actions.loc[shot_table_actions['Action'].isin(opponent_shots), 'Player'] = np.nan
-    shot_table_actions.loc[shot_table_actions['Action'] == 'Opp Effort on Goal', 'Action'] = 'Shot'
-    shot_table_actions.loc[shot_table_actions['Action'].isin(['Save Held', 'Save Parried']), 'Action'] = 'SOT'
+    shot_table_actions.loc[shot_table_actions['Action'].isin(['Opp Effort on Goal', 'Shot off Target', 'Att Shot Blockd']), 'Action'] = 'Shot'
+    shot_table_actions.loc[shot_table_actions['Action'].isin(['Save Held', 'Save Parried', 'Shot on Target']), 'Action'] = 'SOT'
     shot_table_actions.loc[shot_table_actions['Action'] == 'Goal Against', 'Action'] = 'Goal'
     shot_table_actions["Video Link"] = shot_table_actions["Link"].apply(lambda url: f'<a href="{url}" target="_blank">{url}</a>')
     shot_table_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
