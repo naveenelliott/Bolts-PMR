@@ -194,6 +194,7 @@ shot_table_actions = xg_actions.copy()
 available_teams = ['Boston Bolts U13 NALSS']
 
 if selected_team in available_teams:
+    shot_table_actions = shot_table_actions.loc[(shot_table_actions['Team'] == selected_team) & (shot_table_actions['Opposition'] == selected_opp) & (shot_table_actions['Match Date'] == selected_date)].reset_index(drop=True)
     st.write(shot_table_actions)
 
 # renaming for the join
