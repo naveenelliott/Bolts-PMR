@@ -227,7 +227,7 @@ if selected_team in available_teams:
     shot_table_actions.loc[shot_table_actions['Action'] == 'Goals Against', 'Action'] = 'Goal'
     shot_table_actions.drop(columns = {'Match Date', 'Opposition'}, inplace=True)
     st.write(shot_table_actions)
-break
+sys.exit()
 
 fc_python['Match Date'] = pd.to_datetime(fc_python['Match Date']).dt.strftime('%m/%d/%Y')
 
