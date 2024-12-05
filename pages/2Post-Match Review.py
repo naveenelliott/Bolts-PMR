@@ -188,18 +188,6 @@ wanted_actions = ['Att Shot Blockd', 'Blocked Shot', 'Goal', 'Goal Against', 'He
                   'Shot on Target']
 xg_actions = xg_actions.loc[xg_actions['Action'].isin(wanted_actions)].reset_index(drop=True)
 
-shot_table_actions = xg_actions.copy()
-
-# THIS IS SHOT TABLE
-available_teams = ['Boston Bolts U13 NALSS']
-
-if selected_team in available_teams:
-    shot_table_actions = shot_table_actions.loc[(shot_table_actions['Team'] == selected_team) & (shot_table_actions['Opposition'] == selected_opp) & (shot_table_actions['Match Date'] == selected_date)].reset_index(drop=True)
-    opponent_shots = ['Opp Effort on Goal', 'Save Held', 'Save Parried', 'Goals Against']
-    shot_table_actions.loc[shot_table_actions['Action'].isin(opponent_shots), 'Team'] = selected_opp
-    shot_table_actions.drop(columns = {'Match Date'}, inplace=True)
-    st.write(shot_table_actions)
-
 # renaming for the join
 xg_actions.rename(columns={'Team': 'Bolts Team'}, inplace=True)
 
@@ -224,6 +212,21 @@ for index in range(len(xg_actions) - 1):
 # this is a copy with the removed duplicated PSD shots
 actions_new = xg_actions.copy()
 actions_new = actions_new.drop(remove_indexes).reset_index(drop=True) 
+
+shot_table_actions = actions_new.copy()
+
+# THIS IS SHOT TABLE
+available_teams = ['Boston Bolts U13 NALSS']
+
+if selected_team in available_teams:
+    shot_table_actions = shot_table_actions.loc[(shot_table_actions['Team'] == selected_team) & (shot_table_actions['Opposition'] == selected_opp) & (shot_table_actions['Match Date'] == selected_date)].reset_index(drop=True)
+    opponent_shots = ['Opp Effort on Goal', 'Save Held', 'Save Parried', 'Goals Against']
+    shot_table_actions.loc[shot_table_actions['Action'].isin(opponent_shots), 'Team'] = selected_opp
+    shot_table_actions.loc[shot_table_actions['Action'] == 'Opp Effort on Goal', 'Action'] = 'Shot'
+    shot_table_actions.loc[shot_table_actions['Action'].isin(['Save Held', 'Save Parried']), 'Action'] = 'SOT'
+    shot_table_actions.loc[shot_table_actions['Action'] == 'Goals Against', 'Action'] = 'Goal'
+    shot_table_actions.drop(columns = {'Match Date', 'Opposition'}, inplace=True)
+    st.write(shot_table_actions)
 
 fc_python['Match Date'] = pd.to_datetime(fc_python['Match Date']).dt.strftime('%m/%d/%Y')
 
