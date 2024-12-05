@@ -201,13 +201,21 @@ temp_df = pd.DataFrame(columns=xg_actions.columns)
 prime_actions = ['Opp Effort on Goal', 'Shot on Target']
 remove_indexes = []
 for index in range(len(xg_actions) - 1):
-    if xg_actions.loc[index, 'Time'] == xg_actions.loc[index+1, 'Time']:
+    if xg_actions.loc[index, 'Time'] == xg_actions.loc[index + 1, 'Time']:
+        # Concatenate the current and next row based on the matching 'Time'
         temp_df = pd.concat([temp_df, xg_actions.loc[[index]], xg_actions.loc[[index + 1]]], ignore_index=False)
-        bye1 = temp_df.loc[temp_df['Action'].isin(prime_actions)]
-        # these are the indexes we want to remove
+
+        # Ensure 'Goals Against' is prioritized
+        if 'Goals Against' in temp_df['Action'].values:
+            bye1 = temp_df[temp_df['Action'] != 'Goals Against']  # Keep only non-'Goals Against' rows
+        else:
+            bye1 = temp_df[temp_df['Action'].isin(prime_actions)]  # Select rows with prime actions if no 'Goals Against'
+
+        # Append indexes of rows to be removed
         remove_indexes.extend(bye1.index)
-        
-    temp_df = pd.DataFrame(columns=xg_actions.columns)     
+
+    # Reset temp_df for the next iteration
+    temp_df = pd.DataFrame(columns=xg_actions.columns)   
 
 # this is a copy with the removed duplicated PSD shots
 actions_new = xg_actions.copy()
