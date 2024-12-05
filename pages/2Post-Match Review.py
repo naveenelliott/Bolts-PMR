@@ -193,7 +193,7 @@ shot_table_actions = xg_actions.copy()
 # THIS IS SHOT TABLE
 available_teams = ['Boston Bolts U13 NALSS']
 
-if selected_team.isin(available_teams):
+if selected_team in available_teams:
     st.write(shot_table_actions)
 
 # renaming for the join
