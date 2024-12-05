@@ -232,7 +232,7 @@ if selected_team in available_teams:
     shot_table_actions.loc[shot_table_actions['Action'].isin(opponent_shots), 'Bolts Team'] = selected_opp
     shot_table_actions.loc[shot_table_actions['Action'] == 'Opp Effort on Goal', 'Action'] = 'Shot'
     shot_table_actions.loc[shot_table_actions['Action'].isin(['Save Held', 'Save Parried']), 'Action'] = 'SOT'
-    shot_table_actions.loc[shot_table_actions['Action'] == 'Goals Against', 'Action'] = 'Goal'
+    shot_table_actions.loc[shot_table_actions['Action'] == 'Goal Against', 'Action'] = 'Goal'
     shot_table_actions.drop(columns = {'Match Date', 'Opposition'}, inplace=True)
     st.write(shot_table_actions)
 sys.exit()
