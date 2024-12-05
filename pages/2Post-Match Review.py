@@ -237,7 +237,7 @@ if selected_team in available_teams:
     shot_table_actions.loc[shot_table_actions['Action'].isin(['Opp Effort on Goal', 'Shot off Target', 'Att Shot Blockd']), 'Action'] = 'Shot'
     shot_table_actions.loc[shot_table_actions['Action'].isin(['Save Held', 'Save Parried', 'Shot on Target']), 'Action'] = 'SOT'
     shot_table_actions.loc[shot_table_actions['Action'] == 'Goal Against', 'Action'] = 'Goal'
-    shot_table_actions["Video Link"] = shot_table_actions["Link"].apply(lambda url: f'<a href="{url}" target="_blank">{url}</a>')
+    shot_table_actions["Video Link"] = shot_table_actions["Link"].apply(lambda url: f'<a href="{url}" target="_blank">Link</a>')
     shot_table_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
     st.markdown(shot_table_actions.to_html(escape=False, index=False), unsafe_allow_html=True)
 sys.exit()
