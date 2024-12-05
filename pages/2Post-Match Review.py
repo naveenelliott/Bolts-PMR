@@ -228,7 +228,7 @@ available_teams = ['Boston Bolts U13 NALSS']
 
 if selected_team in available_teams:
     shot_table_actions.rename(columns={'Bolts Team': 'Team',
-                                      'Player FUll Name': 'Player'}, inplace=True)
+                                      'Player Full Name': 'Player'}, inplace=True)
     shot_table_actions = shot_table_actions.loc[(shot_table_actions['Team'] == selected_team) & (shot_table_actions['Opposition'] == selected_opp) & (shot_table_actions['Match Date'] == selected_date)].reset_index(drop=True)
     opponent_shots = ['Opp Effort on Goal', 'Save Held', 'Save Parried', 'Goal Against']
     shot_table_actions.loc[shot_table_actions['Action'].isin(opponent_shots), 'Team'] = selected_opp
