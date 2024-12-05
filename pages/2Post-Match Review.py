@@ -256,7 +256,6 @@ if selected_team in available_teams:
         {shot_table_actions.to_html(escape=False, index=False)}
         </div>
     """, unsafe_allow_html=True)
-sys.exit()
 
 fc_python['Match Date'] = pd.to_datetime(fc_python['Match Date']).dt.strftime('%m/%d/%Y')
 
