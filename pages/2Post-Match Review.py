@@ -207,7 +207,7 @@ for index in range(len(xg_actions) - 1):
 
         # Ensure 'Goals Against' is prioritized
         if 'Goals Against' in temp_df['Action'].values:
-            bye1 = temp_df[temp_df['Action'] != 'Goals Against']  # Keep only non-'Goals Against' rows
+            bye1 = temp_df[temp_df['Action'] != 'Goal Against']  # Keep only non-'Goals Against' rows
         else:
             bye1 = temp_df[temp_df['Action'].isin(prime_actions)]  # Select rows with prime actions if no 'Goals Against'
 
@@ -228,7 +228,7 @@ available_teams = ['Boston Bolts U13 NALSS']
 
 if selected_team in available_teams:
     shot_table_actions = shot_table_actions.loc[(shot_table_actions['Bolts Team'] == selected_team) & (shot_table_actions['Opposition'] == selected_opp) & (shot_table_actions['Match Date'] == selected_date)].reset_index(drop=True)
-    opponent_shots = ['Opp Effort on Goal', 'Save Held', 'Save Parried', 'Goals Against']
+    opponent_shots = ['Opp Effort on Goal', 'Save Held', 'Save Parried', 'Goal Against']
     shot_table_actions.loc[shot_table_actions['Action'].isin(opponent_shots), 'Bolts Team'] = selected_opp
     shot_table_actions.loc[shot_table_actions['Action'] == 'Opp Effort on Goal', 'Action'] = 'Shot'
     shot_table_actions.loc[shot_table_actions['Action'].isin(['Save Held', 'Save Parried']), 'Action'] = 'SOT'
