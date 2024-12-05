@@ -187,6 +187,15 @@ wanted_actions = ['Att Shot Blockd', 'Blocked Shot', 'Goal', 'Goal Against', 'He
                   'Header off Target', 'Opp Effort on Goal', 'Save Held', 'Save Parried', 'Shot off Target', 
                   'Shot on Target']
 xg_actions = xg_actions.loc[xg_actions['Action'].isin(wanted_actions)].reset_index(drop=True)
+
+shot_table_actions = xg_actions.copy()
+
+# THIS IS SHOT TABLE
+available_teams = ['Boston Bolts U13 NALSS']
+
+if selected_team.isin(available_teams):
+    st.write(shot_table_actions)
+
 # renaming for the join
 xg_actions.rename(columns={'Team': 'Bolts Team'}, inplace=True)
 
