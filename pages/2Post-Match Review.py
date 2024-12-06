@@ -1133,7 +1133,7 @@ if selected_team in available_teams:
         st.markdown(
             """
             <div style='text-align: center; font-family: Arial; font-size: 13pt; color: black;'>
-                <b>Expected Goals Time Series Chart</b>
+                <b>Shots Time Series Chart</b>
             </div>
             """,
             unsafe_allow_html=True
