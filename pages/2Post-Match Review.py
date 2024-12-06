@@ -1040,18 +1040,18 @@ if selected_team in available_teams:
         if shot_min_actions['Action'][x] == "Goal" and shot_min_actions['Team'][x] == selected_opp:
                 aGoal_xG.append(1)
                 aGoal_min.append(shot_min_actions['Time'][x])
-        elif shot_min_actions['Action'][x] == "Goal" and shot_min_actions['Team'][x]==selected_team:
+        elif shot_min_actions['Action'][x] == "Goal" and shot_min_actions['Team'][x]=='Bolts':
                 hGoal_xG.append(1)
-                hGoal_min.append(xg_data['Time'][x])
+                hGoal_min.append(shot_min_actions['Time'][x])
      
     # Appending the xG value to the plot
     for x in range(len(shot_min_actions['Action'])):
         if shot_min_actions['Team'][x]==selected_opp:
             a_xG.append(1)
-            a_min.append(xg_data['Time'][x])
-        if shot_min_actions['Team'][x]==selected_team:
+            a_min.append(shot_min_actions['Time'][x])
+        if shot_min_actions['Team'][x]=='Bolts':
             h_xG.append(1)
-            h_min.append(xg_data['Time'][x])
+            h_min.append(shot_min_actions['Time'][x])
             
     # sum all of the items in the list for xG
     def nums_cumulative_sum(nums_list):
