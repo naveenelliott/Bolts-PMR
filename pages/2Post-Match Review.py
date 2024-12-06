@@ -238,6 +238,9 @@ if selected_team in available_teams:
     shot_table_actions.loc[shot_table_actions['Action'].isin(['Opp Effort on Goal', 'Shot off Target', 'Att Shot Blockd']), 'Action'] = 'Shot'
     shot_table_actions.loc[shot_table_actions['Action'].isin(['Save Held', 'Save Parried', 'Shot on Target']), 'Action'] = 'SOT'
     shot_table_actions.loc[shot_table_actions['Action'] == 'Goal Against', 'Action'] = 'Goal'
+
+    shot_min_actions = shot_table_actions.copy()
+    
     shot_table_actions["Video Link"] = shot_table_actions["Link"].apply(lambda url: f'<a href="{url}" target="_blank">Link</a>')
     shot_table_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
     st.markdown("""
@@ -1019,125 +1022,129 @@ opp_mean = opp['xG'].mean()
 bolts_player = bolts.groupby('Player Full Name')['xG'].sum()
 max_xg_player = bolts_player.idxmax()
 
-xg_data = xg.sort_values('Time').reset_index(drop=True)
-
-a_xG = [0]
-h_xG = [0]
-a_min = [0]
-h_min = [0]
-hGoal_xG = []
-aGoal_xG = []
-aGoal_min = []
-hGoal_min = []
-
-# Finding the goal marks so that we can add those as points later on
-for x in range(len(xg_data['xG'])):
-    if "Goal" in xg_data['Event'][x] and xg_data['Team'][x] == selected_opp:
-            aGoal_xG.append(xg_data['xG'][x])
-            aGoal_min.append(xg_data['Time'][x])
-    if xg_data['Event'][x] == "Goal" and xg_data['Team'][x]==selected_team:
-            hGoal_xG.append(xg_data['xG'][x])
-            hGoal_min.append(xg_data['Time'][x])
- 
-# Appending the xG value to the plot
-for x in range(len(xg_data['xG'])):
-    if xg_data['Team'][x]==selected_opp:
-        a_xG.append(xg_data['xG'][x])
-        a_min.append(xg_data['Time'][x])
-    if xg_data['Team'][x]==selected_team:
-        h_xG.append(xg_data['xG'][x])
-        h_min.append(xg_data['Time'][x])
+# MAKING MORE CHANGES FOR BIGGER NAL TEAMS
+if selected_team in available_teams:
+    st.write(shot_min_actions)
+else:
+    xg_data = xg.sort_values('Time').reset_index(drop=True)
+    
+    a_xG = [0]
+    h_xG = [0]
+    a_min = [0]
+    h_min = [0]
+    hGoal_xG = []
+    aGoal_xG = []
+    aGoal_min = []
+    hGoal_min = []
+    
+    # Finding the goal marks so that we can add those as points later on
+    for x in range(len(xg_data['xG'])):
+        if "Goal" in xg_data['Event'][x] and xg_data['Team'][x] == selected_opp:
+                aGoal_xG.append(xg_data['xG'][x])
+                aGoal_min.append(xg_data['Time'][x])
+        if xg_data['Event'][x] == "Goal" and xg_data['Team'][x]==selected_team:
+                hGoal_xG.append(xg_data['xG'][x])
+                hGoal_min.append(xg_data['Time'][x])
+     
+    # Appending the xG value to the plot
+    for x in range(len(xg_data['xG'])):
+        if xg_data['Team'][x]==selected_opp:
+            a_xG.append(xg_data['xG'][x])
+            a_min.append(xg_data['Time'][x])
+        if xg_data['Team'][x]==selected_team:
+            h_xG.append(xg_data['xG'][x])
+            h_min.append(xg_data['Time'][x])
+            
+    # sum all of the items in the list for xG
+    def nums_cumulative_sum(nums_list):
+        return [sum(nums_list[:i+1]) for i in range(len(nums_list))]
+    a_cumulative = nums_cumulative_sum(a_xG)
+    h_cumulative = nums_cumulative_sum(h_xG)
+    
+    # Rounding the total xGs
+    a_total = round(a_cumulative[-1],2)
+    h_total = round(h_cumulative[-1],2)
+    
+    # This is for the end of the game
+    a_min.append(95)
+    h_min.append(95)
+    a_cumulative.append(a_total)
+    h_cumulative.append(h_total)
+    
+    # Creating the plot
+    fig, ax = plt.subplots(figsize = (12,5))
+    
+    # Adding the ticks to the plot
+    plt.xticks([0,15,30,45,60,75,90], size = 15)
+    plt.yticks(fontsize=15)
+    
+    # Adding labels
+    plt.xlabel("Minute", size = 20)
+    plt.ylabel("xG", size = 20)
+    ax.xaxis.label.set_color('black')        #setting up X-axis label color to yellow
+    ax.yaxis.label.set_color('black')          #setting up Y-axis label color to blue
+    
+    ax.tick_params(axis='x', colors='black')    #setting up X-axis tick color to red
+    ax.tick_params(axis='y', colors='black')  #setting up Y-axis tick color to black
+    
+    # Setting up the different spines of the plot
+    ax.spines['left'].set_color('black')
+    ax.spines['bottom'].set_color('black')
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False) 
+    
+    # These are the dataframes that contain the minutes and xG
+    a_total = pd.DataFrame(zip(a_min, a_cumulative))
+    h_total = pd.DataFrame(zip(h_min, h_cumulative))
+    # These are the dataframes that take the minutes and the goals
+    aGoal_total = pd.DataFrame(zip(aGoal_min,aGoal_xG))
+    hGoal_total = pd.DataFrame(zip(hGoal_min,hGoal_xG))
+    
+    # adding the goals into the line plot, if there are goals
+    for x in range(len(a_total[0])):
+        # Checking for goals
+        if len(aGoal_total) > 0:
+            for y in range(len(aGoal_total[0])):
+                 if (a_total[0][x] == aGoal_total[0][y]):
+                     aGoal_total[1][y] = a_total[1][x]
+        else:
+            continue
         
-# sum all of the items in the list for xG
-def nums_cumulative_sum(nums_list):
-    return [sum(nums_list[:i+1]) for i in range(len(nums_list))]
-a_cumulative = nums_cumulative_sum(a_xG)
-h_cumulative = nums_cumulative_sum(h_xG)
-
-# Rounding the total xGs
-a_total = round(a_cumulative[-1],2)
-h_total = round(h_cumulative[-1],2)
-
-# This is for the end of the game
-a_min.append(95)
-h_min.append(95)
-a_cumulative.append(a_total)
-h_cumulative.append(h_total)
-
-# Creating the plot
-fig, ax = plt.subplots(figsize = (12,5))
-
-# Adding the ticks to the plot
-plt.xticks([0,15,30,45,60,75,90], size = 15)
-plt.yticks(fontsize=15)
-
-# Adding labels
-plt.xlabel("Minute", size = 20)
-plt.ylabel("xG", size = 20)
-ax.xaxis.label.set_color('black')        #setting up X-axis label color to yellow
-ax.yaxis.label.set_color('black')          #setting up Y-axis label color to blue
-
-ax.tick_params(axis='x', colors='black')    #setting up X-axis tick color to red
-ax.tick_params(axis='y', colors='black')  #setting up Y-axis tick color to black
-
-# Setting up the different spines of the plot
-ax.spines['left'].set_color('black')
-ax.spines['bottom'].set_color('black')
-ax.spines['right'].set_visible(False)
-ax.spines['top'].set_visible(False) 
-
-# These are the dataframes that contain the minutes and xG
-a_total = pd.DataFrame(zip(a_min, a_cumulative))
-h_total = pd.DataFrame(zip(h_min, h_cumulative))
-# These are the dataframes that take the minutes and the goals
-aGoal_total = pd.DataFrame(zip(aGoal_min,aGoal_xG))
-hGoal_total = pd.DataFrame(zip(hGoal_min,hGoal_xG))
-
-# adding the goals into the line plot, if there are goals
-for x in range(len(a_total[0])):
-    # Checking for goals
+    for x in range(len(h_total[0])):
+        if len(hGoal_total) > 0:
+            for y in range(len(hGoal_total[0])):
+                if (h_total[0][x] == hGoal_total[0][y]):
+                    hGoal_total[1][y] = h_total[1][x]
+    
+    # These are the line plots            
+    ax.plot(a_min, a_cumulative, color="black")
+    ax.plot(h_min, h_cumulative, color="#6bb2e2")
+    # These are the scatter plots
     if len(aGoal_total) > 0:
-        for y in range(len(aGoal_total[0])):
-             if (a_total[0][x] == aGoal_total[0][y]):
-                 aGoal_total[1][y] = a_total[1][x]
-    else:
-        continue
-    
-for x in range(len(h_total[0])):
+        ax.scatter(aGoal_total[0], aGoal_total[1], color="black", s=90)
     if len(hGoal_total) > 0:
-        for y in range(len(hGoal_total[0])):
-            if (h_total[0][x] == hGoal_total[0][y]):
-                hGoal_total[1][y] = h_total[1][x]
-
-# These are the line plots            
-ax.plot(a_min, a_cumulative, color="black")
-ax.plot(h_min, h_cumulative, color="#6bb2e2")
-# These are the scatter plots
-if len(aGoal_total) > 0:
-    ax.scatter(aGoal_total[0], aGoal_total[1], color="black", s=90)
-if len(hGoal_total) > 0:
-    ax.scatter(hGoal_total[0], hGoal_total[1], color="#6bb2e2", s=90)
+        ax.scatter(hGoal_total[0], hGoal_total[1], color="#6bb2e2", s=90)
+        
+    # Setting the background colors
+    fig.set_facecolor('white')
+    plt.gca().set_facecolor('white')
     
-# Setting the background colors
-fig.set_facecolor('white')
-plt.gca().set_facecolor('white')
-
-
-with col3: 
-    st.markdown(
-    """
-    <div style='display: flex; flex-direction: column; align-items: center;'>
-        <span style='font-family: Arial; font-size: 13pt; color: black;'><b>Expected Goals Time Series Chart</b></span>
-        <div style='display: flex; justify-content: center;'>
-            <span style='font-family: Arial; font-size: 10pt; color: #6bb2e2;'><b>Bolts xG: {bolts_xG}</b></span>
-            <span>&nbsp;&nbsp;&nbsp;</span> <!-- Add spaces here -->
-            <span style='font-family: Arial; font-size: 10pt; color: black;'><b>{selected_opp} xG: {opp_xG}</b></span>
+    
+    with col3: 
+        st.markdown(
+        """
+        <div style='display: flex; flex-direction: column; align-items: center;'>
+            <span style='font-family: Arial; font-size: 13pt; color: black;'><b>Expected Goals Time Series Chart</b></span>
+            <div style='display: flex; justify-content: center;'>
+                <span style='font-family: Arial; font-size: 10pt; color: #6bb2e2;'><b>Bolts xG: {bolts_xG}</b></span>
+                <span>&nbsp;&nbsp;&nbsp;</span> <!-- Add spaces here -->
+                <span style='font-family: Arial; font-size: 10pt; color: black;'><b>{selected_opp} xG: {opp_xG}</b></span>
+            </div>
         </div>
-    </div>
-    """.format(bolts_xG=bolts_xG, selected_opp=selected_opp, opp_xG=opp_xG),
-    unsafe_allow_html=True
-    )
-    st.pyplot(fig)
+        """.format(bolts_xG=bolts_xG, selected_opp=selected_opp, opp_xG=opp_xG),
+        unsafe_allow_html=True
+        )
+        st.pyplot(fig)
 
 
 
