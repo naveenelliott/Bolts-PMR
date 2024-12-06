@@ -293,7 +293,7 @@ def MiddlePMRStreamlit_NALOlder(team, opp, date, regain_time):
     important['Pass into Oppo Box'] = ((important['Pass into Oppo Box'] - pass_in_18_average) / pass_in_18_std) * 2 + 5
     important['Pass into Oppo Box'] = important['Pass into Oppo Box'].clip(1, 10)
     average_columns = ['Efforts on Goal',
-                       'xG per Shot', 'Opponent xG per Shot', 'Time Until Regain', 'Pass Completion ', 'Pass into Oppo Box']
+                       'Bolts SOT', 'Opponent SOT', 'Time Until Regain', 'Pass Completion ', 'Pass into Oppo Box']
     if 'Opp Effort on Goal' in important.columns:
         average_columns.insert(1, 'Opp Effort on Goal')
     important['Final Rating'] = important[average_columns].mean(axis=1) + total
