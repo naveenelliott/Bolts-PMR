@@ -1037,7 +1037,7 @@ if selected_team in available_teams:
     hGoal_min = []
     
     # Finding the goal marks so that we can add those as points later on
-    for x in range(len(shot_min_actions['xG'])):
+    for x in range(len(shot_min_actions['Action'])):
         if shot_min_actions['Action'][x] == "Goal" and xg_data['Team'][x] == selected_opp:
                 aGoal_xG.append(1)
                 aGoal_min.append(shot_min_actions['Time'][x])
