@@ -12,7 +12,7 @@ from WingerGradeStreamlit import WingerFunction
 from StrikerGradeStreamlit import StrikerFunction
 from GKGradeStreamlit import GKFunction
 import matplotlib.image as mpimg
-from MiddlePMRStreamlit import MiddlePMRStreamlit
+from MiddlePMRStreamlit import MiddlePMRStreamlit, MiddlePMRStreamlit_NALOlder
 from PIL import Image
 from PositivesAndNegativesStreamlit import PositivesAndNegativesStreamlit
 import glob
