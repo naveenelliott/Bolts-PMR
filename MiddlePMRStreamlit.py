@@ -148,7 +148,7 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
     new_order = ['Passes into 18', 'Pass %', 'Shots',
           'xG per Shot', 'Time Until Regain', 'Opp xG per Shot', 'Final Rating']
     if 'Opp Shots' in important.columns:
-        average_columns.insert(4, 'Opp Shots')
+        new_order.insert(4, 'Opp Shots')
     important = important[new_order]
 
     
@@ -345,7 +345,7 @@ def MiddlePMRStreamlit_NALOlder(team, opp, date, regain_time):
     new_order = ['Passes into 18', 'Pass %', 'Shots',
           'Bolts SOT', 'Time Until Regain', 'Opponent SOT', 'Final Rating']
     if 'Opp Shots' in important.columns:
-        average_columns.insert(4, 'Opp Shots')
+        new_order.insert(4, 'Opp Shots')
     important = important[new_order]
 
     
