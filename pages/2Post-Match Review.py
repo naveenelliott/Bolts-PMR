@@ -243,22 +243,7 @@ if selected_team in available_teams:
     
     shot_table_actions["Video Link"] = shot_table_actions["Link"].apply(lambda url: f'<a href="{url}" target="_blank">Link</a>')
     shot_table_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
-    st.markdown("""
-        <style>
-        .scrollable-table {
-            max-height: 200px;
-            overflow-y: auto;
-            display: block;
-            white-space: nowrap;
-        }
-        </style>
-    """, unsafe_allow_html=True)
-    
-    st.markdown(f"""
-        <div class="scrollable-table">
-        {shot_table_actions.to_html(escape=False, index=False)}
-        </div>
-    """, unsafe_allow_html=True)
+
 
 fc_python['Match Date'] = pd.to_datetime(fc_python['Match Date']).dt.strftime('%m/%d/%Y')
 
@@ -1678,313 +1663,331 @@ with col2:
     )
     st.pyplot(fig2)
 
-
-xg_data = xg.copy()
-
-
-custom_order = ['Shot', 'Blocked', 'SOT', 'SOT Far Post', 'SOT Inside Post', 'Goal', 'Goal Far Post', 'Goal Inside Post']
-xg_data['Event'] = pd.Categorical(xg_data['Event'], categories=custom_order, ordered=True)
-xg_data = xg_data.sort_values('Event')
-
-bolts_xg_data = xg_data.loc[xg_data['Team'].str.contains('Boston Bolts')]
-
-dimensions = PitchDimensions(pitch_length_metres=100, pitch_width_metres=100)
-fig1 = pfp.make_pitch_figure(
-    dimensions,
-    figure_height_pixels=475,
-    figure_width_pixels=475
-)
-
-custom_order = ['Shot', 'Blocked', 'SOT', 'SOT Far Post', 'SOT Inside Post', 'Goal', 'Goal Far Post', 'Goal Inside Post']
-xg_data['Event'] = pd.Categorical(xg_data['Event'], categories=custom_order, ordered=True)
-xg_data = xg_data.sort_values('Event')
-
-bolts_xg_data = xg_data.loc[xg_data['Team'].str.contains(selected_team)]
-
-
-for index, row in bolts_xg_data.iterrows():
-    x, y, xG = row['X'], 100-row['Y'], row['xG']
-    hteam = row['Team']
-    player_name = row['Player Full Name']
-    url = row['Video Link']
-
-    if row['Event'] == 'Goal':
-        fig1.add_trace(go.Scatter(
-            x=[x],
-            y=[y],
-            mode='markers+text',
-            marker=dict(
-                size=(xG * 30) + 5,  # Adjusted for Plotly's scaling
-                color='lightblue',
-                symbol='circle'
-            ),
-            name='Goal',
-            showlegend=False,
-            hovertext=f"{player_name}<br>xG: {xG:.2f}",  # Add hover text
-            hoverinfo="text"  # Display hover text
-        ))
-        fig1.add_annotation(
-            x=x,
-            y=y+3,
-            text=f'<a href="{url}" target="_blank" style="color:lightblue;">Link</a>',
-            showarrow=False,
-            font=dict(color="lightblue"),
-            align="center"
-        ) 
-    elif row['Event'] == 'SOT':
-        fig1.add_trace(go.Scatter(
-            x=[x],
-            y=[y],
-            mode='markers',
-            marker=dict(
-                size=(xG * 30) + 5,
-                color='white',
-                line=dict(color='lightblue', width=3),
-                symbol='circle'
-            ),
-            name='SOT',
-            showlegend=False,
-            hovertext=f"{player_name}<br>xG: {xG:.2f}",  # Add hover text
-            hoverinfo="text"  # Display hover text
-        ))
-        fig1.add_annotation(
-            x=x,
-            y=y+3,
-            text=f'<a href="{url}" target="_blank" style="color:lightblue;">Link</a>',
-            showarrow=False,
-            font=dict(color="lightblue"),
-            align="center"
-        ) 
-    else:
-        fig1.add_trace(go.Scatter(
-            x=[x],
-            y=[y],
-            mode='markers',
-            marker=dict(
-                size=(xG * 30) + 5,
-                color='lightblue',
-                symbol='circle-open'
-            ),
-            name='Shot',
-            showlegend=False,
-            hovertext=f"{player_name}<br>xG: {xG:.2f}",  # Add hover text
-            hoverinfo="text"  # Display hover text
+if selected_team in available_teams:
+    with col2:
+        st.markdown("""
+            <style>
+            .scrollable-table {
+                max-height: 200px;
+                overflow-y: auto;
+                display: block;
+                white-space: nowrap;
+            }
+            </style>
+        """, unsafe_allow_html=True)
+        
+        st.markdown(f"""
+            <div class="scrollable-table">
+            {shot_table_actions.to_html(escape=False, index=False)}
+            </div>
+        """, unsafe_allow_html=True)
+else:
+    xg_data = xg.copy()
+    
+    
+    custom_order = ['Shot', 'Blocked', 'SOT', 'SOT Far Post', 'SOT Inside Post', 'Goal', 'Goal Far Post', 'Goal Inside Post']
+    xg_data['Event'] = pd.Categorical(xg_data['Event'], categories=custom_order, ordered=True)
+    xg_data = xg_data.sort_values('Event')
+    
+    bolts_xg_data = xg_data.loc[xg_data['Team'].str.contains('Boston Bolts')]
+    
+    dimensions = PitchDimensions(pitch_length_metres=100, pitch_width_metres=100)
+    fig1 = pfp.make_pitch_figure(
+        dimensions,
+        figure_height_pixels=475,
+        figure_width_pixels=475
+    )
+    
+    custom_order = ['Shot', 'Blocked', 'SOT', 'SOT Far Post', 'SOT Inside Post', 'Goal', 'Goal Far Post', 'Goal Inside Post']
+    xg_data['Event'] = pd.Categorical(xg_data['Event'], categories=custom_order, ordered=True)
+    xg_data = xg_data.sort_values('Event')
+    
+    bolts_xg_data = xg_data.loc[xg_data['Team'].str.contains(selected_team)]
+    
+    
+    for index, row in bolts_xg_data.iterrows():
+        x, y, xG = row['X'], 100-row['Y'], row['xG']
+        hteam = row['Team']
+        player_name = row['Player Full Name']
+        url = row['Video Link']
+    
+        if row['Event'] == 'Goal':
+            fig1.add_trace(go.Scatter(
+                x=[x],
+                y=[y],
+                mode='markers+text',
+                marker=dict(
+                    size=(xG * 30) + 5,  # Adjusted for Plotly's scaling
+                    color='lightblue',
+                    symbol='circle'
+                ),
+                name='Goal',
+                showlegend=False,
+                hovertext=f"{player_name}<br>xG: {xG:.2f}",  # Add hover text
+                hoverinfo="text"  # Display hover text
             ))
-        fig1.add_annotation(
-            x=x,
-            y=y+3,
-            text=f'<a href="{url}" target="_blank" style="color:lightblue;">Link</a>',
-            showarrow=False,
-            font=dict(color="white"),
-            align="center"
-        ) 
-        
-fig1.add_trace(go.Scatter(
-    x=[None],  # Dummy data
-    y=[None],
-    mode='markers',
-    marker=dict(
-        size=10,
-        color='lightblue',
-        symbol='circle'
-    ),
-    name='Goal',
-    visible='legendonly'
-))
-
-fig1.add_trace(go.Scatter(
-    x=[None],  # Dummy data
-    y=[None],
-    mode='markers',
-    marker=dict(
-        size=10,
-        color='white',
-        line=dict(color='lightblue', width=3),
-        symbol='circle'
-    ),
-    name='SOT',
-    visible='legendonly'
-))
-
-fig1.add_trace(go.Scatter(
-    x=[None],  # Dummy data
-    y=[None],
-    mode='markers',
-    marker=dict(
-        size=10,
-        color='lightblue',
-        symbol='circle-open'
-    ),
-    name='Shot',
-    visible='legendonly',
-))
-        
-
-
-custom_order = ['Shot', 'Blocked', 'SOT', 'SOT Far Post', 'SOT Inside Post', 'Goal', 'Goal Far Post', 'Goal Inside Post']
-xg_data['Event'] = pd.Categorical(xg_data['Event'], categories=custom_order, ordered=True)
-xg_data = xg_data.sort_values('Event')
-
-opp_xg_data = xg_data.loc[~xg_data['Team'].str.contains(selected_team)]
-
-
-for index, row in opp_xg_data.iterrows():
-    x, y, xG, url = 100-row['X'], row['Y'], row['xG'], row['Video Link']
-
-    ateam = row['Team']
-    our_string = row['Event']
-    if 'Goal' in our_string:
-        fig1.add_trace(go.Scatter(
-            x=[x],
-            y=[y],
-            mode='markers+text',
-            marker=dict(
-                size=(xG * 30) + 5,  # Adjusted for Plotly's scaling
-                color='red',
-                symbol='circle'
-            ),
-            name='Goal Against',
-            showlegend=False,
-            hovertext=f"xG: {xG:.2f}",  # Add hover text
-            hoverinfo="text"  # Display hover text
-        ))
-        fig1.add_annotation(
-            x=x,
-            y=y+3,
-            text=f'<a href="{url}" target="_blank" style="color:red;">Link</a>',
-            showarrow=False,
-            font=dict(color="white"),
-            align="center"
-        ) 
-    elif 'SOT' in our_string:
-        fig1.add_trace(go.Scatter(
-            x=[x],
-            y=[y],
-            mode='markers',
-            marker=dict(
-                size=(xG * 30) + 5,
-                color='white',
-                line=dict(color='red', width=3),
-                symbol='circle'
-            ),
-            name='SOT Against',
-            showlegend=False,
-            hovertext=f"xG: {xG:.2f}",  # Add hover text
-            hoverinfo="text"  # Display hover text
-        ))
-        fig1.add_annotation(
-            x=x,
-            y=y+3,
-            text=f'<a href="{url}" target="_blank" style="color:red;">Link</a>',
-            showarrow=False,
-            font=dict(color="white"),
-            align="center"
-        ) 
-    else:
-        fig1.add_trace(go.Scatter(
-            x=[x],
-            y=[y],
-            mode='markers',
-            marker=dict(
-                size=(xG * 30) + 5,
-                color='red',
-                symbol='circle-open'
-            ),
-            name='Shot Against',
-            showlegend=False,
-            hovertext=f"xG: {xG:.2f}",  # Add hover text
-            hoverinfo="text"  # Display hover text
+            fig1.add_annotation(
+                x=x,
+                y=y+3,
+                text=f'<a href="{url}" target="_blank" style="color:lightblue;">Link</a>',
+                showarrow=False,
+                font=dict(color="lightblue"),
+                align="center"
+            ) 
+        elif row['Event'] == 'SOT':
+            fig1.add_trace(go.Scatter(
+                x=[x],
+                y=[y],
+                mode='markers',
+                marker=dict(
+                    size=(xG * 30) + 5,
+                    color='white',
+                    line=dict(color='lightblue', width=3),
+                    symbol='circle'
+                ),
+                name='SOT',
+                showlegend=False,
+                hovertext=f"{player_name}<br>xG: {xG:.2f}",  # Add hover text
+                hoverinfo="text"  # Display hover text
             ))
-        fig1.add_annotation(
-            x=x,
-            y=y+3,
-            text=f'<a href="{url}" target="_blank" style="color:red;">Link</a>',
-            showarrow=False,
-            font=dict(color="white"),
-            align="center"
-        ) 
-        
-# Add custom legend entries
-fig1.add_trace(go.Scatter(
-    x=[None],  # Dummy data
-    y=[None],
-    mode='markers',
-    marker=dict(
-        size=5,
-        color='red',
-        symbol='circle'
-    ),
-    name='Goal Against',
-    visible='legendonly'
-))
-
-fig1.add_trace(go.Scatter(
-    x=[None],  # Dummy data
-    y=[None],
-    mode='markers',
-    marker=dict(
-        size=5,
-        color='white',
-        line=dict(color='red', width=3),
-        symbol='circle'
-    ),
-    name='SOT Against',
-    visible='legendonly'
-))
-
-fig1.add_trace(go.Scatter(
-    x=[None],  # Dummy data
-    y=[None],
-    mode='markers',
-    marker=dict(
-        size=5,
-        color='red',
-        symbol='circle-open'
-    ),
-    name='Shot Against',
-    visible='legendonly',
-))
-
-fig1.update_layout(
-    legend=dict(
-        font=dict(
-            size=8  # Decrease font size for smaller legend text
+            fig1.add_annotation(
+                x=x,
+                y=y+3,
+                text=f'<a href="{url}" target="_blank" style="color:lightblue;">Link</a>',
+                showarrow=False,
+                font=dict(color="lightblue"),
+                align="center"
+            ) 
+        else:
+            fig1.add_trace(go.Scatter(
+                x=[x],
+                y=[y],
+                mode='markers',
+                marker=dict(
+                    size=(xG * 30) + 5,
+                    color='lightblue',
+                    symbol='circle-open'
+                ),
+                name='Shot',
+                showlegend=False,
+                hovertext=f"{player_name}<br>xG: {xG:.2f}",  # Add hover text
+                hoverinfo="text"  # Display hover text
+                ))
+            fig1.add_annotation(
+                x=x,
+                y=y+3,
+                text=f'<a href="{url}" target="_blank" style="color:lightblue;">Link</a>',
+                showarrow=False,
+                font=dict(color="white"),
+                align="center"
+            ) 
+            
+    fig1.add_trace(go.Scatter(
+        x=[None],  # Dummy data
+        y=[None],
+        mode='markers',
+        marker=dict(
+            size=10,
+            color='lightblue',
+            symbol='circle'
         ),
-        itemsizing='constant',  # Keep marker sizes constant in the legend
-        traceorder='normal'  # Keep the order of traces as added
+        name='Goal',
+        visible='legendonly'
+    ))
+    
+    fig1.add_trace(go.Scatter(
+        x=[None],  # Dummy data
+        y=[None],
+        mode='markers',
+        marker=dict(
+            size=10,
+            color='white',
+            line=dict(color='lightblue', width=3),
+            symbol='circle'
+        ),
+        name='SOT',
+        visible='legendonly'
+    ))
+    
+    fig1.add_trace(go.Scatter(
+        x=[None],  # Dummy data
+        y=[None],
+        mode='markers',
+        marker=dict(
+            size=10,
+            color='lightblue',
+            symbol='circle-open'
+        ),
+        name='Shot',
+        visible='legendonly',
+    ))
+            
+    
+    
+    custom_order = ['Shot', 'Blocked', 'SOT', 'SOT Far Post', 'SOT Inside Post', 'Goal', 'Goal Far Post', 'Goal Inside Post']
+    xg_data['Event'] = pd.Categorical(xg_data['Event'], categories=custom_order, ordered=True)
+    xg_data = xg_data.sort_values('Event')
+    
+    opp_xg_data = xg_data.loc[~xg_data['Team'].str.contains(selected_team)]
+    
+    
+    for index, row in opp_xg_data.iterrows():
+        x, y, xG, url = 100-row['X'], row['Y'], row['xG'], row['Video Link']
+    
+        ateam = row['Team']
+        our_string = row['Event']
+        if 'Goal' in our_string:
+            fig1.add_trace(go.Scatter(
+                x=[x],
+                y=[y],
+                mode='markers+text',
+                marker=dict(
+                    size=(xG * 30) + 5,  # Adjusted for Plotly's scaling
+                    color='red',
+                    symbol='circle'
+                ),
+                name='Goal Against',
+                showlegend=False,
+                hovertext=f"xG: {xG:.2f}",  # Add hover text
+                hoverinfo="text"  # Display hover text
+            ))
+            fig1.add_annotation(
+                x=x,
+                y=y+3,
+                text=f'<a href="{url}" target="_blank" style="color:red;">Link</a>',
+                showarrow=False,
+                font=dict(color="white"),
+                align="center"
+            ) 
+        elif 'SOT' in our_string:
+            fig1.add_trace(go.Scatter(
+                x=[x],
+                y=[y],
+                mode='markers',
+                marker=dict(
+                    size=(xG * 30) + 5,
+                    color='white',
+                    line=dict(color='red', width=3),
+                    symbol='circle'
+                ),
+                name='SOT Against',
+                showlegend=False,
+                hovertext=f"xG: {xG:.2f}",  # Add hover text
+                hoverinfo="text"  # Display hover text
+            ))
+            fig1.add_annotation(
+                x=x,
+                y=y+3,
+                text=f'<a href="{url}" target="_blank" style="color:red;">Link</a>',
+                showarrow=False,
+                font=dict(color="white"),
+                align="center"
+            ) 
+        else:
+            fig1.add_trace(go.Scatter(
+                x=[x],
+                y=[y],
+                mode='markers',
+                marker=dict(
+                    size=(xG * 30) + 5,
+                    color='red',
+                    symbol='circle-open'
+                ),
+                name='Shot Against',
+                showlegend=False,
+                hovertext=f"xG: {xG:.2f}",  # Add hover text
+                hoverinfo="text"  # Display hover text
+                ))
+            fig1.add_annotation(
+                x=x,
+                y=y+3,
+                text=f'<a href="{url}" target="_blank" style="color:red;">Link</a>',
+                showarrow=False,
+                font=dict(color="white"),
+                align="center"
+            ) 
+            
+    # Add custom legend entries
+    fig1.add_trace(go.Scatter(
+        x=[None],  # Dummy data
+        y=[None],
+        mode='markers',
+        marker=dict(
+            size=5,
+            color='red',
+            symbol='circle'
+        ),
+        name='Goal Against',
+        visible='legendonly'
+    ))
+    
+    fig1.add_trace(go.Scatter(
+        x=[None],  # Dummy data
+        y=[None],
+        mode='markers',
+        marker=dict(
+            size=5,
+            color='white',
+            line=dict(color='red', width=3),
+            symbol='circle'
+        ),
+        name='SOT Against',
+        visible='legendonly'
+    ))
+    
+    fig1.add_trace(go.Scatter(
+        x=[None],  # Dummy data
+        y=[None],
+        mode='markers',
+        marker=dict(
+            size=5,
+            color='red',
+            symbol='circle-open'
+        ),
+        name='Shot Against',
+        visible='legendonly',
+    ))
+    
+    fig1.update_layout(
+        legend=dict(
+            font=dict(
+                size=8  # Decrease font size for smaller legend text
+            ),
+            itemsizing='constant',  # Keep marker sizes constant in the legend
+            traceorder='normal'  # Keep the order of traces as added
+        )
     )
-)
-
-fig1.add_annotation(
-    text="Click the top right of chart to see the shots better",
-    x=0.5,
-    y=1.13,  # Adjust this value to position the subtitle correctly
-    xref="paper",
-    yref="paper",
-    showarrow=False,
-    font=dict(
-        size=14,
-        family="Arial",
-        color="gray"
+    
+    fig1.add_annotation(
+        text="Click the top right of chart to see the shots better",
+        x=0.5,
+        y=1.13,  # Adjust this value to position the subtitle correctly
+        xref="paper",
+        yref="paper",
+        showarrow=False,
+        font=dict(
+            size=14,
+            family="Arial",
+            color="gray"
+        )
     )
-)
-
-fig1.add_annotation(
-    text = f"{selected_team} and {selected_opp} xG Shot Chart",
-    y= 1.17,  # Vertical position of the title, 0.95 places it near the top
-    x= 0.5,   # Horizontal position of the title, 0.5 centers it
-    xref="paper",
-    yref="paper",
-    showarrow=False,
-    font= dict(
-        size= 18,
-        family= 'Arial',
-        color= 'black'
+    
+    fig1.add_annotation(
+        text = f"{selected_team} and {selected_opp} xG Shot Chart",
+        y= 1.17,  # Vertical position of the title, 0.95 places it near the top
+        x= 0.5,   # Horizontal position of the title, 0.5 centers it
+        xref="paper",
+        yref="paper",
+        showarrow=False,
+        font= dict(
+            size= 18,
+            family= 'Arial',
+            color= 'black'
+        )
     )
-)
 
-with col2:
-    st.plotly_chart(fig1)
+    with col2:
+        st.plotly_chart(fig1)
 
 st.session_state["selected_team"] = selected_team
 st.session_state["selected_opp"] = selected_opp
