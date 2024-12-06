@@ -51,26 +51,26 @@ def getting_PSD_team_data():
                                 'Total Cross', 'Total Forward', 'Att 1v1', 'Efforts on Goal', 'Shot on Target',
                                 'Efficiency ', 'Line Break', 'Pass into Oppo Box', 'Opp Effort on Goal',
                                 'Loss of Poss', 'Pass Completion ', 'Total Passes', 'Foul Conceded',
-                                'Progr Pass Attempt ', 'Progr Pass Completion ', 'Goal', 'Foul Won']
+                                'Progr Pass Attempt ', 'Progr Pass Completion ', 'Goal', 'Foul Won', 'Header on Target']
                 number_cols = ['Dribble', 'Goal Against',  'Progr Regain ', 'Total Corners', 
                                 'Shots on Target Against', 'Opp Effort on Goal',
                                 'Total Cross', 'Total Forward', 'Att 1v1', 'Efforts on Goal', 'Shot on Target',
                                     'Efficiency ', 'Line Break', 'Pass into Oppo Box',
                                     'Loss of Poss', 'Pass Completion ', 'Total Passes', 'Foul Conceded',
-                                    'Progr Pass Attempt ', 'Progr Pass Completion ', 'Goal', 'Foul Won']
+                                    'Progr Pass Attempt ', 'Progr Pass Completion ', 'Goal', 'Foul Won', 'Header on Target']
             else:
                 total_columns = ['Dribble', 'Goal Against',  'Progr Regain ', 'Total Corners', 
                                 'Shots on Target Against', 'Team Name', 'Opposition', 'Match Date',
                                 'Total Cross', 'Total Forward', 'Att 1v1', 'Efforts on Goal', 'Shot on Target',
                                     'Efficiency ', 'Line Break', 'Pass into Oppo Box',
                                     'Loss of Poss', 'Pass Completion ', 'Total Passes', 'Foul Conceded',
-                                    'Progr Pass Attempt ', 'Progr Pass Completion ', 'Goal', 'Foul Won']
+                                    'Progr Pass Attempt ', 'Progr Pass Completion ', 'Goal', 'Foul Won', 'Header on Target']
                 number_cols = ['Dribble', 'Goal Against',  'Progr Regain ', 'Total Corners', 
                                 'Shots on Target Against',
                                 'Total Cross', 'Total Forward', 'Att 1v1', 'Efforts on Goal', 'Shot on Target',
                                     'Efficiency ', 'Line Break', 'Pass into Oppo Box',
                                     'Loss of Poss', 'Pass Completion ', 'Total Passes', 'Foul Conceded',
-                                    'Progr Pass Attempt ', 'Progr Pass Completion ', 'Goal', 'Foul Won']
+                                    'Progr Pass Attempt ', 'Progr Pass Completion ', 'Goal', 'Foul Won', 'Header on Target']
             selected = selected.loc[:, total_columns]
             selected[number_cols] = selected[number_cols].astype(float)
             selected.rename(columns={'Match Date': 'Date'}, inplace=True)
