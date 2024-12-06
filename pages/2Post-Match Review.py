@@ -1669,7 +1669,7 @@ if selected_team in available_teams:
             <style>
             .scrollable-table {
                 max-height: 200px;
-                max-width: 50%;
+                max-width: 500%;
                 overflow-y: auto;
                 display: block;
                 white-space: nowrap;
