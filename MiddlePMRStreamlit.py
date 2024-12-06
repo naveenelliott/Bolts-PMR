@@ -219,7 +219,7 @@ def MiddlePMRStreamlit_NALOlder(team, opp, date, regain_time):
     team_data['Date'] = pd.to_datetime(team_data['Date']).dt.strftime('%m/%d/%Y')
     team_data = team_data.loc[(team_data['Team Name'] == team) & (team_data['Opposition'] == opp) & (team_data['Date'] == date)]
 
-    required_columns = ['Save Parried', 'Save Held', 'Goal Against', 'Header on Target', 'Shot on Target']
+    required_columns = ['Shots on Target Against', 'Header on Target', 'Shot on Target']
     team_data[required_columns] = team_data[required_columns].apply(pd.to_numeric, errors='coerce')
     
     game_opponent_sot = team_data['Shots on Target Against'].sum()
