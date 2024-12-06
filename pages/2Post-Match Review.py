@@ -1025,6 +1025,7 @@ max_xg_player = bolts_player.idxmax()
 # MAKING MORE CHANGES FOR BIGGER NAL TEAMS
 if selected_team in available_teams:
     shot_min_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
+    shot_min_actions['Time'] = shot_min_actions['Time'].apply(time_to_seconds)
     
     a_xG = [0]
     h_xG = [0]
