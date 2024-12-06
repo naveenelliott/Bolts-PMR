@@ -1025,7 +1025,6 @@ max_xg_player = bolts_player.idxmax()
 # MAKING MORE CHANGES FOR BIGGER NAL TEAMS
 if selected_team in available_teams:
     shot_min_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
-    st.write(shot_min_actions)
     
     a_xG = [0]
     h_xG = [0]
@@ -1038,19 +1037,19 @@ if selected_team in available_teams:
     
     # Finding the goal marks so that we can add those as points later on
     for x in range(len(shot_min_actions['Action'])):
-        if shot_min_actions['Action'][x] == "Goal" and xg_data['Team'][x] == selected_opp:
+        if shot_min_actions['Action'][x] == "Goal" and shot_min_actions['Team'][x] == selected_opp:
                 aGoal_xG.append(1)
                 aGoal_min.append(shot_min_actions['Time'][x])
-        elif shot_min_actions['Action'][x] == "Goal" and xg_data['Team'][x]==selected_team:
+        elif shot_min_actions['Action'][x] == "Goal" and shot_min_actions['Team'][x]==selected_team:
                 hGoal_xG.append(1)
                 hGoal_min.append(xg_data['Time'][x])
      
     # Appending the xG value to the plot
     for x in range(len(shot_min_actions['Action'])):
-        if xg_data['Team'][x]==selected_opp:
+        if shot_min_actions['Team'][x]==selected_opp:
             a_xG.append(1)
             a_min.append(xg_data['Time'][x])
-        if xg_data['Team'][x]==selected_team:
+        if shot_min_actions['Team'][x]==selected_team:
             h_xG.append(1)
             h_min.append(xg_data['Time'][x])
             
