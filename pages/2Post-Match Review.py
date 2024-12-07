@@ -1668,11 +1668,20 @@ if selected_team in available_teams:
         st.markdown("""
             <style>
             .scrollable-table {
-                max-height: 200px;
-                max-width: 500%;
-                overflow-y: auto;
+                max-height: 400px; /* Adjust the height to make it easier to view */
+                max-width: 100%; /* Use 100% to ensure it adjusts to the container width */
+                overflow: auto; /* Enable both vertical and horizontal scrolling */
                 display: block;
-                white-space: nowrap;
+                border: 1px solid #ddd; /* Optional: Add a border for better visualization */
+            }
+            .scrollable-table table {
+                width: 100%; /* Make the table fill the div width */
+                border-collapse: collapse; /* Ensure table borders look neat */
+            }
+            .scrollable-table th, .scrollable-table td {
+                padding: 8px;
+                text-align: left; /* Adjust alignment as needed */
+                border: 1px solid #ddd; /* Optional: Add borders to cells */
             }
             </style>
         """, unsafe_allow_html=True)
