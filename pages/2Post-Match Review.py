@@ -1665,6 +1665,7 @@ with col2:
 
 if selected_team in available_teams:
     with col2:
+        st.markdown("### Table of Shots")
         st.markdown("""
             <style>
             .scrollable-table {
