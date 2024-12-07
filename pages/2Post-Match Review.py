@@ -1665,7 +1665,17 @@ with col2:
 
 if selected_team in available_teams:
     with col2:
-        st.markdown("### Table of Shots")
+        st.markdown("""
+            <style>
+            .centered-title {
+                text-align: center;
+                font-size: 16px; /* Adjust the font size to make it smaller */
+                font-weight: bold;
+                margin-bottom: 5px; /* Optional: Add spacing below the title */
+            }
+            </style>
+            <div class="centered-title">Table of Shots</div>
+        """, unsafe_allow_html=True)
         st.markdown("""
             <style>
             .scrollable-table {
