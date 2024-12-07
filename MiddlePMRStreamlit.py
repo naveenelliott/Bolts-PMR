@@ -269,8 +269,8 @@ def MiddlePMRStreamlit_NALOlder(team, opp, date, regain_time):
     shots_std = 3
     sa_average= 9.5
     sa_std = 2.5
-    sot_average = 8.53
-    sot_std = 4.84
+    sot_average = 6.49
+    sot_std = 3.44
     opp_sot_average = 5.47
     opp_sot_std = 2.93
     pass_average = 80
