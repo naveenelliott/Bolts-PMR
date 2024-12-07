@@ -1669,9 +1669,9 @@ if selected_team in available_teams:
             <style>
             .centered-title {
                 text-align: center;
-                font-size: 16px; /* Adjust the font size to make it smaller */
+                font-size: 20px; /* Adjust the font size to make it smaller */
                 font-weight: bold;
-                margin-bottom: 5px; /* Optional: Add spacing below the title */
+                margin-bottom: 0px; /* Optional: Add spacing below the title */
             }
             </style>
             <div class="centered-title">Table of Shots</div>
