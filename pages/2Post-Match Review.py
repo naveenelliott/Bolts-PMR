@@ -433,7 +433,6 @@ else:
         if row['Position'] == 'ATT':
             our_player_data = player_data.loc[player_data['Player Full Name'] == player_name]
             our_player_data = our_player_data.groupby(['Player Full Name', 'Team Name'])['SOT'].sum().reset_index()
-            st.write(our_player_data)
             select_temp_df = StrikerSOTFunction(our_player_data)
             final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
         elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
@@ -1012,22 +1011,6 @@ with col3:
             st.write(player_html, unsafe_allow_html=True)
 
 
-team_sum = xg.groupby('Team')['xG'].sum()
-
-
-bolts_xG = round(team_sum.loc[selected_team], 2)
-opp_xG = round(team_sum.loc[selected_opp], 2)
-
-
-bolts = xg.loc[xg['Team'].str.contains(selected_team)]
-opp = xg.loc[~xg['Team'].str.contains(selected_team)]
-
-bolts_mean = bolts['xG'].mean()
-opp_mean = opp['xG'].mean()
-
-bolts_player = bolts.groupby('Player Full Name')['xG'].sum()
-max_xg_player = bolts_player.idxmax()
-
 # MAKING MORE CHANGES FOR BIGGER NAL TEAMS
 if selected_team in available_teams:
     shot_min_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
@@ -1147,6 +1130,21 @@ if selected_team in available_teams:
         st.pyplot(fig)
     
 else:
+    team_sum = xg.groupby('Team')['xG'].sum()
+
+    bolts_xG = round(team_sum.loc[selected_team], 2)
+    opp_xG = round(team_sum.loc[selected_opp], 2)
+    
+    
+    bolts = xg.loc[xg['Team'].str.contains(selected_team)]
+    opp = xg.loc[~xg['Team'].str.contains(selected_team)]
+    
+    bolts_mean = bolts['xG'].mean()
+    opp_mean = opp['xG'].mean()
+    
+    bolts_player = bolts.groupby('Player Full Name')['xG'].sum()
+    max_xg_player = bolts_player.idxmax()
+        
     xg_data = xg.sort_values('Time').reset_index(drop=True)
     
     a_xG = [0]
