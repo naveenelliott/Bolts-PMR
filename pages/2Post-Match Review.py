@@ -1389,10 +1389,20 @@ combined_grades['Minutes Played'] = combined_grades['Minutes Played'].astype(int
 
 combined_grades.sort_values('Position', inplace=True)
 
-# ADD TOP XG and MOST DISTANCE
+# ADD TOP XG OR SOT (DEPENDING ON THE TEAM) + MOST DISTANCE
 combined_grades['IsMostxG'] = 0
-player_name_to_change = max_xg_player
-index_to_change = combined_grades.index[combined_grades['Player'] == player_name_to_change].tolist()[0]
+
+if selected_team in available_teams:
+    # For available teams, calculate the player with the most shots on target
+    game['Shots on Target'] = game['Header on Target'] + game['Shot on Target']
+    max_sot_player = game.loc[game['Shots on Target'].idxmax(), 'Player Full Name']
+    index_to_change = combined_grades.index[combined_grades['Player'] == max_sot_player].tolist()[0]
+else:
+    # Default logic: calculate the player with the highest xG
+    player_name_to_change = max_xg_player
+    index_to_change = combined_grades.index[combined_grades['Player'] == player_name_to_change].tolist()[0]
+
+# Assign the IsMostxG icon to the selected player
 combined_grades.loc[index_to_change, 'IsMostxG'] = 1
 
 starters = combined_grades[combined_grades['Started'] == 1]
