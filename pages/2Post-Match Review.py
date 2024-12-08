@@ -22,7 +22,7 @@ import matplotlib.patches as mpatches
 from xGModel import xGModel
 from AvgAttPositionOnField import AttackingPositionOnField
 from AvgDefPositionOnField import DefendingPositionOnField
-from GettingEventDataGrades import StrikerEventFunction, WingerEventFunction, CMEventFunction, DMEventFunction, FBEventFunction, CBEventFunction, GKEventFunction
+from GettingEventDataGrades import StrikerEventFunction, WingerEventFunction, CMEventFunction, StrikerSOTFunction, WingerSOTFunction, CMSOTFunction
 from GettingTimeUntilRegain import formattingFileForRegain
 from GettingPSDGradeData import getting_PSD_grade_data
 import base64
@@ -224,7 +224,7 @@ actions_new = actions_new.drop(remove_indexes).reset_index(drop=True)
 shot_table_actions = actions_new.copy()
 
 # THIS IS SHOT TABLE
-available_teams = ['Boston Bolts U13 NALSS', 'Boston Bolts U15 NALB']
+available_teams = ['Boston Bolts U13 NALSS', 'Boston Bolts U15 NALB', 'Boston Bolts U16 NALB', 'Boston Bolts U17 NALB', 'Boston Bolts U19 NALB']
 
 if selected_team in available_teams:
     shot_table_actions.rename(columns={'Bolts Team': 'Team',
@@ -397,34 +397,54 @@ final_grade_df = temp_df.copy()
 chances_created.fillna(0, inplace=True)
 
 # Short term fix because something is wrong with getting the positions of attackers
+if selected_team not in available_teams:
+    for index, row in final_grade_df.iterrows():
+        if row['Position'] == 'ATT':
+            temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT')]
+            wanted = ['xG + xA', 'Team']
+            temp_event_df = temp_event_df[wanted]
+            select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
+            select_temp_df = select_temp_df[wanted]
+            select_temp_df = StrikerEventFunction(temp_event_df, select_temp_df)
+            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
+        elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
+            temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'LW') | (chances_created['Primary Position'] == 'RW')]
+            wanted = ['xG + xA', 'Team']
+            temp_event_df = temp_event_df[wanted]
+            select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
+            select_temp_df = select_temp_df[wanted]
+            select_temp_df = WingerEventFunction(temp_event_df, select_temp_df)
+            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
+        elif (row['Position'] == 'CM') or (row['Position'] == 'RM') or (row['Position'] == 'LM') or (row['Position'] == 'AM'):
+            temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'RM') | (chances_created['Primary Position'] == 'LM')
+                                             | (chances_created['Primary Position'] == 'AM') | (chances_created['Primary Position'] == 'CM')]
+            wanted = ['xG + xA', 'Team']
+            temp_event_df = temp_event_df[wanted]
+            select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
+            select_temp_df = select_temp_df[wanted]
+            select_temp_df = CMEventFunction(temp_event_df, select_temp_df)
+            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Playmaking'])*.2)
 
-for index, row in final_grade_df.iterrows():
-    if row['Position'] == 'ATT':
-        temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT')]
-        wanted = ['xG + xA', 'Team']
-        temp_event_df = temp_event_df[wanted]
-        select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
-        select_temp_df = select_temp_df[wanted]
-        select_temp_df = StrikerEventFunction(temp_event_df, select_temp_df)
-        final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
-    elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
-        temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'LW') | (chances_created['Primary Position'] == 'RW')]
-        wanted = ['xG + xA', 'Team']
-        temp_event_df = temp_event_df[wanted]
-        select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
-        select_temp_df = select_temp_df[wanted]
-        select_temp_df = WingerEventFunction(temp_event_df, select_temp_df)
-        final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
-    elif (row['Position'] == 'CM') or (row['Position'] == 'RM') or (row['Position'] == 'LM') or (row['Position'] == 'AM'):
-        temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'RM') | (chances_created['Primary Position'] == 'LM')
-                                         | (chances_created['Primary Position'] == 'AM') | (chances_created['Primary Position'] == 'CM')]
-        wanted = ['xG + xA', 'Team']
-        temp_event_df = temp_event_df[wanted]
-        select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
-        select_temp_df = select_temp_df[wanted]
-        select_temp_df = CMEventFunction(temp_event_df, select_temp_df)
-        final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Playmaking'])*.2)
-
+# THIS IS WHERE WE ADD THE NEW THRESHOLDS
+else:
+    player_data['SOT'] = player_data['Shot on Target'] + player_data['Header on Target']
+    for index, row in final_grade_df.iterrows():
+        player_name = row['Player Name']
+        if row['Position'] == 'ATT':
+            our_player_data = player_data.loc[player_data['Player Full Name'] == player_name]
+            our_player_data = our_player_data.groupby(['Player Full Name', 'Team Name'])['SOT'].sum().reset_index()
+            select_temp_df = StrikerSOTFunction(our_player_data)
+            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
+        elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
+            our_player_data = player_data.loc[player_data['Player Full Name'] == player_name]
+            our_player_data = our_player_data.groupby(['Player Full Name', 'Team Name'])['SOT'].sum().reset_index()
+            select_temp_df = WingerSOTFunction(our_player_data)
+            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
+        elif (row['Position'] == 'CM') or (row['Position'] == 'RM') or (row['Position'] == 'LM') or (row['Position'] == 'AM'):
+            our_player_data = player_data.loc[player_data['Player Full Name'] == player_name]
+            our_player_data = our_player_data.groupby(['Player Full Name', 'Team Name'])['SOT'].sum().reset_index()
+            select_temp_df = CMSOTFunction(our_player_data)
+            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
 
 
 final_grade_df['Final Grade'] = final_grade_df['Final Grade'] + final_grade_df['Adjustments']
@@ -991,22 +1011,6 @@ with col3:
             st.write(player_html, unsafe_allow_html=True)
 
 
-team_sum = xg.groupby('Team')['xG'].sum()
-
-
-bolts_xG = round(team_sum.loc[selected_team], 2)
-opp_xG = round(team_sum.loc[selected_opp], 2)
-
-
-bolts = xg.loc[xg['Team'].str.contains(selected_team)]
-opp = xg.loc[~xg['Team'].str.contains(selected_team)]
-
-bolts_mean = bolts['xG'].mean()
-opp_mean = opp['xG'].mean()
-
-bolts_player = bolts.groupby('Player Full Name')['xG'].sum()
-max_xg_player = bolts_player.idxmax()
-
 # MAKING MORE CHANGES FOR BIGGER NAL TEAMS
 if selected_team in available_teams:
     shot_min_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
@@ -1126,6 +1130,21 @@ if selected_team in available_teams:
         st.pyplot(fig)
     
 else:
+    team_sum = xg.groupby('Team')['xG'].sum()
+
+    bolts_xG = round(team_sum.loc[selected_team], 2)
+    opp_xG = round(team_sum.loc[selected_opp], 2)
+    
+    
+    bolts = xg.loc[xg['Team'].str.contains(selected_team)]
+    opp = xg.loc[~xg['Team'].str.contains(selected_team)]
+    
+    bolts_mean = bolts['xG'].mean()
+    opp_mean = opp['xG'].mean()
+    
+    bolts_player = bolts.groupby('Player Full Name')['xG'].sum()
+    max_xg_player = bolts_player.idxmax()
+        
     xg_data = xg.sort_values('Time').reset_index(drop=True)
     
     a_xG = [0]
