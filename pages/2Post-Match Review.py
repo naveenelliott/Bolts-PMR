@@ -224,7 +224,7 @@ actions_new = actions_new.drop(remove_indexes).reset_index(drop=True)
 shot_table_actions = actions_new.copy()
 
 # THIS IS SHOT TABLE
-available_teams = ['Boston Bolts U13 NALSS']
+available_teams = ['Boston Bolts U13 NALSS', 'Boston Bolts U15 NALB']
 
 if selected_team in available_teams:
     shot_table_actions.rename(columns={'Bolts Team': 'Team',
