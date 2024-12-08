@@ -396,8 +396,6 @@ final_grade_df = temp_df.copy()
 
 chances_created.fillna(0, inplace=True)
 
-st.write(player_data)
-
 # Short term fix because something is wrong with getting the positions of attackers
 if selected_team not in available_teams:
     for index, row in final_grade_df.iterrows():
@@ -428,7 +426,19 @@ if selected_team not in available_teams:
             final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Playmaking'])*.2)
 
 # THIS IS WHERE WE ADD THE NEW THRESHOLDS
-
+else:
+    player_data['SOT'] = player_data['Shot on Target'] + player_data['Header on Target']
+    for index, row in final_grade_df.iterrows():
+        player_name = row['Player Name']
+        if row['Position'] == 'ATT':
+            our_player_data = player_data.loc[player_data['Player Full Name'] == player_name]
+            st.write(our_player_data)
+            select_temp_df = StrikerSOTFunction(our_player_data)
+            st.write(select_temp_df)
+            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
+        elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
+        elif (row['Position'] == 'CM') or (row['Position'] == 'RM') or (row['Position'] == 'LM') or (row['Position'] == 'AM'):
+    
 
 
 final_grade_df['Final Grade'] = final_grade_df['Final Grade'] + final_grade_df['Adjustments']
