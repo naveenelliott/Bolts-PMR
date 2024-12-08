@@ -198,7 +198,7 @@ xg_actions.rename(columns={'Team': 'Bolts Team'}, inplace=True)
 
 # this is handeling duplicated PlayerStatData shots 
 temp_df = pd.DataFrame(columns=xg_actions.columns)
-prime_actions = ['Opp Effort on Goal', 'Shot on Target']
+prime_actions = ['Opp Effort on Goal', 'Shot on Target', 'Header on Target']
 remove_indexes = []
 for index in range(len(xg_actions) - 1):
     if xg_actions.loc[index, 'Time'] == xg_actions.loc[index + 1, 'Time']:
