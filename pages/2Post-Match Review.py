@@ -224,7 +224,7 @@ actions_new = actions_new.drop(remove_indexes).reset_index(drop=True)
 shot_table_actions = actions_new.copy()
 
 # THIS IS SHOT TABLE
-available_teams = ['Boston Bolts U13 NALSS', 'Boston Bolts U15 NALB']
+available_teams = ['Boston Bolts U13 NALSS', 'Boston Bolts U15 NALB', 'Boston Bolts U16 NALB', 'Boston Bolts U17 NALB', 'Boston Bolts U19 NALB']
 
 if selected_team in available_teams:
     shot_table_actions.rename(columns={'Bolts Team': 'Team',
@@ -396,34 +396,38 @@ final_grade_df = temp_df.copy()
 
 chances_created.fillna(0, inplace=True)
 
-# Short term fix because something is wrong with getting the positions of attackers
+st.write(player_data)
 
-for index, row in final_grade_df.iterrows():
-    if row['Position'] == 'ATT':
-        temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT')]
-        wanted = ['xG + xA', 'Team']
-        temp_event_df = temp_event_df[wanted]
-        select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
-        select_temp_df = select_temp_df[wanted]
-        select_temp_df = StrikerEventFunction(temp_event_df, select_temp_df)
-        final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
-    elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
-        temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'LW') | (chances_created['Primary Position'] == 'RW')]
-        wanted = ['xG + xA', 'Team']
-        temp_event_df = temp_event_df[wanted]
-        select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
-        select_temp_df = select_temp_df[wanted]
-        select_temp_df = WingerEventFunction(temp_event_df, select_temp_df)
-        final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
-    elif (row['Position'] == 'CM') or (row['Position'] == 'RM') or (row['Position'] == 'LM') or (row['Position'] == 'AM'):
-        temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'RM') | (chances_created['Primary Position'] == 'LM')
-                                         | (chances_created['Primary Position'] == 'AM') | (chances_created['Primary Position'] == 'CM')]
-        wanted = ['xG + xA', 'Team']
-        temp_event_df = temp_event_df[wanted]
-        select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
-        select_temp_df = select_temp_df[wanted]
-        select_temp_df = CMEventFunction(temp_event_df, select_temp_df)
-        final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Playmaking'])*.2)
+# Short term fix because something is wrong with getting the positions of attackers
+if selected_team not in available_teams:
+    for index, row in final_grade_df.iterrows():
+        if row['Position'] == 'ATT':
+            temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT')]
+            wanted = ['xG + xA', 'Team']
+            temp_event_df = temp_event_df[wanted]
+            select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
+            select_temp_df = select_temp_df[wanted]
+            select_temp_df = StrikerEventFunction(temp_event_df, select_temp_df)
+            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
+        elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
+            temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'LW') | (chances_created['Primary Position'] == 'RW')]
+            wanted = ['xG + xA', 'Team']
+            temp_event_df = temp_event_df[wanted]
+            select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
+            select_temp_df = select_temp_df[wanted]
+            select_temp_df = WingerEventFunction(temp_event_df, select_temp_df)
+            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
+        elif (row['Position'] == 'CM') or (row['Position'] == 'RM') or (row['Position'] == 'LM') or (row['Position'] == 'AM'):
+            temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'RM') | (chances_created['Primary Position'] == 'LM')
+                                             | (chances_created['Primary Position'] == 'AM') | (chances_created['Primary Position'] == 'CM')]
+            wanted = ['xG + xA', 'Team']
+            temp_event_df = temp_event_df[wanted]
+            select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
+            select_temp_df = select_temp_df[wanted]
+            select_temp_df = CMEventFunction(temp_event_df, select_temp_df)
+            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Playmaking'])*.2)
+
+# THIS IS WHERE WE ADD THE NEW THRESHOLDS
 
 
 
