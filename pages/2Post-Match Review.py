@@ -433,18 +433,17 @@ else:
         if row['Position'] == 'ATT':
             our_player_data = player_data.loc[player_data['Player Full Name'] == player_name]
             our_player_data = our_player_data.groupby(['Player Full Name', 'Team Name'])['SOT'].sum().reset_index()
+            st.write(our_player_data)
             select_temp_df = StrikerSOTFunction(our_player_data)
             final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
         elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
             our_player_data = player_data.loc[player_data['Player Full Name'] == player_name]
             our_player_data = our_player_data.groupby(['Player Full Name', 'Team Name'])['SOT'].sum().reset_index()
-            st.write(our_player_data)
             select_temp_df = WingerSOTFunction(our_player_data)
             final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
         elif (row['Position'] == 'CM') or (row['Position'] == 'RM') or (row['Position'] == 'LM') or (row['Position'] == 'AM'):
             our_player_data = player_data.loc[player_data['Player Full Name'] == player_name]
             our_player_data = our_player_data.groupby(['Player Full Name', 'Team Name'])['SOT'].sum().reset_index()
-            st.write(our_player_data)
             select_temp_df = CMSOTFunction(our_player_data)
             final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
 
