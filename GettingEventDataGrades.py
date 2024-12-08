@@ -69,6 +69,96 @@ def StrikerSOTFunction(select_event_dataframe):
    
     return final
 
+def WingerSOTFunction(select_event_dataframe):
+
+    finishing = select_event_dataframe[['SOT']]
+    finishing.fillna(0, inplace=True)
+
+    select_event_dataframe.reset_index(drop=True, inplace=True)
+    team_name = select_event_dataframe['Team Name'][0]
+
+    def calculate_percentile(value):
+        return norm.cdf(value) * 100
+
+    # Function to calculate z-score for each element in a column
+    def calculate_zscore(column, mean, std):
+        return (column - mean) / std
+
+    def clip_percentile(value):
+        return max(min(value, 100), 50)
+
+
+    if ('U15' in team_name) or ('U16' in team_name):
+        cf_event_df = pd.read_csv("SOT_Thresholds/U15_U16_Thresholds_SOT_WING.csv")
+    else:
+        cf_event_df = pd.read_csv("SOT_Thresholds/U17_U19_Thresholds_SOT_WING.csv")
+
+
+    mean_values = cf_event_df.iloc[0, 0]
+    std_values = cf_event_df.iloc[1, 0]
+    z_scores_df = finishing.transform(lambda col: calculate_zscore(col, mean_values, std_values))
+    
+    if z_scores_df.isna().any().any():
+        finishing_percentile = 50
+        weights = np.array([0.1])
+        finishing_score = finishing_percentile * weights[0]
+        final = pd.DataFrame({'Finishing': [finishing_score]})
+    else:
+        finishing_percentile = z_scores_df.map(calculate_percentile)
+        finishing_percentile = finishing_percentile.map(clip_percentile)
+        weights = np.array([0.1])
+        finishing_score = finishing_percentile * weights[0]
+        final = pd.DataFrame()
+        final['Finishing'] = finishing_score
+        final.reset_index(drop=True, inplace=True)
+   
+    return final
+
+def StrikerSOTFunction(select_event_dataframe):
+
+    finishing = select_event_dataframe[['SOT']]
+    finishing.fillna(0, inplace=True)
+
+    select_event_dataframe.reset_index(drop=True, inplace=True)
+    team_name = select_event_dataframe['Team Name'][0]
+
+    def calculate_percentile(value):
+        return norm.cdf(value) * 100
+
+    # Function to calculate z-score for each element in a column
+    def calculate_zscore(column, mean, std):
+        return (column - mean) / std
+
+    def clip_percentile(value):
+        return max(min(value, 100), 50)
+
+
+    if ('U15' in team_name) or ('U16' in team_name):
+        cf_event_df = pd.read_csv("SOT_Thresholds/U15_U16_Thresholds_SOT_CM.csv")
+    else:
+        cf_event_df = pd.read_csv("SOT_Thresholds/U17_U19_Thresholds_SOT_CM.csv")
+
+
+    mean_values = cf_event_df.iloc[0, 0]
+    std_values = cf_event_df.iloc[1, 0]
+    z_scores_df = finishing.transform(lambda col: calculate_zscore(col, mean_values, std_values))
+    
+    if z_scores_df.isna().any().any():
+        finishing_percentile = 50
+        weights = np.array([0.1])
+        finishing_score = finishing_percentile * weights[0]
+        final = pd.DataFrame({'Finishing': [finishing_score]})
+    else:
+        finishing_percentile = z_scores_df.map(calculate_percentile)
+        finishing_percentile = finishing_percentile.map(clip_percentile)
+        weights = np.array([0.1])
+        finishing_score = finishing_percentile * weights[0]
+        final = pd.DataFrame()
+        final['Finishing'] = finishing_score
+        final.reset_index(drop=True, inplace=True)
+   
+    return final
+
 def StrikerEventFunction(event_dataframe, select_event_dataframe):
 
     finishing = select_event_dataframe[['xG + xA']]
