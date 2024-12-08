@@ -16,6 +16,19 @@ def formatData(rows):
     game.insert(1, 'Opposition', opp_name)
     return game
 
+def formatDataNoxG(rows):
+    kpi = ['Dribble', 'Goal Against',  'Progr Regain ', 'Total Corners', 'Shots on Target Against',
+           'Total Cross', 'Total Forward', 'Att 1v1', 'Efforts on Goal', 'Shot on Target',
+           'Efficiency ', 'Line Break', 'Pass into Oppo Box',
+           'Loss of Poss', 'Pass Completion ', 'Total Passes', 'Foul Conceded',
+           'Progr Pass Attempt ', 'Progr Pass Completion ', 'Goal', 'Foul Won']
+    game = rows.loc[:, kpi].astype(float)
+    team_name = rows['Team']
+    opp_name = rows['Opposition']
+    game.insert(0, 'Team', team_name)
+    game.insert(1, 'Opposition', opp_name)
+    return game
+
 def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_opp_select, further_df):
     if comp_opp_select != '5 Game Rolling Avg' and comp_opp_select != 'Seasonal Rolling Avg':
         overall = getting_PSD_team_data()
@@ -170,8 +183,8 @@ def PositivesAndNegativesNoxG(team_select, opp_select, date_select, comp_opp_sel
                                 & (overall['Match Date'] == date_select)]
         closest_game = overall.loc[(overall['Team'] == team_select) & (overall['Unique Opp and Date'] == comp_opp_select)]
 
-        first_game = formatData(first_game)
-        second_game = formatData(closest_game)
+        first_game = formatDataNoxG(first_game)
+        second_game = formatDataNoxG(closest_game)
         
         
         product = pd.concat([first_game, second_game], ignore_index=True)
@@ -216,7 +229,7 @@ def PositivesAndNegativesNoxG(team_select, opp_select, date_select, comp_opp_sel
         mean_avg = rolling_games.mean()
         mean_avg['Opposition'] = '5 Game Rolling Avg'
         
-        first_game = formatData(first_game)
+        first_game = formatDataNoxG(first_game)
 
         # Create DataFrame from weighted average
         mean_avg = mean_avg.to_frame()
@@ -265,7 +278,7 @@ def PositivesAndNegativesNoxG(team_select, opp_select, date_select, comp_opp_sel
         mean_avg = rolling_games.mean()
         mean_avg['Opposition'] = 'Seasonal Rolling Avg'
         
-        first_game = formatData(first_game)
+        first_game = formatDataNoxG(first_game)
 
         # Create DataFrame from weighted average
         mean_avg = mean_avg.to_frame()
