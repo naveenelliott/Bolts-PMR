@@ -114,7 +114,7 @@ def WingerSOTFunction(select_event_dataframe):
    
     return final
 
-def StrikerSOTFunction(select_event_dataframe):
+def CMSOTFunction(select_event_dataframe):
 
     finishing = select_event_dataframe[['SOT']]
     finishing.fillna(0, inplace=True)
