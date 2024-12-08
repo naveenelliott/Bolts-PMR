@@ -1,0 +1,64 @@
+session_type,start_time,opponent,bolts team,athlete_name,total_distance_m,total_high_intensity_distance_m,max_speed_kph
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Aidan Cullinane,0.0,0.0,0.0
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Boahen Henrick,0.0,0.0,0.0
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Christian Palacios,7399.5165960645,189.26197951266346,26.49337153816223
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Emerson Walker,0.0,0.0,0.0
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Emmanuel Bellone,0.0,0.0,0.0
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Harris Yang,0.0,0.0,0.0
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Jack Comes,2933.325028045324,0.0,19.797011890411376
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Jacob Matalon,0.0,0.0,0.0
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Jaden Barrack-Anidi,4467.89339893911,115.82039137647638,25.383582555770875
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Jason Xintaropoulos,0.0,0.0,0.0
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Jason Xintaropoulos,7589.796650139249,289.87705818389907,26.655821668624878
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,JP Hirth,7268.132326479376,312.53733589880807,26.07066016960144
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Marco Hoxholli,9139.466222440822,237.99158449610204,26.895564393997194
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Mason Comeau,6433.398528136462,305.7542521815193,30.387383754730223
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,miles evans,8056.233046772248,507.8492795804988,27.986886388778682
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Oliver van den Bosch,0.0,0.0,0.0
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Owen Filler,4891.57418923473,246.935520767219,29.675681316375734
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Paul Gichana,0.0,0.0,0.0
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Silas Lawrence,9356.46409599333,465.35898252881003,28.194479530334473
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Tyler Monaghan,0.0,0.0,0.0
+MatchSession,2024-12-01T17:30:00.000Z,Surf U19s,Boston Bolts NAL Boston U19,Wally Lawrence,7950.602066227513,384.62527623557855,30.592925697326663
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Aidan Cullinane,6682.5078203178255,309.8937216351974,27.62333983039856
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Boahen Henrick,0.0,0.0,0.0
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Christian Palacios,5138.005702260338,141.88495943358507,26.51731208610535
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Emerson Walker,6392.498931031118,190.42426027696555,25.91470838356018
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Emmanuel Bellone,0.0,0.0,0.0
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Harris Yang,5956.365978521761,374.35664021397474,26.93215818786621
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Jack Comes,2819.733031012467,19.916124089062127,22.964616245269774
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Jacob Matalon,0.0,0.0,0.0
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Jaden Barrack-Anidi,6029.572568810014,153.72312956239432,29.22390026092529
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Jason Xintaropoulos,0.0,0.0,0.0
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Jason Xintaropoulos,8013.561284885675,292.61990452517995,24.570989765167237
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,JP Hirth,5447.792587849183,243.27084169103827,26.75534379386902
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Marco Hoxholli,7946.164013550884,312.6092185680877,27.07066809654236
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Mason Comeau,4640.627776005409,158.41814672537458,28.202003637313847
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,miles evans,5818.120255705568,318.5468624597081,29.967235977172848
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Oliver van den Bosch,0.0,0.0,0.0
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Owen Filler,4622.423462092495,349.9921431708932,26.93797192955017
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Paul Gichana,0.0,0.0,0.0
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Silas Lawrence,4138.739850366346,250.84045320611892,26.79228005218506
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Tyler Monaghan,6281.765727256605,244.82429786809587,28.81692007827759
+MatchSession,2024-11-30T16:00:00.000Z,Valencia ,Boston Bolts NAL Boston U19,Wally Lawrence,4935.1572052075535,222.7925279640063,28.082304485321043
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Aidan Cullinane,9192.752214251968,238.2480710866273,29.342231838226315
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Boahen Henrick,0.0,0.0,0.0
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Christian Palacios,6266.389307718374,216.02754496181313,24.7532760887146
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Emerson Walker,6884.541099137306,279.58350857537823,25.320312086105346
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Emmanuel Bellone,2276.374854548527,68.91752276123151,24.206076284408567
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Harris Yang,6783.290608708614,408.15589309536244,26.981748344421387
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Jack Comes,0.0,0.0,0.0
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Jacob Matalon,0.0,0.0,0.0
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Jaden Barrack-Anidi,0.0,0.0,0.0
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Jason Xintaropoulos,0.0,0.0,0.0
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Jason Xintaropoulos,0.0,0.0,0.0
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,JP Hirth,7126.606379023472,237.8293862148813,27.739962020874028
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Marco Hoxholli,7301.668594756716,314.61684519590597,25.61374801826477
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Mason Comeau,6235.977636139423,216.5682196439561,28.41507033920288
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,miles evans,6797.519508305,380.5921792849856,27.040571994781494
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Oliver van den Bosch,0.0,0.0,0.0
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Owen Filler,0.0,0.0,0.0
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Paul Gichana,3942.1030604274797,176.84080504910946,27.26424041748047
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Silas Lawrence,5472.68484765719,400.32075822157583,27.074088174819945
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Tyler Monaghan,0.0,0.0,0.0
+MatchSession,2024-11-29T17:30:00.000Z,Opponent,Boston Bolts NAL Boston U19,Wally Lawrence,6556.45362429235,417.6576498803633,28.863431316375735
