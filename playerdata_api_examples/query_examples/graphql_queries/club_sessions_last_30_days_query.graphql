@@ -1,0 +1,43 @@
+fragment metricFields on CommonAthleteMetrics {
+  totalDistanceM
+  metresPerMinute
+  totalHighIntensityDistanceM
+  highIntensityEvents
+  totalSprintDistanceM
+  sprintEvents
+  accelerationEvents
+  decelerationEvents
+  maxSpeedKph
+  workload
+  workloadVolume
+  workloadIntensity
+}
+
+query clubSessionsLastThirtyDays($clubId: ID!) {
+  club(id: $clubId) {
+    name
+    lastThirtyDaysSessions {
+      id
+      startTime
+      __typename
+      ... on MatchSession {
+      	opponent
+      	}
+      sessionParticipations {
+        athlete {
+          name
+        }
+        ... on MatchSessionParticipation {
+          metrics: metricSet {
+            ...metricFields
+          }
+        }
+        ... on TrainingSessionParticipation {
+          metrics: athleteMetricSet {
+            ...metricFields
+          }
+        }
+      }
+    }
+  }
+}

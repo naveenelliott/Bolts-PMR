@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "gqlpython"
+version = "0.0.1"
+description = "Python client for the PlayerData GraphQL API"
+authors = []
+readme = "README.md"
+packages = [{include = "gqlpython"}]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+oauthlib = "3.2.2"
+requests-oauthlib = "2.0.0"
+gql = "^3.5.0"
+pandas = "^2.2.2"
+tqdm = "^4.66.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
