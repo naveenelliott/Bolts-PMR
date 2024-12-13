@@ -10,9 +10,9 @@ import sys
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Folder path and processed files tracker
-folder_path = 'IDP_Report/xG Input Files/'
+folder_path = 'xG Input Files/'
 processed_files = set()
-reset_flag = True  # Set this to True to reset processed_files.txt, False to resume normal processing
+reset_flag = False  # Set this to True to reset processed_files.txt, False to resume normal processing
 
 # Graceful exit handler
 def signal_handler(sig, frame):
@@ -25,21 +25,21 @@ signal.signal(signal.SIGINT, signal_handler)
 # Function to load processed files
 def load_processed_files():
     try:
-        with open('processed_files_7.txt', 'r') as f:
+        with open('Bolts_Database/Run/xG.txt', 'r') as f:
             return set(f.read().splitlines())
     except FileNotFoundError:
         return set()
 
 # Function to save processed files
 def save_processed_files(processed_files):
-    with open('processed_files_7.txt', 'w') as f:
+    with open('Bolts_Database/Run/xG.txt', 'w') as f:
         f.write('\n'.join(processed_files))
 
 # Function to reset processed files
 def reset_processed_files():
-    if os.path.exists('processed_files_7.txt'):
-        os.remove('processed_files_7.txt')
-        logging.info("Reset processed_files.txt. All files will be reprocessed.")
+    if os.path.exists('Bolts_Database/Run/xG.txt'):
+        os.remove('Bolts_Database/Run/xG.txt')
+        logging.info("Reset xG.txt. All files will be reprocessed.")
         
 def flip_coordinates(x, y):
     # Flip x and y coordinates horizontally

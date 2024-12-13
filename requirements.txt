@@ -122,4 +122,4 @@ yolo==0.3.1
 haversine==2.8.1
 shapely==2.0.6
 gql==3.4.0
-
+mysql-connector-python==8.1.0
