@@ -20,8 +20,6 @@ import os
 import numpy as np
 import matplotlib.patches as mpatches
 from xGModel import xGModel
-from AvgAttPositionOnField import AttackingPositionOnField
-from AvgDefPositionOnField import DefendingPositionOnField
 from GettingEventDataGrades import StrikerEventFunction, WingerEventFunction, CMEventFunction, StrikerSOTFunction, WingerSOTFunction, CMSOTFunction
 from GettingTimeUntilRegain import formattingFileForRegain
 from GettingPSDGradeData import getting_PSD_grade_data
