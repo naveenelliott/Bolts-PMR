@@ -64,7 +64,7 @@ pillow==10.3.0
 plotly==5.22.0
 plotly-express==0.4.1
 plotly-football-pitch==0.0.3
-protobuf==4.25.3
+protobuf>=4.21.1,<=4.21.12
 psutil==6.0.0
 py-cpuinfo==9.0.0
 pyarrow==16.1.0

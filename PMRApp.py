@@ -2,9 +2,22 @@ import streamlit as st
 import pandas as pd
 from GettingFullActions import UpdatingActions
 from GettingPSDLineupData import getting_PSD_lineup_data
+from Bolts_Database.GettingTables import (
+    getxGTable,
+    getActionsTable,
+    getLineupTable,
+    getTeamReportTable,
+    getPlayerNoPositionTable,
+    getPlayerPositionTable
+)
 
 # Setting the title of the PMR App in web browser
 st.set_page_config(page_title='Bolts Post-Match Review App', page_icon = 'pages/Boston_Bolts.png')
+
+
+# READING FROM DATABASE
+complete_test_df = getLineupTable()
+
 
 
 st.sidebar.success('Select a page above.')
