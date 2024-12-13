@@ -13,10 +13,10 @@ fragment metricFields on CommonAthleteMetrics {
   workloadIntensity
 }
 
-query clubSessionsLastThirtyDays($clubId: ID!) {
+query clubSessions($clubId: ID!, $offset: Int!) {
   club(id: $clubId) {
     name
-    lastThirtyDaysSessions {
+    sessions(offset: $offset) {
       id
       startTime
       __typename
@@ -28,6 +28,7 @@ query clubSessionsLastThirtyDays($clubId: ID!) {
           name
         }
         ... on MatchSessionParticipation {
+          
           metrics: metricSet {
             ...metricFields
           }

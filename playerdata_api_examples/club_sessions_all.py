@@ -28,30 +28,6 @@ team_codes = {
     'GK': '02011b28-68c1-4970-91ef-33ded5c09f64'
 }
 
-athlete_mapping = {
-    'Jonathan Carvalho Davitoria': 'Jonathan DaVitoria',
-    'Matthew Ferriero': 'Matt Ferriero',
-    'Trey A Poverman': 'Trey Poverman',
-    'Oliver': 'Oliver Garry',
-    'Harrison': 'Harrison Boecher',
-    'Alex Syrett': 'Alexander Syrett', 
-    'Arthur Docarmo': 'Arthur Do Carmo',
-    'Jack Barry Greener': 'Jack Greener',
-    'Drew Crosby': 'Drew Cosby',
-    'Benjamin Stuart': 'Ben Stuart',
-    'Gabriel': 'Gabriel Raley',
-    'Benjamin Marro': 'Ben Marro',
-    'Will Spaulding': 'William Spaulding',
-    'Valentín Estevez': 'Valentin Estevez Rubino',
-    'Nathaniel Aaron': 'Nate Aaron',
-    'Aiden': 'Aiden Mejia',
-    'Vasilian': 'Vasilian Mbrice',
-    'Benjamin Harry Shapiro': 'Ben Shapiro',
-    'Zach Miles': 'Zachary Miles',
-    'Ben Wiseman': 'Benjamin Wiseman',
-    'Nicholas': 'Nicholas Duarte Mesquita'
-}
-
 # TODO: Replace with your own values.
 CLIENT_ID = "yGhhyBnkZu_VA0Y5Qj0D-snMUQsHwXuq6NCt5S1TTWA"
 CLIENT_SECRET = "LFKNJ3ud-vdlhJbCTv1xnJwng-SacBz_WTicW1AYadc"
@@ -87,7 +63,7 @@ def club_sessions(club_id, club_name):
 
     client = Client(transport=transport, fetch_schema_from_transport=False)
 
-    with open("playerdata_api_examples/query_examples/graphql_queries/training_sessions.graphql", "r") as file_stream:
+    with open("playerdata_api_examples/query_examples/graphql_queries/club_sessions_query_all.graphql", "r") as file_stream:
         query = gql(file_stream.read())
 
     offset = 0
@@ -118,36 +94,41 @@ def club_sessions(club_id, club_name):
         start_time = session["startTime"]
         session_type = session["__typename"]
 
-        if session_type != "MatchSession":
-            session_participations = session["sessionParticipations"]
+        if session_type == "MatchSession":
+            opponent = session["opponent"]
+        else:
+            opponent = "NA"
 
-            for participation in session_participations:
-                athlete_name = participation["athlete"]["name"]
-                metrics = participation["metrics"]
+        session_participations = session["sessionParticipations"]
 
-                if athlete_name in athlete_mapping:
-                    athlete_name = athlete_mapping[athlete_name]
+        for participation in session_participations:
+            athlete_name = participation["athlete"]["name"]
+            metrics = participation["metrics"]
 
-                if metrics is not None:
-                    flat_data.append(
-                        {
-                            "session_type": session_type,
-                            "start_time": start_time,
-                            'bolts team': club_name_result,
-                            "athlete_name": athlete_name,
-                            "total_distance_m": metrics.get("totalDistanceM", 0),
-                            "total_high_intensity_distance_m": metrics.get("totalHighIntensityDistanceM", 0),
-                            "max_speed_kph": metrics.get("maxSpeedKph", 0)
-                        }
-                    )
+            if metrics is not None:
+                flat_data.append(
+                    {
+                        "session_type": session_type,
+                        "start_time": start_time,
+                        "opponent": opponent,
+                        'bolts team': club_name_result,
+                        "athlete_name": athlete_name,
+                        "total_distance_m": metrics["totalDistanceM"],
+                        "total_high_intensity_distance_m": metrics[
+                            "totalHighIntensityDistanceM"
+                        ],
+                        "max_speed_kph": metrics["maxSpeedKph"],
+                    }
+                )
 
-        # Convert flat_data to DataFrame after processing all sessions
     df = pd.DataFrame(flat_data)
+    
+    # Filter out non-match sessions
+    if 'opponent' in df.columns:
+        df = df.loc[df['opponent'] != 'NA']
 
-    # Save DataFrame to CSV
-    df.to_csv(f"Detailed_Training_Sessions/{club_name} Training.csv", index=False)
-
-
+    # Save to CSV
+    df.to_csv(f"Match_Sessions/{club_name} Matches.csv", index=False)
 
 if __name__ == "__main__":
     # Loop through each team and fetch the session data
