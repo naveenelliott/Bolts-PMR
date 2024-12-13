@@ -1,0 +1,22 @@
+query trainingSessions($clubId: ID!, $offset: Int!) {
+  club(id: $clubId) {
+    name
+    sessions(offset: $offset) {
+      id
+      startTime
+      __typename
+      sessionParticipations {
+        athlete {
+          name
+        }
+        ... on TrainingSessionParticipation {
+          metrics: athleteMetricSet {
+            totalDistanceM
+            totalHighIntensityDistanceM
+            maxSpeedKph
+          }
+        }
+      }
+    }
+  }
+}
