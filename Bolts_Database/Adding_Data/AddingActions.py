@@ -3,7 +3,6 @@ import pandas as pd
 import mysql.connector
 from mysql.connector import Error
 import logging
-import signal
 import sys
 
 def addingActions():
@@ -21,8 +20,6 @@ def addingActions():
         logging.info("Stopping the script...")
         save_processed_files(processed_files)
         sys.exit(0)
-
-    signal.signal(signal.SIGINT, signal_handler)
 
     # Function to load processed files
     def load_processed_files():
