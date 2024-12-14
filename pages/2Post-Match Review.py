@@ -30,6 +30,20 @@ import plotly.graph_objs as go
 import re
 from streamlit_gsheets import GSheetsConnection
 from GettingTopPlayers import getting_PSD_top_cat
+from Bolts_Database.GettingTables import (
+    getxGTable,
+    getActionsTable,
+    getLineupTable,
+    getTeamReportTable,
+    getPlayerNoPositionTable,
+    getPlayerPositionTable
+)
+from Bolts_Database.Adding_Data.AddingActions import addingActions
+from Bolts_Database.Adding_Data.AddingDataToLineup import addingDataToLineup
+from Bolts_Database.Adding_Data.AddingDataToPlayerReportPosition import addingDataToPlayerReportPosition
+from Bolts_Database.Adding_Data.AddingDataToPlayerReport import addingDataToPlayerReport
+from Bolts_Database.Adding_Data.AddingDataToTeamGameReport import addingDataToTeamGameReport
+from Bolts_Database.Adding_Data.AddingxG import addingxG
 
 
 # Setting a wide layout
@@ -43,41 +57,42 @@ selected_opp = st.session_state["selected_opp"]
 selected_date = st.session_state["selected_date"]
 
 # Getting player grade data and formatting it
-player_data = getting_PSD_grade_data()
-non_number_columns = ['Player Full Name', 'Team Name', 'Position Tag', 'Match Date', 'Opposition']
+addingDataToPlayerReportPosition()
+player_data = getPlayerPositionTable()
+st.write(player_data)
+non_number_columns = ['Name', 'Team_Name', 'Position', 'Match_Date', 'Opposition']
 for col in player_data.columns:
     if col not in non_number_columns:
         player_data[col] = player_data[col].astype(float)
-player_data['Match Date'] = pd.to_datetime(player_data['Match Date']).dt.strftime('%m/%d/%Y')
-player_data.loc[player_data['Opposition'] == 'St Louis', 'Match Date'] = '12/09/2023'
+player_data.loc[player_data['Opposition'] == 'St Louis', 'Match_Date'] = '12/09/2023'
 
 
 player_data_copy = player_data.copy()
-grouped = player_data_copy.groupby(['Player Full Name', 'Position Tag'])['mins played'].sum().reset_index()
+grouped = player_data_copy.groupby(['Name', 'Position'])['Minutes'].sum().reset_index()
     
 # Find the position with the most minutes played for each player
-idx = grouped.groupby('Player Full Name')['mins played'].idxmax()
+idx = grouped.groupby('Name')['Minutes'].idxmax()
 prime_pos = grouped.loc[idx].reset_index(drop=True)
-prime_pos.rename(columns={'Position Tag': 'Primary Position'}, inplace=True)
+prime_pos.rename(columns={'Position': 'Primary Position'}, inplace=True)
 
 # getting the primary position
-player_data_copy = pd.merge(player_data_copy, prime_pos[['Player Full Name', 'Primary Position']], on='Player Full Name', how='inner')
-del player_data_copy['Position Tag']
-player_data_copy = player_data_copy.groupby(['Player Full Name', 'Opposition', 'Match Date', 'Team Name', 'Primary Position'])[['mins played']].sum()
+player_data_copy = pd.merge(player_data_copy, prime_pos[['Name', 'Primary Position']], on='Name', how='inner')
+del player_data_copy['Position']
+player_data_copy = player_data_copy.groupby(['Name', 'Opposition', 'Match_Date', 'Team_Name', 'Primary Position'])[['Minutes']].sum()
 player_data_copy.reset_index(inplace=True)
-player_data_copy['Match Identifier'] = player_data_copy['Team Name'] + ' vs ' + player_data_copy['Opposition'] + ' on ' + player_data_copy['Match Date'].astype(str)
+player_data_copy['Match Identifier'] = player_data_copy['Team_Name'] + ' vs ' + player_data_copy['Opposition'] + ' on ' + player_data_copy['Match_Date'].astype(str)
 match_identifiers = st.session_state['match_identifiers']
 player_data_copy = player_data_copy[player_data_copy['Match Identifier'].isin(match_identifiers)]
 
 
 
 # fromatting for the selected game
-player_data = player_data.loc[(player_data['Team Name'] == selected_team) & (player_data['Opposition'] == selected_opp) & (player_data['Match Date'] == selected_date)]
+player_data = player_data.loc[(player_data['Team_Name'] == selected_team) & (player_data['Opposition'] == selected_opp) & (player_data['Match_Date'] == selected_date)]
 
 # this gives us the total minutes played and shots for the whole team
 # we will use this information to look at xT per 90 and xG per shot
-total_mins_played = player_data['mins played'].sum()
-total_shots = player_data['Efforts on Goal'].sum()
+total_mins_played = player_data['Minutes'].sum()
+total_shots = player_data['Shots'].sum()
 opp_shots = player_data['Opp Effort on Goal'].sum()
 temp_shots = opp_shots.copy()
 # if there is no opp efforts on goal, then we use other information

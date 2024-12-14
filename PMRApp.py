@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-from GettingFullActions import UpdatingActions
-from GettingPSDLineupData import getting_PSD_lineup_data
 from Bolts_Database.GettingTables import (
     getxGTable,
     getActionsTable,
@@ -31,7 +29,6 @@ st.sidebar.success('Select a page above.')
 # this updates actions
 addingActions()
 combined_actions = getActionsTable()
-st.write(combined_actions)
 
 # these are the allowable teams that we have event data for
 bolts_allowed = pd.Series(combined_actions['Team'].unique())
@@ -44,7 +41,6 @@ st.session_state['match_identifiers'] = unique_match_identifiers
 
 addingDataToLineup()
 combined_df = getLineupTable()
-st.write(combined_df)
 combined_df['Started'] = combined_df['Started'].astype(float)
 
 combined_df = combined_df.loc[combined_df['Team_Name'].isin(bolts_allowed) & combined_df['Opponent'].isin(opp_allowed)].reset_index(drop=True)
