@@ -10,6 +10,12 @@ from Bolts_Database.GettingTables import (
     getPlayerNoPositionTable,
     getPlayerPositionTable
 )
+from Bolts_Database.Adding_Data.AddingActions import addingActions
+from Bolts_Database.Adding_Data.AddingDataToLineup import addingDataToLineup
+from Bolts_Database.Adding_Data.AddingDataToPlayerReportPosition import addingDataToPlayerReportPosition
+from Bolts_Database.Adding_Data.AddingDataToPlayerReport import addingDataToPlayerReport
+from Bolts_Database.Adding_Data.AddingDataToTeamGameReport import addingDataToTeamGameReport
+from Bolts_Database.Adding_Data.AddingxG import addingxG
 
 # Setting the title of the PMR App in web browser
 st.set_page_config(page_title='Bolts Post-Match Review App', page_icon = 'pages/Boston_Bolts.png')
