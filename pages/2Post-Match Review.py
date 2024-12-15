@@ -1722,7 +1722,6 @@ else:
     
     bolts_xg_data = xg_data.loc[xg_data['Team'].str.contains(selected_team)]
     
-    st.write(bolts_xg_data)
     
     for index, row in bolts_xg_data.iterrows():
         x, y, xG = row['X'], 100-row['Y'], row['xG']
