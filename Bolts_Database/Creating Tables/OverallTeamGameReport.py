@@ -21,7 +21,7 @@ try:
     cursor.execute(drop_table_query)
 
     # Load data into DataFrame (replace with your CSV file path)
-    df = pd.read_csv('IDP_Report/WeeklyReport PSD/U17_MLSNEXT_Bayside_11092024WR.csv')
+    df = pd.read_csv('WeeklyReport PSD/U17_MLSNEXT_Bayside_11092024WR.csv')
     df.columns = df.iloc[3]
     df = df.iloc[4:].reset_index(drop=True)
 

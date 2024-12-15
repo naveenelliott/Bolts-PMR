@@ -21,7 +21,6 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
 
     team_data = getTeamReportTable()
     team_data.columns = team_data.columns.str.replace('_', ' ', regex=False)
-    st.write(team_data)
 
     team_data.rename(columns={'Match Date': 'Date',
                               'Pass %': 'Pass Completion ',
@@ -168,6 +167,9 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
     raw_vals.at[1, 'xG per Shot'] = round(raw_vals.at[1, 'xG per Shot'], 3)
     raw_vals.at[1, 'Opp xG per Shot'] = round(raw_vals.at[1, 'Opp xG per Shot'], 3)
     raw_vals.at[1, 'Time Until Regain'] = round(raw_vals.at[1, 'Time Until Regain'], 2)
+    raw_vals.at[1, 'Shots'] = round(raw_vals.at[1, 'Shots'], 1)
+    raw_vals.at[1, 'Opp Shots'] = round(raw_vals.at[1, 'Opp Shots'], 1)
+    raw_vals.at[1, 'Passes into 18'] = round(raw_vals.at[1, 'Passes into 18'], 1)
     important.iloc[0] = important.iloc[0].apply(round_to_nearest_10)
 
     dummy_df = pd.DataFrame(columns=important.columns)
@@ -369,6 +371,9 @@ def MiddlePMRStreamlit_NALOlder(team, opp, date, regain_time):
     raw_vals = important.copy()
     raw_vals.iloc[0] = raw_vals.iloc[0].astype(float).apply(round)
     raw_vals.at[1, 'Time Until Regain'] = round(raw_vals.at[1, 'Time Until Regain'], 2)
+    raw_vals.at[1, 'Shots'] = round(raw_vals.at[1, 'Shots'], 1)
+    raw_vals.at[1, 'Opp Shots'] = round(raw_vals.at[1, 'Opp Shots'], 1)
+    raw_vals.at[1, 'Passes into 18'] = round(raw_vals.at[1, 'Passes into 18'], 1)
     important.iloc[0] = important.iloc[0].apply(round_to_nearest_10)
 
     dummy_df = pd.DataFrame(columns=important.columns)

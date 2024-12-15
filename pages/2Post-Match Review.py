@@ -197,7 +197,7 @@ available_teams = ['Boston Bolts U13 NALSS', 'Boston Bolts U15 NALB', 'Boston Bo
 if selected_team in available_teams:
     shot_table_actions.rename(columns={'Bolts Team': 'Team',
                                       'Player Full Name': 'Player',
-                                      'Video Link': 'Link'}, inplace=True)
+                                      'Video_Link': 'Link'}, inplace=True)
     shot_table_actions = shot_table_actions.loc[(shot_table_actions['Team'] == selected_team) & (shot_table_actions['Opposition'] == selected_opp) & (shot_table_actions['Match Date'] == selected_date)].reset_index(drop=True)
     opponent_shots = ['Opp Effort on Goal', 'Save Held', 'Save Parried', 'Goal Against']
     shot_table_actions.loc[shot_table_actions['Action'].isin(opponent_shots), 'Team'] = selected_opp
@@ -1722,12 +1722,13 @@ else:
     
     bolts_xg_data = xg_data.loc[xg_data['Team'].str.contains(selected_team)]
     
+    st.write(bolts_xg_data)
     
     for index, row in bolts_xg_data.iterrows():
         x, y, xG = row['X'], 100-row['Y'], row['xG']
         hteam = row['Team']
-        player_name = row['Player Full Name']
-        url = row['Video Link']
+        player_name = row['Name']
+        url = row['Video_Link']
     
         if row['Event'] == 'Goal':
             fig1.add_trace(go.Scatter(
@@ -1850,7 +1851,7 @@ else:
     
     
     for index, row in opp_xg_data.iterrows():
-        x, y, xG, url = 100-row['X'], row['Y'], row['xG'], row['Video Link']
+        x, y, xG, url = 100-row['X'], row['Y'], row['xG'], row['Video_Link']
     
         ateam = row['Team']
         our_string = row['Event']
