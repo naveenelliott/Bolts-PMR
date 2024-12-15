@@ -42,7 +42,7 @@ try:
              'Shot off Target', 'Att Shot Blockd', 'Cross', 'Unsucc Cross', 'Efficiency ', 'Long',
              'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break', 'Pass into Oppo Box', 'Loss of Poss',
              'Success', 'Unsuccess', 'Pass Completion ', 'Progr Pass Completion ', 'Foul Won', 'Foul Conceded',
-             'Save Held', 'Save Parried', 'Save % ', 'Successful Cross', 'Opposition']]
+             'Save Held', 'Save Parried', 'Save % ', 'Successful Cross', 'Opposition', 'Opp Effort on Goal']]
     number_columns = ['mins played', 'Yellow Card', 'Red Card', 'Goal', 'Assist',
                   'Dribble', 'Goal Against', 'Stand. Tackle', 'Unsucc Stand. Tackle', 'Tackle', 'Unsucc Tackle',
                   'Clear', 'Own Box Clear', 'Progr Rec', 'Unprogr Rec', 'Progr Inter', 'Unprogr Inter', 'Progr Regain ',
@@ -50,7 +50,7 @@ try:
                   'Efforts on Goal', 'Shot on Target', 'Shot off Target', 'Att Shot Blockd', 'Cross', 'Unsucc Cross',
                   'Efficiency ', 'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break', 'Pass into Oppo Box', 'Loss of Poss',
                   'Success', 'Unsuccess', 'Pass Completion ', 'Progr Pass Completion ', 'Foul Won', 'Foul Conceded',
-                  'Save Held', 'Save Parried', 'Save % ', 'Successful Cross']
+                  'Save Held', 'Save Parried', 'Save % ', 'Successful Cross', 'Opp Effort on Goal']
     df[number_columns] = df[number_columns].astype(float)
     df['Match Date'] = pd.to_datetime(df['Match Date']).dt.strftime('%m/%d/%Y')
     df['Tackles'] = df['Tackle'] + df['Stand. Tackle']

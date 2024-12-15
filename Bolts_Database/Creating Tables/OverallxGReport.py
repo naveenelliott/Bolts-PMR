@@ -28,7 +28,7 @@ try:
     cursor.execute(drop_table_query)
 
     # Load data into DataFrame (replace with your CSV file path)
-    df = pd.read_csv('IDP_Report/xG Input Files/u14_ctunitedxG.csv')
+    df = pd.read_csv('xG Input Files/u14_ctunitedxG.csv')
     field_dim = 100
     # Iterating through coordinates and making them on one side
     flipped_points = []
@@ -39,6 +39,13 @@ try:
             df.at[index, 'Y'] = flipped_y
     
     df.drop(columns=['Mins', 'Secs', 'X2', 'Y2'], inplace=True)
+
+    select_columns = ['Team', 'Player', 'Event', 'X', 'Y', 'Match Date', 'Bolts Team',
+                'Time']
+            
+    df = df[select_columns]
+
+    df['Match Date'] = pd.to_datetime(df['Match Date']).dt.strftime('%m/%d/%Y')
     
     # Ensure all column names are SQL-friendly (e.g., no spaces)
     df.columns = df.columns.str.replace(' ', '_').str.strip()

@@ -1,14 +1,17 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-from GettingPSDTeamData import getting_PSD_team_data
+from Bolts_Database.GettingTables import (
+    getTeamReportTable
+)
+from Bolts_Database.Adding_Data.AddingDataToTeamGameReport import addingDataToTeamGameReport
 
 def formatData(rows):
-    kpi = ['Dribble', 'Goal Against',  'Progr Regain ', 'Total Corners', 'Shots on Target Against',
-           'Total Cross', 'Total Forward', 'Att 1v1', 'Efforts on Goal', 'Shot on Target',
-           'Efficiency ', 'Line Break', 'Pass into Oppo Box', 'xG per Shot', 'Opp xG per Shot',
-           'Loss of Poss', 'Pass Completion ', 'Total Passes', 'Foul Conceded',
-           'Progr Pass Attempt ', 'Progr Pass Completion ', 'Goal', 'Foul Won']
+    kpi = ['Dribble', 'Goal Against',  'Progr Regain ', 'Total Crosses', 'Total Saves',
+           'Total Forward Passes', 'Att 1v1', 'Shots', 'Shot on Target',
+           'SOT %', 'Line Break', 'Pass into Oppo Box', 'xG per Shot', 'Opp xG per Shot',
+           'Loss of Poss', 'Pass %', 'Total Passes', 'Foul Conceded',
+           'Progr Pass %', 'Goal', 'Foul Won']
     game = rows.loc[:, kpi].astype(float)
     team_name = rows['Team']
     opp_name = rows['Opposition']
@@ -17,11 +20,11 @@ def formatData(rows):
     return game
 
 def formatDataNoxG(rows):
-    kpi = ['Dribble', 'Goal Against',  'Progr Regain ', 'Total Corners', 'Shots on Target Against',
-           'Total Cross', 'Total Forward', 'Att 1v1', 'Efforts on Goal', 'Shot on Target',
-           'Efficiency ', 'Line Break', 'Pass into Oppo Box',
-           'Loss of Poss', 'Pass Completion ', 'Total Passes', 'Foul Conceded',
-           'Progr Pass Attempt ', 'Progr Pass Completion ', 'Goal', 'Foul Won']
+    kpi = ['Dribble', 'Goal Against',  'Progr Regain ', 'Total Crosses', 'Total Saves',
+           'Total Forward Passes', 'Att 1v1', 'Shots', 'Shot on Target',
+           'SOT %', 'Line Break', 'Pass into Oppo Box',
+           'Loss of Poss', 'Pass %', 'Total Passes', 'Foul Conceded',
+           'Progr Pass %', 'Goal', 'Foul Won']
     game = rows.loc[:, kpi].astype(float)
     team_name = rows['Team']
     opp_name = rows['Opposition']
@@ -30,14 +33,14 @@ def formatDataNoxG(rows):
     return game
 
 def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_opp_select, further_df):
+    further_df.rename(columns={'Match_Date': 'Match Date'}, inplace=True)
+    addingDataToTeamGameReport()
+    overall = getTeamReportTable()
+    overall.columns = overall.columns.str.replace('_', ' ', regex=False)
     if comp_opp_select != '5 Game Rolling Avg' and comp_opp_select != 'Seasonal Rolling Avg':
-        overall = getting_PSD_team_data()
         # manually changing St Louis because weekly report and actions don't align
-        overall.loc[overall['Opposition'] == 'St Louis', 'Date'] = '2023-12-09'
-        overall['Date'] = pd.to_datetime(overall['Date']).dt.strftime('%m/%d/%Y')
-        overall['Unique Opp and Date'] = overall['Opposition'] + ' (' + overall['Date'] + ')'
-        overall.rename(columns={'Date': 'Match Date', 
-                                   'Team Name': 'Team'}, inplace=True)
+        overall['Unique Opp and Date'] = overall['Opposition'] + ' (' + overall['Match Date'] + ')'
+        overall.rename(columns={'Team Name': 'Team'}, inplace=True)
         first_game = overall.loc[(overall['Team'] == team_select) & (overall['Opposition'] == opp_select) 
                                 & (overall['Match Date'] == date_select)]
         first_game_event = further_df.loc[(further_df['Team'] == team_select) & (further_df['Opposition'] == opp_select) 
@@ -54,7 +57,7 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
         product = pd.concat([first_game, second_game], ignore_index=True)
         percent_change = (product.iloc[0, 2:] - product.iloc[1, 2:]) / product.iloc[1, 2:] * 100
         percent_change = percent_change.replace([np.inf, -np.inf], np.nan).dropna()
-        columns_to_negate = ['Goal Against', 'Shots on Target Against', 'Loss of Poss', 'Foul Conceded', 'Opp xG per Shot', 'Time Until Regain']
+        columns_to_negate = ['Goal Against', 'Total Saves', 'Loss of Poss', 'Foul Conceded', 'Opp xG per Shot', 'Time Until Regain']
 
         for column in columns_to_negate:
             if column in percent_change.index:
@@ -64,7 +67,6 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
         low_three = percent_change.nsmallest(3)
         return top_three, low_three
     elif comp_opp_select == '5 Game Rolling Avg':
-        overall = getting_PSD_team_data()
         # manually changing St Louis because weekly report and actions don't align
         overall.loc[overall['Opposition'] == 'St Louis', 'Date'] = '2023-12-09'
         overall['Date'] = pd.to_datetime(overall['Date']).dt.strftime('%m/%d/%Y')
@@ -108,7 +110,7 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
 
         percent_change = (product.iloc[0, 2:] - product.iloc[1, 2:]) / product.iloc[1, 2:] * 100
         percent_change = percent_change.replace([np.inf, -np.inf], np.nan).dropna()
-        columns_to_negate = ['Goal Against', 'Shots on Target Against', 'Loss of Poss', 'Foul Conceded', 'Opp xG per Shot', 'Time Until Regain']
+        columns_to_negate = ['Goal Against', 'Total Saves', 'Loss of Poss', 'Foul Conceded', 'Opp xG per Shot', 'Time Until Regain']
         for column in columns_to_negate:
             if column in percent_change.index:
                 percent_change[column] = percent_change[column] * -1
@@ -116,7 +118,6 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
         low_three = percent_change.nsmallest(3)
         return top_three, low_three
     elif comp_opp_select == 'Seasonal Rolling Avg':
-        overall = getting_PSD_team_data()
         # manually changing St Louis because weekly report and actions don't align
         overall.loc[overall['Opposition'] == 'St Louis', 'Date'] = '2023-12-09'
         overall['Date'] = pd.to_datetime(overall['Date']).dt.strftime('%m/%d/%Y')
@@ -160,7 +161,7 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
 
         percent_change = (product.iloc[0, 2:] - product.iloc[1, 2:]) / product.iloc[1, 2:] * 100
         percent_change = percent_change.replace([np.inf, -np.inf], np.nan).dropna()
-        columns_to_negate = ['Goal Against', 'Shots on Target Against', 'Loss of Poss', 'Foul Conceded', 'Opp xG per Shot', 'Time Until Regain']
+        columns_to_negate = ['Goal Against', 'Total Saves', 'Loss of Poss', 'Foul Conceded', 'Opp xG per Shot', 'Time Until Regain']
         for column in columns_to_negate:
             if column in percent_change.index:
                 percent_change[column] = percent_change[column] * -1
@@ -171,8 +172,10 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
 #top_three, low_three = PositivesAndNegativesStreamlit(team_select, opp_select, date_select)
 
 def PositivesAndNegativesNoxG(team_select, opp_select, date_select, comp_opp_select):
+    addingDataToTeamGameReport()
+    overall = getTeamReportTable()
+    overall.columns = overall.columns.str.replace('_', ' ', regex=False)
     if comp_opp_select != '5 Game Rolling Avg' and comp_opp_select != 'Seasonal Rolling Avg':
-        overall = getting_PSD_team_data()
         # manually changing St Louis because weekly report and actions don't align
         overall.loc[overall['Opposition'] == 'St Louis', 'Date'] = '2023-12-09'
         overall['Date'] = pd.to_datetime(overall['Date']).dt.strftime('%m/%d/%Y')
@@ -190,7 +193,7 @@ def PositivesAndNegativesNoxG(team_select, opp_select, date_select, comp_opp_sel
         product = pd.concat([first_game, second_game], ignore_index=True)
         percent_change = (product.iloc[0, 2:] - product.iloc[1, 2:]) / product.iloc[1, 2:] * 100
         percent_change = percent_change.replace([np.inf, -np.inf], np.nan).dropna()
-        columns_to_negate = ['Goal Against', 'Shots on Target Against', 'Loss of Poss', 'Foul Conceded', 'Time Until Regain']
+        columns_to_negate = ['Goal Against', 'Total Saves', 'Loss of Poss', 'Foul Conceded', 'Time Until Regain']
 
         for column in columns_to_negate:
             if column in percent_change.index:
@@ -200,7 +203,6 @@ def PositivesAndNegativesNoxG(team_select, opp_select, date_select, comp_opp_sel
         low_three = percent_change.nsmallest(3)
         return top_three, low_three
     elif comp_opp_select == '5 Game Rolling Avg':
-        overall = getting_PSD_team_data()
         # manually changing St Louis because weekly report and actions don't align
         overall.loc[overall['Opposition'] == 'St Louis', 'Date'] = '2023-12-09'
         overall['Date'] = pd.to_datetime(overall['Date']).dt.strftime('%m/%d/%Y')
@@ -239,7 +241,7 @@ def PositivesAndNegativesNoxG(team_select, opp_select, date_select, comp_opp_sel
 
         percent_change = (product.iloc[0, 2:] - product.iloc[1, 2:]) / product.iloc[1, 2:] * 100
         percent_change = percent_change.replace([np.inf, -np.inf], np.nan).dropna()
-        columns_to_negate = ['Goal Against', 'Shots on Target Against', 'Loss of Poss', 'Foul Conceded', 'Time Until Regain']
+        columns_to_negate = ['Goal Against', 'Total Saves', 'Loss of Poss', 'Foul Conceded', 'Time Until Regain']
         for column in columns_to_negate:
             if column in percent_change.index:
                 percent_change[column] = percent_change[column] * -1
@@ -247,7 +249,6 @@ def PositivesAndNegativesNoxG(team_select, opp_select, date_select, comp_opp_sel
         low_three = percent_change.nsmallest(3)
         return top_three, low_three
     elif comp_opp_select == 'Seasonal Rolling Avg':
-        overall = getting_PSD_team_data()
         # manually changing St Louis because weekly report and actions don't align
         overall.loc[overall['Opposition'] == 'St Louis', 'Date'] = '2023-12-09'
         overall['Date'] = pd.to_datetime(overall['Date']).dt.strftime('%m/%d/%Y')
@@ -260,8 +261,6 @@ def PositivesAndNegativesNoxG(team_select, opp_select, date_select, comp_opp_sel
         first_game = overall.loc[(overall['Team'] == team_select) & (overall['Opposition'] == opp_select) 
                                 & (overall['Match Date'] == date_select)]
         selected_game_idx = first_game.index[0]
-
-        overall = pd.merge(overall, further_df, on=['Team', 'Opposition', 'Match Date'], how='outer')
 
         overall = overall.loc[overall['Team'] == team_select]
 
@@ -288,7 +287,7 @@ def PositivesAndNegativesNoxG(team_select, opp_select, date_select, comp_opp_sel
 
         percent_change = (product.iloc[0, 2:] - product.iloc[1, 2:]) / product.iloc[1, 2:] * 100
         percent_change = percent_change.replace([np.inf, -np.inf], np.nan).dropna()
-        columns_to_negate = ['Goal Against', 'Shots on Target Against', 'Loss of Poss', 'Foul Conceded', 'Time Until Regain']
+        columns_to_negate = ['Goal Against', 'Total Saves', 'Loss of Poss', 'Foul Conceded', 'Time Until Regain']
         for column in columns_to_negate:
             if column in percent_change.index:
                 percent_change[column] = percent_change[column] * -1

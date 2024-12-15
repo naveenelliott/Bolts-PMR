@@ -11,20 +11,11 @@ def formattingFileForRegain(actions):
         minutes, seconds = map(int, time_str.split(':'))
         return timedelta(minutes=minutes, seconds=seconds)
     
-    actions = actions[['Player Full Name', 'Team', 'Match Date', 'Opposition',
-                     'Action', 'Period', 'Time', 'x', 'y', 'ex',  'ey', 'Dir']]
-    locations = ['x', 'y', 'ex', 'ey']
-    actions[locations] = actions[locations].astype(float)
+    actions.columns = actions.columns.str.replace('_', ' ', regex=False)
+
+    actions = actions[['Name', 'Team', 'Match Date', 'Opposition',
+                     'Action', 'Period', 'Time']]
     actions = actions.dropna(subset=['Time'])
-    
-    for index, row in actions.iterrows():
-        if row['Dir'] == 'RL':
-            actions.at[index, 'x'] = 120 - actions.at[index, 'x']
-            actions.at[index, 'y'] = 80 - actions.at[index, 'y']
-            actions.at[index, 'ex'] = 120 - actions.at[index, 'ex']
-            actions.at[index, 'ey'] = 80 - actions.at[index, 'ey']
-            
-    del actions['Dir']
     
     start = ['Progr Inter', 'Progr Rec', 'Throw', 'Goal Against', 'Ground GK',
              'Short Corner', 'Corner Kick', 'Foul Won',  'Save Held', 'Successful Cross', 'Throw-in']
@@ -99,11 +90,7 @@ def formattingFileForRegain(actions):
                     action_time = actions.loc[end_index, 'Time']
                     # Insert a new row before the action
                     new_row = row.copy()
-                    new_row['Player Full Name'] = ''
-                    new_row['x'] = np.nan
-                    new_row['y'] = np.nan
-                    new_row['ex'] = np.nan
-                    new_row['ey'] = np.nan
+                    new_row['Name'] = ''
                     new_row['Opp Start'] = 0
                     new_row['Opp End'] = 1.0
                     new_row['Bolts Start'] = 1.0
@@ -651,11 +638,7 @@ def formattingFileForRegain(actions):
     while i < len(actions) - 1:
         if (actions.loc[i, 'Action'] == 'Unsucc Forward') and (actions.loc[i + 1, 'Action'] == 'Unsucc Cross'):
             new_row = actions.loc[i + 1].copy()
-            new_row['Player Full Name'] = ''
-            new_row['x'] = np.nan
-            new_row['y'] = np.nan
-            new_row['ex'] = np.nan
-            new_row['ey'] = np.nan
+            new_row['Name'] = ''
             new_row['Opp Start'] = 0
             new_row['Opp End'] = 1.0
             new_row['Bolts Start'] = 1.0
@@ -670,11 +653,7 @@ def formattingFileForRegain(actions):
             i += 1
         elif (actions.loc[i, 'Action'] == 'Unprogr Inter') and (actions.loc[i + 1, 'Action'] == 'Loss of Poss'):
             new_row = actions.loc[i + 1].copy()
-            new_row['Player Full Name'] = ''
-            new_row['x'] = np.nan
-            new_row['y'] = np.nan
-            new_row['ex'] = np.nan
-            new_row['ey'] = np.nan
+            new_row['Name'] = ''
             new_row['Opp Start'] = 0
             new_row['Opp End'] = 1.0
             new_row['Bolts Start'] = 1.0
@@ -689,11 +668,7 @@ def formattingFileForRegain(actions):
             i += 1
         elif (actions.loc[i, 'Action'] == 'Unsucc Cross') and (actions.loc[i + 1, 'Action'] == 'Loss of Poss'):
             new_row = actions.loc[i + 1].copy()
-            new_row['Player Full Name'] = ''
-            new_row['x'] = np.nan
-            new_row['y'] = np.nan
-            new_row['ex'] = np.nan
-            new_row['ey'] = np.nan
+            new_row['Name'] = ''
             new_row['Opp Start'] = 0
             new_row['Opp End'] = 1.0
             new_row['Bolts Start'] = 1.0
@@ -708,11 +683,8 @@ def formattingFileForRegain(actions):
             i += 1
         elif (actions.loc[i, 'Action'] == 'Unsucc Forward') and (actions.loc[i + 1, 'Action'] == 'Loss of Poss'):
             new_row = actions.loc[i + 1].copy()
-            new_row['Player Full Name'] = ''
-            new_row['x'] = np.nan
-            new_row['y'] = np.nan
-            new_row['ex'] = np.nan
-            new_row['ey'] = np.nan
+            new_row['Name'] = ''
+
             new_row['Opp Start'] = 0
             new_row['Opp End'] = 1.0
             new_row['Bolts Start'] = 1.0
@@ -727,11 +699,7 @@ def formattingFileForRegain(actions):
             i += 1
         elif (actions.loc[i, 'Action'] == 'Unsucc Forward') and (actions.loc[i + 1, 'Action'] == 'Foul Lost'):
             new_row = actions.loc[i + 1].copy()
-            new_row['Player Full Name'] = ''
-            new_row['x'] = np.nan
-            new_row['y'] = np.nan
-            new_row['ex'] = np.nan
-            new_row['ey'] = np.nan
+            new_row['Name'] = ''
             new_row['Opp Start'] = 0
             new_row['Opp End'] = 1.0
             new_row['Bolts Start'] = 1.0
@@ -746,11 +714,7 @@ def formattingFileForRegain(actions):
             i += 1
         elif (actions.loc[i, 'Action'] == 'Foul Lost') and (actions.loc[i + 1, 'Action'] == 'Foul Lost'):
             new_row = actions.loc[i + 1].copy()
-            new_row['Player Full Name'] = ''
-            new_row['x'] = np.nan
-            new_row['y'] = np.nan
-            new_row['ex'] = np.nan
-            new_row['ey'] = np.nan
+            new_row['Name'] = ''
             new_row['Opp Start'] = 0
             new_row['Opp End'] = 1.0
             new_row['Bolts Start'] = 1.0
@@ -765,11 +729,7 @@ def formattingFileForRegain(actions):
             i += 1
         elif (actions.loc[i, 'Action'] == 'Unsucc Forward') and (actions.loc[i + 1, 'Action'] == 'Unsucc Forward'):
             new_row = actions.loc[i + 1].copy()
-            new_row['Player Full Name'] = ''
-            new_row['x'] = np.nan
-            new_row['y'] = np.nan
-            new_row['ex'] = np.nan
-            new_row['ey'] = np.nan
+            new_row['Name'] = ''
             new_row['Opp Start'] = 0
             new_row['Opp End'] = 1.0
             new_row['Bolts Start'] = 1.0
@@ -802,11 +762,7 @@ def formattingFileForRegain(actions):
             actions.loc[idx+1, 'Opp End'] = 1
         elif (actions.loc[idx, 'Action'] == 'Unsucc Forward') and (actions.loc[idx+1, 'Time'] != actions.loc[idx, 'Time']) and (actions.loc[idx+1, 'Bolts Start'] == 0) and (actions.loc[idx+1, 'Action'] in markers_of_possession):
             new_row = actions.loc[idx + 1].copy()
-            new_row['Player Full Name'] = ''
-            new_row['x'] = np.nan
-            new_row['y'] = np.nan
-            new_row['ex'] = np.nan
-            new_row['ey'] = np.nan
+            new_row['Name'] = ''
             new_row['Opp Start'] = 0
             new_row['Opp End'] = 1.0
             new_row['Bolts Start'] = 1.0
@@ -817,11 +773,8 @@ def formattingFileForRegain(actions):
             actions = pd.concat([actions.iloc[:idx+1], pd.DataFrame([new_row]), actions.iloc[idx+1:]]).reset_index(drop=True)
         elif actions.loc[idx, 'Action'] == 'Unsucc Cross' and (actions.loc[idx+1, 'Time'] != actions.loc[idx, 'Time']) and (actions.loc[idx+1, 'Bolts Start'] != 1) and (actions.loc[idx+1, 'Action'] == 'Unsucc Forward'):
             new_row = actions.loc[idx + 1].copy()
-            new_row['Player Full Name'] = ''
-            new_row['x'] = np.nan
-            new_row['y'] = np.nan
-            new_row['ex'] = np.nan
-            new_row['ey'] = np.nan
+            new_row['Name'] = ''
+
             new_row['Opp Start'] = 0
             new_row['Opp End'] = 1.0
             new_row['Bolts Start'] = 1.0
@@ -832,11 +785,8 @@ def formattingFileForRegain(actions):
             actions = pd.concat([actions.iloc[:idx+1], pd.DataFrame([new_row]), actions.iloc[idx+1:]]).reset_index(drop=True) 
         elif actions.loc[idx, 'Action'] == 'Save Parried' and (actions.loc[idx+1, 'Time'] != actions.loc[idx, 'Time']) and (actions.loc[idx+1, 'Bolts Start'] != 1) and (actions.loc[idx+1, 'Action'] == 'Foul Lost'):
             new_row = actions.loc[idx + 1].copy()
-            new_row['Player Full Name'] = ''
-            new_row['x'] = np.nan
-            new_row['y'] = np.nan
-            new_row['ex'] = np.nan
-            new_row['ey'] = np.nan
+            new_row['Name'] = ''
+
             new_row['Opp Start'] = 0
             new_row['Opp End'] = 1.0
             new_row['Bolts Start'] = 1.0
@@ -847,11 +797,8 @@ def formattingFileForRegain(actions):
             actions = pd.concat([actions.iloc[:idx+1], pd.DataFrame([new_row]), actions.iloc[idx+1:]]).reset_index(drop=True)
         elif actions.loc[idx, 'Action'] == 'Progr Inter' and (actions.loc[idx+1, 'Time'] != actions.loc[idx, 'Time']) and (actions.loc[idx+1, 'Action'] == 'Progr Rec'):
             new_row = actions.loc[idx + 1].copy()
-            new_row['Player Full Name'] = ''
-            new_row['x'] = np.nan
-            new_row['y'] = np.nan
-            new_row['ex'] = np.nan
-            new_row['ey'] = np.nan
+            new_row['Name'] = ''
+
             new_row['Opp Start'] = 1
             new_row['Opp End'] = 0
             new_row['Bolts Start'] = 0
@@ -862,11 +809,8 @@ def formattingFileForRegain(actions):
             actions = pd.concat([actions.iloc[:idx+1], pd.DataFrame([new_row]), actions.iloc[idx+1:]]).reset_index(drop=True)                    
         elif actions.loc[idx, 'Action'] in poss_action and (actions.loc[idx+1, 'Time'] != actions.loc[idx, 'Time']) and (actions.loc[idx+1, 'Action'] == 'Throw'):
             new_row = actions.loc[idx + 1].copy()
-            new_row['Player Full Name'] = ''
-            new_row['x'] = np.nan
-            new_row['y'] = np.nan
-            new_row['ex'] = np.nan
-            new_row['ey'] = np.nan
+            new_row['Name'] = ''
+
             new_row['Opp Start'] = 1
             new_row['Opp End'] = 0
             new_row['Bolts Start'] = 0
@@ -877,11 +821,8 @@ def formattingFileForRegain(actions):
             actions = pd.concat([actions.iloc[:idx+1], pd.DataFrame([new_row]), actions.iloc[idx+1:]]).reset_index(drop=True) 
         elif actions.loc[idx, 'Action'] == 'Short Corner' and (actions.loc[idx+1, 'Time'] != actions.loc[idx, 'Time']) and (actions.loc[idx+1, 'Action'] == 'Unprogr Rec'):
             new_row = actions.loc[idx + 1].copy()
-            new_row['Player Full Name'] = ''
-            new_row['x'] = np.nan
-            new_row['y'] = np.nan
-            new_row['ex'] = np.nan
-            new_row['ey'] = np.nan
+            new_row['Name'] = ''
+
             new_row['Opp Start'] = 1
             new_row['Opp End'] = 0
             new_row['Bolts Start'] = 0
@@ -892,11 +833,8 @@ def formattingFileForRegain(actions):
             actions = pd.concat([actions.iloc[:idx+1], pd.DataFrame([new_row]), actions.iloc[idx+1:]]).reset_index(drop=True) 
         elif actions.loc[idx, 'Action'] == 'Own Box Clear' and (actions.loc[idx+1, 'Time'] != actions.loc[idx, 'Time']) and (actions.loc[idx+1, 'Action'] == 'Progr Inter'):
             new_row = actions.loc[idx + 1].copy()
-            new_row['Player Full Name'] = ''
-            new_row['x'] = np.nan
-            new_row['y'] = np.nan
-            new_row['ex'] = np.nan
-            new_row['ey'] = np.nan
+            new_row['Name'] = ''
+
             new_row['Opp Start'] = 1
             new_row['Opp End'] = 0
             new_row['Bolts Start'] = 0
@@ -907,11 +845,8 @@ def formattingFileForRegain(actions):
             actions = pd.concat([actions.iloc[:idx+1], pd.DataFrame([new_row]), actions.iloc[idx+1:]]).reset_index(drop=True)
         elif actions.loc[idx, 'Action'] == 'Headed Clear' and (actions.loc[idx+1, 'Time'] != actions.loc[idx, 'Time']) and (actions.loc[idx+1, 'Action'] == 'Progr Inter'):
             new_row = actions.loc[idx + 1].copy()
-            new_row['Player Full Name'] = ''
-            new_row['x'] = np.nan
-            new_row['y'] = np.nan
-            new_row['ex'] = np.nan
-            new_row['ey'] = np.nan
+            new_row['Name'] = ''
+
             new_row['Opp Start'] = 1
             new_row['Opp End'] = 0
             new_row['Bolts Start'] = 0
@@ -1070,7 +1005,7 @@ def formattingFileForRegain(actions):
                     action_time = actions_end.loc[other_start_index, 'Time']
                     # Insert a new row before the action
                     new_row = row.copy()
-                    new_row['Player Full Name'] = ''
+                    new_row['Name'] = ''
                     new_row['x'] = np.nan
                     new_row['y'] = np.nan
                     new_row['ex'] = np.nan
@@ -1105,7 +1040,7 @@ def formattingFileForRegain(actions):
                     action_time = actions_end.loc[other_start_index, 'Time']
                     # Insert a new row before the action
                     new_row = row.copy()
-                    new_row['Player Full Name'] = ''
+                    new_row['Name'] = ''
                     new_row['x'] = np.nan
                     new_row['y'] = np.nan
                     new_row['ex'] = np.nan

@@ -158,6 +158,7 @@ xg_actions = xg_actions.loc[xg_actions['Action'].isin(wanted_actions)].reset_ind
 # renaming for the join
 xg_actions.rename(columns={'Team': 'Bolts Team'}, inplace=True)
 
+
 # if the opponent shots are 0, we factor in blocked shots
 # if they aren't 0, then we don't factor in blocked shots
 #if temp_shots != 0:
@@ -325,8 +326,6 @@ for index, row in player_data.iterrows():
 
 
 temp_group = final_grade_df.groupby('Player Name')
-
-st.write(final_grade_df)
 
 # adding the adjustments and getting the primary position
 temp_df = pd.DataFrame(columns=['Player Name', 'Position', 'Final Grade', 'Adjustments'])
@@ -762,7 +761,7 @@ else:
 
 if not closest_before.empty:
     flag = 1
-    closest_before.sort_values('Date', ascending=False, inplace=True)
+    closest_before.sort_values('Match_Date', ascending=False, inplace=True)
     closest_before.reset_index(drop=True, inplace=True)
     closest_game = closest_before['Unique Opp and Date'].iloc[0]
     compare_opps.append('5 Game Rolling Avg')
@@ -781,7 +780,6 @@ if flag == 1:
 
     if selected_team not in available_teams:
         xg_overall = xg_copy.copy()
-        st.write(xg_overall)
         bolts_df = xg_overall[xg_overall['Team'].str.contains(selected_team)]
         opp_df = xg_overall[~xg_overall['Team'].str.contains(selected_team)]
         
@@ -1123,7 +1121,7 @@ else:
     bolts_mean = bolts['xG'].mean()
     opp_mean = opp['xG'].mean()
     
-    bolts_player = bolts.groupby('Player Full Name')['xG'].sum()
+    bolts_player = bolts.groupby('Name')['xG'].sum()
     max_xg_player = bolts_player.idxmax()
         
     xg_data = xg.sort_values('Time').reset_index(drop=True)
@@ -1249,41 +1247,37 @@ else:
 
 
 game = player_data.copy()
+game.columns = game.columns.str.replace('_', ' ', regex=False)
 combined_grades = pd.DataFrame()
 
-og_columns = ['Player Full Name', 'Team Name', 'Position Tag',
-              'mins played', 'Goal', 'Assist', 'Dribble', 'Goal Against',
+og_columns = ['Name', 'Team Name', 'Position',
+              'Minutes', 'Goal', 'Assist', 'Dribble', 'Goal Against',
               'Stand. Tackle', 'Unsucc Stand. Tackle', 'Tackle', 'Unsucc Tackle',
-              'Def Aerial', 'Unsucc Def Aerial', 'Clear', 'Headed Clear',
+                'Clear',
               'Own Box Clear', 'Progr Rec', 'Unprogr Rec', 'Progr Inter',
               'Unprogr Inter', 'Progr Regain ', 'Blocked Shot', 'Blocked Cross',
-              'Stand. Tackle Success ', 'Def Aerial Success ',
-              'Att 1v1', 'Att Aerial', 'Efforts on Goal', 'Header on Target',
-              'Header off Target', 'Shot on Target',
-              'Att Shot Blockd', 'Cross', 'Unsucc Cross', 'Efficiency ', 'Side Back',
-              'Unsucc Side Back', 'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward',
+              'Def Aerial %', 'Att 1v1', 'Att Aerial', 'Shots', 'Header on Target',
+              'Shot on Target',
+              'Att Shot Blockd', 'Cross', 'Unsucc Cross', 'SOT %', 'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward',
               'Line Break', 'Pass into Oppo Box', 'Loss of Poss', 'Success',
-              'Unsuccess', 'Pass Completion ', 'Progr Pass Attempt ',
-              'Progr Pass Completion ', 'Foul Won', 'Foul Conceded', 'Yellow Card', 'Red Card']
-number_columns = ['mins played', 'Goal', 'Assist', 'Dribble', 'Goal Against',
+              'Unsuccess', 'Pass %', 'Progr Pass %', 'Foul Won', 'Foul Conceded', 'Yellow Card', 'Red Card']
+number_columns = ['Minutes', 'Goal', 'Assist', 'Dribble', 'Goal Against',
               'Stand. Tackle', 'Unsucc Stand. Tackle', 'Tackle', 'Unsucc Tackle',
-              'Def Aerial', 'Unsucc Def Aerial', 'Clear', 'Headed Clear',
+              'Clear',
               'Own Box Clear', 'Progr Rec', 'Unprogr Rec', 'Progr Inter',
               'Unprogr Inter', 'Progr Regain ', 'Blocked Shot', 'Blocked Cross',
-              'Stand. Tackle Success ', 'Def Aerial Success ',
-              'Att 1v1', 'Att Aerial', 'Efforts on Goal', 'Header on Target',
-              'Header off Target', 'Shot on Target',
-              'Att Shot Blockd', 'Cross', 'Unsucc Cross', 'Efficiency ', 'Side Back',
-              'Unsucc Side Back', 'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward',
+              'Def Aerial %',
+              'Att 1v1', 'Att Aerial', 'Shots', 'Header on Target',
+              'Shot on Target',
+              'Att Shot Blockd', 'Cross', 'Unsucc Cross', 'SOT %', 'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward',
               'Line Break', 'Pass into Oppo Box', 'Loss of Poss', 'Success',
-              'Unsuccess', 'Pass Completion ', 'Progr Pass Attempt ',
-              'Progr Pass Completion ', 'Foul Won', 'Foul Conceded', 'Yellow Card', 'Red Card']
+              'Unsuccess', 'Pass %', 'Progr Pass %', 'Foul Won', 'Foul Conceded', 'Yellow Card', 'Red Card']
 game = game[og_columns]
 game[number_columns] = game[number_columns].astype(float)
 
 
 def weighted_sum(group):
-    total_minutes_played = group['mins played'].sum()
+    total_minutes_played = group['Minutes'].sum()
     return pd.Series({
         'Minutes Played': total_minutes_played,
         'Goal': group['Goal'].sum(),
@@ -1293,10 +1287,7 @@ def weighted_sum(group):
         'Unsucc Stand. Tackle': group['Unsucc Stand. Tackle'].sum(),
         'Tackle': group['Tackle'].sum(),
         'Unsucc Tackle': group['Unsucc Tackle'].sum(),
-        'Def Aerial': group['Def Aerial'].sum(),
-        'Unsucc Def Aerial': group['Unsucc Def Aerial'].sum(),
         'Clear': group['Clear'].sum(),
-        'Headed Clear': group['Headed Clear'].sum(),
         'Own Box Clear': group['Own Box Clear'].sum(),
         'Progr Rec': group['Progr Rec'].sum(),
         'Unprogr Rec': group['Unprogr Rec'].sum(),
@@ -1306,15 +1297,12 @@ def weighted_sum(group):
         'Blocked Cross': group['Blocked Cross'].sum(),
         'Att 1v1': group['Att 1v1'].sum(),
         'Att Aerial': group['Att Aerial'].sum(),
-        'Efforts on Goal': group['Efforts on Goal'].sum(),
+        'Efforts on Goal': group['Shots'].sum(),
         'Header on Target': group['Header on Target'].sum(),
-        'Header off Target': group['Header off Target'].sum(),
         'Shot on Target': group['Shot on Target'].sum(),
         'Att Shot Blockd': group['Att Shot Blockd'].sum(),
         'Cross': group['Cross'].sum(),
         'Unsucc Cross': group['Unsucc Cross'].sum(),
-        'Side Back': group['Side Back'].sum(),
-        'Unsucc Side Back': group['Unsucc Side Back'].sum(),
         'Long': group['Long'].sum(),
         'Unsucc Long': group['Unsucc Long'].sum(),
         'Forward': group['Forward'].sum(),
@@ -1328,20 +1316,19 @@ def weighted_sum(group):
         'Foul Conceded': group['Foul Conceded'].sum(),
         'Yellow Card': group['Yellow Card'].sum(),
         'Red Card': group['Red Card'].sum(),
-        'Position': group['Position Tag'].iloc[0]
+        'Position': group['Position'].iloc[0]
         })
 
 
-game = game.groupby('Player Full Name').apply(weighted_sum).reset_index()
+game = game.groupby('Name').apply(weighted_sum).reset_index()
 game['Progressive Regain %'] = ((game['Progr Rec'] + game['Progr Inter'])/(game['Progr Rec'] + game['Progr Inter'] + game['Unprogr Rec'] + game['Unprogr Inter'])) * 100 
 game['Pass %'] = (game['Success']/(game['Success'] + game['Unsuccess'])) * 100
 
-
 columns_to_sum = ['Goal', 'Assist', 'Dribble', 'Stand. Tackle', 'Tackle', 
-                   'Def Aerial', 'Clear', 'Headed Clear', 'Own Box Clear', 'Progr Rec',
+                   'Clear', 'Own Box Clear', 'Progr Rec',
                    'Progr Inter', 'Blocked Shot', 'Blocked Cross', 'Att 1v1',
                    'Att Aerial', 'Efforts on Goal', 'Header on Target', 'Shot on Target',
-                   'Att Shot Blockd', 'Cross', 'Side Back', 'Long', 
+                   'Att Shot Blockd', 'Cross', 'Long', 
                    'Forward', 'Line Break', 'Pass into Oppo Box', 'Success',
                    'Foul Won']
 game['Total Actions'] = game[columns_to_sum].sum(axis=1)
@@ -1355,25 +1342,25 @@ max_totalActions = game['Total Actions'].max()
 
 
 
-goalscorers = game[game['Goal'] >= 1]['Player Full Name'].tolist()
-assists =  game[game['Assist'] >= 1]['Player Full Name'].tolist()
-line_breaks =  game[game['Line Break'] == max_line_breaks]['Player Full Name'].tolist()
-dribbler = game[game['Dribble'] == max_dribbles]['Player Full Name'].tolist()
-regainer = game[game['Progressive Regain %'] == max_regain]['Player Full Name'].tolist()
-efficient_passer = game[game['Pass %'] == max_pass_per]['Player Full Name'].tolist()
-total_actioner = game[game['Total Actions'] == max_totalActions]['Player Full Name'].tolist()
-yellow_card_rec = game[game['Yellow Card'] == 1]['Player Full Name'].tolist()
-red_card_rec = game[game['Red Card'] == 1]['Player Full Name'].tolist()
+goalscorers = game[game['Goal'] >= 1]['Name'].tolist()
+assists =  game[game['Assist'] >= 1]['Name'].tolist()
+line_breaks =  game[game['Line Break'] == max_line_breaks]['Name'].tolist()
+dribbler = game[game['Dribble'] == max_dribbles]['Name'].tolist()
+regainer = game[game['Progressive Regain %'] == max_regain]['Name'].tolist()
+efficient_passer = game[game['Pass %'] == max_pass_per]['Name'].tolist()
+total_actioner = game[game['Total Actions'] == max_totalActions]['Name'].tolist()
+yellow_card_rec = game[game['Yellow Card'] == 1]['Name'].tolist()
+red_card_rec = game[game['Red Card'] == 1]['Name'].tolist()
 
 combined_df_copy.reset_index(drop=True, inplace=True)
 game.reset_index(drop=True, inplace=True)
 
-combined_grades['Player'] = combined_df_copy['Player Full Name']
+combined_grades['Player'] = combined_df_copy['Name']
 mins_played = game['Minutes Played']
-combined_grades = pd.merge(combined_grades, game[['Player Full Name', 'Minutes Played']], left_on='Player', right_on='Player Full Name', how='inner')
-combined_grades.drop(columns=['Player Full Name'], inplace=True)
-combined_grades['Position'] = combined_df_copy['Position Tag']
-combined_grades['Started'] = combined_df_copy['Starts']
+combined_grades = pd.merge(combined_grades, game[['Name', 'Minutes Played']], left_on='Player', right_on='Name', how='inner')
+combined_grades.drop(columns=['Name'], inplace=True)
+combined_grades['Position'] = combined_df_copy['Position']
+combined_grades['Started'] = combined_df_copy['Started']
 
 combined_grades['Yellow Card'] = combined_grades['Player'].isin(yellow_card_rec).astype(int)
 combined_grades['Red Card'] = combined_grades['Player'].isin(red_card_rec).astype(int)

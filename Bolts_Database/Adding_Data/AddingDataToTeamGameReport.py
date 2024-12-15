@@ -66,7 +66,7 @@ def addingDataToTeamGameReport():
                     'Shot off Target', 'Att Shot Blockd', 'Cross', 'Unsucc Cross', 'Efficiency ', 'Long',
                     'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break', 'Pass into Oppo Box', 'Loss of Poss',
                     'Success', 'Unsuccess', 'Pass Completion ', 'Progr Pass Completion ', 'Foul Won', 'Foul Conceded',
-                    'Save Held', 'Save Parried', 'Save % ', 'Successful Cross', 'Opposition']  
+                    'Save Held', 'Save Parried', 'Save % ', 'Successful Cross', 'Opposition', 'Opp Effort on Goal']  
             existing_columns = [col for col in expected_columns if col in df.columns]
             df = df[existing_columns]
             number_columns = ['mins played', 'Yellow Card', 'Red Card', 'Goal', 'Assist',
@@ -76,7 +76,7 @@ def addingDataToTeamGameReport():
                         'Efforts on Goal', 'Shot on Target', 'Shot off Target', 'Att Shot Blockd', 'Cross', 'Unsucc Cross',
                         'Efficiency ', 'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break', 'Pass into Oppo Box', 'Loss of Poss',
                         'Success', 'Unsuccess', 'Pass Completion ', 'Progr Pass Completion ', 'Foul Won', 'Foul Conceded',
-                        'Save Held', 'Save Parried', 'Save % ', 'Successful Cross']
+                        'Save Held', 'Save Parried', 'Save % ', 'Successful Cross', 'Opp Effort on Goal']
             existing_num_columns = [col for col in number_columns if col in df.columns]
             df[existing_num_columns] = df[existing_num_columns].astype(float)
             df['Match Date'] = pd.to_datetime(df['Match Date']).dt.strftime('%m/%d/%Y')

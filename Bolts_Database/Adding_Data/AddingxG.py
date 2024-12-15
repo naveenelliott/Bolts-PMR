@@ -67,6 +67,8 @@ def addingxG():
             
             df = df[select_columns]
             
+            df['Match Date'] = pd.to_datetime(df['Match Date']).dt.strftime('%m/%d/%Y')
+
             # Ensure all column names are SQL-friendly (e.g., no spaces)
             df.columns = df.columns.str.replace(' ', '_').str.strip()
             

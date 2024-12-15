@@ -2,7 +2,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
-from GettingPSDTeamData import getting_PSD_team_data
+from Bolts_Database.GettingTables import (
+    getTeamReportTable
+)
+from Bolts_Database.Adding_Data.AddingDataToTeamGameReport import addingDataToTeamGameReport
 
 
 def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
@@ -16,7 +19,14 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
     pass_in_18_average = 14
     pass_in_18_std = 7.47
 
-    team_data = getting_PSD_team_data()
+    team_data = getTeamReportTable()
+    team_data.columns = team_data.columns.str.replace('_', ' ', regex=False)
+    st.write(team_data)
+
+    team_data.rename(columns={'Match Date': 'Date',
+                              'Pass %': 'Pass Completion ',
+                              'Shots': 'Efforts on Goal'}, inplace=True)
+
     cols_we_want = ['Date', 'Team Name', 'Opposition', 'Goal Against',
            'Efforts on Goal', 'Opp Effort on Goal', 'Goal', 'Pass Completion ', 'Pass into Oppo Box']
     team_data = team_data[cols_we_want]
@@ -211,7 +221,13 @@ def MiddlePMRStreamlit_NALOlder(team, opp, date, regain_time):
     pass_in_18_average = 14
     pass_in_18_std = 7.47
 
-    team_data = getting_PSD_team_data()
+    team_data = getTeamReportTable()
+    team_data.columns = team_data.columns.str.replace('_', ' ', regex=False)
+
+    team_data.rename(columns={'Match Date': 'Date',
+                              'Pass %': 'Pass Completion ',
+                              'Shots': 'Efforts on Goal'}, inplace=True)
+
     cols_we_want = ['Date', 'Team Name', 'Opposition', 'Goal Against',
                    'Efforts on Goal', 'Opp Effort on Goal', 'Goal', 'Pass Completion ', 'Pass into Oppo Box', 
                    'Shots on Target Against', 'Header on Target', 'Shot on Target']
