@@ -292,7 +292,6 @@ final_grade_df = pd.DataFrame(columns=our_columns)
 # CAN WE CONCACATENATE THE EVENT DATA TO PLAYER_DATA
 # will be tough because the structure is limited to the time limits for each position
 
-st.write(player_data)
 
 for index, row in player_data.iterrows():
     if row['Position'] == 'ATT':
@@ -327,7 +326,7 @@ for index, row in player_data.iterrows():
 
 temp_group = final_grade_df.groupby('Player Name')
 
-
+st.write(final_grade_df)
 
 # adding the adjustments and getting the primary position
 temp_df = pd.DataFrame(columns=['Player Name', 'Position', 'Final Grade', 'Adjustments'])
@@ -374,7 +373,7 @@ if selected_team not in available_teams:
             temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT')]
             wanted = ['xG + xA', 'Team']
             temp_event_df = temp_event_df[wanted]
-            select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
+            select_temp_df = select_event_df.loc[select_event_df['Name'] == row['Player Name']]
             select_temp_df = select_temp_df[wanted]
             select_temp_df = StrikerEventFunction(temp_event_df, select_temp_df)
             final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
@@ -382,7 +381,7 @@ if selected_team not in available_teams:
             temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'LW') | (chances_created['Primary Position'] == 'RW')]
             wanted = ['xG + xA', 'Team']
             temp_event_df = temp_event_df[wanted]
-            select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
+            select_temp_df = select_event_df.loc[select_event_df['Name'] == row['Player Name']]
             select_temp_df = select_temp_df[wanted]
             select_temp_df = WingerEventFunction(temp_event_df, select_temp_df)
             final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
@@ -391,7 +390,7 @@ if selected_team not in available_teams:
                                              | (chances_created['Primary Position'] == 'AM') | (chances_created['Primary Position'] == 'CM')]
             wanted = ['xG + xA', 'Team']
             temp_event_df = temp_event_df[wanted]
-            select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
+            select_temp_df = select_event_df.loc[select_event_df['Name'] == row['Player Name']]
             select_temp_df = select_temp_df[wanted]
             select_temp_df = CMEventFunction(temp_event_df, select_temp_df)
             final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Playmaking'])*.2)
@@ -425,23 +424,25 @@ final_grade_df = final_grade_df[['Player Name', 'Position', 'Final Grade']]
 final_grade_df.rename(columns={'Player Name': 'Player Full Name', 'Position': 'Position Tag'}, inplace=True)
 final_grade_df['Final Grade'] = round(final_grade_df['Final Grade'], 1)
 
-combined_df = combined_df.sort_values(by='Starts', ascending=False)
-combined_df = combined_df.drop_duplicates(subset='Player Full Name', keep='first')
+combined_df = combined_df.sort_values(by='Started', ascending=False)
+combined_df = combined_df.drop_duplicates(subset='Name', keep='first')
 del combined_df['Position Tag']
+combined_df.rename(columns={'Name': 'Player Full Name'}, inplace=True)
 combined_df = pd.merge(combined_df, final_grade_df, on=['Player Full Name'])
 
-combined_df.loc[combined_df['Player Full Name'] == 'Sy Perkins', 'Position Tag'] = 'GK'
+combined_df.loc[combined_df['Player Full Name'] == 'Sy Perkins', 'Position'] = 'GK'
 
 combined_df['Final Grade'] = np.clip(combined_df['Final Grade'], 5.00, 9.70)
 combined_df['Final Grade'] = combined_df['Final Grade'].astype(float)
 combined_df['Final Grade'] = combined_df['Final Grade'].round(1)
 
 
-subs = combined_df.loc[combined_df['Starts'] == 0]
-combined_df = combined_df.loc[combined_df['Starts'] != 0]
+subs = combined_df.loc[combined_df['Started'] == 0]
+combined_df = combined_df.loc[combined_df['Started'] != 0]
 combined_df_event = combined_df.copy()
 
 grouped = combined_df.groupby('Position Tag')
+
 
 
 
@@ -733,20 +734,21 @@ with col1:
 
 # getting the overall df with all teams, dates, and opposition
 overall_df = st.session_state['overall_df']
-overall_df = overall_df.loc[(overall_df['Team Name'] == selected_team) & (overall_df['Date'] != selected_date)]
+
+overall_df = overall_df.loc[(overall_df['Team_Name'] == selected_team) & (overall_df['Match_Date'] != selected_date)]
 # creating a unique opposition and date identifier
-overall_df['Unique Opp and Date'] = overall_df['Opposition'] + ' (' + overall_df['Date'] + ')'
+overall_df['Unique Opp and Date'] = overall_df['Opponent'] + ' (' + overall_df['Match_Date'] + ')'
 # sorting by date
-overall_df.sort_values(by='Date', inplace=True)
+overall_df.sort_values(by='Match_Date', inplace=True)
 
-closest_before = overall_df.loc[overall_df['Date'] < selected_date]
+closest_before = overall_df.loc[overall_df['Match_Date'] < selected_date]
 
-closest_before.sort_values(by='Date', ascending=False, inplace=True)
+closest_before.sort_values(by='Match_Date', ascending=False, inplace=True)
 
 compare_opps = list(closest_before['Unique Opp and Date'].unique())
 
 # Check if we have played the same opponent before
-played_same_opponent = closest_before.loc[closest_before['Opposition'] == selected_opp].reset_index(drop=True)
+played_same_opponent = closest_before.loc[closest_before['Opponent'] == selected_opp].reset_index(drop=True)
 
 compare_opps = compare_opps[:5]
 
@@ -779,30 +781,31 @@ if flag == 1:
 
     if selected_team not in available_teams:
         xg_overall = xg_copy.copy()
+        st.write(xg_overall)
         bolts_df = xg_overall[xg_overall['Team'].str.contains(selected_team)]
         opp_df = xg_overall[~xg_overall['Team'].str.contains(selected_team)]
         
         # Group by the desired columns and aggregate
-        bolts_agg = bolts_df.groupby(['Bolts Team', 'Match Date', 'Opposition']).agg(
+        bolts_agg = bolts_df.groupby(['Bolts_Team', 'Match_Date', 'Opposition']).agg(
             Bolts_xG=('xG', 'sum'),
             Bolts_Count=('xG', 'size')
         ).reset_index()
         
-        opp_agg = opp_df.groupby(['Bolts Team', 'Match Date', 'Opposition']).agg(
+        opp_agg = opp_df.groupby(['Bolts_Team', 'Match_Date', 'Opposition']).agg(
             Opp_xG=('xG', 'sum'),
             Opp_Count=('xG', 'size')
         ).reset_index()
         
         # Merge the aggregated data
-        overall_xg = pd.merge(bolts_agg, opp_agg, on=['Bolts Team', 'Match Date', 'Opposition'], how='outer')
-        overall_xg.rename(columns={'Bolts Team': 'Team'}, inplace=True)
+        overall_xg = pd.merge(bolts_agg, opp_agg, on=['Bolts_Team', 'Match_Date', 'Opposition'], how='outer')
+        overall_xg.rename(columns={'Bolts_Team': 'Team'}, inplace=True)
         overall_xg['xG per Shot'] = overall_xg['Bolts_xG']/overall_xg['Bolts_Count']
         overall_xg['Opp xG per Shot'] = overall_xg['Opp_xG']/overall_xg['Opp_Count']
         overall_xg.drop(columns=['Bolts_xG', 'Bolts_Count', 'Opp_xG', 'Opp_Count'], inplace=True)
         
         
         combined_entire_df = overall_xg.copy()
-        combined_entire_df['Unique Opp and Date'] = combined_entire_df['Opposition'] + ' (' + combined_entire_df['Match Date'] + ')'
+        combined_entire_df['Unique Opp and Date'] = combined_entire_df['Opposition'] + ' (' + combined_entire_df['Match_Date'] + ')'
         
         # getting the positives and negatives
         opposition = selected_opp

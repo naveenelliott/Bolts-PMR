@@ -23,7 +23,7 @@ def StrikerFunction(dataframe):
 
 
     selected = dataframe.loc[:, ~dataframe.columns.duplicated()]
-    selected_p90 = selected.loc[:, number_columns].astype(float)
+    selected_p90 = selected.loc[:, number_columns].astype(float).reset_index(drop=True)
 
     selected_p90.rename(columns={'Pass %': 'Pass Completion ',
                                  'Progr Pass %': 'Progr Pass Completion ',
@@ -116,7 +116,7 @@ def StrikerFunction(dataframe):
         z_scores_df = shooting.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         shooting_percentile = z_scores_df.map(calculate_percentile)
         shooting_percentile = shooting_percentile.map(clip_percentile)
-        player_shooting = shooting_percentile.iloc[player_location]
+        player_shooting = shooting_percentile.iloc[player_location].reset_index()
         weights = np.array([.1])
         shooting_score = (
             player_shooting['Efforts on Goal'] * weights[0]
@@ -127,27 +127,29 @@ def StrikerFunction(dataframe):
         z_scores_df = dribbling.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         dribbling_percentile = z_scores_df.map(calculate_percentile)
         dribbling_percentile = dribbling_percentile.map(clip_percentile)
-        player_dribbling = dribbling_percentile.iloc[player_location]
+        player_dribbling = dribbling_percentile.iloc[player_location].reset_index()
         weights = np.array([.1])
         dribbling_score = (
             player_dribbling['Dribble'] * weights[0]
         )
 
+ 
         mean_values = cf_df.iloc[0, 3]
         std_values = cf_df.iloc[1, 3]
         z_scores_df = attacking.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         attacking_percentile = z_scores_df.map(calculate_percentile)
         attacking_percentile = attacking_percentile.map(clip_percentile)
-        player_attacking = attacking_percentile.iloc[player_location]
+        player_attacking = attacking_percentile.iloc[player_location].reset_index()
         weights = np.array([.1])
         attacking_score = (
-            player_attacking * weights[0]
+            player_attacking['Total Att Actions'] * weights[0]
         )
 
         add = adjustments.iloc[i, :].sum()
         readding.append(add)
         
         final_grade = (defending_score * .2) + (shooting_score * .2) + (dribbling_score * 0.2) + (attacking_score * 0.2)
+
 
 
         final['Defending'] = defending_score

@@ -24,7 +24,7 @@ def WingerFunction(dataframe):
 
 
     selected = dataframe.loc[:, ~dataframe.columns.duplicated()]
-    selected_p90 = selected.loc[:, number_columns].astype(float)
+    selected_p90 = selected.loc[:, number_columns].astype(float).reset_index(drop=True)
 
     selected_p90.rename(columns={'Pass %': 'Pass Completion ',
                                  'Progr Pass %': 'Progr Pass Completion '}, inplace=True)

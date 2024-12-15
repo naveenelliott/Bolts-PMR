@@ -22,7 +22,7 @@ def FBFunction(dataframe):
 
 
     selected = dataframe.loc[:, ~dataframe.columns.duplicated()]
-    selected_p90 = selected.loc[:, number_columns].astype(float)
+    selected_p90 = selected.loc[:, number_columns].astype(float).reset_index(drop=True)
 
     selected_p90.rename(columns={'Pass %': 'Pass Completion ',
                                  'Progr Pass %': 'Progr Pass Completion '}, inplace=True)
@@ -104,7 +104,7 @@ def FBFunction(dataframe):
         z_scores_df = passing.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         passing_percentile = z_scores_df.map(calculate_percentile)
         passing_percentile = passing_percentile.map(clip_percentile)
-        player_passing = passing_percentile.iloc[player_location]
+        player_passing = passing_percentile.iloc[player_location].reset_index()
         weights = np.array([.1])
         passing_score = (
             player_passing['Pass Completion '] * weights[0]
@@ -116,7 +116,7 @@ def FBFunction(dataframe):
         z_scores_df = defending.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         defending_percentile = z_scores_df.map(calculate_percentile)
         defending_percentile = defending_percentile.map(clip_percentile)
-        player_defending = defending_percentile.iloc[player_location]
+        player_defending = defending_percentile.iloc[player_location].reset_index()
         weights = np.array([.1])
         defending_score = (
             player_defending['Progr Regain '] * weights[0]

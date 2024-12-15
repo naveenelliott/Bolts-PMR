@@ -21,7 +21,7 @@ def CDMFunction(dataframe):
     details.reset_index(drop=True, inplace=True)
 
     selected = dataframe.loc[:, ~dataframe.columns.duplicated()]
-    selected_p90 = selected.loc[:, number_columns].astype(float)
+    selected_p90 = selected.loc[:, number_columns].astype(float).reset_index(drop=True)
 
     selected_p90.rename(columns={'Progr Pass %': 'Progr Pass Completion '}, inplace=True)
 
