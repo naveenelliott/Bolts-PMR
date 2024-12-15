@@ -6,40 +6,28 @@ import streamlit as st
 
 
 def CMFunction(dataframe):
-    number_columns = ['mins played', 'Yellow Card', 'Red Card', 'Goal', 'Assist', 'Dribble',
+    dataframe.columns = dataframe.columns.str.replace('_', ' ', regex=False)
+
+    number_columns = ['Minutes', 'Yellow Card', 'Red Card', 'Goal', 'Assist', 'Dribble',
            'Goal Against', 'Stand. Tackle', 'Unsucc Stand. Tackle', 'Tackle', 'Blocked Shot', 'Blocked Cross',
            'Progr Rec', 'Unprogr Rec', 'Progr Inter', 'Unprogr Inter', 
-           'Att 1v1', 'Efforts on Goal', 'Own Box Clear', 'Clear', 'Unsucc Tackle',
+           'Att 1v1', 'Shots', 'Own Box Clear', 'Clear', 'Unsucc Tackle',
            'Shot on Target',  'Pass into Oppo Box',
            'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break', 
-           'Loss of Poss', 'Success', 'Unsuccess', 'Foul Won', 'Foul Conceded', 'Progr Regain ', 'Stand. Tackle Success ', 
-           'Def Aerial Success ', 'Pass Completion ', 'Progr Pass Attempt ', 'Progr Pass Completion ', 'PK Missed', 'PK Scored']
-    details = dataframe.loc[:, ['Player Full Name', 'Team Name', 'Match Date', 'Position Tag', 'Starts']]
-    #details = selected.loc[:, ['Player Full Name', 'Team Name', 'As At Date', 'Position Tag']]
+           'Loss of Poss', 'Success', 'Unsuccess', 'Foul Won', 'Foul Conceded', 'Progr Regain ',
+           'Def Aerial %', 'Pass %', 'Progr Pass %', 'PK Missed', 'PK Scored']
+    
+    details = dataframe.loc[:, ['Name', 'Team Name', 'Match Date', 'Position', 'Started']]
+    #details = selected.loc[:, ['Name', 'Team Name', 'As At Date', 'Position Tag']]
     details.reset_index(drop=True, inplace=True)
     selected = dataframe.loc[:, ~dataframe.columns.duplicated()]
     selected_p90 = selected.loc[:, number_columns].astype(float)
 
-    per90 = ['Yellow Card', 'Red Card', 'Goal', 'Assist', 'Dribble',
-           'Stand. Tackle', 'Unsucc Stand. Tackle', 'Tackle', 'Blocked Shot', 'Blocked Cross',
-           'Progr Rec', 'Unprogr Rec', 'Progr Inter', 'Unprogr Inter',
-           'Att 1v1', 'Efforts on Goal', 'Own Box Clear', 'Clear', 'Unsucc Tackle',
-           'Shot on Target', 'Pass into Oppo Box',
-           'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break',
-           'Loss of Poss', 'Success', 'Unsuccess', 'Foul Won', 'Foul Conceded', 'PK Missed', 'PK Scored']
-
-    selected_p90['minutes per 90'] = selected_p90['mins played']/90
-
-    for column in per90:
-        if column not in ['Goal', 'Assist', 'Shot on Target', 'Yellow Card', 'Red Card', 'PK Missed', 'PK Scored']:
-            selected_p90[column] = selected_p90[column] / selected_p90['minutes per 90']
-
-    selected_p90 = selected_p90.drop(columns=['minutes per 90'])
-    selected_p90.reset_index(drop=True, inplace=True)
+    selected_p90.rename(columns={'Progr Pass %': 'Progr Pass Completion '}, inplace=True)
 
 
     success_total_actions_columns = ['Tackle', 'Progr Rec', 'Progr Inter', 'Blocked Shot', 'Stand. Tackle', 
-                                 'Blocked Cross', 'Success', 'Efforts on Goal', 
+                                 'Blocked Cross', 'Success', 'Shots', 
                                  'Dribble', 'Foul Won']
     selected_p90['Total Successful Actions'] = selected_p90[success_total_actions_columns].sum(axis=1)
     total_actions = selected_p90['Total Successful Actions']
@@ -90,16 +78,15 @@ def CMFunction(dataframe):
 
     player_location = []
     for index, row in details.iterrows():
-        if 'AM' in row['Position Tag']:
+        if 'AM' in row['Position']:
             player_location.append(index)  
-        elif 'LM' in row['Position Tag']:
+        elif 'LM' in row['Position']:
             player_location.append(index)  
-        elif 'RM' in row['Position Tag']:
+        elif 'RM' in row['Position']:
             player_location.append(index)  
-        elif 'CM' in row['Position Tag']:
+        elif 'CM' in row['Position']:
             player_location.append(index)  
-        
-        
+    
 
     final = pd.DataFrame()
     selected_p90 = pd.concat([details, selected_p90], axis=1)
@@ -107,7 +94,7 @@ def CMFunction(dataframe):
 
     for i in player_location:
         more_data = selected_p90.iloc[i]
-        player_name = more_data['Player Full Name']
+        player_name = more_data['Name']
         team_name = more_data['Team Name']
         date = more_data['Match Date']
 
@@ -186,10 +173,10 @@ def CMFunction(dataframe):
         player_position = []
         player_starts = []
         for i in player_location:
-             player_name.append(selected_p90['Player Full Name'][i])
-             player_minutes.append(selected_p90['mins played'][i])
-             player_position.append(selected_p90['Position Tag'][i])
-             player_starts.append(selected_p90['Starts'][i])
+             player_name.append(selected_p90['Name'][i])
+             player_minutes.append(selected_p90['Minutes'][i])
+             player_position.append(selected_p90['Position'][i])
+             player_starts.append(selected_p90['Started'][i])
         final['Minutes'] = player_minutes
         final['Player Name'] = player_name
         final['Position'] = player_position

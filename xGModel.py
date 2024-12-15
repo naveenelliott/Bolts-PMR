@@ -3,6 +3,7 @@ import math
 import statsmodels.formula.api as smf
 import statsmodels.api as sm
 import numpy as np
+import streamlit as st
 
 
 def xGModel(end):
@@ -109,5 +110,5 @@ def xGModel(end):
     
     # Apply the function to the 'Time' column
     end['Time'] = end['Time'].apply(time_to_seconds)
-    end = end.drop(columns=['Angle', 'Distance', 'Goal', 'Mins', 'Secs', 'X2', 'Y2'])
+    end = end.drop(columns=['Angle', 'Distance', 'Goal'])
     return end

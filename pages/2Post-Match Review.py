@@ -59,7 +59,6 @@ selected_date = st.session_state["selected_date"]
 # Getting player grade data and formatting it
 addingDataToPlayerReportPosition()
 player_data = getPlayerPositionTable()
-st.write(player_data)
 non_number_columns = ['Name', 'Team_Name', 'Position', 'Match_Date', 'Opposition']
 for col in player_data.columns:
     if col not in non_number_columns:
@@ -93,16 +92,16 @@ player_data = player_data.loc[(player_data['Team_Name'] == selected_team) & (pla
 # we will use this information to look at xT per 90 and xG per shot
 total_mins_played = player_data['Minutes'].sum()
 total_shots = player_data['Shots'].sum()
-opp_shots = player_data['Opp Effort on Goal'].sum()
+opp_shots = player_data['Opp_Shots'].sum()
 temp_shots = opp_shots.copy()
 # if there is no opp efforts on goal, then we use other information
 if opp_shots == 0:
-    opp_shots = player_data[['Save Parried', 'Blocked Shot', 'Save Held', 'Goal Against']].sum()
+    opp_shots = player_data[['Blocked_Shot', 'Total_Saves', 'Goal_Against']].sum()
     opp_shots = opp_shots.sum()
 
 # getting the score
 bolts_score = player_data['Goal'].astype(int).sum()
-opp_score = player_data['Goal Against'].astype(int).sum()
+opp_score = player_data['Goal_Against'].astype(int).sum()
 
 if (selected_team == 'Boston Bolts U14 NALB' and 
     selected_opp == 'Seacoast of Bedford Seacoast United Bedford' and 
@@ -123,76 +122,31 @@ st.markdown(f"<h4 style='text-align: center;'>Date: {selected_date}&nbsp;&nbsp; 
 # printing the three columns
 col1, col2, col3 = st.columns(3)
 
-folder_path = 'xG Input Files'
-
-# Find all CSV files in the folder
-csv_files = glob.glob(os.path.join(folder_path, '*.csv'))
-
-# List to hold individual DataFrames
-df_list = []
-
-# Loop through the CSV files and read them into DataFrames
-for file in csv_files:
-    df = pd.read_csv(file)
-    df_list.append(df)
-
-# Concatenate all DataFrames into a single DataFrame
-fc_python = pd.concat(df_list, ignore_index=True)
-
-# Making sure everything is aligned on one side
-def flip_coordinates(x, y):
-    # Flip x and y coordinates horizontally
-    flipped_x = field_dim - x
-    flipped_y = field_dim - y  # y remains unchanged in this transformation
-    
-    return flipped_x, flipped_y
-
-field_dim = 100
-# Iterating through coordinates and making them on one side
-flipped_points = []
-for index, row in fc_python.iterrows():
-    if row['X'] < 50:
-        flipped_x, flipped_y = flip_coordinates(row['X'], row['Y'])
-        fc_python.at[index, 'X'] = flipped_x
-        fc_python.at[index, 'Y'] = flipped_y
+addingxG()
+fc_python = getxGTable()
 
 
 # Path to the folder containing CSV files
-folder_path = 'Actions PSD'
+addingActions()
+actions = getActionsTable()
 
-# Find all CSV files in the folder
-csv_files = glob.glob(os.path.join(folder_path, '*.csv'))
-
-# List to hold individual DataFrames
-df_list = []
-
-# Loop through the CSV files and read them into DataFrames
-for file in csv_files:
-    df = pd.read_csv(file)
-    df.columns = df.loc[4]
-    df = df.loc[5:].reset_index(drop=True)
-    df_list.append(df)
-
-# Concatenate all DataFrames into a single DataFrame
-actions = pd.concat(df_list, ignore_index=True)
-actions['Match Date'] = pd.to_datetime(actions['Match Date']).dt.strftime('%m/%d/%Y')
-actions.loc[actions['Opposition'] == 'St Louis', 'Match Date'] = '12/09/2023'
+actions.loc[actions['Opposition'] == 'St Louis', 'Match_Date'] = '12/09/2023'
 
 
 # creating copies to work on
 full_actions = actions.copy()
 entire_actions = actions.copy()
 
-full_actions = full_actions.loc[(full_actions['Team'] == selected_team) & (full_actions['Match Date'] == selected_date)]
+full_actions = full_actions.loc[(full_actions['Team'] == selected_team) & (full_actions['Match_Date'] == selected_date)]
 
 
-full_actions = full_actions.loc[(full_actions['Team'] == selected_team) & (full_actions['Opposition'] == selected_opp) & (full_actions['Match Date'] == selected_date)].reset_index(drop=True)
+full_actions = full_actions.loc[(full_actions['Team'] == selected_team) & (full_actions['Opposition'] == selected_opp) & (full_actions['Match_Date'] == selected_date)].reset_index(drop=True)
 
 full_actions_copy = full_actions.copy()
 full_actions_copy2 = full_actions.copy()
 
 # these are the ideal columns
-cols = ['Player Full Name', 'Team', 'Match Date', 'Opposition', 'Action', 'Time', 'Video Link', 'Period']
+cols = ['Name', 'Team', 'Match_Date', 'Opposition', 'Action', 'Time', 'Video_Link', 'Period']
 xg_actions = actions[cols]
 
 # these are the shots we want
@@ -257,11 +211,13 @@ if selected_team in available_teams:
     shot_table_actions["Video Link"] = shot_table_actions["Link"].apply(lambda url: f'<a href="{url}" target="_blank">Link</a>')
     shot_table_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
 
+actions_new.rename(columns={'Bolts Team': 'Bolts_Team'}, inplace=True)
 
-fc_python['Match Date'] = pd.to_datetime(fc_python['Match Date']).dt.strftime('%m/%d/%Y')
 
 # combining into xG dataframe we want
-combined_xg = pd.merge(fc_python, actions_new, on=['Bolts Team', 'Match Date', 'Time'], how='inner')
+combined_xg = pd.merge(fc_python, actions_new, on=['Bolts_Team', 'Match_Date', 'Time'], how='inner')
+
+combined_xg[['X', 'Y']] = combined_xg[['X', 'Y']].astype(float)
 
 # running the model on our dataframe
 xg = xGModel(combined_xg)
@@ -281,7 +237,7 @@ chances_created['Time'] = chances_created['Time'].apply(time_to_seconds)
 xg_copy = xg.copy()
 
 
-xg = xg.loc[(xg['Bolts Team'] == selected_team) & (xg['Opposition'] == selected_opp) & (xg['Match Date'] == selected_date)]
+xg = xg.loc[(xg['Bolts_Team'] == selected_team) & (xg['Opposition'] == selected_opp) & (xg['Match_Date'] == selected_date)]
 
 
 # getting Bolts info
@@ -309,23 +265,23 @@ for idx, row in chances_created.iterrows():
 
 
 # final formatting of chances created
-chances_created = chances_created[['Player Full Name', 'Team', 'Opposition', 'Match Date', 'xG', 'xA']]
+chances_created = chances_created[['Name', 'Team', 'Opposition', 'Match_Date', 'xG', 'xA']]
 # summing the xA and xG for each player
-chances_created = chances_created.groupby(['Player Full Name', 'Team', 'Opposition', 'Match Date'])[['xG', 'xA']].sum()
+chances_created = chances_created.groupby(['Name', 'Team', 'Opposition', 'Match_Date'])[['xG', 'xA']].sum()
 chances_created.reset_index(inplace=True)
 
 
-player_data_copy.rename(columns={'Team Name': 'Team'}, inplace=True)
-chances_created = pd.merge(chances_created, player_data_copy[['Player Full Name', 'Team', 'Opposition', 'Match Date', 'mins played', 'Primary Position']], 
-                           on=['Player Full Name', 'Team', 'Opposition', 'Match Date'], how='outer')
+player_data_copy.rename(columns={'Team_Name': 'Team'}, inplace=True)
+chances_created = pd.merge(chances_created, player_data_copy[['Name', 'Team', 'Opposition', 'Match_Date', 'Minutes', 'Primary Position']], 
+                           on=['Name', 'Team', 'Opposition', 'Match_Date'], how='outer')
 
 chances_created['xG + xA'] = chances_created['xG'] + chances_created['xA']
 # converting this to p90
-chances_created['xG + xA'] = (chances_created['xG + xA']/chances_created['mins played']) * 90
+chances_created['xG + xA'] = (chances_created['xG + xA']/chances_created['Minutes']) * 90
 
 chances_created['Opposition'] = chances_created['Opposition'].str.strip()
 
-select_event_df = chances_created.loc[(chances_created['Team'] == selected_team) & (chances_created['Opposition'] == selected_opp) & (chances_created['Match Date'] == selected_date)]
+select_event_df = chances_created.loc[(chances_created['Team'] == selected_team) & (chances_created['Opposition'] == selected_opp) & (chances_created['Match_Date'] == selected_date)]
 
 
 
@@ -336,32 +292,34 @@ final_grade_df = pd.DataFrame(columns=our_columns)
 # CAN WE CONCACATENATE THE EVENT DATA TO PLAYER_DATA
 # will be tough because the structure is limited to the time limits for each position
 
+st.write(player_data)
+
 for index, row in player_data.iterrows():
-    if row['Position Tag'] == 'ATT':
+    if row['Position'] == 'ATT':
         temp_df = player_data.loc[[index]]
         end_att = StrikerFunction(temp_df)
         final_grade_df = pd.concat([final_grade_df, end_att], ignore_index=True)
-    elif (row['Position Tag'] == 'RW') or (row['Position Tag'] == 'LW'):
+    elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
         temp_df = player_data.loc[[index]]
         end_att = WingerFunction(temp_df)
         final_grade_df = pd.concat([final_grade_df, end_att], ignore_index=True)
-    elif (row['Position Tag'] == 'CM') or (row['Position Tag'] == 'RM') or (row['Position Tag'] == 'LM') or (row['Position Tag'] == 'AM'):
+    elif (row['Position'] == 'CM') or (row['Position'] == 'RM') or (row['Position'] == 'LM') or (row['Position'] == 'AM'):
         temp_df = player_data.loc[[index]]
         end_att = CMFunction(temp_df)
         final_grade_df = pd.concat([final_grade_df, end_att], ignore_index=True)
-    elif (row['Position Tag'] == 'DM'):
+    elif (row['Position'] == 'DM'):
         temp_df = player_data.loc[[index]]
         end_att = CDMFunction(temp_df)
         final_grade_df = pd.concat([final_grade_df, end_att], ignore_index=True)
-    elif (row['Position Tag'] == 'RCB') or (row['Position Tag'] == 'LCB') or (row['Position Tag'] == 'CB'):
+    elif (row['Position'] == 'RCB') or (row['Position'] == 'LCB') or (row['Position'] == 'CB'):
         temp_df = player_data.loc[[index]]
         end_att = CBFunction(temp_df)
         final_grade_df = pd.concat([final_grade_df, end_att], ignore_index=True)
-    elif 'RB' in row['Position Tag'] or 'LB' in row['Position Tag'] or 'RWB' in row['Position Tag'] or 'LWB' in row['Position Tag'] or 'WingB' in row['Position Tag']:
+    elif 'RB' in row['Position'] or 'LB' in row['Position'] or 'RWB' in row['Position'] or 'LWB' in row['Position'] or 'WingB' in row['Position']:
         temp_df = player_data.loc[[index]]
         end_att = FBFunction(temp_df)
         final_grade_df = pd.concat([final_grade_df, end_att], ignore_index=True)
-    elif row['Position Tag'] == 'GK':
+    elif row['Position'] == 'GK':
         temp_df = player_data.loc[[index]]
         end_att = GKFunction(temp_df)
         final_grade_df = pd.concat([final_grade_df, end_att], ignore_index=True)

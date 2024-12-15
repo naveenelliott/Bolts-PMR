@@ -41,35 +41,18 @@ try:
              'Def Aerial Success ', 'Att 1v1', 'Efforts on Goal', 'Shot on Target',
              'Shot off Target', 'Att Shot Blockd', 'Cross', 'Unsucc Cross', 'Efficiency ', 'Long',
              'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break', 'Pass into Oppo Box', 'Loss of Poss',
-             'Success', 'Unsuccess', 'Pass Completion ', 'Progr Pass Completion ', 'Foul Won', 'Foul Conceded',
-             'Save Held', 'Save Parried', 'Save % ', 'Successful Cross', 'Opposition', 'Opp Effort on Goal']]
+             'Success', 'Unsuccess', 'Pass Completion ', 'Progr Pass Completion ', 'Foul Won', 'Foul Conceded', 'Header on Target', 'Att Aerial',
+             'Save Held', 'Save Parried', 'Save % ', 'Successful Cross', 'Opposition', 'Opp Effort on Goal', 'PK Missed', 'PK Scored', 'Starts']]
     number_columns = ['mins played', 'Yellow Card', 'Red Card', 'Goal', 'Assist',
                   'Dribble', 'Goal Against', 'Stand. Tackle', 'Unsucc Stand. Tackle', 'Tackle', 'Unsucc Tackle',
                   'Clear', 'Own Box Clear', 'Progr Rec', 'Unprogr Rec', 'Progr Inter', 'Unprogr Inter', 'Progr Regain ',
                   'Blocked Shot', 'Blocked Cross', 'Def Aerial Success ', 'Att 1v1',
-                  'Efforts on Goal', 'Shot on Target', 'Shot off Target', 'Att Shot Blockd', 'Cross', 'Unsucc Cross',
+                  'Efforts on Goal', 'Shot on Target', 'Shot off Target', 'Att Shot Blockd', 'Cross', 'Unsucc Cross', 'Header on Target', 'Att Aerial',
                   'Efficiency ', 'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break', 'Pass into Oppo Box', 'Loss of Poss',
                   'Success', 'Unsuccess', 'Pass Completion ', 'Progr Pass Completion ', 'Foul Won', 'Foul Conceded',
-                  'Save Held', 'Save Parried', 'Save % ', 'Successful Cross', 'Opp Effort on Goal']
+                  'Save Held', 'Save Parried', 'Save % ', 'Successful Cross', 'Opp Effort on Goal', 'PK Missed', 'PK Scored', 'Starts']
     df[number_columns] = df[number_columns].astype(float)
     df['Match Date'] = pd.to_datetime(df['Match Date']).dt.strftime('%m/%d/%Y')
-    df['Tackles'] = df['Tackle'] + df['Stand. Tackle']
-    df['Total Tackles'] = df['Tackle'] + df['Stand. Tackle'] + df['Unsucc Tackle'] + df['Unsucc Stand. Tackle']
-    df['Tackle %'] = (df['Tackles']/df['Total Tackles']) * 100
-    df['Clearances'] = df['Clear'] + df['Own Box Clear']
-    df['Recoveries'] = df['Progr Rec'] + df['Unprogr Rec']
-    df['Interceptions'] = df['Progr Inter'] + df['Unprogr Inter']
-    df['Total Crosses'] = df['Cross'] + df['Unsucc Cross']
-    df['Cross %'] = (df['Cross']/df['Total Crosses']) * 100
-    df['Total Long Passes'] = df['Long'] + df['Unsucc Long']
-    df['Long Pass %'] = (df['Long']/df['Total Long Passes']) * 100
-    df['Total Forward Passes'] = df['Forward'] + df['Unsucc Forward']
-    df['Total Passes'] = df['Success'] + df['Unsuccess']
-    df['Total Saves'] = df['Save Held'] + df['Save Parried']
-    df.drop(columns=['Tackle', 'Stand. Tackle', 'Unsucc Tackle', 'Unsucc Stand. Tackle', 'Clear', 'Own Box Clear', 
-                     'Progr Rec', 'Unprogr Rec', 'Progr Inter', 'Unprogr Inter', 'Cross', 'Unsucc Cross',
-                     'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward', 'Success', 'Unsuccess', 
-                     'Save Held', 'Save Parried', 'Tackles'], inplace=True)
     df.rename(columns={'Player Full Name': 'Name',
                        'mins played': 'Minutes', 
                        'Position Tag': 'Position',
@@ -79,22 +62,23 @@ try:
                        'Pass Completion ': 'Pass %',
                        'Progr Pass Completion ': 'Progr Pass %',
                        'Successful Cross': 'Crosses Claimed',
-                       'Opp Effort on Goal': 'Opp Shots'}, inplace=True)
+                       'Opp Effort on Goal': 'Opp Shots',
+                       'Starts': 'Started'}, inplace=True)
+    
     
         
     # All converted to per 90
     df['minutes per 90'] = df['Minutes']/90
     
-    
-    per90 = ['Yellow Card', 'Red Card', 'Goal', 'Assist',
-            'Dribble', 'Goal Against', 'Total Tackles', 'Clearances', 'Recoveries', 'Interceptions',
-            'Blocked Shot', 'Blocked Cross', 'Att 1v1', 'Total Long Passes', 'Total Forward Passes',
-            'Shots', 'Shot on Target', 'Shot off Target', 'Att Shot Blockd', 'Total Crosses', 'Line Break', 
-            'Pass into Oppo Box', 'Loss of Poss', 'Total Passes', 'Foul Won', 'Foul Conceded',
-            'Total Saves', 'Crosses Claimed', 'PK Missed', 'PK Scored']
+    # did not do anything for goalkeepers like saves, crosses claimed, opp shots - those are the actual raw numbers
+    per90 = ['Yellow Card', 'Red Card', 'Goal', 'Assist',  'Dribble', 'Stand. Tackle', 'Unsucc Stand. Tackle', 'Tackle', 'Unsucc Tackle',
+            'Clear', 'Own Box Clear', 'Progr Rec', 'Unprogr Rec', 'Progr Inter', 'Unprogr Inter',
+            'Blocked Shot', 'Blocked Cross', 'Att 1v1', 'Shots', 'Shot on Target', 'Shot off Target', 'Att Shot Blockd', 'Cross', 'Unsucc Cross',
+            'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break', 'Pass into Oppo Box', 'Loss of Poss',
+            'Success', 'Unsuccess', 'Foul Won', 'Foul Conceded']
 
     for column in per90:
-        if column not in ['Goal', 'Assist', 'Shot on Target', 'Yellow Card', 'Red Card', 'PK Missed', 'PK Scored']:
+        if column not in ['Goal', 'Assist', 'Shot on Target', 'Yellow Card', 'Red Card', 'PK Missed', 'PK Scored', 'Starts']:
             df[column] = df[column] / df['minutes per 90']
 
     df = df.drop(columns=['minutes per 90'])
@@ -106,10 +90,7 @@ try:
     
     # Determine the numeric and non-numeric columns
     numeric_columns = [col.replace(' ', '_') for col in number_columns if col.replace(' ', '_') in df.columns]
-    numeric_columns = numeric_columns + ['Total_Tackles', 'Tackle_%', 'Clearances', 'Recoveries',
-                                         'Interceptions', 'Total_Crosses', 'Cross_%', 'Total_Long_Passes', 
-                                         'Long_Pass_%', 'Total_Forward_Passes', 'Total_Passes', 'Total_Saves', 
-                                         'Minutes', 'Def_Aerial_%', 'Shots', 'SOT_%', 'Pass_%', 'Progr_Pass_%', 
+    numeric_columns = numeric_columns + ['Minutes', 'Def_Aerial_%', 'Shots', 'SOT_%', 'Pass_%', 'Progr_Pass_%', 
                                          'Crosses_Claimed']
     
     non_numeric_columns = [col for col in df.columns if col not in numeric_columns]

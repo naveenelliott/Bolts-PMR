@@ -5,39 +5,25 @@ from datetime import datetime
 import streamlit as st
 
 def CBFunction(dataframe):
-    number_columns = ['mins played', 'Yellow Card', 'Red Card', 'Goal', 'Assist', 'Dribble',
-           'Goal Against', 'Stand. Tackle', 'Unsucc Stand. Tackle', 'Tackle', 'Def Aerial', 'Unsucc Def Aerial',
-           'Own Box Clear', 'Progr Rec', 'Unprogr Rec', 'Progr Inter', 'Unprogr Inter', 'Blocked Shot',
-           'Blocked Cross', 'Att 1v1', 'Efforts on Goal', 'Shot on Target', 'Att Shot Blockd',
-           'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break', 'Clear', 'Unsucc Tackle',
-           'Loss of Poss', 'Success', 'Unsuccess', 'Foul Conceded', 'Progr Regain ', 'Stand. Tackle Success ', 
-           'Def Aerial Success ', 'Pass Completion ', 'Progr Pass Attempt ', 'Progr Pass Completion ', 
-           'PK Missed', 'PK Scored']
+    dataframe.columns = dataframe.columns.str.replace('_', ' ', regex=False)
 
-    details = dataframe.loc[:, ['Player Full Name', 'Team Name', 'Match Date', 'Position Tag', 'Starts']]
+    number_columns = ['Minutes', 'Yellow Card', 'Red Card', 'Goal', 'Assist', 'Dribble',
+           'Goal Against', 'Stand. Tackle', 'Unsucc Stand. Tackle', 'Tackle', 'Blocked Shot', 'Blocked Cross',
+           'Progr Rec', 'Unprogr Rec', 'Progr Inter', 'Unprogr Inter', 
+           'Att 1v1', 'Shots', 'Own Box Clear', 'Clear', 'Unsucc Tackle',
+           'Shot on Target',  'Pass into Oppo Box',
+           'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break', 
+           'Loss of Poss', 'Success', 'Unsuccess', 'Foul Won', 'Foul Conceded', 'Progr Regain ',
+           'Def Aerial %', 'Pass %', 'Progr Pass %', 'PK Missed', 'PK Scored']
+    
+    details = dataframe.loc[:, ['Name', 'Team Name', 'Match Date', 'Position', 'Started']]
     #details = selected.loc[:, ['Player Full Name', 'Team Name', 'As At Date', 'Position Tag']]
     details.reset_index(drop=True, inplace=True)
     selected = dataframe.loc[:, ~dataframe.columns.duplicated()]
     selected_p90 = selected.loc[:, number_columns].astype(float)
 
-
-    per90 = ['Yellow Card', 'Red Card', 'Goal', 'Assist', 'Dribble',
-           'Stand. Tackle', 'Unsucc Stand. Tackle', 'Tackle', 'Def Aerial', 'Unsucc Def Aerial',
-           'Own Box Clear', 'Progr Rec', 'Unprogr Rec', 'Progr Inter', 'Unprogr Inter', 'Blocked Shot',
-           'Blocked Cross', 'Att 1v1', 'Efforts on Goal', 'Clear', 'Unsucc Tackle',
-           'Shot on Target', 'Att Shot Blockd',
-           'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break',
-           'Loss of Poss', 'Success', 'Unsuccess', 'Foul Conceded', 'PK Missed', 'PK Scored']
-
-    selected_p90['minutes per 90'] = selected_p90['mins played']/90
-
-    for column in per90:
-        if column not in ['Goal', 'Assist', 'Shot on Target', 'Yellow Card', 'Red Card', 'PK Missed', 'PK Scored']:
-            selected_p90[column] = selected_p90[column] / selected_p90['minutes per 90']
-
-    selected_p90 = selected_p90.drop(columns=['minutes per 90'])
-    selected_p90.reset_index(drop=True, inplace=True)
-    selected_p90.fillna(0, inplace=True)
+    selected_p90.rename(columns={'Pass %': 'Pass Completion ',
+                                 'Progr Pass %': 'Progr Pass Completion '}, inplace=True)
 
     total_def_actions_columns = ['Tackle', 'Clear', 'Progr Inter', 'Unprogr Inter', 'Progr Rec', 
                              'Unprogr Rec', 'Stand. Tackle', 'Unsucc Stand. Tackle', 
@@ -52,7 +38,6 @@ def CBFunction(dataframe):
     defending = selected_p90[['Progr Regain ']]
     defending.fillna(0, inplace=True)
 
-    selected_p90['Def Aerial %'] = (selected_p90['Def Aerial']/(selected_p90['Def Aerial'] + selected_p90['Unsucc Def Aerial'])) * 100
     aerial = selected_p90[['Def Aerial %']]
     aerial.fillna(0, inplace=True)
 
@@ -60,7 +45,7 @@ def CBFunction(dataframe):
     progression = selected_p90[['Forward Passes', 'Progr Pass Completion ']]
 
     adjustments = selected_p90[['Yellow Card', 'Red Card', 'Goal', 'Assist',
-                                'Def Aerial', 'Unsucc Def Aerial', 'PK Missed', 'PK Scored']]
+                                'PK Missed', 'PK Scored']]
 
     for index, row in adjustments.iterrows():
         if adjustments['PK Scored'][index] == 1:
@@ -72,8 +57,6 @@ def CBFunction(dataframe):
     adjustments['Red Card'] = adjustments['Red Card'] * -2
     adjustments['Goal'] = adjustments['Goal'] * 1.5
     adjustments['Assist'] = adjustments['Assist'] * 1
-    adjustments['Def Aerial'] = adjustments['Def Aerial'] * 0.025
-    adjustments['Unsucc Def Aerial'] = adjustments['Unsucc Def Aerial'] * -.05
     adjustments['PK Missed'] = adjustments['PK Missed'] * -1
     adjustments['PK Scored'] = adjustments['PK Scored'] * 0.7
      
@@ -90,11 +73,11 @@ def CBFunction(dataframe):
 
     player_location = []
     for index, row in details.iterrows():
-        if 'RCB' in row['Position Tag']:
+        if 'RCB' in row['Position']:
             player_location.append(index)
-        elif 'LCB' in row['Position Tag']:
+        elif 'LCB' in row['Position']:
             player_location.append(index)
-        elif 'CB' in row['Position Tag']:
+        elif 'CB' in row['Position']:
             player_location.append(index)
             
     readding = []
@@ -103,7 +86,7 @@ def CBFunction(dataframe):
 
     for i in player_location:
         more_data = selected_p90.iloc[i]
-        player_name = selected_p90['Player Full Name'][i]
+        player_name = selected_p90['Name'][i]
         team_name = more_data['Team Name']
         date = more_data['Match Date']
         
@@ -121,7 +104,7 @@ def CBFunction(dataframe):
         z_scores_df = passing.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         passing_percentile = z_scores_df.map(calculate_percentile)
         passing_percentile = passing_percentile.map(clip_percentile)
-        player_passing = passing_percentile.iloc[player_location]
+        player_passing = passing_percentile.iloc[player_location].reset_index()
         weights = np.array([0.1])
         passing_score = (
             player_passing['Pass Completion '] * weights[0]
@@ -133,7 +116,7 @@ def CBFunction(dataframe):
         z_scores_df = defending.transform(lambda col: calculate_zscore(col, mean_values, std_values))
         defending_percentile = z_scores_df.map(calculate_percentile)
         defending_percentile = defending_percentile.map(clip_percentile)
-        player_defending = defending_percentile.iloc[player_location] 
+        player_defending = defending_percentile.iloc[player_location].reset_index()
         weights = np.array([.1])
         defending_score = (
             player_defending['Progr Regain '] * weights[0]
@@ -195,10 +178,10 @@ def CBFunction(dataframe):
     player_position = []
     player_starts = []
     for i in player_location:
-         player_name.append(selected_p90['Player Full Name'][i])
-         player_minutes.append(selected_p90['mins played'][i])
-         player_position.append(selected_p90['Position Tag'][i])
-         player_starts.append(selected_p90['Starts'][i])
+         player_name.append(selected_p90['Name'][i])
+         player_minutes.append(selected_p90['Minutes'][i])
+         player_position.append(selected_p90['Position'][i])
+         player_starts.append(selected_p90['Started'][i])
     final['Minutes'] = player_minutes
     final['Player Name'] = player_name
     final['Position'] = player_position

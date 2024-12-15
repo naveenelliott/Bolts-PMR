@@ -9,8 +9,8 @@ def GKFunction(dataframe):
 
 
     final = pd.DataFrame()
-    final['Player Name'] = dataframe['Player Full Name']
-    final['Position'] = dataframe['Position Tag']
+    final['Player Name'] = dataframe['Name']
+    final['Position'] = dataframe['Position']
     final['Final Grade'] = 0
     final['Adjustments'] = 0
     
