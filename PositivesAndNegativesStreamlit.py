@@ -177,15 +177,12 @@ def PositivesAndNegativesNoxG(team_select, opp_select, date_select, comp_opp_sel
     overall.columns = overall.columns.str.replace('_', ' ', regex=False)
     if comp_opp_select != '5 Game Rolling Avg' and comp_opp_select != 'Seasonal Rolling Avg':
         # manually changing St Louis because weekly report and actions don't align
-        overall.loc[overall['Opposition'] == 'St Louis', 'Date'] = '2023-12-09'
-        overall['Date'] = pd.to_datetime(overall['Date']).dt.strftime('%m/%d/%Y')
-        overall['Unique Opp and Date'] = overall['Opposition'] + ' (' + overall['Date'] + ')'
-        overall.rename(columns={'Date': 'Match Date', 
-                                   'Team Name': 'Team'}, inplace=True)
+        overall['Unique Opp and Date'] = overall['Opposition'] + ' (' + overall['Match Date'] + ')'
+        overall.rename(columns={'Team Name': 'Team'}, inplace=True)
         first_game = overall.loc[(overall['Team'] == team_select) & (overall['Opposition'] == opp_select) 
                                 & (overall['Match Date'] == date_select)]
-        closest_game = overall.loc[(overall['Team'] == team_select) & (overall['Unique Opp and Date'] == comp_opp_select)]
-
+        closest_game = overall.loc[(overall['Team'] == team_select) & (overall['Opposition'] == opp_select) 
+                                & (overall['Match Date'] == date_select)]
         first_game = formatDataNoxG(first_game)
         second_game = formatDataNoxG(closest_game)
         

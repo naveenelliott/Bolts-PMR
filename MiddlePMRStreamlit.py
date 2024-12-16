@@ -228,20 +228,21 @@ def MiddlePMRStreamlit_NALOlder(team, opp, date, regain_time):
 
     team_data.rename(columns={'Match Date': 'Date',
                               'Pass %': 'Pass Completion ',
-                              'Shots': 'Efforts on Goal'}, inplace=True)
+                              'Shots': 'Efforts on Goal', 
+                              'Total Saves': 'Shots on Target Against'}, inplace=True)
 
     cols_we_want = ['Date', 'Team Name', 'Opposition', 'Goal Against',
                    'Efforts on Goal', 'Opp Effort on Goal', 'Goal', 'Pass Completion ', 'Pass into Oppo Box', 
-                   'Shots on Target Against', 'Header on Target', 'Shot on Target']
+                   'Shots on Target Against', 'Shot on Target']
     team_data = team_data[cols_we_want]
     team_data['Date'] = pd.to_datetime(team_data['Date']).dt.strftime('%m/%d/%Y')
     team_data = team_data.loc[(team_data['Team Name'] == team) & (team_data['Opposition'] == opp) & (team_data['Date'] == date)]
 
-    required_columns = ['Shots on Target Against', 'Header on Target', 'Shot on Target']
+    required_columns = ['Shots on Target Against', 'Shot on Target']
     team_data[required_columns] = team_data[required_columns].apply(pd.to_numeric, errors='coerce')
     
     game_opponent_sot = team_data['Shots on Target Against'].sum()
-    game_bolts_sot = team_data['Header on Target'].sum() + team_data['Shot on Target'].sum()
+    game_bolts_sot = team_data['Shot on Target'].sum()
     
     if team_data['Opp Effort on Goal'].isna().any():
         # Drop the column if it contains NA values

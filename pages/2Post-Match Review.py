@@ -198,7 +198,7 @@ if selected_team in available_teams:
     shot_table_actions.rename(columns={'Bolts Team': 'Team',
                                       'Player Full Name': 'Player',
                                       'Video_Link': 'Link'}, inplace=True)
-    shot_table_actions = shot_table_actions.loc[(shot_table_actions['Team'] == selected_team) & (shot_table_actions['Opposition'] == selected_opp) & (shot_table_actions['Match Date'] == selected_date)].reset_index(drop=True)
+    shot_table_actions = shot_table_actions.loc[(shot_table_actions['Team'] == selected_team) & (shot_table_actions['Opposition'] == selected_opp) & (shot_table_actions['Match_Date'] == selected_date)].reset_index(drop=True)
     opponent_shots = ['Opp Effort on Goal', 'Save Held', 'Save Parried', 'Goal Against']
     shot_table_actions.loc[shot_table_actions['Action'].isin(opponent_shots), 'Team'] = selected_opp
     shot_table_actions.loc[shot_table_actions['Team'] == selected_team, 'Team'] = 'Bolts'
@@ -210,7 +210,7 @@ if selected_team in available_teams:
     shot_min_actions = shot_table_actions.copy()
     
     shot_table_actions["Video Link"] = shot_table_actions["Link"].apply(lambda url: f'<a href="{url}" target="_blank">Link</a>')
-    shot_table_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
+    shot_table_actions.drop(columns = {'Match_Date', 'Opposition', 'Period', 'Link'}, inplace=True)
 
 actions_new.rename(columns={'Bolts Team': 'Bolts_Team'}, inplace=True)
 
@@ -365,6 +365,7 @@ final_grade_df = temp_df.copy()
 
 chances_created.fillna(0, inplace=True)
 
+
 # Short term fix because something is wrong with getting the positions of attackers
 if selected_team not in available_teams:
     for index, row in final_grade_df.iterrows():
@@ -395,23 +396,27 @@ if selected_team not in available_teams:
             final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Playmaking'])*.2)
 
 # THIS IS WHERE WE ADD THE NEW THRESHOLDS
+
 else:
-    player_data['SOT'] = player_data['Shot on Target'] + player_data['Header on Target']
+    player_data['SOT'] = player_data['Shot_on_Target'] + player_data['Header_on_Target']
     for index, row in final_grade_df.iterrows():
         player_name = row['Player Name']
         if row['Position'] == 'ATT':
-            our_player_data = player_data.loc[player_data['Player Full Name'] == player_name]
-            our_player_data = our_player_data.groupby(['Player Full Name', 'Team Name'])['SOT'].sum().reset_index()
+            our_player_data = player_data.loc[player_data['Name'] == player_name]
+            our_player_data = our_player_data.groupby(['Name', 'Team_Name'])['SOT'].sum().reset_index()
+            our_player_data.columns = our_player_data.columns.str.replace('_', ' ', regex=False)
             select_temp_df = StrikerSOTFunction(our_player_data)
             final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
         elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
-            our_player_data = player_data.loc[player_data['Player Full Name'] == player_name]
-            our_player_data = our_player_data.groupby(['Player Full Name', 'Team Name'])['SOT'].sum().reset_index()
+            our_player_data = player_data.loc[player_data['Name'] == player_name]
+            our_player_data = our_player_data.groupby(['Name', 'Team_Name'])['SOT'].sum().reset_index()
+            our_player_data.columns = our_player_data.columns.str.replace('_', ' ', regex=False)
             select_temp_df = WingerSOTFunction(our_player_data)
             final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
         elif (row['Position'] == 'CM') or (row['Position'] == 'RM') or (row['Position'] == 'LM') or (row['Position'] == 'AM'):
-            our_player_data = player_data.loc[player_data['Player Full Name'] == player_name]
-            our_player_data = our_player_data.groupby(['Player Full Name', 'Team Name'])['SOT'].sum().reset_index()
+            our_player_data = player_data.loc[player_data['Name'] == player_name]
+            our_player_data = our_player_data.groupby(['Name', 'Team_Name'])['SOT'].sum().reset_index()
+            our_player_data.columns = our_player_data.columns.str.replace('_', ' ', regex=False)
             select_temp_df = CMSOTFunction(our_player_data)
             final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
 
@@ -992,7 +997,7 @@ with col3:
 
 # MAKING MORE CHANGES FOR BIGGER NAL TEAMS
 if selected_team in available_teams:
-    shot_min_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
+    shot_min_actions.drop(columns = {'Match_Date', 'Opposition', 'Period', 'Link'}, inplace=True)
     shot_min_actions['Time'] = shot_min_actions['Time'].apply(time_to_seconds)
     
     a_xG = [0]
@@ -1382,7 +1387,7 @@ combined_grades['IsMostxG'] = 0
 if selected_team in available_teams:
     # For available teams, calculate the player with the most shots on target
     game['Shots on Target'] = game['Header on Target'] + game['Shot on Target']
-    max_sot_player = game.loc[game['Shots on Target'].idxmax(), 'Player Full Name']
+    max_sot_player = game.loc[game['Shots on Target'].idxmax(), 'Name']
     index_to_change = combined_grades.index[combined_grades['Player'] == max_sot_player].tolist()[0]
 else:
     # Default logic: calculate the player with the highest xG
