@@ -11,6 +11,8 @@ def plottingStatistics(dataframe, statistic, date_wanted):
     # Create the plot
     fig = go.Figure()
 
+    dataframe.rename(columns={'Opponent': 'Opposition'}, inplace=True)
+
     dataframe['More Opposition'] = 'vs ' + dataframe['Opposition']
     dataframe['Match Date'] = pd.to_datetime(dataframe['Match Date']).dt.strftime('%m/%d/%Y')
 
@@ -263,7 +265,7 @@ def gettingGameGrade(dataframe):
     dataframe['SOT Against'] = dataframe['Save Held'] + dataframe['Save Parried'] + dataframe['Goal Against']
 
 
-    mins_played = dataframe.at[0, 'mins played']
+    mins_played = dataframe.at[0, 'Minutes']
     
     
     final_dataframe = pd.DataFrame(columns=['Pass Completion ', 'Total Saves', 'Save %', 'Progr Regain ', 'SOT Against', 'Opp Effort on Goal',
@@ -403,15 +405,15 @@ def gettingGameGrade(dataframe):
                 final_dataframe.at[0, 'Final Grade'] = (final_dataframe.at[0, 'Attacking']*0.2)+(final_dataframe.at[0, 'Cross %'] * .15)+(final_dataframe.at[0, 'Defending Goal']*0.4)+(final_dataframe.at[0, 'Organization']*.1)+(final_dataframe.at[0, 'Defending Space']*.15)
 
     last_df = pd.DataFrame()
-    last_df.at[0, 'Player Full Name'] = dataframe.at[0, 'Player Full Name']
+    last_df.at[0, 'Player Full Name'] = dataframe.at[0, 'Name']
     last_df.at[0, 'Match Date'] = dataframe.at[0, 'Match Date']
     last_df.at[0, 'Team'] = dataframe.at[0, 'Team']
-    last_df.at[0, 'Opposition'] = dataframe.at[0, 'Opposition']
+    last_df.at[0, 'Opposition'] = dataframe.at[0, 'Opponent']
     last_df.at[0, 'Final Grade'] = final_dataframe.at[0, 'Final Grade']
 
     match_date = dataframe.at[0, 'Match Date']
     team = dataframe.at[0, 'Team']
-    pname = dataframe.at[0, 'Player Full Name']
+    pname = dataframe.at[0, 'Name']
 
     # Path to the folder containing CSV files
     folder_path = 'PlayerData Files'
@@ -510,7 +512,7 @@ def gettingGameGrade(dataframe):
 
 def gkInvolvements(dataframe):
     in_poss = ['Success', 'Unsuccess']
-    out_poss = ['Progr Rec', 'Progr Inter', 'Successful Cross']
+    out_poss = ['Progr Rec', 'Progr Inter', 'Crosses Claimed']
     dataframe = dataframe[in_poss+out_poss].astype(int)
     in_possession = dataframe[in_poss].sum(axis=1).reset_index(drop=True)[0]
     out_of_possession = dataframe[out_poss].sum(axis=1).reset_index(drop=True)[0]

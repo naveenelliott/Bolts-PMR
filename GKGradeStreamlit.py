@@ -18,24 +18,21 @@ def GKFunction(dataframe):
 
 def GKMoreDetailedFunction(dataframe):
 
-    details = dataframe.loc[:, ['Player Full Name', 'Team Name', 'Position Tag', 'Match Date', 'Starts']]
+    details = dataframe.loc[:, ['Name', 'Team Name', 'Position', 'Match Date', 'Started']]
 
 
 
-    number_columns = ['mins played', 'Goal Against', 'Progr Regain ', 'Progr Rec', 'Unprogr Rec', 'Progr Inter', 'Unprogr Inter',
-                    'Success', 'Unsuccess', 'Pass Completion ', 'Save Held', 'Save Parried', 'Successful Cross', 'Red Card', 'Opp Effort on Goal', 
-                    'Progr Pass Completion ']
+    number_columns = ['Minutes', 'Goal Against', 'Progr Regain ', 'Progr Rec', 'Unprogr Rec', 'Progr Inter', 'Unprogr Inter',
+                    'Success', 'Unsuccess', 'Pass %', 'Save Held', 'Save Parried', 'Crosses Claimed', 'Red Card', 'Opp Shots', 
+                    'Progr Pass %']
     selected = dataframe.loc[:, ~dataframe.columns.duplicated()]
     selected_p90 =  selected.loc[:, number_columns].astype(float)
-    per90 = ['Goal Against', 'Success', 'Unsuccess', 'Save Held', 'Save Parried', 'Successful Cross', 'Opp Effort on Goal']
 
-    selected_p90['minutes per 90'] = selected_p90['mins played']/90
+    selected_p90.rename(columns={'Pass %': 'Pass Completion ',
+                                 'Progr Pass %': 'Progr Pass Completion ',
+                                 'Opp Shots': 'Opp Effort on Goal',
+                                 'Crosses Claimed': 'Successful Cross'}, inplace=True)
 
-    for column in per90:
-        if column not in ['Goal', 'Assist', 'Shot on Target', 'Yellow Card', 'Red Card']:
-            selected_p90[column] = selected_p90[column] / selected_p90['minutes per 90']
-            
-    selected_p90 = selected_p90.drop(columns=['minutes per 90'])
     selected_p90.reset_index(drop=True, inplace=True)
     selected_p90.fillna(0, inplace=True)
 
@@ -80,7 +77,7 @@ def GKMoreDetailedFunction(dataframe):
     # Create a DataFrame
     team_df = pd.DataFrame(team_data)
 
-    gk_details = details.loc[details['Position Tag'] == 'GK']
+    gk_details = details.loc[details['Position'] == 'GK']
 
     avg_u13 = 2.8
     avg_u14 = 3.0
@@ -94,7 +91,7 @@ def GKMoreDetailedFunction(dataframe):
 
     for index2, row2 in gk_details.iterrows():    
         for index, row in team_df.iterrows():
-            if row2['Player Full Name'] == row['Name']:
+            if row2['Name'] == row['Name']:
                 if row2['Team Name'] == row['Team Name']:
                     adjustments['Playing Up'][index2] = 0
                 else:
@@ -145,7 +142,7 @@ def GKMoreDetailedFunction(dataframe):
     player_location = []
     # need to make this a list eventually
     for index, row in details.iterrows():
-        if row['Position Tag'] == 'GK':
+        if row['Position'] == 'GK':
             player_location.append(index)  
 
         
@@ -160,7 +157,7 @@ def GKMoreDetailedFunction(dataframe):
     
     for i in player_location:
         more_data = selected_p90.iloc[i]
-        player_name = selected_p90['Player Full Name'][i]
+        player_name = selected_p90['Name'][i]
         team_name = more_data['Team Name']
 
         date = more_data['Match Date']
@@ -300,10 +297,10 @@ def GKMoreDetailedFunction(dataframe):
     player_position = []
     player_starts = []
     for i in player_location:
-        player_name.append(selected_p90['Player Full Name'][i])
-        player_minutes.append(selected_p90['mins played'][i])
-        player_position.append(selected_p90['Position Tag'][i])
-        player_starts.append(selected_p90['Starts'][i])
+        player_name.append(selected_p90['Name'][i])
+        player_minutes.append(selected_p90['Minutes'][i])
+        player_position.append(selected_p90['Position'][i])
+        player_starts.append(selected_p90['Started'][i])
     final['Minutes'] = player_minutes
     final['Player Name'] = player_name
     final['Position'] = player_position

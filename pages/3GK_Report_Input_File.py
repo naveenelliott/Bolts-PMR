@@ -8,7 +8,7 @@ st.set_page_config(page_title='Bolts Post-Match Review App', page_icon='pages/Bo
 st.title("Goalkeeper Report Input File")
 
 gk_data = st.session_state['gk_df']
-gks = list(gk_data['Player Full Name'].unique())
+gks = list(gk_data['Name'].unique())
 if "selected_gk" not in st.session_state:
     st.session_state["selected_gk"] = gks[0] 
 selected_gk = st.selectbox('Choose the Goalkeeper:', gks)

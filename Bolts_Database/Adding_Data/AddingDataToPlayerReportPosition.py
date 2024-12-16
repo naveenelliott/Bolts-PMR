@@ -61,19 +61,19 @@ def addingDataToPlayerReportPosition():
                     'Red Card', 'Goal', 'Assist', 'Dribble', 'Goal Against', 'Stand. Tackle', 
                     'Unsucc Stand. Tackle', 'Tackle', 'Unsucc Tackle', 
                     'Clear', 'Own Box Clear', 'Progr Rec', 'Unprogr Rec', 'Progr Inter', 'Unprogr Inter',
-                    'Progr Regain ', 'Blocked Shot', 'Blocked Cross',
+                    'Progr Regain ', 'Blocked Shot', 'Blocked Cross',  'Hands GK', 'Unsucc Hands', 'Ground GK', 'Unsucc Ground', 
                     'Def Aerial Success ', 'Att 1v1', 'Efforts on Goal', 'Shot on Target',
                     'Shot off Target', 'Att Shot Blockd', 'Cross', 'Unsucc Cross', 'Efficiency ', 'Long',
-                    'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break', 'Pass into Oppo Box', 'Loss of Poss',
+                    'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break', 'Pass into Oppo Box', 'Loss of Poss', 'Unsucc cross GK',
                     'Success', 'Unsuccess', 'Pass Completion ', 'Progr Pass Completion ', 'Foul Won', 'Foul Conceded', 'Header on Target', 'Att Aerial',
                     'Save Held', 'Save Parried', 'Save % ', 'Successful Cross', 'Opposition', 'Opp Effort on Goal', 'PK Missed', 'PK Scored', 'Starts']
             existing_columns = [col for col in expected_columns if col in df.columns]
             df = df[existing_columns]
-            number_columns = ['mins played', 'Yellow Card', 'Red Card', 'Goal', 'Assist',
+            number_columns = ['mins played', 'Yellow Card', 'Red Card', 'Goal', 'Assist',  'Hands GK', 'Unsucc Hands', 'Ground GK', 'Unsucc Ground', 
                         'Dribble', 'Goal Against', 'Stand. Tackle', 'Unsucc Stand. Tackle', 'Tackle', 'Unsucc Tackle',
                         'Clear', 'Own Box Clear', 'Progr Rec', 'Unprogr Rec', 'Progr Inter', 'Unprogr Inter', 'Progr Regain ',
                         'Blocked Shot', 'Blocked Cross', 'Def Aerial Success ', 'Att 1v1', 'Header on Target', 'Att Aerial',
-                        'Efforts on Goal', 'Shot on Target', 'Shot off Target', 'Att Shot Blockd', 'Cross', 'Unsucc Cross',
+                        'Efforts on Goal', 'Shot on Target', 'Shot off Target', 'Att Shot Blockd', 'Cross', 'Unsucc Cross', 'Unsucc cross GK',
                         'Efficiency ', 'Long', 'Unsucc Long', 'Forward', 'Unsucc Forward', 'Line Break', 'Pass into Oppo Box', 'Loss of Poss',
                         'Success', 'Unsuccess', 'Pass Completion ', 'Progr Pass Completion ', 'Foul Won', 'Foul Conceded',
                         'Save Held', 'Save Parried', 'Save % ', 'Successful Cross', 'Opp Effort on Goal', 'PK Missed', 'PK Scored', 'Starts']
@@ -103,6 +103,7 @@ def addingDataToPlayerReportPosition():
                                 'Successful Cross': 'Crosses Claimed',
                                 'Opp Effort on Goal': 'Opp Shots',
                                 'Starts': 'Started'}, inplace=True)
+            
             
                 
             # All converted to per 90

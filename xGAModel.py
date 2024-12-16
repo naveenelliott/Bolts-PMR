@@ -109,7 +109,7 @@ def xGAModel(end):
     
     # Apply the function to the 'Time' column
     end['Time'] = end['Time'].apply(time_to_seconds)
-    end = end.drop(columns=['Angle', 'Distance', 'Goal', 'Mins', 'Secs', 'X2', 'Y2'])
+    end = end.drop(columns=['Angle', 'Distance', 'Goal'])
 
     # if Player is SOT Inside Post, xG = xG + 0.1
     # if Bolts Team contains U13 then xG = xG + 0.1

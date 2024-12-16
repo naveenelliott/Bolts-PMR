@@ -20,6 +20,14 @@ from streamlit_gsheets import GSheetsConnection
 import numpy as np
 from creating_heatmap_playerData import gettingHeatmapGK
 import math
+from Bolts_Database.GettingTables import (
+    getxGTable,
+    getActionsTable,
+    getLineupTable,
+    getTeamReportTable,
+    getPlayerNoPositionTable,
+    getPlayerPositionTable
+)
 
 
 st.set_page_config(page_title='Bolts Post-Match Review App', page_icon='pages/Boston_Bolts.png')
@@ -35,19 +43,24 @@ selected_date = st.session_state["selected_date"]
 gk_data = st.session_state['gk_df']
 
 gk_name = st.session_state["selected_gk"]
-gk_data = gk_data.loc[gk_data['Player Full Name'] == gk_name]
+gk_data = gk_data.loc[gk_data['Name'] == gk_name]
+
+del gk_data['Position Tag']
+
+gk_data = gk_data.copy()
+gk_data.columns = gk_data.columns.str.replace('_', ' ', regex=False)
 
 
 conn = st.connection('gsheets', type=GSheetsConnection)
 in_n_out_df = conn.read(worksheet='GK_Report', ttl=0)
-in_n_out_df.rename(columns={'GK Name': 'Player Full Name', 
-                            'Match Date': 'Date', 
+in_n_out_df.rename(columns={'GK Name': 'Name', 
                             'Bolts Team': 'Team Name', 
+                            'Opposition': 'Opponent',
                             'Coach Notes': 'Vasily Notes', 
                             'Veo Hyperlink': 'Veo Hyperlink GK'}, inplace=True)
 
 
-gk_info = pd.merge(gk_data, in_n_out_df, on=['Player Full Name', 'Date', 'Opposition', 'Team Name'], how='inner')
+gk_info = pd.merge(gk_data, in_n_out_df, on=['Name', 'Match Date', 'Opponent', 'Team Name'], how='inner')
 gk_info.reset_index(drop=True, inplace=True)
 
 if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
@@ -61,15 +74,16 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     st.title(f"{gk_name} - Goalkeeper Report ({selected_team} vs {selected_opp})")
 
-    gk_data = getting_PSD_grade_data()
-    gk_data.loc[gk_data['Player Full Name'] == 'Casey Powers', 'Position Tag'] = 'GK'
-    gk_data = gk_data.loc[gk_data['Position Tag'] == 'GK']
-    non_number_columns = ['Player Full Name', 'Team Name', 'Position Tag', 'Match Date', 'Opposition']
+    gk_data = getPlayerPositionTable()
+    gk_data.columns = gk_data.columns.str.replace('_', ' ', regex=False)
+
+
+    gk_data.loc[gk_data['Name'] == 'Casey Powers', 'Position'] = 'GK'
+    gk_data = gk_data.loc[gk_data['Position'] == 'GK']
+    non_number_columns = ['Name', 'Team Name', 'Position', 'Match Date', 'Opposition']
     for col in gk_data.columns:
         if col not in non_number_columns:
             gk_data[col] = gk_data[col].astype(float)
-    gk_data['Match Date'] = pd.to_datetime(gk_data['Match Date'])
-    gk_data['Match Date'] = gk_data['Match Date'].dt.strftime('%m/%d/%Y')
 
     
 
@@ -77,7 +91,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     all_games_gk = gk_data.copy()
     gk_data = gk_data.loc[(gk_data['Team Name'] == selected_team) & (gk_data['Opposition'] == selected_opp) & (gk_data['Match Date'] == selected_date)].reset_index(drop=True)
     overall_gk_data = gk_data.copy()
-    specific_player = gk_data.loc[gk_data['Player Full Name'] == gk_name]
+    specific_player = gk_data.loc[gk_data['Name'] == gk_name]
     specific_player_copy = specific_player.copy()
     specific_player_copy.reset_index(drop=True, inplace=True)
     no_saves = pd.isna(specific_player_copy.at[0, 'Save % '])
@@ -90,64 +104,21 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     yellow_cards = gk_data['Yellow Card'][0]
     red_cards = gk_data['Red Card'][0]
-    mins_played = gk_data['mins played'][0]
+    mins_played = gk_data['Minutes'][0]
     match_date = gk_data['Match Date'][0]
 
     col1, col2 = st.columns(2)
 
-    folder_path = 'xG Input Files'
 
-    # Find all CSV files in the folder
-    csv_files = glob.glob(os.path.join(folder_path, '*.csv'))
-
-    # List to hold individual DataFrames
-    df_list = []
-
-    # Loop through the CSV files and read them into DataFrames
-    for file in csv_files:
-        df = pd.read_csv(file)
-        df_list.append(df)
-
-    # Concatenate all DataFrames into a single DataFrame
-    fc_python = pd.concat(df_list, ignore_index=True)
-
-    # Making sure everything is aligned on one side
-    def flip_coordinates(x, y):
-        # Flip x and y coordinates horizontally
-        flipped_x = field_dim - x
-        flipped_y = field_dim - y  # y remains unchanged in this transformation
-        
-        return flipped_x, flipped_y
-
-    field_dim = 100
-    # Iterating through coordinates and making them on one side
-    flipped_points = []
-    for index, row in fc_python.iterrows():
-        if row['X'] < 50:
-            flipped_x, flipped_y = flip_coordinates(row['X'], row['Y'])
-            fc_python.at[index, 'X'] = flipped_x
-            fc_python.at[index, 'Y'] = flipped_y
+    fc_python = getxGTable()
+    fc_python.columns = fc_python.columns.str.replace('_', ' ', regex=False)
 
 
     # Path to the folder containing CSV files
-    folder_path = 'Actions PSD'
+    actions = getActionsTable()
+    actions.columns = actions.columns.str.replace('_', ' ', regex=False)
 
-    # Find all CSV files in the folder
-    csv_files = glob.glob(os.path.join(folder_path, '*.csv'))
 
-    # List to hold individual DataFrames
-    df_list = []
-
-    # Loop through the CSV files and read them into DataFrames
-    for file in csv_files:
-        df = pd.read_csv(file)
-        df.columns = df.loc[4]
-        df = df.loc[5:].reset_index(drop=True)
-        df_list.append(df)
-
-    # Concatenate all DataFrames into a single DataFrame
-    actions = pd.concat(df_list, ignore_index=True)
-    actions['Match Date'] = pd.to_datetime(actions['Match Date']).dt.strftime('%m/%d/%Y')
     actions.loc[actions['Opposition'] == 'St Louis', 'Match Date'] = '12/09/2023'
 
     # creating copies to work on
@@ -160,7 +131,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
 
     # these are the ideal columns
-    cols = ['Player Full Name', 'Team', 'Match Date', 'Opposition', 'Action', 'Time', 'Video Link']
+    cols = ['Name', 'Team', 'Match Date', 'Opposition', 'Action', 'Time', 'Video Link']
     xg_actions = actions[cols]
 
     # these are the shots we want
@@ -173,14 +144,14 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     # if the opponent shots are 0, we factor in blocked shots
     # if they aren't 0, then we don't factor in blocked shots
-    opp_shots = gk_data['Opp Effort on Goal'].sum()
+    opp_shots = gk_data['Opp Shots'].sum()
     temp_shots = opp_shots.copy()
     if temp_shots != 0:
         xg_actions = xg_actions.loc[xg_actions['Action'] != 'Blocked Shot'].reset_index(drop=True)
 
     # this is handeling duplicated PlayerStatData shots 
     temp_df = pd.DataFrame(columns=xg_actions.columns)
-    prime_actions = ['Opp Effort on Goal', 'Shot on Target']
+    prime_actions = ['Opp Shots', 'Shot on Target']
     remove_indexes = []
     for index in range(len(xg_actions) - 1):
         if xg_actions.loc[index, 'Time'] == xg_actions.loc[index+1, 'Time']:
@@ -195,18 +166,18 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     actions_new = xg_actions.copy()
     actions_new = actions_new.drop(remove_indexes).reset_index(drop=True) 
 
-    fc_python['Match Date'] = pd.to_datetime(fc_python['Match Date']).dt.strftime('%m/%d/%Y')
-
     # combining into xG dataframe we want
     combined_xg = pd.merge(fc_python, actions_new, on=['Bolts Team', 'Match Date', 'Time'], how='inner')
 
     # running the model on our dataframe
+    combined_xg[['X', 'Y']] = combined_xg[['X', 'Y']].astype(float)
+
     xg = xGAModel(combined_xg)
     entire_xg = xg.copy()
     xg = xg.loc[(xg['Bolts Team'] == selected_team) & (xg['Opposition'] == selected_opp) & (xg['Match Date'] == selected_date)]
     xg = xg[['Team', 'X', 'Y', 'xGA', 'Event', 'Time', 'Video Link']]
 
-
+    st.write(overall_gk_data)
 
     if len(overall_gk_data) > 1:
         starting_gk = overall_gk_data.loc[overall_gk_data['Starts'] == 1].reset_index(drop=True)
@@ -616,7 +587,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
 
     entire_xg = entire_xg.loc[~entire_xg['Team'].str.contains('Boston Bolts')]
-    entire_xg = entire_xg.loc[entire_xg['Player Full Name'] == gk_name]
+    entire_xg = entire_xg.loc[entire_xg['Name'] == gk_name]
     entire_xg = entire_xg[entire_xg['Event'].isin(['SOT', 'Goal', 'SOT Inside Post', 'SOT Far Post', 'Goal Inside Post', 'Goal Far Post'])]
     for (team, opponent, matchf_date), group in entire_xg.groupby(['Bolts Team', 'Opposition', 'Match Date']):
         # Assuming overall_gk_data and gk_name are available for each group
@@ -628,26 +599,35 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     # Combine all processed groups into one DataFrame
     summary_df = pd.DataFrame(processed_data)
 
-    end_combined_df = overall_df.loc[overall_df['Player Full Name'] == gk_name]
-    unique_combinations = end_combined_df[['Team Name', 'Opposition', 'Date']].drop_duplicates()
-    unique_combinations.rename(columns={'Date': 'Match Date'}, inplace=True)
+    overall_df.columns = overall_df.columns.str.replace('_', ' ', regex=False)
+
+
+    end_combined_df = overall_df.loc[overall_df['Name'] == gk_name]
+    unique_combinations = end_combined_df[['Team Name', 'Opponent', 'Match Date']].drop_duplicates()
     unique_combinations = unique_combinations.loc[unique_combinations['Match Date'] <= selected_date]
 
+
+    all_games_gk.rename(columns={'Opposition': 'Opponent'}, inplace=True)
+
     # Step 2: Filter all_games_gk by these combinations
-    end_overall = all_games_gk.merge(unique_combinations, on=['Team Name', 'Opposition', 'Match Date'], how='inner')
-    end_overall = end_overall.loc[end_overall['Player Full Name'] == gk_name]
+    end_overall = all_games_gk.merge(unique_combinations, on=['Team Name', 'Opponent', 'Match Date'], how='inner')
+
+
+    end_overall = end_overall.loc[end_overall['Name'] == gk_name]
     end_overall['In Possession'] = end_overall['Success'] + end_overall['Unsuccess']
-    end_overall['Out of Possession'] = end_overall['Progr Rec'] + end_overall['Progr Inter'] + end_overall['Successful Cross']
-    end_overall = end_overall[['Player Full Name', 'Team Name', 'Opposition', 'Match Date', 'mins played', 'Save Held', 'Save Parried', 'Goal Against', 'Progr Regain ', 
+    end_overall['Out of Possession'] = end_overall['Progr Rec'] + end_overall['Progr Inter'] + end_overall['Crosses Claimed']
+
+    end_overall.rename(columns={'Crosses Claimed': 'Successful Cross',
+                                'Pass %': 'Pass Completion ', 
+                                'Progr Pass %': 'Progr Pass Completion ',
+                                'Opp Shots': 'Opp Effort on Goal'}, inplace=True)
+
+    end_overall = end_overall[['Name', 'Team Name', 'Opponent', 'Match Date', 'Minutes', 'Save Held', 'Save Parried', 'Goal Against', 'Progr Regain ', 
                             'Pass Completion ', 'Opp Effort on Goal', 'Progr Pass Completion ', 'Successful Cross', 'Unsucc cross GK', 'Hands GK', 'Unsucc Hands', 'Ground GK', 'Unsucc Ground', 
                             'In Possession', 'Out of Possession']]
     end_overall['Total CC'] = end_overall['Successful Cross'] + end_overall['Unsucc cross GK']
     end_overall['Cross %'] = (end_overall['Successful Cross']/end_overall['Total CC']) * 100
     end_overall['Save %'] = (end_overall['Save Held']+end_overall['Save Parried'])/(end_overall['Save Held']+end_overall['Save Parried']+end_overall['Goal Against'])*100
-    end_overall['Totals Throw'] = end_overall['Hands GK'] + end_overall['Unsucc Hands']
-    end_overall['Throw %'] = (end_overall['Hands GK']/end_overall['Totals Throw']) * 100
-    end_overall['Total GK'] = (end_overall['Ground GK'] + end_overall['Unsucc Ground'])
-    end_overall['GK %'] = (end_overall['Ground GK']/end_overall['Total GK']) * 100
     game_grade_end = end_overall.copy()
     end_overall.drop(columns=['Save Held', 'Save Parried', 'Successful Cross', 'Unsucc cross GK', 'Total CC'], inplace=True)
     end_overall.rename(columns={'Team Name': 'Team'}, inplace=True)
@@ -685,14 +665,14 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     for _, row in unique_combinations.iterrows():
         match_date = row['Match Date']
         team_name = row['Team Name']
-        opposition = row['Opposition']
+        opposition = row['Opponent']
 
         
         # Filter the DataFrame for the current combination
         filtered_game_grade = game_grade_end[(game_grade_end['Match Date'] == match_date) & 
                         (game_grade_end['Team'] == team_name) & 
-                        (game_grade_end['Opposition'] == opposition)]
-        filtered_game_grade = filtered_game_grade.loc[filtered_game_grade['Player Full Name'] == gk_name]
+                        (game_grade_end['Opponent'] == opposition)]
+        filtered_game_grade = filtered_game_grade.loc[filtered_game_grade['Name'] == gk_name]
         game_grade = gettingGameGrade(filtered_game_grade)
 
         final_game_grade = pd.concat([final_game_grade, game_grade], ignore_index=True)
