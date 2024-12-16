@@ -177,14 +177,14 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     xg = xg.loc[(xg['Bolts Team'] == selected_team) & (xg['Opposition'] == selected_opp) & (xg['Match Date'] == selected_date)]
     xg = xg[['Team', 'X', 'Y', 'xGA', 'Event', 'Time', 'Video Link']]
 
-    st.write(overall_gk_data)
+
 
     if len(overall_gk_data) > 1:
-        starting_gk = overall_gk_data.loc[overall_gk_data['Starts'] == 1].reset_index(drop=True)
-        starting_gk_mins = starting_gk['mins played'][0]
-        starting_gk_name = starting_gk['Player Full Name'][0]
-        other_gk = overall_gk_data.loc[overall_gk_data['Player Full Name'] != starting_gk_name].reset_index(drop=True)
-        other_gk_name = other_gk['Player Full Name'][0]
+        starting_gk = overall_gk_data.loc[overall_gk_data['Started'] == 1].reset_index(drop=True)
+        starting_gk_mins = starting_gk['Minutes'][0]
+        starting_gk_name = starting_gk['Name'][0]
+        other_gk = overall_gk_data.loc[overall_gk_data['Name'] != starting_gk_name].reset_index(drop=True)
+        other_gk_name = other_gk['Name'][0]
 
         starting_xg = pd.DataFrame(columns=xg.columns)
         other_xg = pd.DataFrame(columns=xg.columns)
