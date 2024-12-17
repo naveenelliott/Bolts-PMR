@@ -15,14 +15,13 @@ from Bolts_Database.Adding_Data.AddingDataToPlayerReport import addingDataToPlay
 from Bolts_Database.Adding_Data.AddingDataToTeamGameReport import addingDataToTeamGameReport
 from Bolts_Database.Adding_Data.AddingxG import addingxG
 
+
 # Setting the title of the PMR App in web browser
 st.set_page_config(page_title='Bolts Post-Match Review App', page_icon = 'pages/Boston_Bolts.png')
 
 
 # READING FROM DATABASE
 complete_test_df = getLineupTable()
-
-
 
 st.sidebar.success('Select a page above.')
 

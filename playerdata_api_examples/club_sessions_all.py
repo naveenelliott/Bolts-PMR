@@ -4,6 +4,8 @@ import pandas as pd
 import re
 from tqdm import tqdm
 import requests
+import schedule
+import time
 
 # Dictionary of teams with team name as key and their corresponding code as value
 team_codes = {
@@ -128,9 +130,23 @@ def club_sessions(club_id, club_name):
         df = df.loc[df['opponent'] != 'NA']
 
     # Save to CSV
-    df.to_csv(f"Match_Sessions/{club_name} Matches.csv", index=False)
+    df.to_csv(f"PlayerData Files/{club_name} Matches.csv", index=False)
 
-if __name__ == "__main__":
-    # Loop through each team and fetch the session data
+
+def run_club_sessions():
+    """ Main function to loop through each team and fetch session data. """
+    print("Test worked!")
     for team_name, team_code in team_codes.items():
         club_sessions(club_id=team_code, club_name=team_name)
+
+# Schedule the task every Monday at 10 AM
+#schedule.every().monday.at("10:00").do(run_club_sessions)
+
+schedule.every(10).seconds.do(run_club_sessions)
+
+print("Scheduler started. Running tasks every Monday at 10 AM...")
+
+# Keep the scheduler running
+while True:
+    schedule.run_pending()
+    time.sleep(1)
