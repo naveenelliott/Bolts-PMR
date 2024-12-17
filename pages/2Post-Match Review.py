@@ -734,7 +734,9 @@ for player_name, group in grouped:
         ax.text(55, 22.5, position['Player Full Name'][1], color='black', size=6, ha='center', va='center')
 
 subs_length = len(subs)
-subs['Player Full Name'] = subs['Player Full Name'].apply(lambda x: x.split(' ', 1)[1])
+subs['Player Full Name'] = subs['Player Full Name'].apply(
+    lambda x: x.split(' ', 1)[1] if x != 'Lucas' else x
+)
 ax.text(100, 120, 'Substitutes', color='black', size=12, ha='center', va='center')
 for i in range(subs_length):
     if subs['Position Tag'].iloc[i] != 'GK':
