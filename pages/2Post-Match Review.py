@@ -527,7 +527,9 @@ for player_name, group in grouped:
 
     elif group['Position Tag'].iloc[0] == 'RW':
         position = combined_df.loc[combined_df['Position Tag'] == 'RW'].reset_index()
-        position['Player Full Name'] = position['Player Full Name'].apply(lambda x: x.split(' ', 1)[1])
+        position['Player Full Name'] = position['Player Full Name'].apply(
+            lambda x: x.split(' ', 1)[1] if x != 'Conley' else x
+        )
         # right winger
         circle = Circle((70, 92), 7, edgecolor='black', facecolor='#6bb2e2')
         ax.add_patch(circle)
