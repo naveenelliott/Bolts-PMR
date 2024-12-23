@@ -1,6 +1,5 @@
 import pandas as pd
 import streamlit as st
-from GettingPSDGradeData import getting_PSD_grade_data
 import matplotlib.image as mpimg
 import base64
 import glob
@@ -18,7 +17,7 @@ import plotly.graph_objs as go
 from PIL import Image, ImageOps
 from streamlit_gsheets import GSheetsConnection
 import numpy as np
-from creating_heatmap_playerData import gettingHeatmapGK
+from create_heatmap_1second import gettingHeatmapGK
 import math
 from Bolts_Database.GettingTables import (
     getxGTable,
