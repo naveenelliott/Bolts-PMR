@@ -111,8 +111,6 @@ tornado==6.4
 tqdm==4.66.4
 typing_extensions==4.12.0
 tzdata==2024.1
-ultralytics==8.2.70
-ultralytics-thop==2.0.0
 urllib3==2.0.7
 validators==0.33.0
 voluptuous==0.15.2
