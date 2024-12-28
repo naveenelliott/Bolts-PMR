@@ -718,7 +718,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             unsafe_allow_html=True
         )
 
-    fig = gettingHeatmapGK(gk_name, selected_opp)
+    fig = gettingHeatmapGK(gk_name, selected_date)
     with col2:
         st.pyplot(fig)
     

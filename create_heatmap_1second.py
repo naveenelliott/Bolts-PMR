@@ -7,8 +7,12 @@ import mplsoccer
 import plotly.graph_objects as go
 from matplotlib import pyplot as plt
 import os
+import streamlit as st
 
 def gettingHeatmapGK(pname, opp_name):
+
+    opp_name = pd.to_datetime(opp_name)
+    opp_name = opp_name.strftime("%m%d%Y")
 
 
     if pname == 'Ben Marro':
@@ -18,6 +22,10 @@ def gettingHeatmapGK(pname, opp_name):
     
     if opp_name == 'NE Revolution':
         opp_name = 'NE Revs'
+    elif opp_name == 'New England Revolution':
+        opp_name = 'New England Revs'
+    elif opp_name == 'Met Oval':
+        opp_name = 'Met oval'   
 
     folder_path = 'PlayerData LatLong'
 
