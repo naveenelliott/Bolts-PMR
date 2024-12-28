@@ -38,7 +38,7 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
     for index, row in team_data.iterrows():
         if row['Goal Differential'] > 0:
             team_data.at[index, 'Win/Loss/Draw Adjustment'] = 1
-        elif row['Goal Differential'] < 0:
+        elif row['Goal Differential'] == 0:
             team_data.at[index, 'Win/Loss/Draw Adjustment'] = 0.5
 
     team_data.drop(columns={'Team Name', 'Opposition'}, inplace=True)
