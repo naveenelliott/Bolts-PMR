@@ -41,6 +41,8 @@ def gettingHeatmapGK(pname, opp_name):
     if matching_file:
         file_path = os.path.join(folder_path, matching_file)
         coordinates_df = pd.read_csv(file_path)
+
+        coordinates_df.dropna(subset=['longitude'], inplace=True)
         # Convert time-related columns to datetime for easier comparisons
         coordinates_df['period_1_start_time'] = pd.to_datetime(coordinates_df['period_1_start_time'], utc=True)
         coordinates_df['period_1_end_time'] = pd.to_datetime(coordinates_df['period_1_end_time'], utc=True)
