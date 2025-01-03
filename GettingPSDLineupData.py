@@ -22,13 +22,12 @@ def getting_PSD_lineup_data():
             # this is getting us the player data
             start_index = df.index[df["Period Name"] == "Round By Position Player"][0]
 
-            # Find the index where "period name" is equal to "running by position player"
             end_index = df.index[df["Period Name"] == "Round By Team"][0]
 
             df = df.iloc[start_index:end_index]
 
-            # Reset the index (optional if you want a clean integer index)
             df = df.reset_index(drop=True)
+            # removing unneccessary columns
             remove_first = ['Period Name', 'Squad Number', 'Match Name', 'As At Date', 'Round Name']
             df = df.drop(columns=remove_first, errors='ignore')
             df = df.dropna(axis=1, how='all')
