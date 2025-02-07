@@ -1,6 +1,0 @@
-u15_torontoWR.csv
-u14_ctunitedWR.csv
-u16_torontoWR.csv
-U17_valeoWR.csv
-U19_torontoWR.csv
-U13_MLSNEXT_Cedar_111624WR.csv
