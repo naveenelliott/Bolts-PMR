@@ -65,9 +65,17 @@ for col in player_data.columns:
         player_data[col] = player_data[col].astype(float)
 player_data.loc[player_data['Opposition'] == 'St Louis', 'Match_Date'] = '12/09/2023'
 
+del player_data['ID']
+
+player_data = player_data.drop_duplicates()
+
 
 player_data_copy = player_data.copy()
+player_data_copy = player_data_copy.loc[player_data_copy['Team_Name'] == selected_team]
+player_data_copy = player_data_copy.loc[player_data_copy['Opposition'] == selected_opp]
+player_data_copy = player_data_copy.loc[player_data_copy['Match_Date'] == selected_date]
 grouped = player_data_copy.groupby(['Name', 'Position'])['Minutes'].sum().reset_index()
+
     
 # Find the position with the most minutes played for each player
 idx = grouped.groupby('Name')['Minutes'].idxmax()
@@ -196,7 +204,6 @@ available_teams = ['Boston Bolts U13 NALSS', 'Boston Bolts U15 NALB', 'Boston Bo
 
 if selected_team in available_teams:
     shot_table_actions.rename(columns={'Bolts Team': 'Team',
-                                      'Player Full Name': 'Player',
                                       'Video_Link': 'Link'}, inplace=True)
     shot_table_actions = shot_table_actions.loc[(shot_table_actions['Team'] == selected_team) & (shot_table_actions['Opposition'] == selected_opp) & (shot_table_actions['Match_Date'] == selected_date)].reset_index(drop=True)
     opponent_shots = ['Opp Effort on Goal', 'Save Held', 'Save Parried', 'Goal Against']
@@ -208,6 +215,8 @@ if selected_team in available_teams:
     shot_table_actions.loc[shot_table_actions['Action'] == 'Goal Against', 'Action'] = 'Goal'
 
     shot_min_actions = shot_table_actions.copy()
+
+    del shot_table_actions['Player']
     
     shot_table_actions["Video Link"] = shot_table_actions["Link"].apply(lambda url: f'<a href="{url}" target="_blank">Link</a>')
     shot_table_actions.drop(columns = {'Match_Date', 'Opposition', 'Period', 'Link'}, inplace=True)
@@ -742,6 +751,9 @@ overall_df = st.session_state['overall_df']
 overall_df = overall_df.loc[(overall_df['Team_Name'] == selected_team) & (overall_df['Match_Date'] != selected_date)]
 # creating a unique opposition and date identifier
 overall_df['Unique Opp and Date'] = overall_df['Opponent'] + ' (' + overall_df['Match_Date'] + ')'
+
+st.write(overall_df)
+
 # sorting by date
 overall_df.sort_values(by='Match_Date', inplace=True)
 
