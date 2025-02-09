@@ -29,6 +29,9 @@ st.sidebar.success('Select a page above.')
 addingActions()
 combined_actions = getActionsTable()
 
+del combined_actions['ID']
+combined_actions = combined_actions.drop_duplicates()
+
 # these are the allowable teams that we have event data for
 bolts_allowed = pd.Series(combined_actions['Team'].unique())
 opp_allowed = pd.Series(combined_actions['Opposition'].unique())
@@ -40,6 +43,11 @@ st.session_state['match_identifiers'] = unique_match_identifiers
 
 addingDataToLineup()
 combined_df = getLineupTable()
+
+del combined_df['ID']
+
+combined_df = combined_df.drop_duplicates()
+
 combined_df['Started'] = combined_df['Started'].astype(float)
 
 combined_df = combined_df.loc[combined_df['Team_Name'].isin(bolts_allowed) & combined_df['Opponent'].isin(opp_allowed)].reset_index(drop=True)

@@ -74,6 +74,9 @@ player_data_copy = player_data.copy()
 player_data_copy = player_data_copy.loc[player_data_copy['Team_Name'] == selected_team]
 player_data_copy = player_data_copy.loc[player_data_copy['Opposition'] == selected_opp]
 player_data_copy = player_data_copy.loc[player_data_copy['Match_Date'] == selected_date]
+
+st.write(player_data_copy)
+
 grouped = player_data_copy.groupby(['Name', 'Position'])['Minutes'].sum().reset_index()
 
     
@@ -133,10 +136,18 @@ col1, col2, col3 = st.columns(3)
 addingxG()
 fc_python = getxGTable()
 
+del fc_python['ID']
+
+fc_python = fc_python.drop_duplicates()
+
 
 # Path to the folder containing CSV files
 addingActions()
 actions = getActionsTable()
+
+del actions['ID']
+
+actions = actions.drop_duplicates()
 
 actions.loc[actions['Opposition'] == 'St Louis', 'Match_Date'] = '12/09/2023'
 
@@ -302,6 +313,7 @@ final_grade_df = pd.DataFrame(columns=our_columns)
 # CAN WE CONCACATENATE THE EVENT DATA TO PLAYER_DATA
 # will be tough because the structure is limited to the time limits for each position
 
+st.write(player_data)
 
 for index, row in player_data.iterrows():
     if row['Position'] == 'ATT':
