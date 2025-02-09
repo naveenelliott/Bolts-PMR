@@ -752,8 +752,6 @@ overall_df = overall_df.loc[(overall_df['Team_Name'] == selected_team) & (overal
 # creating a unique opposition and date identifier
 overall_df['Unique Opp and Date'] = overall_df['Opponent'] + ' (' + overall_df['Match_Date'] + ')'
 
-st.write(overall_df)
-
 # sorting by date
 overall_df.sort_values(by='Match_Date', inplace=True)
 

@@ -36,6 +36,9 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
     further_df.rename(columns={'Match_Date': 'Match Date'}, inplace=True)
     addingDataToTeamGameReport()
     overall = getTeamReportTable()
+    del overall['ID']
+    overall = overall.drop_duplicates()
+
     overall.columns = overall.columns.str.replace('_', ' ', regex=False)
     if comp_opp_select != '5 Game Rolling Avg' and comp_opp_select != 'Seasonal Rolling Avg':
         # manually changing St Louis because weekly report and actions don't align

@@ -20,6 +20,8 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
     pass_in_18_std = 7.47
 
     team_data = getTeamReportTable()
+    del team_data['ID']
+    team_data = team_data.drop_duplicates()
     team_data.columns = team_data.columns.str.replace('_', ' ', regex=False)
 
     team_data.rename(columns={'Match Date': 'Date',
@@ -224,6 +226,8 @@ def MiddlePMRStreamlit_NALOlder(team, opp, date, regain_time):
     pass_in_18_std = 7.47
 
     team_data = getTeamReportTable()
+    del team_data['ID']
+    team_data = team_data.drop_duplicates()
     team_data.columns = team_data.columns.str.replace('_', ' ', regex=False)
 
     team_data.rename(columns={'Match Date': 'Date',
