@@ -76,6 +76,9 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     gk_data = getPlayerPositionTable()
     gk_data.columns = gk_data.columns.str.replace('_', ' ', regex=False)
 
+    del gk_data['ID']
+    gk_data = gk_data.drop_duplicates()
+
 
     gk_data.loc[gk_data['Name'] == 'Casey Powers', 'Position'] = 'GK'
     gk_data = gk_data.loc[gk_data['Position'] == 'GK']
@@ -90,6 +93,8 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     all_games_gk = gk_data.copy()
     gk_data = gk_data.loc[(gk_data['Team Name'] == selected_team) & (gk_data['Opposition'] == selected_opp) & (gk_data['Match Date'] == selected_date)].reset_index(drop=True)
     overall_gk_data = gk_data.copy()
+
+
     specific_player = gk_data.loc[gk_data['Name'] == gk_name]
     specific_player_copy = specific_player.copy()
     specific_player_copy.reset_index(drop=True, inplace=True)
@@ -175,7 +180,6 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     entire_xg = xg.copy()
     xg = xg.loc[(xg['Bolts Team'] == selected_team) & (xg['Opposition'] == selected_opp) & (xg['Match Date'] == selected_date)]
     xg = xg[['Team', 'X', 'Y', 'xGA', 'Event', 'Time', 'Video Link']]
-
 
 
     if len(overall_gk_data) > 1:
@@ -534,11 +538,11 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         xg = df[['Team', 'X', 'Y', 'xGA', 'Event', 'Time', 'Bolts Team']]
 
         if len(overall_gk_data) > 1:
-            starting_gk = overall_gk_data.loc[overall_gk_data['Starts'] == 1].reset_index(drop=True)
-            starting_gk_mins = starting_gk['mins played'][0]
-            starting_gk_name = starting_gk['Player Full Name'][0]
-            other_gk = overall_gk_data.loc[overall_gk_data['Player Full Name'] != starting_gk_name].reset_index(drop=True)
-            other_gk_name = other_gk['Player Full Name'][0]
+            starting_gk = overall_gk_data.loc[overall_gk_data['Started'] == 1].reset_index(drop=True)
+            starting_gk_mins = starting_gk['Minutes'][0]
+            starting_gk_name = starting_gk['Name'][0]
+            other_gk = overall_gk_data.loc[overall_gk_data['Name'] != starting_gk_name].reset_index(drop=True)
+            other_gk_name = other_gk['Name'][0]
 
             starting_xg = pd.DataFrame(columns=xg.columns)
             other_xg = pd.DataFrame(columns=xg.columns)
@@ -553,16 +557,16 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
                     other_xg_list.append(row)
 
             starting_xg = pd.concat([starting_xg, pd.DataFrame(starting_xg_list)], ignore_index=True)
-            starting_xg['Player Full Name'] = starting_gk_name
+            starting_xg['Name'] = starting_gk_name
             other_xg = pd.concat([other_xg, pd.DataFrame(other_xg_list)], ignore_index=True)
-            other_xg['Player Full Name'] = other_gk_name
+            other_xg['Name'] = other_gk_name
 
-            if gk_name in starting_xg['Player Full Name'].values:
+            if gk_name in starting_xg['Name'].values:
                 xg = starting_xg.copy()
-            elif gk_name in other_xg['Player Full Name'].values:
+            elif gk_name in other_xg['Name'].values:
                 xg = other_xg.copy()
         else:
-            xg['Player Full Name'] = gk_name
+            xg['Name'] = gk_name
 
 
         xg.reset_index(drop=True, inplace=True)
@@ -572,7 +576,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
         # Creating summary row
         summary = {
-            'Player Full Name': xg['Player Full Name'].iloc[0],
+            'Player Full Name': xg['Name'].iloc[0],
             'Team': xg['Bolts Team'].iloc[0],
             'Match Date': df['Match Date'].iloc[0],
             'Opposition': df['Opposition'].iloc[0],
