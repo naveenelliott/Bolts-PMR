@@ -5,7 +5,7 @@ import streamlit as st
 from GettingPSDTeamData import getting_PSD_team_data
 
 
-def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
+def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, bolts_xg, opp_xg):
     
     sa_average= 9.5
     sa_std = 2
@@ -45,7 +45,7 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
     team_data.reset_index(drop=True, inplace=True)
     
     important = team_data.copy()
-    important.at[0, 'Time Until Regain'] = regain_time
+    #important.at[0, 'Time Until Regain'] = regain_time
 
     adjustments = []
     for index, row in important.iterrows():
@@ -74,27 +74,42 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
     xg_per_shot_bolts_std = 0.09712
     xg_per_shot_opp = 0.1587
     xg_per_shot_opp_std = 0.0531
-    pass_average = 80
-    pass_std = 3.43
+    xg_avg = 2.63
+    xg_std = 1.57
+    opp_xg_avg = 2.51
+    opp_xg_std = 1.69
+
+
+    if 'U13' in team or 'U14' in team or 'U15' in team:
+        pass_average = 72.77
+        pass_std = 6.65
+    elif 'U16' in team or 'U17' in team or 'U19' in team:
+        pass_average = 79.65
+        pass_std = 6.91
 
 
     important['xG per Shot'] = ((mean_xG - xg_per_shot_bolts_avg) / xg_per_shot_bolts_std) * 2 + 5
     important['xG per Shot'] = important['xG per Shot'].clip(1, 10)
+    important['xG'] = ((bolts_xg - xg_avg) / xg_std) * 2 + 5
+    important['xG'] = important['xG'].clip(1, 10)
+
     important['Opponent xG per Shot'] = ((mean_xG_opp - xg_per_shot_opp) / xg_per_shot_opp_std) * 2 + 5
     important['Opponent xG per Shot'] = 11 - important['Opponent xG per Shot'].clip(1, 10)
+    important['Opp xG'] = ((opp_xg - opp_xg_avg) / opp_xg_std) * 2 + 5
+    important['Opp xG'] = 11 - important['Opp xG'].clip(1, 10)
     important['Efforts on Goal'] = ((important['Efforts on Goal'] - shots_average) / shots_std) * 2 + 5
     important['Efforts on Goal'] = important['Efforts on Goal'].clip(1, 10)
     if 'Opp Effort on Goal' in important.columns:
         important['Opp Effort on Goal'] = ((important['Opp Effort on Goal'] - sa_average) / sa_std) * 2 + 5
         important['Opp Effort on Goal'] = 11 - important['Opp Effort on Goal'].clip(1, 10)
-    important['Time Until Regain'] = ((important['Time Until Regain'] - regain_average) / regain_std) * 2 + 5
-    important['Time Until Regain'] = 11 - important['Time Until Regain'].clip(1, 10)
+    #important['Time Until Regain'] = ((important['Time Until Regain'] - regain_average) / regain_std) * 2 + 5
+    #important['Time Until Regain'] = 11 - important['Time Until Regain'].clip(1, 10)
     important['Pass Completion '] = ((important['Pass Completion '] - pass_average) / pass_std) * 2 + 5
     important['Pass Completion '] = important['Pass Completion '].clip(1, 10)
     important['Pass into Oppo Box'] = ((important['Pass into Oppo Box'] - pass_in_18_average) / pass_in_18_std) * 2 + 5
     important['Pass into Oppo Box'] = important['Pass into Oppo Box'].clip(1, 10)
-    average_columns = ['Efforts on Goal',
-                       'xG per Shot', 'Opponent xG per Shot', 'Time Until Regain', 'Pass Completion ', 'Pass into Oppo Box']
+    average_columns = ['Efforts on Goal', 'Opp xG', 'xG',
+                       'xG per Shot', 'Opponent xG per Shot', 'Pass Completion ', 'Pass into Oppo Box']
     if 'Opp Effort on Goal' in important.columns:
         average_columns.insert(1, 'Opp Effort on Goal')
     important['Final Rating'] = important[average_columns].mean(axis=1) + total
@@ -117,7 +132,9 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
 
     row_series['xG per Shot'] = mean_xG
     row_series['Opponent xG per Shot'] = mean_xG_opp
-    row_series['Time Until Regain'] = regain_time
+    row_series['xG'] = bolts_xg
+    row_series['Opp xG'] = opp_xg
+    #row_series['Time Until Regain'] = regain_time
     row_series['Date'] = date
     row_series['Final Rating'] = ''
     
@@ -145,10 +162,10 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
     def round_to_nearest_10(num):
         return round(num / 10) * 10
 
-    new_order = ['Passes into 18', 'Pass %', 'Shots',
-          'xG per Shot', 'Time Until Regain', 'Opp xG per Shot', 'Final Rating']
+    new_order = ['Passes into 18', 'Pass %', 'Shots', 'xG per Shot', 'xG',
+          'Opp xG per Shot', 'Opp xG', 'Final Rating']
     if 'Opp Shots' in important.columns:
-        new_order.insert(4, 'Opp Shots')
+        new_order.insert(5, 'Opp Shots')
     important = important[new_order]
 
     
@@ -157,7 +174,7 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
     raw_vals.iloc[0] = raw_vals.iloc[0].astype(float).apply(round)
     raw_vals.at[1, 'xG per Shot'] = round(raw_vals.at[1, 'xG per Shot'], 3)
     raw_vals.at[1, 'Opp xG per Shot'] = round(raw_vals.at[1, 'Opp xG per Shot'], 3)
-    raw_vals.at[1, 'Time Until Regain'] = round(raw_vals.at[1, 'Time Until Regain'], 2)
+    #raw_vals.at[1, 'Time Until Regain'] = round(raw_vals.at[1, 'Time Until Regain'], 2)
     important.iloc[0] = important.iloc[0].apply(round_to_nearest_10)
 
     dummy_df = pd.DataFrame(columns=important.columns)
@@ -200,7 +217,7 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
     plt.yticks(fontsize=14)
     return fig
 
-def MiddlePMRStreamlit_NALOlder(team, opp, date, regain_time):
+def MiddlePMRStreamlit_NALOlder(team, opp, date):
     
     sa_average= 9.5
     sa_std = 2
@@ -247,7 +264,7 @@ def MiddlePMRStreamlit_NALOlder(team, opp, date, regain_time):
     team_data.reset_index(drop=True, inplace=True)
     
     important = team_data.copy()
-    important.at[0, 'Time Until Regain'] = regain_time
+    #important.at[0, 'Time Until Regain'] = regain_time
 
     adjustments = []
     for index, row in important.iterrows():
@@ -273,8 +290,14 @@ def MiddlePMRStreamlit_NALOlder(team, opp, date, regain_time):
     sot_std = 3.44
     opp_sot_average = 5.47
     opp_sot_std = 2.93
-    pass_average = 80
-    pass_std = 3.43
+    
+
+    if 'U13' in team or 'U14' in team or 'U15' in team:
+        pass_average = 72.77
+        pass_std = 6.65
+    elif 'U16' in team or 'U17' in team or 'U19' in team:
+        pass_average = 79.65
+        pass_std = 6.91
 
 
     important['Bolts SOT'] = ((game_bolts_sot - sot_average) / sot_std) * 2 + 5
@@ -286,14 +309,14 @@ def MiddlePMRStreamlit_NALOlder(team, opp, date, regain_time):
     if 'Opp Effort on Goal' in important.columns:
         important['Opp Effort on Goal'] = ((important['Opp Effort on Goal'] - sa_average) / sa_std) * 2 + 5
         important['Opp Effort on Goal'] = 11 - important['Opp Effort on Goal'].clip(1, 10)
-    important['Time Until Regain'] = ((important['Time Until Regain'] - regain_average) / regain_std) * 2 + 5
-    important['Time Until Regain'] = 11 - important['Time Until Regain'].clip(1, 10)
+    #important['Time Until Regain'] = ((important['Time Until Regain'] - regain_average) / regain_std) * 2 + 5
+    #important['Time Until Regain'] = 11 - important['Time Until Regain'].clip(1, 10)
     important['Pass Completion '] = ((important['Pass Completion '] - pass_average) / pass_std) * 2 + 5
     important['Pass Completion '] = important['Pass Completion '].clip(1, 10)
     important['Pass into Oppo Box'] = ((important['Pass into Oppo Box'] - pass_in_18_average) / pass_in_18_std) * 2 + 5
     important['Pass into Oppo Box'] = important['Pass into Oppo Box'].clip(1, 10)
     average_columns = ['Efforts on Goal',
-                       'Bolts SOT', 'Opponent SOT', 'Time Until Regain', 'Pass Completion ', 'Pass into Oppo Box']
+                       'Bolts SOT', 'Opponent SOT', 'Pass Completion ', 'Pass into Oppo Box']
     if 'Opp Effort on Goal' in important.columns:
         average_columns.insert(1, 'Opp Effort on Goal')
     important['Final Rating'] = important[average_columns].mean(axis=1) + total
@@ -316,7 +339,7 @@ def MiddlePMRStreamlit_NALOlder(team, opp, date, regain_time):
 
     row_series['Bolts SOT'] = game_bolts_sot
     row_series['Opponent SOT'] = game_opponent_sot
-    row_series['Time Until Regain'] = regain_time
+    #row_series['Time Until Regain'] = regain_time
     row_series['Date'] = date
     row_series['Final Rating'] = ''
     
@@ -343,16 +366,16 @@ def MiddlePMRStreamlit_NALOlder(team, opp, date, regain_time):
         return round(num / 10) * 10
 
     new_order = ['Passes into 18', 'Pass %', 'Shots',
-          'Bolts SOT', 'Time Until Regain', 'Opponent SOT', 'Final Rating']
+          'Bolts SOT', 'Opponent SOT', 'Final Rating']
     if 'Opp Shots' in important.columns:
-        new_order.insert(4, 'Opp Shots')
+        new_order.insert(7, 'Opp Shots')
     important = important[new_order]
 
     
 
     raw_vals = important.copy()
     raw_vals.iloc[0] = raw_vals.iloc[0].astype(float).apply(round)
-    raw_vals.at[1, 'Time Until Regain'] = round(raw_vals.at[1, 'Time Until Regain'], 2)
+    #raw_vals.at[1, 'Time Until Regain'] = round(raw_vals.at[1, 'Time Until Regain'], 2)
     important.iloc[0] = important.iloc[0].apply(round_to_nearest_10)
 
     dummy_df = pd.DataFrame(columns=important.columns)

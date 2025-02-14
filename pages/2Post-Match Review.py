@@ -1151,7 +1151,7 @@ else:
     
     bolts = xg.loc[xg['Team'].str.contains(selected_team)]
     opp = xg.loc[~xg['Team'].str.contains(selected_team)]
-    
+
     bolts_mean = bolts['xG'].mean()
     opp_mean = opp['xG'].mean()
     
@@ -1690,12 +1690,13 @@ with col2:
 # STOPPED HERE
 
 with col2:
-    time_of_poss, time_until_regain = formattingFileForRegain(full_actions)
-    time_until_regain = (time_until_regain/total_mins_played) * 990
+    #time_of_poss, time_until_regain = formattingFileForRegain(full_actions)
+    #time_until_regain = (time_until_regain/total_mins_played) * 990
     if selected_team in available_teams:
-        fig2 = MiddlePMRStreamlit_NALOlder(team=our_team, opp=opposition, date=our_date, regain_time=time_until_regain)
+        fig2 = MiddlePMRStreamlit_NALOlder(team=our_team, opp=opposition, date=our_date)
     else:
-        fig2 = MiddlePMRStreamlit(team=our_team, opp=opposition, date=our_date, avg_bolts_xg=bolts_mean, avg_opp_xg=opp_mean, regain_time=time_until_regain)
+        fig2 = MiddlePMRStreamlit(team=our_team, opp=opposition, date=our_date, avg_bolts_xg=bolts_mean, avg_opp_xg=opp_mean,
+                                  bolts_xg=bolts_xG, opp_xg=opp_xG)
     
     fig2.text(
         0.5, .95,
