@@ -13,7 +13,7 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
     poss_std = 6
     regain_average = 25
     regain_std = 4
-    pass_in_18_average = 14
+    pass_in_18_average = 13
     pass_in_18_std = 7.47
 
     team_data = getting_PSD_team_data()
@@ -70,7 +70,7 @@ def MiddlePMRStreamlit(team, opp, date, avg_opp_xg, avg_bolts_xg, regain_time):
     shots_std = 3
     sa_average= 9.5
     sa_std = 2.5
-    xg_per_shot_bolts_avg = 0.19652
+    xg_per_shot_bolts_avg = 0.17
     xg_per_shot_bolts_std = 0.09712
     xg_per_shot_opp = 0.1587
     xg_per_shot_opp_std = 0.0531
