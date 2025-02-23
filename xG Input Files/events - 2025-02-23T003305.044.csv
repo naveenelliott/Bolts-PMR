@@ -1,33 +1,24 @@
 Team,Player,Event,Mins,Secs,X,Y,X2,Y2
 Boston Bolts MLS,Normal,Shot,0,0,86,51,-,-
 Boston Bolts MLS,Normal,Blocked,0,0,90,43,-,-
-Boston Bolts U14 NALB
-,Normal,Goal,0,0,23,49,-,-
-Boston Bolts U14 NALB
-,Normal,Blocked,0,0,21,62,-,-
+Boston Bolts U14 NALB,Normal,Goal,0,0,23,49,-,-
+Boston Bolts U14 NALB,Normal,Blocked,0,0,21,62,-,-
 Boston Bolts MLS,Normal,Shot,0,0,87,52,-,-
 Boston Bolts MLS,First Time,SOT,0,0,75,63,-,-
-Boston Bolts U14 NALB
-,Normal,Shot,0,0,25,43,-,-
+Boston Bolts U14 NALB,Normal,Shot,0,0,25,43,-,-
 Boston Bolts MLS,Normal,SOT,0,0,7,33,-,-
 Boston Bolts MLS,Header,Shot,0,0,6,44,-,-
 Boston Bolts MLS,FK,Shot,0,0,16,64,-,-
 Boston Bolts MLS,First Time,Shot,0,0,2,57,-,-
 Boston Bolts MLS,First Time,SOT,0,0,6,60,-,-
 Boston Bolts MLS,Normal,Blocked,0,0,21,31,-,-
-Boston Bolts MLS,1 on 1
-,Goal,0,0,4,49,-,-
+Boston Bolts MLS,1 on 1,Goal,0,0,4,49,-,-
 Boston Bolts MLS,Normal,SOT,0,0,4,63,-,-
-Boston Bolts MLS,1 on 1
-,Goal,0,0,3,46,-,-
-Boston Bolts U14 NALB
-,Normal,SOT,0,0,89,37,-,-
+Boston Bolts MLS,1 on 1,Goal,0,0,3,46,-,-
+Boston Bolts U14 NALB,Normal,SOT,0,0,89,37,-,-
 Boston Bolts MLS,Normal,Blocked,0,0,6,48,-,-
-Boston Bolts U14 NALB
-,Volley,Blocked,0,0,90,52,-,-
+Boston Bolts U14 NALB,Volley,Blocked,0,0,90,52,-,-
 Boston Bolts MLS,Normal,Shot,0,0,18,18,-,-
-Boston Bolts U14 NALB
-,1 on 1,SOT,0,0,89,64,-,-
-Boston Bolts U14 NALB
-,Volley,Goal,0,0,93,43,-,-
+Boston Bolts U14 NALB,1 on 1,SOT,0,0,89,64,-,-
+Boston Bolts U14 NALB,Volley,Goal,0,0,93,43,-,-
 Boston Bolts MLS,Header,Shot,0,0,5,50,-,-
