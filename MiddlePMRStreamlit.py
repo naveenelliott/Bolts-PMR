@@ -368,7 +368,7 @@ def MiddlePMRStreamlit_NALOlder(team, opp, date):
     new_order = ['Passes into 18', 'Pass %', 'Shots',
           'Bolts SOT', 'Opponent SOT', 'Final Rating']
     if 'Opp Shots' in important.columns:
-        new_order.insert(6, 'Opp Shots')
+        new_order.insert(5, 'Opp Shots')
     important = important[new_order]
 
     
