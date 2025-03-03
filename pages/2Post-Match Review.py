@@ -977,9 +977,13 @@ def rearrange_team_name(team_name):
             league_part = next((league for league in leagues if league in team_name), '')
             if league_part == 'NAL Boston':
                 league_part = 'NALB'
+            elif league_part == 'NAL South Shore':
+                league_part = 'NALSS'
             
             # Extract the rest of the team name
             rest_of_name = team_name.replace(age, '').replace('NAL Boston', '').replace(league_part, '').strip()
+
+            rest_of_name = team_name.replace(age, '').replace('NAL South Shore', '').replace(league_part, '').strip()
             
             
             # Construct the new team name
@@ -991,6 +995,8 @@ def rearrange_team_name(team_name):
 # Apply the function to the 'team_name' column
 pd_df['bolts team'] = pd_df['bolts team'].apply(rearrange_team_name)
 pd_df = pd_df.loc[(pd_df['bolts team'] == selected_team) & (pd_df['start_time'] == selected_date)]
+
+st.write(pd_df)
 
 top_td = pd_df.nlargest(3, 'Total Distance')
 top_hid = pd_df.nlargest(3, 'High Intensity Distance')
