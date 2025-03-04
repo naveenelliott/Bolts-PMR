@@ -783,8 +783,6 @@ overall_df.sort_values(by='Date', inplace=True)
 
 closest_before = overall_df.loc[overall_df['Date'] < selected_date]
 
-st.write(closest_before)
-
 closest_before.sort_values(by='Date', ascending=False, inplace=True)
 
 compare_opps = list(closest_before['Unique Opp and Date'].unique())
@@ -793,6 +791,8 @@ compare_opps = list(closest_before['Unique Opp and Date'].unique())
 played_same_opponent = closest_before.loc[closest_before['Opposition'] == selected_opp].reset_index(drop=True)
 
 compare_opps = compare_opps[:5]
+
+closest_before['Date'] = closest_before['Date'].dt.strftime('%m/%d/%Y')
 
 overall_df['Date'] = overall_df['Date'].dt.strftime('%m/%d/%Y')
 
