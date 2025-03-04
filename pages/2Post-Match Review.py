@@ -783,6 +783,8 @@ overall_df.sort_values(by='Date', inplace=True)
 
 closest_before = overall_df.loc[overall_df['Date'] < selected_date]
 
+st.write(closest_before)
+
 closest_before.sort_values(by='Date', ascending=False, inplace=True)
 
 compare_opps = list(closest_before['Unique Opp and Date'].unique())
