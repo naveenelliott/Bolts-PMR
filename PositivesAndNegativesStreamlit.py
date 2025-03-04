@@ -181,6 +181,7 @@ def PositivesAndNegativesNoxG(team_select, opp_select, date_select, comp_opp_sel
                                    'Team Name': 'Team'}, inplace=True)
         first_game = overall.loc[(overall['Team'] == team_select) & (overall['Opposition'] == opp_select) 
                                 & (overall['Match Date'] == date_select)]
+
         closest_game = overall.loc[(overall['Team'] == team_select) & (overall['Unique Opp and Date'] == comp_opp_select)]
 
         first_game = formatDataNoxG(first_game)
@@ -188,6 +189,7 @@ def PositivesAndNegativesNoxG(team_select, opp_select, date_select, comp_opp_sel
         
         
         product = pd.concat([first_game, second_game], ignore_index=True)
+
         percent_change = (product.iloc[0, 2:] - product.iloc[1, 2:]) / product.iloc[1, 2:] * 100
         percent_change = percent_change.replace([np.inf, -np.inf], np.nan).dropna()
         columns_to_negate = ['Goal Against', 'Shots on Target Against', 'Loss of Poss', 'Foul Conceded', 'Time Until Regain']

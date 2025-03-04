@@ -768,9 +768,16 @@ with col1:
 
 # getting the overall df with all teams, dates, and opposition
 overall_df = st.session_state['overall_df']
+
+overall_df['Date'] = pd.to_datetime(overall_df['Date'], format='%m/%d/%Y', errors='coerce')
+
+# Convert selected_date to datetime if it isn't already
+selected_date = pd.to_datetime(selected_date, format='%m/%d/%Y', errors='coerce')
+
+
 overall_df = overall_df.loc[(overall_df['Team Name'] == selected_team) & (overall_df['Date'] != selected_date)]
 # creating a unique opposition and date identifier
-overall_df['Unique Opp and Date'] = overall_df['Opposition'] + ' (' + overall_df['Date'] + ')'
+overall_df['Unique Opp and Date'] = overall_df['Opposition'] + ' (' + overall_df['Date'].dt.strftime('%m/%d/%Y') + ')'
 # sorting by date
 overall_df.sort_values(by='Date', inplace=True)
 
@@ -784,6 +791,10 @@ compare_opps = list(closest_before['Unique Opp and Date'].unique())
 played_same_opponent = closest_before.loc[closest_before['Opposition'] == selected_opp].reset_index(drop=True)
 
 compare_opps = compare_opps[:5]
+
+overall_df['Date'] = overall_df['Date'].dt.strftime('%m/%d/%Y')
+
+selected_date = selected_date.strftime('%m/%d/%Y')
 
 # If the same opponent was played before, add it to the list of compare_opps
 if not played_same_opponent.empty:
