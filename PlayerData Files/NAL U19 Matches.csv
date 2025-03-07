@@ -1,15 +1,20 @@
 session_type,start_time,opponent,bolts team,athlete_name,total_distance_m,total_high_intensity_distance_m,max_speed_kph
 MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,Boahen Henrick,8989.063299499989,290.22565738004323,25.947198148727416
 MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,Charlie Roberts,7383.166658346775,209.07194150284096,25.747812086105345
+MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,Christian Palacios,18.13113293396814,0.0,3.165551973581314
 MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,Emerson Walker,3049.2261920044125,100.1432915475632,23.680079921722413
+MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,Emmanuel Bellone,14.287258072258677,0.0,3.7688399934768677
 MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,Jack Comes,9.043745927371727,0.0,3.428891967058182
 MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,Jaden Barrack-Anidi,8733.37915059069,199.0917883674424,28.0036443157196
 MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,Jason Xintaropoulos,8116.699880866512,328.6945249282547,26.612387392044063
 MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,JP Hirth,3646.5521584536255,184.95683544425808,25.41162615394592
 MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,Marco Hoxholli,8390.92455132162,325.25910921282883,27.619919752120968
 MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,miles evans,9.986571554976292,0.0,3.2524199559688567
+MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,Owen Filler,81.68759593321309,0.0,3.682656043052673
+MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,Paul Gichana,0.0,0.0,0.0
 MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,Silas Lawrence,34.59630318640001,0.0,3.6436680150032044
 MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,Tyler Monaghan,0.0,0.0,0.0
+MatchSession,2025-03-01T20:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U19,Wally Lawrence,5947.75475456206,305.2035750993261,27.338795906066892
 MatchSession,2025-02-15T18:00:00.000Z,Cup NAL U19,Boston Bolts NAL Boston U19,Boahen Henrick,7862.916628231889,330.4470921996639,28.571362958908082
 MatchSession,2025-02-15T18:00:00.000Z,Cup NAL U19,Boston Bolts NAL Boston U19,Charlie Roberts,8011.243490263709,268.18915958252137,26.66710799217224
 MatchSession,2025-02-15T18:00:00.000Z,Cup NAL U19,Boston Bolts NAL Boston U19,Christian Palacios,2.2563589791525667,0.0,3.2052239520549772
