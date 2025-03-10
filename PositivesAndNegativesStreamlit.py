@@ -43,6 +43,8 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
                                 & (overall['Match Date'] == date_select)]
         first_game_event = further_df.loc[(further_df['Team'] == team_select) & (further_df['Opposition'] == opp_select) 
                                 & (further_df['Match Date'] == date_select)]
+        st.write(first_game_event)
+        st.write(first_game)
         first_game = pd.merge(first_game, first_game_event, on=['Team', 'Opposition', 'Match Date', 'Unique Opp and Date'], how='inner')
         closest_game = overall.loc[(overall['Team'] == team_select) & (overall['Unique Opp and Date'] == comp_opp_select)]
         closest_game_event = further_df.loc[(further_df['Team'] == team_select) & (further_df['Unique Opp and Date'] == comp_opp_select)]
