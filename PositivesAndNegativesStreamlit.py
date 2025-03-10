@@ -41,6 +41,8 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
                                    'Team Name': 'Team'}, inplace=True)
         first_game = overall.loc[(overall['Team'] == team_select) & (overall['Opposition'] == opp_select) 
                                 & (overall['Match Date'] == date_select)]
+        st.write(further_df)
+        st.write(date_select)
         first_game_event = further_df.loc[(further_df['Team'] == team_select) & (further_df['Opposition'] == opp_select) 
                                 & (further_df['Match Date'] == date_select)]
         st.write(first_game_event)
