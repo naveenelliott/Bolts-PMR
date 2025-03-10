@@ -1,25 +1,25 @@
-Team,Player,Event,Mins,Secs,X,Y,X2,Y2,Time
-Boston Bolts U14 MLS Next,Normal,Shot,0,0,89,50,-,-,03:37
-Boston Bolts U14 MLS Next,Normal,SOT,0,0,78,69,-,-,09:30
-BW Gottschee,Normal,SOT,0,0,14,76,-,-,12:46
-Boston Bolts U14 MLS Next,Normal,SOT,0,0,78,65,-,-,14:00
-BW Gottschee,Normal,Blocked,0,0,7,69,-,-,17:08
-BW Gottschee,Normal,Blocked,0,0,22,54,-,-,21:10
-BW Gottschee,Normal,SOT,0,0,15,35,-,-,21:49
-BW Gottschee,Normal,Blocked,0,0,12,70,-,-,22:50
-Boston Bolts U14 MLS Next,Normal,SOT,0,0,79,61,-,-,24:56
-BW Gottschee,Normal,SOT,0,0,5,69,-,-,25:39
-Boston Bolts U14 MLS Next,Normal,Goal,0,0,8,67,-,-,43:49
-BW Gottschee,Header,Shot,0,0,94,53,-,-,51:14
-BW Gottschee,Header,Shot,0,0,94,49,-,-,53:08
-BW Gottschee,Normal,Blocked,0,0,75,33,-,-,54:08
-BW Gottschee,FK,Shot,0,0,81,66,-,-,58:53
-Boston Bolts U14 MLS Next,Normal,Shot,0,0,26,50,-,-,61:19
-BW Gottschee,Normal,SOT,0,0,87,74,-,-,62:28
-Boston Bolts U14 MLS Next,Normal,SOT,0,0,17,64,-,-,64:13
-Boston Bolts U14 MLS Next,Normal,SOT,0,0,19,65,-,-,64:26
-Boston Bolts U14 MLS Next,Normal,SOT,0,0,13,32,-,-,67:58
-BW Gottschee,Normal,Shot,0,0,73,69,-,-,72:54
-BW Gottschee,FK,Blocked,0,0,73,41,-,-,75:26
-Boston Bolts U14 MLS Next,Normal,Shot,0,0,6,78,-,-,77:17
-Boston Bolts U14 MLS Next,First Time,Shot,0,0,6,42,-,-,78:34
+Team,Player,Event,Mins,Secs,X,Y,X2,Y2,Match Date,Bolts Team,Time
+Boston Bolts U14 MLS Next,Normal,Shot,0,0,89,50,-,-,03/09/2025,Boston Bolts U14 MLS Next,03:37
+Boston Bolts U14 MLS Next,Normal,SOT,0,0,78,69,-,-,03/09/2025,Boston Bolts U14 MLS Next,09:30
+BW Gottschee,Normal,SOT,0,0,14,76,-,-,03/09/2025,Boston Bolts U14 MLS Next,12:46
+Boston Bolts U14 MLS Next,Normal,SOT,0,0,78,65,-,-,03/09/2025,Boston Bolts U14 MLS Next,14:00
+BW Gottschee,Normal,Blocked,0,0,7,69,-,-,03/09/2025,Boston Bolts U14 MLS Next,17:08
+BW Gottschee,Normal,Blocked,0,0,22,54,-,-,03/09/2025,Boston Bolts U14 MLS Next,21:10
+BW Gottschee,Normal,SOT,0,0,15,35,-,-,03/09/2025,Boston Bolts U14 MLS Next,21:49
+BW Gottschee,Normal,Blocked,0,0,12,70,-,-,03/09/2025,Boston Bolts U14 MLS Next,22:50
+Boston Bolts U14 MLS Next,Normal,SOT,0,0,79,61,-,-,03/09/2025,Boston Bolts U14 MLS Next,24:56
+BW Gottschee,Normal,SOT,0,0,5,69,-,-,03/09/2025,Boston Bolts U14 MLS Next,25:39
+Boston Bolts U14 MLS Next,Normal,Goal,0,0,8,67,-,-,03/09/2025,Boston Bolts U14 MLS Next,43:49
+BW Gottschee,Header,Shot,0,0,94,53,-,-,03/09/2025,Boston Bolts U14 MLS Next,51:14
+BW Gottschee,Header,Shot,0,0,94,49,-,-,03/09/2025,Boston Bolts U14 MLS Next,53:08
+BW Gottschee,Normal,Blocked,0,0,75,33,-,-,03/09/2025,Boston Bolts U14 MLS Next,54:08
+BW Gottschee,FK,Shot,0,0,81,66,-,-,03/09/2025,Boston Bolts U14 MLS Next,58:53
+Boston Bolts U14 MLS Next,Normal,Shot,0,0,26,50,-,-,03/09/2025,Boston Bolts U14 MLS Next,61:19
+BW Gottschee,Normal,SOT,0,0,87,74,-,-,03/09/2025,Boston Bolts U14 MLS Next,62:28
+Boston Bolts U14 MLS Next,Normal,SOT,0,0,17,64,-,-,03/09/2025,Boston Bolts U14 MLS Next,64:13
+Boston Bolts U14 MLS Next,Normal,SOT,0,0,19,65,-,-,03/09/2025,Boston Bolts U14 MLS Next,64:26
+Boston Bolts U14 MLS Next,Normal,SOT,0,0,13,32,-,-,03/09/2025,Boston Bolts U14 MLS Next,67:58
+BW Gottschee,Normal,Shot,0,0,73,69,-,-,03/09/2025,Boston Bolts U14 MLS Next,72:54
+BW Gottschee,FK,Blocked,0,0,73,41,-,-,03/09/2025,Boston Bolts U14 MLS Next,75:26
+Boston Bolts U14 MLS Next,Normal,Shot,0,0,6,78,-,-,03/09/2025,Boston Bolts U14 MLS Next,77:17
+Boston Bolts U14 MLS Next,First Time,Shot,0,0,6,42,-,-,03/09/2025,Boston Bolts U14 MLS Next,78:34
