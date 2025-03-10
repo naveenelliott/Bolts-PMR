@@ -35,7 +35,6 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
         # manually changing St Louis because weekly report and actions don't align
         overall.loc[overall['Opposition'] == 'St Louis', 'Date'] = '2023-12-09'
         overall['Date'] = pd.to_datetime(overall['Date']).dt.strftime('%m/%d/%Y')
-        further_df['Match Date'] = pd.to_datetime(further_df['Match Date']).dt.strftime('%m/%d/%Y')
         overall['Unique Opp and Date'] = overall['Opposition'] + ' (' + overall['Date'] + ')'
         overall.rename(columns={'Date': 'Match Date', 
                                    'Team Name': 'Team'}, inplace=True)
