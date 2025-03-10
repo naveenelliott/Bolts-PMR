@@ -40,8 +40,7 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
                                    'Team Name': 'Team'}, inplace=True)
         first_game = overall.loc[(overall['Team'] == team_select) & (overall['Opposition'] == opp_select) 
                                 & (overall['Match Date'] == date_select)]
-        st.write(further_df)
-        st.write(date_select)
+
         first_game_event = further_df.loc[(further_df['Team'] == team_select) & (further_df['Opposition'] == opp_select) 
                                 & (further_df['Match Date'] == date_select)]
         st.write(first_game_event)
@@ -52,9 +51,7 @@ def PositivesAndNegativesStreamlit(team_select, opp_select, date_select, comp_op
         closest_game = pd.merge(closest_game, closest_game_event, on=['Team', 'Opposition', 'Match Date', 'Unique Opp and Date'], how='inner')
 
         first_game = formatData(first_game)
-        st.write(first_game)
         second_game = formatData(closest_game)
-        st.write(second_game)
         
         product = pd.concat([first_game, second_game], ignore_index=True)
         percent_change = (product.iloc[0, 2:] - product.iloc[1, 2:]) / product.iloc[1, 2:] * 100
