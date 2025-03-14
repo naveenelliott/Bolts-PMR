@@ -988,19 +988,21 @@ def rearrange_team_name(team_name):
         if age in team_name:
             # Find the league part
             league_part = next((league for league in leagues if league in team_name), '')
+            
+            # Standardize league abbreviations
+            league_abbreviation = ''
             if league_part == 'NAL Boston':
-                league_part = 'NALB'
+                league_abbreviation = 'NALB'
             elif league_part == 'NAL South Shore':
-                league_part = 'NALSS'
+                league_abbreviation = 'NALSS'
+            else:
+                league_abbreviation = league_part  # Keep unchanged if not in list
             
-            # Extract the rest of the team name
-            rest_of_name = team_name.replace(age, '').replace('NAL Boston', '').replace(league_part, '').strip()
-
-            rest_of_name = team_name.replace(age, '').replace('NAL South Shore', '').replace(league_part, '').strip()
+            # Remove age and league from the original name
+            rest_of_name = team_name.replace(age, '').replace(league_part, '').strip()
             
-            
-            # Construct the new team name
-            return f"{rest_of_name} {age} {league_part}"
+            # Construct the new formatted team name
+            return f"{rest_of_name} {age} {league_abbreviation}".strip()
     
     # Return the original team name if no age group is found
     return team_name
