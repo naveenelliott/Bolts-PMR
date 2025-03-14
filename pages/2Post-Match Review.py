@@ -739,7 +739,7 @@ for player_name, group in grouped:
 
 subs_length = len(subs)
 subs['Player Full Name'] = subs['Player Full Name'].apply(
-    lambda x: x.split(' ', 1)[1] if x != 'Lucas' else x
+    lambda x: x.split(' ', 1)[1] if ' ' in x and x not in ['Lucas', 'Spadea', 'Robinson', 'Valchek'] else x
 )
 ax.text(100, 120, 'Substitutes', color='black', size=12, ha='center', va='center')
 for i in range(subs_length):
