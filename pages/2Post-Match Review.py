@@ -32,6 +32,7 @@ import plotly.graph_objs as go
 import re
 from streamlit_gsheets import GSheetsConnection
 from GettingTopPlayers import getting_PSD_top_cat
+from datetime import datetime
 
 
 # Setting a wide layout
@@ -226,7 +227,29 @@ shot_table_actions = actions_new.copy()
 # THIS IS SHOT TABLE
 available_teams = ['Boston Bolts U13 NALSS', 'Boston Bolts U15 NALB', 'Boston Bolts U16 NALB', 'Boston Bolts U17 NALB', 'Boston Bolts U19 NALB', 'Boston Bolts U19 NALSS', 'Boston Bolts U15 NALSS']
 
+no_xg_date = '3/15/2025'
+no_xg_date = datetime.strptime(no_xg_date, "%m/%d/%Y")
+
+selected_date_formatted = datetime.strptime(selected_date, '%m/%d/%Y')
+
 if selected_team in available_teams:
+    shot_table_actions.rename(columns={'Bolts Team': 'Team',
+                                      'Player Full Name': 'Player',
+                                      'Video Link': 'Link'}, inplace=True)
+    shot_table_actions = shot_table_actions.loc[(shot_table_actions['Team'] == selected_team) & (shot_table_actions['Opposition'] == selected_opp) & (shot_table_actions['Match Date'] == selected_date)].reset_index(drop=True)
+    opponent_shots = ['Opp Effort on Goal', 'Save Held', 'Save Parried', 'Goal Against']
+    shot_table_actions.loc[shot_table_actions['Action'].isin(opponent_shots), 'Team'] = selected_opp
+    shot_table_actions.loc[shot_table_actions['Team'] == selected_team, 'Team'] = 'Bolts'
+    shot_table_actions.loc[shot_table_actions['Action'].isin(opponent_shots), 'Player'] = np.nan
+    shot_table_actions.loc[shot_table_actions['Action'].isin(['Opp Effort on Goal', 'Shot off Target', 'Att Shot Blockd']), 'Action'] = 'Shot'
+    shot_table_actions.loc[shot_table_actions['Action'].isin(['Save Held', 'Save Parried', 'Shot on Target']), 'Action'] = 'SOT'
+    shot_table_actions.loc[shot_table_actions['Action'] == 'Goal Against', 'Action'] = 'Goal'
+
+    shot_min_actions = shot_table_actions.copy()
+    
+    shot_table_actions["Video Link"] = shot_table_actions["Link"].apply(lambda url: f'<a href="{url}" target="_blank">Link</a>')
+    shot_table_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
+elif selected_date_formatted > no_xg_date:
     shot_table_actions.rename(columns={'Bolts Team': 'Team',
                                       'Player Full Name': 'Player',
                                       'Video Link': 'Link'}, inplace=True)
@@ -424,7 +447,33 @@ if selected_team not in available_teams:
             select_temp_df = select_temp_df[wanted]
             select_temp_df = CMEventFunction(temp_event_df, select_temp_df)
             final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Playmaking'])*.2)
-
+elif selected_date_formatted > no_xg_date:
+    for index, row in final_grade_df.iterrows():
+        if row['Position'] == 'ATT':
+            temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT')]
+            wanted = ['xG + xA', 'Team']
+            temp_event_df = temp_event_df[wanted]
+            select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
+            select_temp_df = select_temp_df[wanted]
+            select_temp_df = StrikerEventFunction(temp_event_df, select_temp_df)
+            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
+        elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
+            temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'LW') | (chances_created['Primary Position'] == 'RW')]
+            wanted = ['xG + xA', 'Team']
+            temp_event_df = temp_event_df[wanted]
+            select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
+            select_temp_df = select_temp_df[wanted]
+            select_temp_df = WingerEventFunction(temp_event_df, select_temp_df)
+            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
+        elif (row['Position'] == 'CM') or (row['Position'] == 'RM') or (row['Position'] == 'LM') or (row['Position'] == 'AM'):
+            temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'RM') | (chances_created['Primary Position'] == 'LM')
+                                             | (chances_created['Primary Position'] == 'AM') | (chances_created['Primary Position'] == 'CM')]
+            wanted = ['xG + xA', 'Team']
+            temp_event_df = temp_event_df[wanted]
+            select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
+            select_temp_df = select_temp_df[wanted]
+            select_temp_df = CMEventFunction(temp_event_df, select_temp_df)
+            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Playmaking'])*.2)
 # THIS IS WHERE WE ADD THE NEW THRESHOLDS
 else:
     player_data['SOT'] = player_data['Shot on Target'] + player_data['Header on Target']
@@ -825,7 +874,7 @@ if flag == 1:
     with col3:
         compare_opp = st.selectbox('Choose the Comparison Game:', compare_opps, index=closest_game_index)
 
-    if selected_team not in available_teams:
+    if selected_team not in available_teams and selected_date_formatted < no_xg_date:
         xg_overall = xg_copy.copy()
         bolts_df = xg_overall[xg_overall['Team'].str.contains(selected_team)]
         opp_df = xg_overall[~xg_overall['Team'].str.contains(selected_team)]
@@ -1160,7 +1209,122 @@ if selected_team in available_teams:
             unsafe_allow_html=True
         )
         st.pyplot(fig)
+elif selected_date_formatted > no_xg_date:
+    shot_min_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
+    shot_min_actions['Time'] = shot_min_actions['Time'].apply(time_to_seconds)
     
+    a_xG = [0]
+    h_xG = [0]
+    a_min = [0]
+    h_min = [0]
+    hGoal_xG = []
+    aGoal_xG = []
+    aGoal_min = []
+    hGoal_min = []
+    
+    # Finding the goal marks so that we can add those as points later on
+    for x in range(len(shot_min_actions['Action'])):
+        if shot_min_actions['Action'][x] == "Goal" and shot_min_actions['Team'][x] == selected_opp:
+                aGoal_xG.append(1)
+                aGoal_min.append(shot_min_actions['Time'][x])
+        elif shot_min_actions['Action'][x] == "Goal" and shot_min_actions['Team'][x]=='Bolts':
+                hGoal_xG.append(1)
+                hGoal_min.append(shot_min_actions['Time'][x])
+     
+    # Appending the xG value to the plot
+    for x in range(len(shot_min_actions['Action'])):
+        if shot_min_actions['Team'][x]==selected_opp:
+            a_xG.append(1)
+            a_min.append(shot_min_actions['Time'][x])
+        if shot_min_actions['Team'][x]=='Bolts':
+            h_xG.append(1)
+            h_min.append(shot_min_actions['Time'][x])
+            
+    # sum all of the items in the list for xG
+    def nums_cumulative_sum(nums_list):
+        return [sum(nums_list[:i+1]) for i in range(len(nums_list))]
+    a_cumulative = nums_cumulative_sum(a_xG)
+    h_cumulative = nums_cumulative_sum(h_xG)
+    
+    # Rounding the total xGs
+    a_total = round(a_cumulative[-1],2)
+    h_total = round(h_cumulative[-1],2)
+    
+    # This is for the end of the game
+    a_min.append(95)
+    h_min.append(95)
+    a_cumulative.append(a_total)
+    h_cumulative.append(h_total)
+    
+    # Creating the plot
+    fig, ax = plt.subplots(figsize = (12,5))
+    
+    # Adding the ticks to the plot
+    plt.xticks([0,15,30,45,60,75,90], size = 15)
+    plt.yticks(fontsize=15)
+    
+    # Adding labels
+    plt.xlabel("Minute", size = 20)
+    plt.ylabel("Shots", size = 20)
+    ax.xaxis.label.set_color('black')        #setting up X-axis label color to yellow
+    ax.yaxis.label.set_color('black')          #setting up Y-axis label color to blue
+    
+    ax.tick_params(axis='x', colors='black')    #setting up X-axis tick color to red
+    ax.tick_params(axis='y', colors='black')  #setting up Y-axis tick color to black
+    
+    # Setting up the different spines of the plot
+    ax.spines['left'].set_color('black')
+    ax.spines['bottom'].set_color('black')
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False) 
+    
+    # These are the dataframes that contain the minutes and xG
+    a_total = pd.DataFrame(zip(a_min, a_cumulative))
+    h_total = pd.DataFrame(zip(h_min, h_cumulative))
+    # These are the dataframes that take the minutes and the goals
+    aGoal_total = pd.DataFrame(zip(aGoal_min,aGoal_xG))
+    hGoal_total = pd.DataFrame(zip(hGoal_min,hGoal_xG))
+    
+    # adding the goals into the line plot, if there are goals
+    for x in range(len(a_total[0])):
+        # Checking for goals
+        if len(aGoal_total) > 0:
+            for y in range(len(aGoal_total[0])):
+                 if (a_total[0][x] == aGoal_total[0][y]):
+                     aGoal_total[1][y] = a_total[1][x]
+        else:
+            continue
+        
+    for x in range(len(h_total[0])):
+        if len(hGoal_total) > 0:
+            for y in range(len(hGoal_total[0])):
+                if (h_total[0][x] == hGoal_total[0][y]):
+                    hGoal_total[1][y] = h_total[1][x]
+    
+    # These are the line plots            
+    ax.plot(a_min, a_cumulative, color="black")
+    ax.plot(h_min, h_cumulative, color="#6bb2e2")
+    # These are the scatter plots
+    if len(aGoal_total) > 0:
+        ax.scatter(aGoal_total[0], aGoal_total[1], color="black", s=90)
+    if len(hGoal_total) > 0:
+        ax.scatter(hGoal_total[0], hGoal_total[1], color="#6bb2e2", s=90)
+        
+    # Setting the background colors
+    fig.set_facecolor('white')
+    plt.gca().set_facecolor('white')
+    
+    
+    with col3: 
+        st.markdown(
+            """
+            <div style='text-align: center; font-family: Arial; font-size: 13pt; color: black;'>
+                <b>Shots Time Series Chart</b>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        st.pyplot(fig)
 else:
     team_sum = xg.groupby('Team')['xG'].sum()
 
@@ -1448,6 +1612,11 @@ if selected_team in available_teams:
     game['Shots on Target'] = game['Header on Target'] + game['Shot on Target']
     max_sot_player = game.loc[game['Shots on Target'].idxmax(), 'Player Full Name']
     index_to_change = combined_grades.index[combined_grades['Player'] == max_sot_player].tolist()[0]
+elif selected_date_formatted > no_xg_date:
+    # For available teams, calculate the player with the most shots on target
+    game['Shots on Target'] = game['Header on Target'] + game['Shot on Target']
+    max_sot_player = game.loc[game['Shots on Target'].idxmax(), 'Player Full Name']
+    index_to_change = combined_grades.index[combined_grades['Player'] == max_sot_player].tolist()[0]
 else:
     # Default logic: calculate the player with the highest xG
     player_name_to_change = max_xg_player
@@ -1713,6 +1882,8 @@ with col2:
     #time_until_regain = (time_until_regain/total_mins_played) * 990
     if selected_team in available_teams:
         fig2 = MiddlePMRStreamlit_NALOlder(team=our_team, opp=opposition, date=our_date)
+    elif selected_date_formatted > no_xg_date:
+        fig2 = MiddlePMRStreamlit_NALOlder(team=our_team, opp=opposition, date=our_date)
     else:
         fig2 = MiddlePMRStreamlit(team=our_team, opp=opposition, date=our_date, avg_bolts_xg=bolts_mean, avg_opp_xg=opp_mean,
                                   bolts_xg=bolts_xG, opp_xg=opp_xG)
@@ -1726,6 +1897,45 @@ with col2:
     st.pyplot(fig2)
 
 if selected_team in available_teams:
+    with col2:
+        st.markdown("""
+            <style>
+            .centered-title {
+                text-align: center;
+                font-size: 20px; /* Adjust the font size to make it smaller */
+                font-weight: bold;
+                margin-bottom: 0px; /* Optional: Add spacing below the title */
+            }
+            </style>
+            <div class="centered-title">Table of Shots</div>
+        """, unsafe_allow_html=True)
+        st.markdown("""
+            <style>
+            .scrollable-table {
+                max-height: 400px; /* Adjust the height to make it easier to view */
+                max-width: 100%; /* Use 100% to ensure it adjusts to the container width */
+                overflow: auto; /* Enable both vertical and horizontal scrolling */
+                display: block;
+                border: 1px solid #ddd; /* Optional: Add a border for better visualization */
+            }
+            .scrollable-table table {
+                width: 100%; /* Make the table fill the div width */
+                border-collapse: collapse; /* Ensure table borders look neat */
+            }
+            .scrollable-table th, .scrollable-table td {
+                padding: 8px;
+                text-align: left; /* Adjust alignment as needed */
+                border: 1px solid #ddd; /* Optional: Add borders to cells */
+            }
+            </style>
+        """, unsafe_allow_html=True)
+        
+        st.markdown(f"""
+            <div class="scrollable-table">
+            {shot_table_actions.to_html(escape=False, index=False)}
+            </div>
+        """, unsafe_allow_html=True)
+elif selected_date_formatted > no_xg_date:
     with col2:
         st.markdown("""
             <style>
