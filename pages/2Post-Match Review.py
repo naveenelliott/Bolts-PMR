@@ -227,7 +227,7 @@ shot_table_actions = actions_new.copy()
 # THIS IS SHOT TABLE
 available_teams = ['Boston Bolts U13 NALSS', 'Boston Bolts U15 NALB', 'Boston Bolts U16 NALB', 'Boston Bolts U17 NALB', 'Boston Bolts U19 NALB', 'Boston Bolts U19 NALSS', 'Boston Bolts U15 NALSS']
 
-no_xg_date = '3/15/2025'
+no_xg_date = '3/14/2025'
 no_xg_date = datetime.strptime(no_xg_date, "%m/%d/%Y")
 
 selected_date_formatted = datetime.strptime(selected_date, '%m/%d/%Y')
