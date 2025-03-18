@@ -19,7 +19,7 @@ from PIL import Image, ImageOps
 from streamlit_gsheets import GSheetsConnection
 import numpy as np
 from creating_heatmap_playerData import gettingHeatmapGK
-import math
+from datetime import datetime
 
 
 st.set_page_config(page_title='Bolts Post-Match Review App', page_icon='pages/Boston_Bolts.png')
@@ -84,6 +84,11 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     
 
     in_poss_involve, out_poss_involve = gkInvolvements(specific_player)
+
+    no_xg_date = '3/14/2025'
+    no_xg_date = datetime.strptime(no_xg_date, "%m/%d/%Y")
+
+    selected_date_formatted = datetime.strptime(selected_date, '%m/%d/%Y')
 
 
     
@@ -207,143 +212,143 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     xg = xg[['Team', 'X', 'Y', 'xGA', 'Event', 'Time', 'Video Link']]
 
 
+    if selected_date_formatted < no_xg_date:
+        if len(overall_gk_data) > 1:
+            starting_gk = overall_gk_data.loc[overall_gk_data['Starts'] == 1].reset_index(drop=True)
+            starting_gk_mins = starting_gk['mins played'][0]
+            starting_gk_name = starting_gk['Player Full Name'][0]
+            other_gk = overall_gk_data.loc[overall_gk_data['Player Full Name'] != starting_gk_name].reset_index(drop=True)
+            other_gk_name = other_gk['Player Full Name'][0]
 
-    if len(overall_gk_data) > 1:
-        starting_gk = overall_gk_data.loc[overall_gk_data['Starts'] == 1].reset_index(drop=True)
-        starting_gk_mins = starting_gk['mins played'][0]
-        starting_gk_name = starting_gk['Player Full Name'][0]
-        other_gk = overall_gk_data.loc[overall_gk_data['Player Full Name'] != starting_gk_name].reset_index(drop=True)
-        other_gk_name = other_gk['Player Full Name'][0]
+            starting_xg = pd.DataFrame(columns=xg.columns)
+            other_xg = pd.DataFrame(columns=xg.columns)
 
-        starting_xg = pd.DataFrame(columns=xg.columns)
-        other_xg = pd.DataFrame(columns=xg.columns)
+            starting_xg_list = []
+            other_xg_list = []
 
-        starting_xg_list = []
-        other_xg_list = []
+            for index, row in xg.iterrows():
+                if row['Time'] <= starting_gk_mins:
+                    starting_xg_list.append(row)
+                else:
+                    other_xg_list.append(row)
 
-        for index, row in xg.iterrows():
-            if row['Time'] <= starting_gk_mins:
-                starting_xg_list.append(row)
-            else:
-                other_xg_list.append(row)
-
-        starting_xg = pd.concat([starting_xg, pd.DataFrame(starting_xg_list)], ignore_index=True)
-        starting_xg['Player Full Name'] = starting_gk_name
-        other_xg = pd.concat([other_xg, pd.DataFrame(other_xg_list)], ignore_index=True)
-        other_xg['Player Full Name'] = other_gk_name
-
-
-        if gk_name in starting_xg['Player Full Name'].values:
-            xg = starting_xg.copy()
-        elif gk_name in other_xg['Player Full Name'].values:
-            xg = other_xg.copy()
+            starting_xg = pd.concat([starting_xg, pd.DataFrame(starting_xg_list)], ignore_index=True)
+            starting_xg['Player Full Name'] = starting_gk_name
+            other_xg = pd.concat([other_xg, pd.DataFrame(other_xg_list)], ignore_index=True)
+            other_xg['Player Full Name'] = other_gk_name
 
 
+            if gk_name in starting_xg['Player Full Name'].values:
+                xg = starting_xg.copy()
+            elif gk_name in other_xg['Player Full Name'].values:
+                xg = other_xg.copy()
 
-    custom_order = ['Shot', 'Blocked', 'SOT', 'SOT Far Post', 'SOT Inside Post', 'Goal', 'Goal Far Post', 'Goal Inside Post']
-    xg['Event'] = pd.Categorical(xg['Event'], categories=custom_order, ordered=True)
-    xg = xg.sort_values('Event')
 
-    xg = xg.loc[~xg['Team'].str.contains('Boston Bolts')]
-    xg_sum = xg['xGA'].sum()
-    ga = gk_data['Goal Against'][0].astype(float)
 
-    dimensions = PitchDimensions(pitch_length_metres=100, pitch_width_metres=100)
-    fig1 = pfp.make_pitch_figure(
-        dimensions,
-        figure_height_pixels=500,
-        figure_width_pixels=500,
-        orientation=pfp.PitchOrientation.VERTICAL
-    )
+        custom_order = ['Shot', 'Blocked', 'SOT', 'SOT Far Post', 'SOT Inside Post', 'Goal', 'Goal Far Post', 'Goal Inside Post']
+        xg['Event'] = pd.Categorical(xg['Event'], categories=custom_order, ordered=True)
+        xg = xg.sort_values('Event')
 
-    xg.dropna(subset=['Event'], inplace=True)
-    for index, row in xg.iterrows():
-        y, x, xG, url = row['X'], row['Y'], row['xGA'], row['Video Link']
+        xg = xg.loc[~xg['Team'].str.contains('Boston Bolts')]
+        xg_sum = xg['xGA'].sum()
+        ga = gk_data['Goal Against'][0].astype(float)
 
-        ateam = row['Team']
-        if 'Goal' in row['Event']:
-            fig1.add_trace(go.Scatter(
-                x=[x],
-                y=[y],
-                mode='markers+text',
-                marker=dict(
-                    size=(xG * 30) + 5,  # Adjusted for Plotly's scaling
-                    color='red',
-                    symbol='circle'
-                ),
-                name='Goal Against',
-                showlegend=False,
-                hovertext=f"xG: {xG:.2f}",  # Add hover text
-                hoverinfo="text"  # Display hover text
-            ))
-            fig1.add_annotation(
-                x=x,
-                y=y+3.5,
-                text=f'<a href="{url}" target="_blank" style="color:red;">Link</a>',
-                showarrow=False,
-                align="center"
-            ) 
-        elif 'SOT' in row['Event']:
-            fig1.add_trace(go.Scatter(
-                x=[x],
-                y=[y],
-                mode='markers',
-                marker=dict(
-                    size=(xG * 30) + 5,
-                    color='white',
-                    line=dict(color='red', width=3),
-                    symbol='circle'
-                ),
-                name='SOT Against',
-                showlegend=False,
-                hovertext=f"xG: {xG:.2f}",  # Add hover text
-                hoverinfo="text"  # Display hover text
-            ))
-            fig1.add_annotation(
-                x=x,
-                y=y+3.5,
-                text=f'<a href="{url}" target="_blank" style="color:red;">Link</a>',
-                showarrow=False,
-                align="center"
-            ) 
-        
-    # Add custom legend entries
-    fig1.add_trace(go.Scatter(
-        x=[None],  # Dummy data
-        y=[None],
-        mode='markers',
-        marker=dict(
-            size=5,
-            color='red',
-            symbol='circle'
-        ),
-        name='Goal Against',
-        visible='legendonly'
-    ))
-
-    fig1.add_trace(go.Scatter(
-        x=[None],  # Dummy data
-        y=[None],
-        mode='markers',
-        marker=dict(
-            size=5,
-            color='white',
-            line=dict(color='red', width=3),
-            symbol='circle'
-        ),
-        name='SOT Against',
-        visible='legendonly'
-    ))
-
-    fig1.update_layout(
-        legend=dict(
-            font=dict(
-                size=8  # Decrease font size for smaller legend text
-            ),
-            itemsizing='constant',  # Keep marker sizes constant in the legend
-            traceorder='normal'  # Keep the order of traces as added
+        dimensions = PitchDimensions(pitch_length_metres=100, pitch_width_metres=100)
+        fig1 = pfp.make_pitch_figure(
+            dimensions,
+            figure_height_pixels=500,
+            figure_width_pixels=500,
+            orientation=pfp.PitchOrientation.VERTICAL
         )
-    )
+
+        xg.dropna(subset=['Event'], inplace=True)
+        for index, row in xg.iterrows():
+            y, x, xG, url = row['X'], row['Y'], row['xGA'], row['Video Link']
+
+            ateam = row['Team']
+            if 'Goal' in row['Event']:
+                fig1.add_trace(go.Scatter(
+                    x=[x],
+                    y=[y],
+                    mode='markers+text',
+                    marker=dict(
+                        size=(xG * 30) + 5,  # Adjusted for Plotly's scaling
+                        color='red',
+                        symbol='circle'
+                    ),
+                    name='Goal Against',
+                    showlegend=False,
+                    hovertext=f"xG: {xG:.2f}",  # Add hover text
+                    hoverinfo="text"  # Display hover text
+                ))
+                fig1.add_annotation(
+                    x=x,
+                    y=y+3.5,
+                    text=f'<a href="{url}" target="_blank" style="color:red;">Link</a>',
+                    showarrow=False,
+                    align="center"
+                ) 
+            elif 'SOT' in row['Event']:
+                fig1.add_trace(go.Scatter(
+                    x=[x],
+                    y=[y],
+                    mode='markers',
+                    marker=dict(
+                        size=(xG * 30) + 5,
+                        color='white',
+                        line=dict(color='red', width=3),
+                        symbol='circle'
+                    ),
+                    name='SOT Against',
+                    showlegend=False,
+                    hovertext=f"xG: {xG:.2f}",  # Add hover text
+                    hoverinfo="text"  # Display hover text
+                ))
+                fig1.add_annotation(
+                    x=x,
+                    y=y+3.5,
+                    text=f'<a href="{url}" target="_blank" style="color:red;">Link</a>',
+                    showarrow=False,
+                    align="center"
+                ) 
+            
+        # Add custom legend entries
+        fig1.add_trace(go.Scatter(
+            x=[None],  # Dummy data
+            y=[None],
+            mode='markers',
+            marker=dict(
+                size=5,
+                color='red',
+                symbol='circle'
+            ),
+            name='Goal Against',
+            visible='legendonly'
+        ))
+
+        fig1.add_trace(go.Scatter(
+            x=[None],  # Dummy data
+            y=[None],
+            mode='markers',
+            marker=dict(
+                size=5,
+                color='white',
+                line=dict(color='red', width=3),
+                symbol='circle'
+            ),
+            name='SOT Against',
+            visible='legendonly'
+        ))
+
+        fig1.update_layout(
+            legend=dict(
+                font=dict(
+                    size=8  # Decrease font size for smaller legend text
+                ),
+                itemsizing='constant',  # Keep marker sizes constant in the legend
+                traceorder='normal'  # Keep the order of traces as added
+            )
+        )
 
 
     directory_path = 'GK_Photos'
@@ -521,43 +526,56 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
                 unsafe_allow_html=True
             )
 
-    with col1:
-        st.plotly_chart(fig1)
+    if selected_date_formatted < no_xg_date:
+        with col1:
+            st.plotly_chart(fig1)
 
 
     gk_grade = GKMoreDetailedFunction(gk_data)
     gk_grade = gk_grade.loc[gk_grade['Player Name'] == gk_name].reset_index(drop=True)
 
-    ga_mean = -0.0794
-    ga_std = 0.2558
+    if selected_date_formatted < no_xg_date:
+        ga_mean = -0.0794
+        ga_std = 0.2558
 
-    
-    xga_grade = ga - xg_sum
-    z_score = (xga_grade - ga_mean) / ga_std
+        
+        xga_grade = ga - xg_sum
+        z_score = (xga_grade - ga_mean) / ga_std
 
-    # Step 2: Convert Z-score to percentile
-    ga_percentile = stats.norm.cdf(z_score) * 100
-    ga_percentile = 100-ga_percentile
+        # Step 2: Convert Z-score to percentile
+        ga_percentile = stats.norm.cdf(z_score) * 100
+        ga_percentile = 100-ga_percentile
 
-    ga_grade = ga_percentile * 0.1
+        ga_grade = ga_percentile * 0.1
+        
 
 
     # This is until the claiming part of the grade is fixed
-    
-    if gk_grade['Defending Space'].isna().any():
-        gk_grade.at[0, 'Defending Goal'] = (gk_grade.at[0, 'Defending Goal']*0.25)+(ga_grade*.75)
-        if no_saves == True:
-          gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.55)+(gk_grade.at[0, 'Organization']*.45)
+    if selected_date_formatted < no_xg_date:
+        if gk_grade['Defending Space'].isna().any():
+            gk_grade.at[0, 'Defending Goal'] = (gk_grade.at[0, 'Defending Goal']*0.25)+(ga_grade*.75)
+            if no_saves == True:
+                gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.55)+(gk_grade.at[0, 'Organization']*.45)
+            else:
+                gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.3)+(gk_grade.at[0, 'Defending Goal']*0.5)+(gk_grade.at[0, 'Organization']*.2)
         else:
-          gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.3)+(gk_grade.at[0, 'Defending Goal']*0.5)+(gk_grade.at[0, 'Organization']*.2)
+            gk_grade.at[0, 'Defending Goal'] = (gk_grade.at[0, 'Defending Goal']*0.25)+(ga_grade*.75)
+            if no_saves == True:
+                gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.3833)+(gk_grade.at[0, 'Organization']*.2833)+(gk_grade.at[0, 'Defending Space']*.3333)
+            else:
+                gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.2375)+(gk_grade.at[0, 'Defending Goal']*0.4375)+(gk_grade.at[0, 'Organization']*.1375)+(gk_grade.at[0, 'Defending Space']*.1875)
     else:
-        gk_grade.at[0, 'Defending Goal'] = (gk_grade.at[0, 'Defending Goal']*0.25)+(ga_grade*.75)
-        if no_saves == True:
-          gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.3833)+(gk_grade.at[0, 'Organization']*.2833)+(gk_grade.at[0, 'Defending Space']*.3333)
+        if gk_grade['Defending Space'].isna().any():
+            if no_saves == True:
+                gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.55)+(gk_grade.at[0, 'Organization']*.45)
+            else:
+                gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.3)+(gk_grade.at[0, 'Defending Goal']*0.5)+(gk_grade.at[0, 'Organization']*.2)
         else:
-          gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.2375)+(gk_grade.at[0, 'Defending Goal']*0.4375)+(gk_grade.at[0, 'Organization']*.1375)+(gk_grade.at[0, 'Defending Space']*.1875)
-
-
+            if no_saves == True:
+                gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.3833)+(gk_grade.at[0, 'Organization']*.2833)+(gk_grade.at[0, 'Defending Space']*.3333)
+            else:
+                gk_grade.at[0, 'Final Grade'] = (gk_grade.at[0, 'Attacking']*0.2375)+(gk_grade.at[0, 'Defending Goal']*0.4375)+(gk_grade.at[0, 'Organization']*.1375)+(gk_grade.at[0, 'Defending Space']*.1875)
+    
 
     def process_game_data(df, overall_gk_data, gk_name):
         # Filter data for the specific game
@@ -614,7 +632,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     # Apply the function to each game
     processed_data = []
 
-
+    
     entire_xg = entire_xg.loc[~entire_xg['Team'].str.contains('Boston Bolts')]
     entire_xg = entire_xg.loc[entire_xg['Player Full Name'] == gk_name]
     entire_xg = entire_xg[entire_xg['Event'].isin(['SOT', 'Goal', 'SOT Inside Post', 'SOT Far Post', 'Goal Inside Post', 'Goal Far Post'])]
@@ -631,7 +649,11 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     end_combined_df = overall_df.loc[overall_df['Player Full Name'] == gk_name]
     unique_combinations = end_combined_df[['Team Name', 'Opposition', 'Date']].drop_duplicates()
     unique_combinations.rename(columns={'Date': 'Match Date'}, inplace=True)
+    unique_combinations['Match Date'] = pd.to_datetime(unique_combinations['Match Date'])
+    selected_date = pd.to_datetime(selected_date)
     unique_combinations = unique_combinations.loc[unique_combinations['Match Date'] <= selected_date]
+
+    all_games_gk['Match Date'] = pd.to_datetime(all_games_gk['Match Date'])
 
     # Step 2: Filter all_games_gk by these combinations
     end_overall = all_games_gk.merge(unique_combinations, on=['Team Name', 'Opposition', 'Match Date'], how='inner')
@@ -665,6 +687,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
           end_overall.at[index, 'xG'] = match['xG'].values[0]  # Assuming only one row matches
     end_overall['GA-xGA'] = end_overall['Goal Against'] - end_overall['xG']
     del end_overall['Goal Against'], end_overall['xG']
+    end_overall['Match Date'] = pd.to_datetime(end_overall['Match Date'])
     end_overall = end_overall[end_overall['Match Date'] <= selected_date]
 
     for index, row in game_grade_end.iterrows():
@@ -678,6 +701,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
           # If match found, assign the corresponding xG value from summary_df
           game_grade_end.at[index, 'xG'] = match['xG'].values[0]  # Assuming only one row matches
       game_grade_end['GA-xGA'] = game_grade_end['Goal Against'] - game_grade_end['xG']
+      game_grade_end['Match Date'] = pd.to_datetime(game_grade_end['Match Date'])
       game_grade_end = game_grade_end[game_grade_end['Match Date'] <= selected_date]
 
     final_game_grade = pd.DataFrame(columns=['Player Full Name', 'Match Date', 'Team', 'Opposition', 'Final Grade'])
@@ -765,6 +789,8 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
         st.plotly_chart(fig3)
 
     fig = plottingInAndOut(end_overall, 'In Possession', 'Out of Possession', date_wanted=selected_date)
+    st.plotly_chart(fig)
+    fig = plottingStatistics(end_overall, 'GA-xGA', date_wanted=selected_date)
     st.plotly_chart(fig)
 
     col1, col2 = st.columns(2)
