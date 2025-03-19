@@ -653,11 +653,18 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     selected_date = pd.to_datetime(selected_date)
     unique_combinations = unique_combinations.loc[unique_combinations['Match Date'] <= selected_date]
 
+    #st.write(unique_combinations)
+
     all_games_gk['Match Date'] = pd.to_datetime(all_games_gk['Match Date'])
+
+    #st.write(all_games_gk)
 
     # Step 2: Filter all_games_gk by these combinations
     end_overall = all_games_gk.merge(unique_combinations, on=['Team Name', 'Opposition', 'Match Date'], how='inner')
     end_overall = end_overall.loc[end_overall['Player Full Name'] == gk_name]
+
+    #st.write(end_overall)
+
     end_overall['In Possession'] = end_overall['Success'] + end_overall['Unsuccess']
     end_overall['Out of Possession'] = end_overall['Progr Rec'] + end_overall['Progr Inter'] + end_overall['Successful Cross']
     end_overall = end_overall[['Player Full Name', 'Team Name', 'Opposition', 'Match Date', 'mins played', 'Save Held', 'Save Parried', 'Goal Against', 'Progr Regain ', 
@@ -670,6 +677,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     end_overall['Throw %'] = (end_overall['Hands GK']/end_overall['Totals Throw']) * 100
     end_overall['Total GK'] = (end_overall['Ground GK'] + end_overall['Unsucc Ground'])
     end_overall['GK %'] = (end_overall['Ground GK']/end_overall['Total GK']) * 100
+    end_overall['Total Saves'] = end_overall['Save Held'] + end_overall['Save Parried']
     game_grade_end = end_overall.copy()
     end_overall.drop(columns=['Save Held', 'Save Parried', 'Successful Cross', 'Unsucc cross GK', 'Total CC'], inplace=True)
     end_overall.rename(columns={'Team Name': 'Team'}, inplace=True)
@@ -717,7 +725,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
                         (game_grade_end['Team'] == team_name) & 
                         (game_grade_end['Opposition'] == opposition)]
         filtered_game_grade = filtered_game_grade.loc[filtered_game_grade['Player Full Name'] == gk_name]
-        game_grade = gettingGameGrade(filtered_game_grade)
+        game_grade = gettingGameGrade(filtered_game_grade, match_date)
 
         final_game_grade = pd.concat([final_game_grade, game_grade], ignore_index=True)
 
@@ -725,6 +733,8 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     end_overall = end_overall.sort_values('Match Date').reset_index(drop=True)
     final_game_grade = final_game_grade.sort_values('Match Date').reset_index(drop=True)
     final_game_grade = final_game_grade[final_game_grade['Match Date'] <= selected_date]
+
+
 
     
     with col2:
@@ -774,7 +784,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
 
     with col1:
-        fig = plottingStatistics(end_overall, 'GA-xGA', date_wanted=selected_date)
+        fig = plottingStatistics(end_overall, 'Total Saves', date_wanted=selected_date)
         st.plotly_chart(fig)
         fig2 = plottingStatistics(end_overall, 'Progr Pass Completion ', date_wanted=selected_date)
         st.plotly_chart(fig2)
@@ -790,6 +800,11 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     fig = plottingInAndOut(end_overall, 'In Possession', 'Out of Possession', date_wanted=selected_date)
     st.plotly_chart(fig)
+
+    end_overall['Match Date'] = pd.to_datetime(end_overall['Match Date'])
+
+    end_overall = end_overall.loc[end_overall['Match Date'] <= no_xg_date]
+
     fig = plottingStatistics(end_overall, 'GA-xGA', date_wanted=selected_date)
     st.plotly_chart(fig)
 
