@@ -420,7 +420,7 @@ final_grade_df = temp_df.copy()
 chances_created.fillna(0, inplace=True)
 
 # Short term fix because something is wrong with getting the positions of attackers
-if selected_team not in available_teams:
+if selected_team not in available_teams or selected_date_formatted < no_xg_date:
     for index, row in final_grade_df.iterrows():
         if row['Position'] == 'ATT':
             temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT')]
