@@ -239,6 +239,7 @@ st.write(selected_opp)
 st.write(selected_date)
 
 if selected_team in available_teams or selected_date_formatted > no_xg_date:
+    st.write("works!")
     shot_table_actions.rename(columns={'Bolts Team': 'Team',
                                       'Player Full Name': 'Player',
                                       'Video Link': 'Link'}, inplace=True)
