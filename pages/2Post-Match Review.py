@@ -232,12 +232,6 @@ no_xg_date = datetime.strptime(no_xg_date, "%m/%d/%Y")
 
 selected_date_formatted = datetime.strptime(selected_date, '%m/%d/%Y')
 
-st.write(shot_table_actions)
-
-st.write(selected_team)
-st.write(selected_opp)
-st.write(selected_date)
-
 if selected_team in available_teams or selected_date_formatted > no_xg_date:
     st.write("works!")
     shot_table_actions.rename(columns={'Bolts Team': 'Team',
@@ -257,7 +251,6 @@ if selected_team in available_teams or selected_date_formatted > no_xg_date:
     shot_table_actions["Video Link"] = shot_table_actions["Link"].apply(lambda url: f'<a href="{url}" target="_blank">Link</a>')
     shot_table_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
 
-st.write(shot_table_actions)
 
 fc_python['Match Date'] = pd.to_datetime(fc_python['Match Date']).dt.strftime('%m/%d/%Y')
 
