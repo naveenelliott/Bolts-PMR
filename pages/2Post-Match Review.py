@@ -249,23 +249,6 @@ if selected_team in available_teams:
     
     shot_table_actions["Video Link"] = shot_table_actions["Link"].apply(lambda url: f'<a href="{url}" target="_blank">Link</a>')
     shot_table_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
-elif selected_date_formatted > no_xg_date:
-    shot_table_actions.rename(columns={'Bolts Team': 'Team',
-                                      'Player Full Name': 'Player',
-                                      'Video Link': 'Link'}, inplace=True)
-    shot_table_actions = shot_table_actions.loc[(shot_table_actions['Team'] == selected_team) & (shot_table_actions['Opposition'] == selected_opp) & (shot_table_actions['Match Date'] == selected_date)].reset_index(drop=True)
-    opponent_shots = ['Opp Effort on Goal', 'Save Held', 'Save Parried', 'Goal Against']
-    shot_table_actions.loc[shot_table_actions['Action'].isin(opponent_shots), 'Team'] = selected_opp
-    shot_table_actions.loc[shot_table_actions['Team'] == selected_team, 'Team'] = 'Bolts'
-    shot_table_actions.loc[shot_table_actions['Action'].isin(opponent_shots), 'Player'] = np.nan
-    shot_table_actions.loc[shot_table_actions['Action'].isin(['Opp Effort on Goal', 'Shot off Target', 'Att Shot Blockd']), 'Action'] = 'Shot'
-    shot_table_actions.loc[shot_table_actions['Action'].isin(['Save Held', 'Save Parried', 'Shot on Target']), 'Action'] = 'SOT'
-    shot_table_actions.loc[shot_table_actions['Action'] == 'Goal Against', 'Action'] = 'Goal'
-
-    shot_min_actions = shot_table_actions.copy()
-    
-    shot_table_actions["Video Link"] = shot_table_actions["Link"].apply(lambda url: f'<a href="{url}" target="_blank">Link</a>')
-    shot_table_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
 
 
 fc_python['Match Date'] = pd.to_datetime(fc_python['Match Date']).dt.strftime('%m/%d/%Y')
