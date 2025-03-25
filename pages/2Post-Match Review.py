@@ -249,6 +249,23 @@ if selected_team in available_teams:
     
     shot_table_actions["Video Link"] = shot_table_actions["Link"].apply(lambda url: f'<a href="{url}" target="_blank">Link</a>')
     shot_table_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
+elif selected_date_formatted > no_xg_date:
+    shot_table_actions.rename(columns={'Bolts Team': 'Team',
+                                      'Player Full Name': 'Player',
+                                      'Video Link': 'Link'}, inplace=True)
+    shot_table_actions = shot_table_actions.loc[(shot_table_actions['Team'] == selected_team) & (shot_table_actions['Opposition'] == selected_opp) & (shot_table_actions['Match Date'] == selected_date)].reset_index(drop=True)
+    opponent_shots = ['Opp Effort on Goal', 'Save Held', 'Save Parried', 'Goal Against']
+    shot_table_actions.loc[shot_table_actions['Action'].isin(opponent_shots), 'Team'] = selected_opp
+    shot_table_actions.loc[shot_table_actions['Team'] == selected_team, 'Team'] = 'Bolts'
+    shot_table_actions.loc[shot_table_actions['Action'].isin(opponent_shots), 'Player'] = np.nan
+    shot_table_actions.loc[shot_table_actions['Action'].isin(['Opp Effort on Goal', 'Shot off Target', 'Att Shot Blockd']), 'Action'] = 'Shot'
+    shot_table_actions.loc[shot_table_actions['Action'].isin(['Save Held', 'Save Parried', 'Shot on Target']), 'Action'] = 'SOT'
+    shot_table_actions.loc[shot_table_actions['Action'] == 'Goal Against', 'Action'] = 'Goal'
+
+    shot_min_actions = shot_table_actions.copy()
+    
+    shot_table_actions["Video Link"] = shot_table_actions["Link"].apply(lambda url: f'<a href="{url}" target="_blank">Link</a>')
+    shot_table_actions.drop(columns = {'Match Date', 'Opposition', 'Period', 'Link'}, inplace=True)
 
 
 fc_python['Match Date'] = pd.to_datetime(fc_python['Match Date']).dt.strftime('%m/%d/%Y')
@@ -430,34 +447,6 @@ if selected_team not in available_teams and selected_date_formatted < no_xg_date
             select_temp_df = select_temp_df[wanted]
             select_temp_df = CMEventFunction(temp_event_df, select_temp_df)
             final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Playmaking'])*.2)
-elif selected_date_formatted > no_xg_date:
-    for index, row in final_grade_df.iterrows():
-        if row['Position'] == 'ATT':
-            temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'ATT')]
-            wanted = ['xG + xA', 'Team']
-            temp_event_df = temp_event_df[wanted]
-            select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
-            select_temp_df = select_temp_df[wanted]
-            select_temp_df = StrikerEventFunction(temp_event_df, select_temp_df)
-            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
-        elif (row['Position'] == 'RW') or (row['Position'] == 'LW'):
-            temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'LW') | (chances_created['Primary Position'] == 'RW')]
-            wanted = ['xG + xA', 'Team']
-            temp_event_df = temp_event_df[wanted]
-            select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
-            select_temp_df = select_temp_df[wanted]
-            select_temp_df = WingerEventFunction(temp_event_df, select_temp_df)
-            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Finishing'])*.2)
-        elif (row['Position'] == 'CM') or (row['Position'] == 'RM') or (row['Position'] == 'LM') or (row['Position'] == 'AM'):
-            temp_event_df = chances_created.loc[(chances_created['Primary Position'] == 'RM') | (chances_created['Primary Position'] == 'LM')
-                                             | (chances_created['Primary Position'] == 'AM') | (chances_created['Primary Position'] == 'CM')]
-            wanted = ['xG + xA', 'Team']
-            temp_event_df = temp_event_df[wanted]
-            select_temp_df = select_event_df.loc[select_event_df['Player Full Name'] == row['Player Name']]
-            select_temp_df = select_temp_df[wanted]
-            select_temp_df = CMEventFunction(temp_event_df, select_temp_df)
-            final_grade_df.at[index, 'Final Grade'] = row['Final Grade'] + ((select_temp_df.at[0, 'Playmaking'])*.2)
-# THIS IS WHERE WE ADD THE NEW THRESHOLDS
 else:
     player_data['SOT'] = player_data['Shot on Target'] + player_data['Header on Target']
     for index, row in final_grade_df.iterrows():
