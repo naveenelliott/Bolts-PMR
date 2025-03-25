@@ -232,6 +232,8 @@ no_xg_date = datetime.strptime(no_xg_date, "%m/%d/%Y")
 
 selected_date_formatted = datetime.strptime(selected_date, '%m/%d/%Y')
 
+st.write(shot_table_actions)
+
 if selected_team in available_teams or selected_date_formatted > no_xg_date:
     shot_table_actions.rename(columns={'Bolts Team': 'Team',
                                       'Player Full Name': 'Player',
