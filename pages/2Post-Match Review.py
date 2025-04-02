@@ -796,7 +796,7 @@ played_same_opponent = closest_before.loc[closest_before['Opposition'] == select
 
 compare_opps = compare_opps[:5]
 
-closest_before['Date'] = closest_before['Date'].dt.strftime('%m/%d/%Y')
+closest_before['Date'] = pd.to_datetime(closest_before['Date'], format='%m/%d/%Y', errors='coerce')
 
 overall_df['Date'] = overall_df['Date'].dt.strftime('%m/%d/%Y')
 
@@ -868,6 +868,7 @@ if flag == 1:
         our_date = selected_date
         temp_date = selected_date
         top3, low3 = PositivesAndNegativesNoxG(team_select=our_team, opp_select=opposition, date_select=temp_date, comp_opp_select=compare_opp)
+
 
 change = ['Goal Against', 'Shots on Target Against', 'Loss of Poss', 'Foul Conceded', 'Opp xG per Shot', 'Time Until Regain']
 opposition = selected_opp
