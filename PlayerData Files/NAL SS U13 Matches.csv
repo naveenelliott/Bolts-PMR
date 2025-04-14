@@ -1,17 +1,93 @@
-session_type,start_time,opponent,bolts team,athlete_name,total_distance_m,metres_per_minute,total_high_intensity_distance_m,high_intensity_events,total_sprint_distance_m,sprint_events,acceleration_events,deceleration_events,max_speed_kph,workload,workload_volume,workload_intensity
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Akhmet Omar,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Andrew Shekane,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,2.0,0.0,4.0
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Andrew Tuttle,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Benjamin Truong,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,2.0,0.0,4.0
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Brian Mahler,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Christos Kazakis,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,1.0,0.0,2.0
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Connor Theis,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Joey DiBonaventura,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Liana Meyers,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Lucas Jara,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Mark Gaffney,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Noah Byrne,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Pedro Florenco-Ramos,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,1.0,0.0,2.0
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Rónan Cunningham,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Steve Rodday,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,1.0,0.0,2.0
-MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Tommy Chisholm,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+session_type,start_time,opponent,bolts team,athlete_name,total_distance_m,total_high_intensity_distance_m,max_speed_kph
+MatchSession,2025-04-06T14:00:00.000Z,Syracuse DA ,Boston Bolts NAL South Shore U13,Noah Byrne,0.5799735826543033,0.0,0.6361200150847435
+MatchSession,2025-04-06T14:00:00.000Z,Syracuse DA ,Boston Bolts NAL South Shore U13,Steve Rodday,2432.1830613742827,3.274699429146001,16.564428005218506
+MatchSession,2025-04-06T14:00:00.000Z,Syracuse DA ,Boston Bolts NAL South Shore U13,Tommy Chisholm,6314.576952243089,320.78073359795854,21.371579921722414
+MatchSession,2025-04-06T14:00:00.000Z,Syracuse DA ,Boston Bolts NAL South Shore U13,Tristan Misdea,5539.90293395093,362.7916508768021,24.998489765167236
+MatchSession,2025-04-06T14:00:00.000Z,Syracuse DA ,Boston Bolts NAL South Shore U13,Brian Mahler,6355.955829528262,339.66440665933635,23.1934141330719
+MatchSession,2025-04-06T14:00:00.000Z,Syracuse DA ,Boston Bolts NAL South Shore U13,Christos Kazakis,6989.788218231943,404.627236073174,23.243687913894654
+MatchSession,2025-04-06T14:00:00.000Z,Syracuse DA ,Boston Bolts NAL South Shore U13,Connor Theis,4353.802794853045,194.0899902017348,22.70708983039856
+MatchSession,2025-04-06T14:00:00.000Z,Syracuse DA ,Boston Bolts NAL South Shore U13,Lucas Jara,3858.2432109460065,134.2156730867099,23.116463676452636
+MatchSession,2025-04-06T14:00:00.000Z,Syracuse DA ,Boston Bolts NAL South Shore U13,Andrew Tuttle,5045.415043691215,222.54450070184922,23.6619540939331
+MatchSession,2025-04-06T14:00:00.000Z,Syracuse DA ,Boston Bolts NAL South Shore U13,Benjamin Truong,6647.762409036201,449.95350562419765,24.414011890411373
+MatchSession,2025-04-06T14:00:00.000Z,Syracuse DA ,Boston Bolts NAL South Shore U13,David Smith,5007.98438794929,139.37662795692148,20.762136062622073
+MatchSession,2025-04-06T14:00:00.000Z,Syracuse DA ,Boston Bolts NAL South Shore U13,Joey DiBonaventura,3703.6190657023703,143.63751373339417,22.08123050880432
+MatchSession,2025-04-06T14:00:00.000Z,Syracuse DA ,Boston Bolts NAL South Shore U13,Liana Meyers,0.38264789028691126,0.0,0.5130000050961971
+MatchSession,2025-04-06T14:00:00.000Z,Syracuse DA ,Boston Bolts NAL South Shore U13,Pedro Florenco-Ramos,1.150581136273299,0.0,1.0123200130462646
+MatchSession,2025-04-06T14:00:00.000Z,Syracuse DA ,Boston Bolts NAL South Shore U13,Andrew Shekane,3244.08980331132,109.36381847366383,20.586347757339475
+MatchSession,2025-03-16T15:30:00.000Z,New England Surf ECRL ,Boston Bolts NAL South Shore U13,Andrew Tuttle,4686.141030779907,99.43183660748562,21.829176349639894
+MatchSession,2025-03-16T15:30:00.000Z,New England Surf ECRL ,Boston Bolts NAL South Shore U13,Benjamin Truong,4366.889721533384,227.38619621431275,24.704369882583617
+MatchSession,2025-03-16T15:30:00.000Z,New England Surf ECRL ,Boston Bolts NAL South Shore U13,Brian Mahler,5256.859329518697,282.1667862642181,26.15821234703064
+MatchSession,2025-03-16T15:30:00.000Z,New England Surf ECRL ,Boston Bolts NAL South Shore U13,Christos Kazakis,4025.602429688206,171.93497671754238,24.48446400260925
+MatchSession,2025-03-16T15:30:00.000Z,New England Surf ECRL ,Boston Bolts NAL South Shore U13,Connor Theis,3490.768677826869,151.71844392218483,25.112375827789304
+MatchSession,2025-03-16T15:30:00.000Z,New England Surf ECRL ,Boston Bolts NAL South Shore U13,David Smith,4215.441909298132,79.8329614112296,22.456062086105348
+MatchSession,2025-03-16T15:30:00.000Z,New England Surf ECRL ,Boston Bolts NAL South Shore U13,David Smith,4291.203346373206,179.24953685440153,20.54257199478149
+MatchSession,2025-03-16T15:30:00.000Z,New England Surf ECRL ,Boston Bolts NAL South Shore U13,Liana Meyers,6282.95139550363,254.6949078439685,22.002911825180053
+MatchSession,2025-03-16T15:30:00.000Z,New England Surf ECRL ,Boston Bolts NAL South Shore U13,Steve Rodday,2115.511633336877,0.0,15.680015853881835
+MatchSession,2025-03-16T15:30:00.000Z,New England Surf ECRL ,Boston Bolts NAL South Shore U13,Tommy Chisholm,5258.635105582971,242.59322166029443,22.606200130462646
+MatchSession,2025-03-16T15:30:00.000Z,New England Surf ECRL ,Boston Bolts NAL South Shore U13,Tristan Misdea,4241.284397813446,128.56763319790014,23.86407628440857
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Andrew Shekane,3114.5790803357904,101.20901151404126,21.674933624267577
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Andrew Tuttle,4010.747258728361,187.56529730802157,23.88938408088684
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Benjamin Truong,3947.3993439279284,188.66768369815975,26.03748580169678
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Brian Mahler,4228.026847425318,162.86214865515416,24.635627809524536
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Christos Kazakis,4910.27370728603,329.9577416669306,24.601769817352295
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Connor Theis,3954.4543683507172,159.0177582670152,22.95435601043701
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,David Smith,3729.811142655068,172.705471536688,20.658510234832764
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Joey DiBonaventura,3055.363570229043,114.33289692631843,24.003269817352294
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Liana Meyers,5034.091760798272,229.9857973446542,21.47691611480713
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Lucas Jara,3750.7503311477776,117.73756144143688,21.558654224395752
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Mark Gaffney,8.946228872634318,0.0,3.419999959230423
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Noah Byrne,3761.8981933011155,145.1145664961902,22.822343793869017
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Pedro Florenco-Ramos,3354.1356511005747,122.03793943707701,19.64858388519287
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Rónan Cunningham,3.35829776112732,0.0,2.0588399934768673
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Steve Rodday,1516.245862711991,40.25961003544884,18.702611955642702
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Tommy Chisholm,4144.356091718881,283.805210775615,21.134915788650513
+MatchSession,2025-03-16T13:10:00.000Z,Lightning SC ,Boston Bolts NAL South Shore U13,Tristan Misdea,4022.1007319076925,262.2860394015899,23.76455383300781
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,Andrew Shekane,1453.7831338720682,60.185801516047796,19.956383754730222
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,Andrew Tuttle,5537.186163449562,264.8944560522735,24.55081208610535
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,Benjamin Truong,3898.458835479444,205.93882582868227,26.117855684280393
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,Brian Mahler,5211.094701665052,227.73491415320308,25.877429986953732
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,Christos Kazakis,1.7093110931759588,0.0,0.6395400220155716
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,Connor Theis,3624.483416347868,160.8961406174319,21.887316049575805
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,David Smith,4656.385956866503,205.73667444419732,20.04530383300781
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,Joey DiBonaventura,4266.587859671629,103.22306760762115,23.15818791389465
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,Liana Meyers,1.5373118874686669,0.0,0.501371996819973
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,Lucas Jara,5005.996241901716,150.55107287147538,21.522059452056883
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,Mark Gaffney,0.5171790622825415,0.0,0.0
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,Noah Byrne,5406.14229170986,246.8290489633163,21.632867574691772
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,Pedro Florenco-Ramos,0.0,0.0,0.0
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,Rónan Cunningham,0.0568810598382766,0.0,0.0
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,Steve Rodday,2118.068806338216,5.955628176884484,18.333935932159424
+MatchSession,2025-03-15T17:50:00.000Z,IFA EDS S,Boston Bolts NAL South Shore U13,Tommy Chisholm,5384.728771277456,224.05910077107066,22.782329921722415
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Andrew Shekane,3199.595757729747,58.42718399595686,19.011096101760863
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Brian Mahler,4.239558841451571,0.0,3.77704794895649
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,David Smith,4718.003556320712,332.9311119210955,20.88423018264771
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Joey DiBonaventura,4127.620082770236,146.3140861445792,23.369201459884643
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Liana Meyers,5391.569098471187,261.63669821460473,23.880149934768678
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Lucas Jara,4662.649699954585,176.34796330315902,22.457429660797118
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Mark Gaffney,3.8263929078596544,0.0,4.689845938682557
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Noah Byrne,4417.783397331166,210.903612741315,22.690331577301027
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Pedro Florenco-Ramos,3330.7913039307623,42.8574109157546,22.382874172210695
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Rónan Cunningham,1.289304380288521,0.0,0.6470639964938164
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Steve Rodday,2169.5250298753617,3.4790165081435167,16.921817705154417
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Tommy Chisholm,4638.203224730206,253.27766298267312,22.6595521774292
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Tristan Misdea,4855.78949605314,259.59784598951217,25.01866777038574
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Andrew Tuttle,4699.426061206416,223.79634542780565,23.575428005218505
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Benjamin Truong,4093.296052132031,278.71244615156195,24.967367900848387
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Christos Kazakis,13.932138890734118,0.0,4.9569479856491085
+MatchSession,2025-03-14T21:30:00.000Z,Bayside NAl ,Boston Bolts NAL South Shore U13,Connor Theis,4231.314853177534,175.2626467593202,24.01695045661926
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Akhmet Omar,0.0,0.0,0.0
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Andrew Shekane,0.0,0.0,0.0
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Andrew Tuttle,0.0,0.0,0.0
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Benjamin Truong,0.0,0.0,0.0
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Brian Mahler,0.0,0.0,0.0
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Christos Kazakis,0.0,0.0,0.0
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Connor Theis,0.0,0.0,0.0
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Joey DiBonaventura,0.0,0.0,0.0
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Liana Meyers,0.0,0.0,0.0
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Lucas Jara,0.0,0.0,0.0
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Mark Gaffney,0.0,0.0,0.0
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Noah Byrne,0.0,0.0,0.0
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Pedro Florenco-Ramos,0.0,0.0,0.0
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Rónan Cunningham,0.0,0.0,0.0
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Steve Rodday,0.0,0.0,0.0
+MatchSession,2024-10-05T20:35:00.000Z,CT Rush,Boston Bolts NAL South Shore U13,Tommy Chisholm,0.0,0.0,0.0
