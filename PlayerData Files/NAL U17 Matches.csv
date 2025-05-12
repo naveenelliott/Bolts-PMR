@@ -1,275 +1,304 @@
-session_type,start_time,opponent,bolts team,athlete_name,total_distance_m,total_high_intensity_distance_m,max_speed_kph
-MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0
-MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Cole Queenan,6974.761883687825,337.29441216812086,26.119909492492674
-MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Colin Willard Railey,7609.623907151907,125.07944483686646,25.03611160469055
-MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Douglas Mira,2662.4707569152124,0.0,19.90645276451111
-MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Dylan Healy,8615.498572555065,77.81926268100361,23.434524759292604
-MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Henry Senyo,5.33337740579828,0.0,1.5287400913238525
-MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Max Kaufman,6.452226344205549,0.0,1.5130080798268317
-MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0
-MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Cole Queenan,7537.991645874047,533.193950921712,27.274159492492675
-MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Colin Willard Railey,7520.676075728426,397.6881957315561,27.824437562942503
-MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Douglas Mira,4.058561260608146,0.0,2.7537840971946714
-MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Dylan Healy,9935.08561012569,171.64083728876878,24.337747341156007
-MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Keegan Maxwell,8971.7814977328,252.05085393982841,26.703703090667723
-MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Kurt Marten,9088.574860669207,736.4155838489114,28.133604681015015
-MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,6135.331914519448,226.33323160634262,27.698238761901855
-MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Max Kaufman,5189.99760970611,412.96323270694387,30.011185581207272
-MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Max Melnik,8760.218886058075,223.5736633211424,27.317933950424194
-MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0
-MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Quincy Cotter,2.6738722665200423,0.0,2.446668116927147
-MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Sebastian Munera,8789.819174026059,240.5001807661601,29.410975868225094
-MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Arya Sheth,6161.236761201655,349.05750532115803,26.760133403778074
-MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Cole Queenan,8329.335342702296,546.517106637958,25.946857315063475
-MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Colin Willard Railey,7005.557199792249,191.70608296503752,27.686611278533935
-MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0
-MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Dylan Healy,9113.907404618527,197.25469993342986,25.09664529418945
-MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Keegan Maxwell,9682.220539424368,211.36524861505512,24.050809427261353
-MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Kurt Marten,8674.494509146052,580.339736295539,28.2341538734436
-MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,4386.449631376566,221.26446368175965,24.919146949768063
-MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Manas Kontham,4405.766751099889,64.34614627917213,21.56857329940796
-MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Max Kaufman,7575.115848066489,472.59741892638635,30.87747125244141
-MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0
-MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Noal Simmons,7054.624190434939,442.29863385694256,27.25603268623352
-MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Quincy Cotter,8000.5296366485145,388.7648405270254,26.489952438354493
-MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Sebastian Munera,7736.963622793775,196.08771906395265,25.98584477233887
-MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Aiden dokhan,0.0,0.0,0.0
-MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0
-MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Cole Queenan,0.0,0.0,0.0
-MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0
-MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0
-MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Dylan Healy,0.0,0.0,0.0
-MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0
-MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Kurt Marten,0.0,0.0,0.0
-MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,0.0,0.0,0.0
-MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0
-MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Max Kaufman,0.0,0.0,0.0
-MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0
-MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0
-MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0
-MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Aiden dokhan,0.0,0.0,0.0
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Cole Queenan,0.0,0.0,0.0
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Dylan Healy,7624.3304224965605,104.34022337347528,27.000217288970944
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Henry Senyo,0.0,0.0,0.0
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Kurt Marten,0.0,0.0,0.0
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,2807.637177777537,82.08332563422027,23.53575724983215
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Max Kaufman,0.0,0.0,0.0
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0
-MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0
-MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Aiden dokhan,0.0,0.0,0.0
-MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0
-MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Cole Queenan,0.0,0.0,0.0
-MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0
-MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0
-MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Dylan Healy,3805.8060078107646,16.574098179409862,20.837718618392945
-MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0
-MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Kurt Marten,0.0,0.0,0.0
-MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,0.0,0.0,0.0
-MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0
-MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Max Kaufman,0.0,0.0,0.0
-MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0
-MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0
-MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0
-MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Aiden dokhan,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Cole Queenan,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Dylan Healy,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Henry Senyo,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Kurt Marten,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Max Kaufman,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0
-MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Aiden dokhan,16.8731072336384,0.0,4.502771962165832
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Arya Sheth,42.86652552158949,0.0,7.021259908676147
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,41.01352640578931,0.0,6.58008008480072
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Cole Queenan,53.531584761084005,0.0,7.229196166992187
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Colin Willard Railey,41.37312781045385,0.0,6.549299869537353
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Douglas Mira,50.871375131654986,0.0,6.434387962818146
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Dylan Healy,3719.035228767841,40.571968622260336,22.072679986953734
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Henry Senyo,3263.761771407267,144.65814455054047,28.041264198303224
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Keegan Maxwell,3901.7398837834467,95.74226510385998,23.402375827789303
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Kurt Marten,39.6689875375565,0.0,7.325639863014222
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,18.26323201535945,0.0,5.506883999347687
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Manas Kontham,2095.7097461751546,28.384994300602667,23.377751655578614
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Max Kaufman,44.78244242005414,0.0,6.809220192432403
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Max Melnik,3775.831702381959,114.91284215980247,27.570671733856198
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Quincy Cotter,15.81549743823252,0.0,4.90154400587082
-MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Sebastian Munera,19.641712994668275,0.0,4.910435932159423
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Aiden dokhan,4384.6348951885975,171.79170694382077,24.062435932159424
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,0.0,0.0,0.0
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Cole Queenan,0.0,0.0,0.0
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Douglas Mira,2952.9834874056924,0.0,19.50699603652954
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Dylan Healy,5274.800407079646,204.6113769608064,25.24267833137512
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Henry Senyo,5545.291548618394,292.1348144198293,27.507060430526735
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Kurt Marten,3981.4304181936823,314.5766647127886,29.604889022827148
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,4280.897652657799,202.0891393335183,27.282707731246948
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Max Kaufman,4132.426239724556,250.5041902017793,29.722535671234127
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0
-MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Sebastian Munera,6099.609900144727,209.49283955079449,28.577177352905274
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Aiden dokhan,245.89366567853207,0.0,6.740135981082916
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Arya Sheth,7859.478481710892,402.7636243577181,25.409915788650512
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,236.31851019628448,0.0,7.846163969993591
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Cole Queenan,257.7576965175216,0.0,6.6033359484672545
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Colin Willard Railey,5733.901893080418,141.14605773572055,26.19378005218506
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Douglas Mira,243.27040542952824,0.0,6.7319280052185055
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Dylan Healy,250.79753818833996,0.0,7.2777600717544555
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Henry Senyo,240.03974076751177,0.0,7.264763872146607
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Keegan Maxwell,8244.364939322028,256.79258590945585,26.01457199478149
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Kurt Marten,237.8803409699069,0.0,6.350255945205689
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,247.16429185254518,0.0,6.6949920730590815
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Manas Kontham,233.97734789300623,0.0,6.7627080574035645
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Max Kaufman,239.85721316681864,0.0,6.5431439080238345
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Max Melnik,6280.26409224156,147.17411762571342,26.729351720809937
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0
-MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Sebastian Munera,248.31919178604574,0.0,6.757235964775085
-MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0
-MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Cole Queenan,8855.103856567712,445.08791351203934,27.861371864318844
-MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0
-MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Douglas Mira,1274.5038955172533,10.494029673675222,21.900312412261965
-MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Dylan Healy,9787.21312372463,167.8901727013639,28.157885736465452
-MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0
-MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Kurt Marten,2954.4120522528515,161.24123603186356,28.950299869537353
-MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,1.9468082055093199,0.0,0.460332000285387
-MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0
-MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Max Kaufman,7749.714781100138,462.26039449302004,28.915414810180664
-MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Max Melnik,7148.353126652935,143.12030104167638,26.388720273971558
-MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Noal Simmons,2182.2572184091127,16.193091184209628,22.285061759948732
-MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Quincy Cotter,7812.094523118903,169.13268170952622,24.876738109588622
-MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Aiden dokhan,2.883387953945043,0.0,0.5916599759459495
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Arya Sheth,9204.437952474698,438.16690656489254,26.667107666015625
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,4.094134695219391,0.0,1.030445983529091
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Cole Queenan,6195.926488490401,155.40588943254377,27.119231838226316
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Colin Willard Railey,9637.529829329043,348.0411239734868,25.782354028701782
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Douglas Mira,15.088396143695356,0.0,0.946655992090702
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Dylan Healy,10154.050109850106,240.244266331671,27.591192203521732
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Henry Senyo,4.405734406107257,0.0,1.2654000163078307
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Keegan Maxwell,10910.68503608611,125.66295809387856,24.955056467056274
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Kurt Marten,9210.247560952377,613.5298469209828,27.846323324203492
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,8700.192299989747,192.32384474132573,26.860679660797118
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Manas Kontham,5.242999737992074,0.0,0.5643000224232674
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Max Kaufman,9030.322158047744,508.4866600789104,30.40858784866333
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Max Melnik,2.2571099201823968,0.0,1.1251799869537353
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Noal Simmons,7868.555724775318,377.58957016705256,28.048787326812743
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Quincy Cotter,10345.985340479365,424.0282331854431,24.761484472274777
-MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Sebastian Munera,8555.784700132323,122.24846689298784,26.908560430526734
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Aiden dokhan,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Cole Queenan,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Dylan Healy,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Henry Senyo,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Kurt Marten,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Max Kaufman,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0
-MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Aiden dokhan,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Cole Queenan,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Dylan Healy,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Henry Senyo,5153.3742289253205,293.75132935773576,31.668515853881832
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Kurt Marten,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Max Kaufman,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0
-MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Aiden dokhan,6665.823605785372,179.5132874093736,28.48928466796875
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,8261.344175338687,207.7819027313272,28.424987783432005
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Colin Willard Railey,7080.833461796336,369.9217977494635,27.437976219177244
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Douglas Mira,4154.337481541656,0.0,19.46800792694092
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Dylan Healy,9659.780195539042,169.3139732944378,25.638029726028442
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Henry Senyo,5171.020975330318,195.4983705564996,29.258099739074705
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Keegan Maxwell,8861.292088610031,127.50014224700368,25.74644418525696
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Kurt Marten,8413.2740039377,528.8717179832245,28.829916767120356
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,5474.563956246086,158.05212569667927,24.99130779647827
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Luca Bene,0.0,0.0,0.0
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Manas Kontham,7081.137819881273,231.8024531771859,24.039179660797117
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Max Kaufman,7075.487800390891,585.7403401949757,28.689011890411376
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Noal Simmons,4822.3518293263505,513.6396388459492,26.98995607566833
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0
-MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Aiden dokhan,0.0,0.0,0.0
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Arya Sheth,7431.511422058267,417.14242085614364,27.74919616699219
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,8123.91942138125,305.397659178503,26.985851720809936
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Colin Willard Railey,8439.52894232147,329.6383150700982,26.355204093933107
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Douglas Mira,79.67566012687826,0.0,10.508633917808533
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Dylan Healy,9575.286337116744,243.14209205163368,24.30252014350891
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Henry Senyo,0.0,0.0,0.0
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Keegan Maxwell,7902.772948272925,237.55333138240832,24.450263872146603
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Kurt Marten,8772.796787758783,532.2340192680258,27.404802503585813
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,6249.103068760707,341.5357209934202,24.346295906066892
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Luca Bene,0.0,0.0,0.0
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Manas Kontham,8286.932361195144,379.0155200237913,26.4174478225708
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Max Kaufman,7337.935084666851,388.54341566647156,29.0241717338562
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Quincy Cotter,9151.864177665193,366.7630827394562,26.469431968688962
-MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Sebastian Munera,3460.905177447541,54.82048620040784,26.399664133071898
-MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Arya Sheth,7050.9663735517015,258.19881462404913,26.19583190345764
-MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,7508.652770739638,305.9638705174868,27.154800521850586
-MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Colin Willard Railey,8577.784134611771,414.511588840395,28.14933554077148
-MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Douglas Mira,3898.3897261908915,0.0,19.37361559295654
-MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Dylan Healy,7655.146309091547,178.34764139045896,24.279606336593627
-MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Keegan Maxwell,5951.00582115337,38.11047936363642,22.875353702545166
-MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Kurt Marten,6817.655581708668,266.93568026404137,27.762876153945925
-MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,7237.399025767105,264.8342127049204,25.609644315719606
-MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Manas Kontham,5842.895805661972,157.55536808593715,24.409907861709595
-MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Max Kaufman,7610.783161487911,497.850434853914,29.33607530593872
-MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Noal Simmons,5427.602815204121,384.3573052400611,26.93455185127258
-MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0
-MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Sebastian Munera,7039.720489006941,141.41764836744503,26.65171829223633
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Aiden dokhan,67.67323312100339,0.0,12.406392007827758
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Arya Sheth,5984.175117133193,195.30346424150764,24.29020838356018
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,6541.474045446643,220.1886694868692,25.931123846054078
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Colin Willard Railey,6768.982338877127,187.68447041885287,28.046051525115963
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Douglas Mira,3693.2908300920676,29.827186240148855,22.81413606262207
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Dylan Healy,68.41014087305362,0.0,12.49941611480713
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Henry Senyo,70.3722942580867,0.0,12.334571994781495
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Keegan Maxwell,6966.528958576143,145.98612783508412,25.401707731246947
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Kurt Marten,5635.746190999005,346.900475234577,25.549452112197876
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,6132.107240485469,122.8926710754664,22.49539200782776
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Luca Bene,62.320288486826385,0.0,12.607829758644103
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Manas Kontham,6760.135780658658,129.77173890432778,24.332616245269776
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Max Kaufman,68.75644850990533,0.0,12.32089184474945
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Noal Simmons,3319.4056756439068,136.87078892638135,26.641800195693968
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Quincy Cotter,5422.759098178731,334.48123385951754,25.848702112197877
-MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Sebastian Munera,4912.729237718871,71.17828112641672,24.869555488586425
+session_type,start_time,opponent,bolts team,athlete_name,total_distance_m,metres_per_minute,total_high_intensity_distance_m,high_intensity_events,total_sprint_distance_m,sprint_events,acceleration_events,deceleration_events,max_speed_kph,workload,workload_volume,workload_intensity
+MatchSession,2025-04-27T12:00:00.000Z,Ironbound NAL,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-27T12:00:00.000Z,Ironbound NAL,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-27T12:00:00.000Z,Ironbound NAL,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,1.0,0.0,2.0
+MatchSession,2025-04-27T12:00:00.000Z,Ironbound NAL,Boston Bolts NAL Boston U17,Dylan Healy,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-27T12:00:00.000Z,Ironbound NAL,Boston Bolts NAL Boston U17,Henry Senyo,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,2.0,0.0,4.0
+MatchSession,2025-04-27T12:00:00.000Z,Ironbound NAL,Boston Bolts NAL Boston U17,Max Kaufman,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-27T12:00:00.000Z,Ironbound NAL,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-26T07:00:00.000Z,Ironbound NAL,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-26T07:00:00.000Z,Ironbound NAL,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-26T07:00:00.000Z,Ironbound NAL,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,1.0,0.0,2.0
+MatchSession,2025-04-26T07:00:00.000Z,Ironbound NAL,Boston Bolts NAL Boston U17,Dylan Healy,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-26T07:00:00.000Z,Ironbound NAL,Boston Bolts NAL Boston U17,Henry Senyo,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,2.0,0.0,4.0
+MatchSession,2025-04-26T07:00:00.000Z,Ironbound NAL,Boston Bolts NAL Boston U17,Max Kaufman,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-26T07:00:00.000Z,Ironbound NAL,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-25T09:00:00.000Z,FC Delco ,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-25T09:00:00.000Z,FC Delco ,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-25T09:00:00.000Z,FC Delco ,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,1.0,0.0,2.0
+MatchSession,2025-04-25T09:00:00.000Z,FC Delco ,Boston Bolts NAL Boston U17,Dylan Healy,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-25T09:00:00.000Z,FC Delco ,Boston Bolts NAL Boston U17,Henry Senyo,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,2.0,0.0,4.0
+MatchSession,2025-04-25T09:00:00.000Z,FC Delco ,Boston Bolts NAL Boston U17,Max Kaufman,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-25T09:00:00.000Z,FC Delco ,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,4.320971108409647,0.04801079009344052,0.0,0,0.0,0,0.0,0.0,3.067056140899658,1.0276910610055465,0.046164643569911255,2.009217478441182
+MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Cole Queenan,6974.761883687825,77.49735426319805,337.29441216812086,33,48.673296304512256,4,55.0,61.0,26.119909492492674,10.0,10.0,10.0
+MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Colin Willard Railey,7609.623907151907,84.55137674613229,125.07944483686646,10,5.10935261702381,1,35.0,48.0,25.03611160469055,10.0,10.0,10.0
+MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Douglas Mira,2662.4707569152124,29.583008410169025,0.0,0,0.0,0,24.0,24.0,19.90645276451111,10.0,10.0,10.0
+MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Dylan Healy,8615.498572555065,95.7277619172785,77.81926268100361,11,0.0,0,70.0,54.0,23.434524759292604,8.012578056835128,9.596843395058896,6.428312718611362
+MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Henry Senyo,5.33337740579828,0.05925974895331422,0.0,0,0.0,0,0.0,0.0,1.5287400913238525,0.03838282158328513,0.06517627425537348,0.011589368911196784
+MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Keegan Maxwell,9533.545262640302,105.92828069600336,46.25136694277977,6,5.64437459614779,1,24.0,27.0,25.164361278533935,9.359091839114317,10.0,8.718183678228634
+MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Kurt Marten,7001.004161063576,77.78893512292862,200.43220182854725,23,8.94027256976741,2,61.0,57.0,27.896599388122556,8.959254600018788,10.0,7.918509200037576
+MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Max Kaufman,6.452226344205549,0.0716914038245061,0.0,0,0.0,0,0.0,0.0,1.5130080798268317,0.011899688604679317,0.019833890016548054,0.003965487192810579
+MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Max Melnik,11.443650992500647,0.12715167769445163,0.0,0,0.0,0,0.0,0.0,1.5841440099477768,0.03262017093039571,0.05469787272840279,0.010542469132388632
+MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Quincy Cotter,5951.002508092606,66.12225008991784,131.98134180065696,17,0.0,0,57.0,54.0,22.97282495498657,10.0,10.0,10.0
+MatchSession,2025-04-12T18:30:00.000Z,Opponent,Boston Bolts NAL Boston U17,Sebastian Munera,7584.824585477127,84.27582872752363,111.84033103619822,11,65.00946619380474,4,39.0,36.0,27.78921199607849,10.0,10.0,10.0
+MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Cole Queenan,7537.991645874047,83.75546273193386,533.193950921712,50,70.7340624916591,7,40.0,56.0,27.274159492492675,10.0,10.0,10.0
+MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Colin Willard Railey,7520.676075728426,83.56306750809362,397.6881957315561,33,64.91775477244929,7,37.0,46.0,27.824437562942503,10.0,10.0,10.0
+MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Douglas Mira,4.058561260608146,0.045095125117868284,0.0,0,0.0,0,0.0,0.0,2.7537840971946714,0.5120434690203555,0.020302017851652088,1.003784920189059
+MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Dylan Healy,9935.08561012569,110.38984011250767,171.64083728876878,21,0.0,0,60.0,80.0,24.337747341156007,9.537614491602731,10.0,9.075228983205465
+MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Keegan Maxwell,8971.7814977328,99.68646108592,252.05085393982841,27,26.05221193113412,4,25.0,42.0,26.703703090667723,10.0,10.0,10.0
+MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Kurt Marten,9088.574860669207,100.98416511854674,736.4155838489114,61,135.21171785321954,11,80.0,67.0,28.133604681015015,10.0,10.0,10.0
+MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,6135.331914519448,68.17035460577165,226.33323160634262,23,59.155874757095305,5,29.0,48.0,27.698238761901855,10.0,10.0,10.0
+MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Manas Kontham,8432.041326223007,93.68934806914451,135.11042859162524,10,7.198839545992176,1,48.0,52.0,25.28508684539795,10.0,10.0,10.0
+MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Max Kaufman,5189.99760970611,57.666640107845666,412.96323270694387,40,167.30843077396355,12,43.0,38.0,30.011185581207272,10.0,10.0,10.0
+MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Max Melnik,8760.218886058075,97.33576540064529,223.5736633211424,21,30.402933064733926,3,47.0,41.0,27.317933950424194,10.0,10.0,10.0
+MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Quincy Cotter,2.6738722665200423,0.02970969185022269,0.0,0,0.0,0,0.0,0.0,2.446668116927147,0.0060184770576669055,0.010081015213559573,0.0019559389017742373
+MatchSession,2025-04-06T18:30:00.000Z,NY Elite,Boston Bolts NAL Boston U17,Sebastian Munera,8789.819174026059,97.66465748917844,240.5001807661601,21,53.42344410757976,3,52.0,53.0,29.410975868225094,10.0,10.0,10.0
+MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Arya Sheth,6161.236761201655,68.45818623557395,349.05750532115803,29,27.028788953688576,2,59.0,50.0,26.760133403778074,10.0,10.0,10.0
+MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Cole Queenan,8329.335342702296,92.54817047446996,546.517106637958,37,33.90519392563608,6,62.0,62.0,25.946857315063475,10.0,10.0,10.0
+MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Colin Willard Railey,7005.557199792249,77.8395244421361,191.70608296503752,18,45.91002091475112,3,45.0,56.0,27.686611278533935,10.0,10.0,10.0
+MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Dylan Healy,9113.907404618527,101.26563782909474,197.25469993342986,22,11.023455942442748,2,60.0,74.0,25.09664529418945,10.0,10.0,10.0
+MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Keegan Maxwell,9682.220539424368,107.58022821582631,211.36524861505512,21,0.0,0,37.0,41.0,24.050809427261353,10.0,10.0,10.0
+MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Kurt Marten,8674.494509146052,96.38327232384502,580.339736295539,53,128.87442096895066,11,61.0,64.0,28.2341538734436,10.0,10.0,10.0
+MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,4386.449631376566,48.7383292375174,221.26446368175965,16,5.442633444449452,1,13.0,32.0,24.919146949768063,8.799907807591257,8.81019485441645,8.789620760766063
+MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Manas Kontham,4405.766751099889,48.952963901109875,64.34614627917213,8,0.0,0,28.0,32.0,21.56857329940796,9.813487393242557,10.0,9.626974786485112
+MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Max Kaufman,7575.115848066489,84.16795386740543,472.59741892638635,48,223.42250345543857,13,73.0,64.0,30.87747125244141,10.0,10.0,10.0
+MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Noal Simmons,7054.624190434939,78.38471322705487,442.29863385694256,39,81.43918864814731,7,51.0,34.0,27.25603268623352,10.0,10.0,10.0
+MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Quincy Cotter,8000.5296366485145,88.89477374053905,388.7648405270254,36,49.844891405623265,6,83.0,84.0,26.489952438354493,10.0,10.0,10.0
+MatchSession,2025-04-05T18:30:00.000Z,Syracuse DA,Boston Bolts NAL Boston U17,Sebastian Munera,7736.963622793775,85.96626247548639,196.08771906395265,22,11.755056727040856,2,50.0,32.0,25.98584477233887,10.0,10.0,10.0
+MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Aiden dokhan,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Cole Queenan,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Dylan Healy,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Kurt Marten,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Max Kaufman,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-30T01:40:00.000Z,Clevland Force,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Aiden dokhan,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Cole Queenan,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Dylan Healy,7624.3304224965605,95.30413028120701,104.34022337347528,12,15.60125839608436,1,49.0,61.0,27.000217288970944,9.622521461662952,9.245042923325904,10.0
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Henry Senyo,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Kurt Marten,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,2807.637177777537,35.09546472221921,82.08332563422027,7,0.0,0,10.0,19.0,23.53575724983215,4.579643714959594,4.597880501271469,4.561406928647719
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Max Kaufman,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-29T17:00:00.000Z,St. Mary’s ,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Aiden dokhan,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Cole Queenan,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Dylan Healy,3805.8060078107646,47.572575097634555,16.574098179409862,2,0.0,0,25.0,27.0,20.837718618392945,3.4783655973010403,4.433483083149302,2.5232481114527783
+MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Kurt Marten,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Max Kaufman,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-28T15:20:00.000Z,Charlotte Independance,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Aiden dokhan,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,2.0,0.0,4.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Cole Queenan,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Dylan Healy,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Henry Senyo,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Kurt Marten,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Max Kaufman,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-22T16:30:00.000Z,NY Rush,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Aiden dokhan,16.8731072336384,0.21091384042048,0.0,0,0.0,0,0.0,0.0,4.502771962165832,0.6069325705321786,0.17805892495966177,1.0358062161046955
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Arya Sheth,42.86652552158949,0.5358315690198686,0.0,0,0.0,0,0.0,0.0,7.021259908676147,0.03200479012765869,0.052701280933659146,0.011308299321658227
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,41.01352640578931,0.5126690800723663,0.0,0,0.0,0,0.0,0.0,6.58008008480072,7.326666775625678,8.723729880767745,5.92960367048361
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Cole Queenan,53.531584761084005,0.66914480951355,0.0,0,0.0,0,0.0,0.0,7.229196166992187,0.05168355420254196,0.08459865148865098,0.01876845691643295
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Colin Willard Railey,41.37312781045385,0.5171640976306732,0.0,0,0.0,0,0.0,0.0,6.549299869537353,0.026515821837051173,0.04362353957084244,0.009408104103259906
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Douglas Mira,50.871375131654986,0.6358921891456873,0.0,0,0.0,0,0.0,0.0,6.434387962818146,0.6375568521539797,0.2269028840657382,1.0482108202422213
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Dylan Healy,3719.035228767841,46.487940359598014,40.571968622260336,7,0.0,0,33.0,33.0,22.072679986953734,3.4708590460763005,4.058428130574343,2.8832899615782583
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Henry Senyo,3263.761771407267,40.79702214259084,144.65814455054047,17,40.47608704024772,4,39.0,34.0,28.041264198303224,10.0,10.0,10.0
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Keegan Maxwell,3901.7398837834467,48.771748547293086,95.74226510385998,7,0.0,0,16.0,21.0,23.402375827789303,3.798562577469035,3.7412288539422693,3.8558963009958003
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Kurt Marten,39.6689875375565,0.4958623442194562,0.0,0,0.0,0,0.0,0.0,7.325639863014222,0.032565172636943536,0.05364957761484465,0.011480767659042417
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,18.26323201535945,0.22829040019199312,0.0,0,0.0,0,0.0,0.0,5.506883999347687,0.012957308048009005,0.021360234485881115,0.004554381610136896
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Manas Kontham,2095.7097461751546,26.19637182718943,28.384994300602667,2,0.0,0,20.0,20.0,23.377751655578614,4.386444752918836,4.215312571891962,4.557576933945708
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Max Kaufman,44.78244242005414,0.5597805302506768,0.0,0,0.0,0,0.0,0.0,6.809220192432403,0.03688458351557343,0.060722300752282764,0.013046866278864096
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Max Melnik,3775.831702381959,47.19789627977449,114.91284215980247,14,16.66403509153535,1,27.0,22.0,27.570671733856198,7.965090935424126,5.930181870848251,10.0
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Quincy Cotter,15.81549743823252,0.1976937179779065,0.0,0,0.0,0,0.0,0.0,4.90154400587082,0.5116830351523212,0.01919182020767664,1.0041742500969657
+MatchSession,2025-03-16T20:27:00.000Z,Opponent,Boston Bolts NAL Boston U17,Sebastian Munera,19.641712994668275,0.24552141243335343,0.0,0,0.0,0,0.0,0.0,4.910435932159423,0.018548114277371158,0.030531064936020216,0.0065651636187220985
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Aiden dokhan,4384.6348951885975,54.80793618985747,171.79170694382077,19,0.0,0,36.0,32.0,24.062435932159424,10.0,10.0,10.0
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,2.0,0.0,4.0
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Cole Queenan,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Douglas Mira,2952.9834874056924,36.91229359257115,0.0,0,0.0,0,11.0,15.0,19.50699603652954,8.265978993156267,10.0,6.531957986312532
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Dylan Healy,5274.800407079646,65.93500508849557,204.6113769608064,17,0.0,0,48.0,32.0,25.24267833137512,5.4519339327893075,5.609650776968679,5.294217088609937
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Henry Senyo,5545.291548618394,69.31614435772993,292.1348144198293,30,47.16819050772049,5,83.0,52.0,27.507060430526735,10.0,10.0,10.0
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Kurt Marten,3981.4304181936823,49.76788022742103,314.5766647127886,26,67.52095976005188,5,32.0,35.0,29.604889022827148,7.3657341428669145,5.003830827137438,9.72763745859639
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,4280.897652657799,53.511220658222484,202.0891393335183,21,72.59730148892059,2,19.0,25.0,27.282707731246948,7.325311229375007,4.650622458750013,10.0
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Max Kaufman,4132.426239724556,51.65532799655695,250.5041902017793,23,75.75272431802284,3,36.0,31.0,29.722535671234127,6.287748330661846,5.1630633172016225,7.41243334412207
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-15T18:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Sebastian Munera,6099.609900144727,76.24512375180909,209.49283955079449,18,25.96503103578669,1,46.0,40.0,28.577177352905274,9.138845723214148,8.277691446428296,10.0
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Aiden dokhan,245.89366567853207,2.7321518408725787,0.0,0,0.0,0,0.0,0.0,6.740135981082916,2.0339067605313628,2.6025960800371744,1.4652174410255514
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Arya Sheth,7859.478481710892,87.32753868567657,402.7636243577181,32,12.910664845073994,2,63.0,81.0,25.409915788650512,9.48961427508581,8.979228550171621,10.0
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,236.31851019628448,2.6257612244031607,0.0,0,0.0,0,0.0,0.0,7.846163969993591,10.0,10.0,10.0
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Cole Queenan,257.7576965175216,2.86397440575024,0.0,0,0.0,0,0.0,0.0,6.6033359484672545,0.2614804824831211,0.43705839833312454,0.08590256663311772
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Colin Willard Railey,5733.901893080418,63.71002103422686,141.14605773572055,14,14.834440613921329,2,35.0,49.0,26.19378005218506,6.998813604955186,6.0498467068838,7.947780503026571
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Douglas Mira,243.27040542952824,2.703004504772536,0.0,0,0.0,0,0.0,0.0,6.7319280052185055,1.1472800360200797,1.088866185018824,1.2056938870213352
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Dylan Healy,250.79753818833996,2.7866393132037772,0.0,0,0.0,0,0.0,0.0,7.2777600717544555,0.19461606972445344,0.3267151581558335,0.06251698129307336
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Henry Senyo,240.03974076751177,2.667108230750131,0.0,0,0.0,0,0.0,0.0,7.264763872146607,1.5962968324937057,2.660464865576422,0.5321287994109898
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Keegan Maxwell,8244.364939322028,91.60405488135586,256.79258590945585,18,18.828277538133392,3,15.0,44.0,26.01457199478149,8.877512028612035,7.7550240572240705,10.0
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Kurt Marten,237.8803409699069,2.6431148996656324,0.0,0,0.0,0,0.0,0.0,6.350255945205689,0.19293891199610935,0.323900692202141,0.06197713179007771
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,247.16429185254518,2.746269909472724,0.0,0,0.0,0,0.0,0.0,6.6949920730590815,0.17214816230710497,0.28920282381669016,0.055093500797519804
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Manas Kontham,233.97734789300623,2.5997483099222913,0.0,0,0.0,0,0.0,0.0,6.7627080574035645,0.7764226303692534,0.46500862232337103,1.0878366384151357
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Max Kaufman,239.85721316681864,2.665080146297985,0.0,0,0.0,0,0.0,0.0,6.5431439080238345,0.2131960026314946,0.3585065744436386,0.06788543081935061
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Max Melnik,6280.26409224156,69.78071213601734,147.17411762571342,15,24.797393233115137,3,26.0,27.0,26.729351720809937,10.0,10.0,10.0
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-14T22:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Sebastian Munera,248.31919178604574,2.7591021309560637,0.0,0,0.0,0,0.0,0.0,6.757235964775085,0.2299916729297182,0.38616856469968575,0.07381478115975067
+MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Cole Queenan,8855.103856567712,98.39004285075235,445.08791351203934,37,46.21917303481088,4,48.0,66.0,27.861371864318844,10.0,10.0,10.0
+MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Douglas Mira,1274.5038955172533,14.161154394636148,10.494029673675222,1,0.0,0,4.0,8.0,21.900312412261965,9.235490959361321,8.470981918722645,10.0
+MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Dylan Healy,9787.21312372463,108.74681248582922,167.8901727013639,16,29.663909903211028,3,67.0,74.0,28.157885736465452,10.0,10.0,10.0
+MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Kurt Marten,2954.4120522528515,32.82680058058724,161.24123603186356,17,47.516995022484785,4,16.0,24.0,28.950299869537353,5.3060460160326866,4.082127471676155,6.529964560389219
+MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,1.9468082055093199,0.021631202283436887,0.0,0,0.0,0,0.0,0.0,0.460332000285387,0.0013725155908043526,0.0023054355309605214,0.00043959565064818375
+MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Max Kaufman,7749.714781100138,86.10794201222376,462.26039449302004,40,131.91785492012065,9,62.0,57.0,28.915414810180664,9.59287694887741,9.18575389775482,10.0
+MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Max Melnik,7148.353126652935,79.42614585169927,143.12030104167638,16,35.28262206736773,3,47.0,37.0,26.388720273971558,10.0,10.0,10.0
+MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Noal Simmons,2182.2572184091127,24.24730242676792,16.193091184209628,1,0.0,0,14.0,16.0,22.285061759948732,1.8169277549159235,2.3972057564800098,1.2366497533518372
+MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Quincy Cotter,7812.094523118903,86.8010502568767,169.13268170952622,21,0.0,0,92.0,116.0,24.876738109588622,7.443867633142742,7.70635928062887,7.181375985656613
+MatchSession,2025-03-09T17:30:00.000Z,South Shore NAL,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Aiden dokhan,2.883387953945043,0.032037643932722695,0.0,0,0.0,0,0.0,0.0,0.5916599759459495,0.5105269036365566,0.017875561363312132,1.003178245909801
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Arya Sheth,9204.437952474698,102.27153280527442,438.16690656489254,34,64.26688605665484,6,75.0,88.0,26.667107666015625,10.0,10.0,10.0
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,4.094134695219391,0.045490385502437676,0.0,0,0.0,0,0.0,0.0,1.030445983529091,8.862388949620446,10.0,7.724777899240891
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Cole Queenan,6195.926488490401,68.84362764989335,155.40588943254377,20,38.677423152147604,4,42.0,42.0,27.119231838226316,10.0,10.0,10.0
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Colin Willard Railey,9637.529829329043,107.0836647703227,348.0411239734868,27,35.59422266695967,6,38.0,48.0,25.782354028701782,10.0,10.0,10.0
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Douglas Mira,15.088396143695356,0.1676488460410595,0.0,0,0.0,0,0.0,0.0,0.946655992090702,1.1041403173728943,0.1768248352358724,2.0314557995099163
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Dylan Healy,10154.050109850106,112.82277899833451,240.244266331671,30,23.80514031852609,1,59.0,83.0,27.591192203521732,10.0,10.0,10.0
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Henry Senyo,4.405734406107257,0.04895260451230286,0.0,0,0.0,0,0.0,0.0,1.2654000163078307,0.017934513667482156,0.029890726478550157,0.005978300856414151
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Keegan Maxwell,10910.68503608611,121.22983373429011,125.66295809387856,13,6.474571132322526,1,27.0,58.0,24.955056467056274,10.0,10.0,10.0
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Kurt Marten,9210.247560952377,102.33608401058197,613.5298469209828,58,101.27787960389547,12,76.0,69.0,27.846323324203492,10.0,10.0,10.0
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,8700.192299989747,96.66880333321942,192.32384474132573,18,11.523960341137663,1,43.0,68.0,26.860679660797118,9.829461098805442,9.658922197610886,10.0
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Manas Kontham,5.242999737992074,0.058255552644356376,0.0,0,0.0,0,0.0,0.0,0.5643000224232674,0.5065642327825112,0.011073784994696542,1.0020546805703259
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Max Kaufman,9030.322158047744,100.33691286719716,508.4866600789104,38,180.66272712084879,6,74.0,67.0,30.40858784866333,10.0,10.0,10.0
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Max Melnik,2.2571099201823968,0.025078999113137743,0.0,0,0.0,0,0.0,0.0,1.1251799869537353,0.5029806890325864,0.005028156790589282,1.0009332212745836
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Noal Simmons,7868.555724775318,87.42839694194798,377.58957016705256,32,47.85642836029902,3,65.0,52.0,28.048787326812743,9.353848387656026,8.70769677531205,10.0
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Quincy Cotter,10345.985340479365,114.95539267199294,424.0282331854431,36,0.0,0,119.0,143.0,24.761484472274777,10.0,10.0,10.0
+MatchSession,2025-03-01T16:00:00.000Z,Seacoast Bedford,Boston Bolts NAL Boston U17,Sebastian Munera,8555.784700132323,95.06427444591469,122.24846689298784,15,23.09203893023692,3,51.0,52.0,26.908560430526734,9.960464876337607,9.920929752675212,10.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Aiden dokhan,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,1.5,0.0,3.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Cole Queenan,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,1.0,0.0,2.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Dylan Healy,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Henry Senyo,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,1.5,0.0,3.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Kurt Marten,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Max Kaufman,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-02-17T15:00:00.000Z,Vardar,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Aiden dokhan,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,1.5,0.0,3.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Cole Queenan,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Colin Willard Railey,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Douglas Mira,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,1.0,0.0,2.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Dylan Healy,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Henry Senyo,5153.3742289253205,57.259713654725786,293.75132935773576,29,136.26442734707183,8,53.0,47.0,31.668515853881832,10.0,10.0,10.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Keegan Maxwell,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Kurt Marten,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Manas Kontham,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Max Kaufman,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Max Melnik,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2025-02-15T16:00:00.000Z,Club Ohio,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.5,0.0,1.0
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Aiden dokhan,6665.823605785372,74.06470673094857,179.5132874093736,17,32.05710632385263,2,38.0,33.0,28.48928466796875,10.0,10.0,10.0
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Arya Sheth,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,8261.344175338687,91.79271305931874,207.7819027313272,23,91.84392830075775,5,79.0,41.0,28.424987783432005,7.041247480977677,6.847435934547427,7.235059027407926
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Colin Willard Railey,7080.833461796336,78.67592735329262,369.9217977494635,31,78.60682129576833,6,33.0,47.0,27.437976219177244,6.764144153533465,5.940407392489292,7.587880914577637
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Douglas Mira,4154.337481541656,46.15930535046285,0.0,0,0.0,0,13.0,20.0,19.46800792694092,7.3707347429871515,9.285491022712963,5.4559784632613395
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Dylan Healy,9659.780195539042,107.33089106154492,169.3139732944378,15,11.152262455419644,1,83.0,71.0,25.638029726028442,10.0,8.87147240732611,10.0
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Henry Senyo,5171.020975330318,57.45578861478131,195.4983705564996,23,70.76299901906177,6,45.0,41.0,29.258099739074705,10.0,10.0,10.0
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Keegan Maxwell,8861.292088610031,98.4588009845559,127.50014224700368,11,18.319095263703677,3,32.0,48.0,25.74644418525696,8.40504251750419,7.364220026519858,9.445865008488523
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Kurt Marten,8413.2740039377,93.48082226597445,528.8717179832245,47,194.3181718271153,14,66.0,52.0,28.829916767120356,8.358723261052594,6.754957839096576,9.962488683008612
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,5474.563956246086,60.82848840273429,158.05212569667927,14,4.337286701303568,1,19.0,33.0,24.99130779647827,5.292998737016166,4.885537978059144,5.700459495973188
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Luca Bene,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,2.0,0.0,4.0
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Manas Kontham,7081.137819881273,78.67930910979192,231.8024531771859,26,0.0,0,40.0,53.0,24.039179660797117,5.516265262704312,6.221437467278515,4.811093058130109
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Max Kaufman,7075.487800390891,78.61653111545434,585.7403401949757,53,136.07359678048473,12,47.0,41.0,28.689011890411376,7.898688554614871,7.529344742083063,8.26803236714668
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Noal Simmons,4822.3518293263505,53.581686992515,513.6396388459492,36,11.426559901927462,1,57.0,40.0,26.98995607566833,6.437847502688628,6.161599051249781,6.714095954127474
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2024-12-08T16:00:00.000Z,IFA NAL,Boston Bolts NAL Boston U17,Sebastian Munera,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Aiden dokhan,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Arya Sheth,7431.511422058267,92.89389277572835,417.14242085614364,37,56.750747095977545,5,65.0,72.0,27.74919616699219,7.234581707523709,5.835530378148813,8.633633036898607
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,8123.91942138125,101.54899276726562,305.397659178503,23,19.85312445745749,2,70.0,53.0,26.985851720809936,6.3569072461152265,6.4314285763479395,6.2823859158825135
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Colin Willard Railey,8439.52894232147,105.49411177901838,329.6383150700982,23,43.2667271380853,4,48.0,50.0,26.355204093933107,7.20888960369805,6.55741632010894,7.86036288728716
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Douglas Mira,79.67566012687826,0.9959457515859782,0.0,0,0.0,0,0.0,0.0,10.508633917808533,0.5906638469817362,0.15019335481205115,1.0311343391514214
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Dylan Healy,9575.286337116744,119.6910792139593,243.14209205163368,22,0.0,0,69.0,85.0,24.30252014350891,7.971983723561358,8.75337313818889,7.190594308933827
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Henry Senyo,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,2.0,0.0,4.0
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Keegan Maxwell,7902.772948272925,98.78466185341156,237.55333138240832,18,0.0,0,20.0,48.0,24.450263872146603,5.90984341511017,6.1017366084823905,5.717950221737949
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Kurt Marten,8772.796787758783,109.65995984698479,532.2340192680258,44,57.03816814688177,6,96.0,98.0,27.404802503585813,7.589045508614657,6.4115502362231584,8.766540781006155
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,6249.103068760707,78.11378835950885,341.5357209934202,21,0.0,0,34.0,46.0,24.346295906066892,5.22539161296131,4.912393839746303,5.538389386176316
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Luca Bene,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,2.0,0.0,4.0
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Manas Kontham,8286.932361195144,103.5866545149393,379.0155200237913,30,18.651490269946358,2,58.0,58.0,26.4174478225708,9.480590183689241,6.527022039105117,10.0
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Max Kaufman,7337.935084666851,91.72418855833564,388.54341566647156,43,142.647062955169,11,66.0,52.0,29.0241717338562,7.022560335126272,6.27376878210126,7.771351888151285
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Noal Simmons,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Quincy Cotter,9151.864177665193,114.39830222081491,366.7630827394562,33,31.03868868136621,3,108.0,120.0,26.469431968688962,9.866161758883228,8.630655201040522,10.0
+MatchSession,2024-12-01T19:30:00.000Z,NEFC NAL,Boston Bolts NAL Boston U17,Sebastian Munera,3460.905177447541,43.26131471809426,54.82048620040784,7,15.874249432892931,1,23.0,19.0,26.399664133071898,4.12615524897237,3.3729483798258415,4.879362118118898
+MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Arya Sheth,7050.9663735517015,88.13707966939627,258.19881462404913,28,25.10893528597785,4,60.0,52.0,26.19583190345764,6.185273342076959,5.603690382820059,6.766856301333859
+MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,7508.652770739638,93.85815963424548,305.9638705174868,28,59.38689587813717,3,89.0,54.0,27.154800521850586,6.720800788512689,6.062460525551452,7.379141051473924
+MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Colin Willard Railey,8577.784134611771,107.22230168264714,414.511588840395,36,60.101318179291766,3,46.0,73.0,28.14933554077148,7.768049904700908,6.636323337827259,8.899776471574558
+MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Douglas Mira,3898.3897261908915,48.72987157738614,0.0,0,0.0,0,21.0,20.0,19.37361559295654,5.433215079365009,6.154726912948647,4.711703245781373
+MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Dylan Healy,7655.146309091547,95.68932886364433,178.34764139045896,14,0.0,0,66.0,75.0,24.279606336593627,7.697163909694942,8.234309478910799,7.160018340479086
+MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Keegan Maxwell,5951.00582115337,74.38757276441711,38.11047936363642,4,0.0,0,7.0,19.0,22.875353702545166,3.5717041875754623,4.806600115224412,2.3368082599265128
+MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Kurt Marten,6817.655581708668,85.22069477135835,266.93568026404137,26,46.33492156899898,5,55.0,58.0,27.762876153945925,6.039351660436894,5.280811264779154,6.797892056094636
+MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,7237.399025767105,90.46748782208881,264.8342127049204,23,12.622917290865844,1,27.0,49.0,25.609644315719606,8.16344667734408,5.669422114491218,10.0
+MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Manas Kontham,5842.895805661972,73.03619757077465,157.55536808593715,15,0.0,0,39.0,48.0,24.409907861709595,5.233792956203766,4.901412392105805,5.566173520301728
+MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Max Kaufman,7610.783161487911,95.13478951859888,497.850434853914,48,209.66027394206424,14,52.0,53.0,29.33607530593872,8.614690282178373,6.856385729991002,10.0
+MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Noal Simmons,5427.602815204121,67.8450351900515,384.3573052400611,33,61.50304327362582,5,65.0,68.0,26.93455185127258,7.031684010859747,5.676838795982938,8.386529225736556
+MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Quincy Cotter,0.0,0.0,0.0,0,0.0,0,0.0,0.0,0.0,0.0,0.0,0.0
+MatchSession,2024-11-30T19:08:00.000Z,Seacoast NAL,Boston Bolts NAL Boston U17,Sebastian Munera,7039.720489006941,87.99650611258676,141.41764836744503,15,12.389766222680837,2,33.0,45.0,26.65171829223633,6.363618807126448,6.020818887413552,6.706418726839345
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Aiden dokhan,67.67323312100339,0.8459154140125424,0.0,0,0.0,0,0.0,0.0,12.406392007827758,0.09454081111603292,0.15438306413839947,0.03469855809366637
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Arya Sheth,5984.175117133193,74.80218896416491,195.30346424150764,17,0.0,0,67.0,77.0,24.29020838356018,4.715155482773793,4.9038894320948625,4.526421533452723
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Ashenafi Jack Hawgood,6541.474045446643,81.76842556808303,220.1886694868692,19,39.12520721853246,4,71.0,31.0,25.931123846054078,5.808243117303016,5.577877467166157,6.038608767439875
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Colin Willard Railey,6768.982338877127,84.6122792359641,187.68447041885287,12,46.196521925567936,2,27.0,47.0,28.046051525115963,6.559392923102815,5.703561966417718,7.415223879787913
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Douglas Mira,3693.2908300920676,46.16613537615085,29.827186240148855,3,0.0,0,10.0,13.0,22.81413606262207,6.071780664764554,6.18820371644907,5.955357613080038
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Dylan Healy,68.41014087305362,0.8551267609131703,0.0,0,0.0,0,0.0,0.0,12.49941611480713,0.053760884161114485,0.08778144489789622,0.019740323424332754
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Henry Senyo,70.3722942580867,0.8796536782260838,0.0,0,0.0,0,0.0,0.0,12.334571994781495,10.0,10.0,7.591692443063856
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Keegan Maxwell,6966.528958576143,87.08161198220179,145.98612783508412,17,10.980880197180086,1,30.0,44.0,25.401707731246947,6.738333107496889,5.572943168615778,7.903723046378
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Kurt Marten,5635.746190999005,70.44682738748756,346.900475234577,29,8.934087512434036,2,44.0,54.0,25.549452112197876,4.840815218223867,4.427493851819271,5.254136584628462
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Lorenzo Grimaldi,6132.107240485469,76.65134050606837,122.8926710754664,13,0.0,0,25.0,38.0,22.49539200782776,5.233296280604227,4.969940339701787,5.496652221506666
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Luca Bene,62.320288486826385,0.7790036060853298,0.0,0,0.0,0,0.0,0.0,12.607829758644103,10.0,10.0,7.851669388001044
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Manas Kontham,6760.135780658658,84.50169725823324,129.77173890432778,14,0.0,0,53.0,44.0,24.332616245269776,5.781440126631405,5.643038043970874,5.919842209291936
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Max Kaufman,68.75644850990533,0.8594556063738166,0.0,0,0.0,0,0.0,0.0,12.32089184474945,0.04156449168673312,0.06827874359000553,0.014850239783460697
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Noal Simmons,3319.4056756439068,41.492570945548835,136.87078892638135,15,31.539356730301108,4,34.0,29.0,26.641800195693968,4.266499266539272,3.593442117090989,4.939556415987556
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Quincy Cotter,5422.759098178731,67.78448872723413,334.48123385951754,28,16.296635215243736,1,54.0,63.0,25.848702112197877,6.135878851223177,4.786227098348166,7.485530604098187
+MatchSession,2024-11-29T19:00:00.000Z,Opponent,Boston Bolts NAL Boston U17,Sebastian Munera,4912.729237718871,61.40911547148589,71.17828112641672,6,4.986055972038129,1,43.0,30.0,24.869555488586425,4.523917414210626,4.427672620159009,4.6201622082622436
