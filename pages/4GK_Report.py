@@ -18,7 +18,6 @@ import plotly.graph_objs as go
 from PIL import Image, ImageOps
 from streamlit_gsheets import GSheetsConnection
 import numpy as np
-from creating_heatmap_playerData import gettingHeatmapGK
 from datetime import datetime
 
 
@@ -56,8 +55,8 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     out_possession_goals = gk_info['Out of Possession Goals'].iloc[0]
     coach_notes = gk_info['Vasily Notes'].iloc[0]
     url_gk = gk_info['Veo Hyperlink GK'].iloc[0]
-    focus_for_spring = gk_info['Focus for Spring'].iloc[0]
-    summary_of_fall = gk_info['Summary of Fall'].iloc[0]
+    focus_for_spring = gk_info['Focus for Next Year'].iloc[0]
+    summary_of_fall = gk_info['Summary of Spring'].iloc[0]
 
     st.title(f"{gk_name} - Goalkeeper Report ({selected_team} vs {selected_opp})")
 
@@ -85,7 +84,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     in_poss_involve, out_poss_involve = gkInvolvements(specific_player)
 
-    no_xg_date = '3/14/2025'
+    no_xg_date = '3/1/2025'
     no_xg_date = datetime.strptime(no_xg_date, "%m/%d/%Y")
 
     selected_date_formatted = datetime.strptime(selected_date, '%m/%d/%Y')
@@ -773,9 +772,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
             unsafe_allow_html=True
         )
 
-    fig = gettingHeatmapGK(gk_name, selected_opp)
-    with col2:
-        st.pyplot(fig)
+
     
     fig = plottingStatistics(final_game_grade, 'Final Grade', date_wanted=selected_date)
     st.plotly_chart(fig)
@@ -816,7 +813,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
               <div style="display: flex; flex-direction: column; gap: 10px;">
                   <div style="display: flex; align-items: center;">
                       <div style="margin-left: 10px;">
-                          <span style='font-family: Arial; font-size: 13pt; color: black;'><strong>Summary of Fall:</strong> {summary_of_fall}</span>
+                          <span style='font-family: Arial; font-size: 13pt; color: black;'><strong>Summary of Spring:</strong> {summary_of_fall}</span>
                       </div>
                   </div>
               </div>
@@ -829,7 +826,7 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
               <div style="display: flex; flex-direction: column; gap: 10px;">
                   <div style="display: flex; align-items: center;">
                       <div style="margin-left: 10px;">
-                          <span style='font-family: Arial; font-size: 13pt; color: black;'><strong>Focus for Spring:</strong> {focus_for_spring}</span>
+                          <span style='font-family: Arial; font-size: 13pt; color: black;'><strong>Focus for Next Year:</strong> {focus_for_spring}</span>
                       </div>
                   </div>
               </div>

@@ -56,8 +56,8 @@ if (existing_data['Bolts Team'].str.contains(selected_team).any() &
         out_possession = existing_data.loc[index, 'Out of Possession Goals'].values[0]
         coach_notes = existing_data.loc[index, 'Coach Notes'].values[0]
         veo_hyperlink = existing_data.loc[index, 'Veo Hyperlink'].values[0]
-        summary_of_fall = existing_data.loc[index, 'Summary of Fall'].values[0]
-        focus_for_spring = existing_data.loc[index, 'Focus for Spring'].values[0]
+        summary_of_fall = existing_data.loc[index, 'Summary of Spring'].values[0]
+        focus_for_spring = existing_data.loc[index, 'Focus for Next Year'].values[0]
 
 # Form to update the DataFrame
 with st.form("input_form"):
@@ -65,8 +65,8 @@ with st.form("input_form"):
     out_possession = st.text_input("Out of Possession:", value=out_possession)
     veo_hyperlink = st.text_input("Veo Hyperlink:", value=veo_hyperlink)
     coach_notes = st.text_input("Coach Notes:", value=coach_notes)
-    summary_of_fall = st.text_area("Summary of Fall (Optional):", value=summary_of_fall)
-    focus_for_spring = st.text_area("Focus for Spring (Optional):", value=focus_for_spring)
+    summary_of_fall = st.text_area("Summary of Spring (Optional):", value=summary_of_fall)
+    focus_for_spring = st.text_area("Focus for Next Year (Optional):", value=focus_for_spring)
     
     submit_button = st.form_submit_button(label='Save')
 
@@ -92,8 +92,8 @@ with st.form("input_form"):
             existing_data.loc[index, 'Out of Possession Goals'] = out_possession
             existing_data.loc[index, 'Veo Hyperlink'] = veo_hyperlink
             existing_data.loc[index, 'Coach Notes'] = coach_notes
-            existing_data.loc[index, 'Summary of Fall'] = summary_of_fall
-            existing_data.loc[index, 'Focus for Spring'] = focus_for_spring
+            existing_data.loc[index, 'Summary of Spring'] = summary_of_fall
+            existing_data.loc[index, 'Focus for Next Year'] = focus_for_spring
             updated_df = existing_data.copy()
         else:
             # Add new data if match data does not exist
@@ -106,8 +106,8 @@ with st.form("input_form"):
                 'Out of Possession Goals': out_possession,
                 'Veo Hyperlink': veo_hyperlink,
                 'Coach Notes': coach_notes,
-                'Summary of Fall': summary_of_fall,
-                'Focus for Spring': focus_for_spring
+                'Summary of Spring': summary_of_fall,
+                'Focus for Next Year': focus_for_spring
             }])
             updated_df = pd.concat([existing_data, new_data], ignore_index=True)
 
@@ -122,6 +122,6 @@ st.write(f"Out Possession Current Goals: {out_possession}")
 st.write(f"Veo Hyperlink: {veo_hyperlink}")
 st.write(f"Competition Level: {coach_notes}")
 if summary_of_fall:
-    st.write(f"Summary of Fall: {summary_of_fall}")
+    st.write(f"Summary of Spring: {summary_of_fall}")
 if focus_for_spring:
-    st.write(f"Focus for Spring: {focus_for_spring}")
+    st.write(f"Focus for Next Year: {focus_for_spring}")
