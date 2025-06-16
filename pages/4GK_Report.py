@@ -682,9 +682,14 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
     end_overall.rename(columns={'Team Name': 'Team'}, inplace=True)
     game_grade_end.rename(columns={'Team Name': 'Team'}, inplace=True)
 
+
     for index, row in end_overall.iterrows():
       # Check if the current match date exists in summary_df
-      match = summary_df[summary_df['Match Date'] == row['Match Date']]
+
+      if summary_df.empty:
+        match = pd.DataFrame()  # Assign an empty DataFrame
+      else:
+        match = summary_df[summary_df['Match Date'] == row['Match Date']]
       
       if match.empty:
           # If no matching date is found, set xG to 0
@@ -699,7 +704,10 @@ if not pd.isna(gk_info['Vasily Notes']).any() and not gk_info.empty:
 
     for index, row in game_grade_end.iterrows():
       # Check if the current match date exists in summary_df
-      match = summary_df[summary_df['Match Date'] == row['Match Date']]
+      if summary_df.empty:
+        match = pd.DataFrame()  # Assign an empty DataFrame
+      else:
+        match = summary_df[summary_df['Match Date'] == row['Match Date']]
       
       if match.empty:
           # If no matching date is found, set xG to 0
